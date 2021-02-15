@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
 import EntryReducer from '../entry/reducer';
+import SpotifyReducer from '../getData/reducer';
+
 
 const rootReducers = combineReducers({
- EntryReducer
+ EntryReducer,
+ SpotifyReducer
 })
 export default rootReducers;

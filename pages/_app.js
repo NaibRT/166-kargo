@@ -7,11 +7,15 @@ import store from '../redux/store'
 
 
 class MyApp extends App {
+  static async getInitialProps({Component, ctx}){
+    const appProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+    return { appProps: appProps };
+  }
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, appProps } = this.props
     return (
       <Provider store={store}>
-       <Component {...pageProps} />
+       <Component {...appProps} />
       </Provider>
     )
   }

@@ -1,10 +1,14 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import Link from 'next/link'
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
+        <Link
+         href='/getData'
+        >Get Spotify Data</Link>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
