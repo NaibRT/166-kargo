@@ -6,9 +6,6 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <Link
-         href='/getData'
-        >Get Spotify Data</Link>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -17,7 +14,9 @@ export default function Home() {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-
+        <Link
+         href='/getData'
+        >Get Spotify Data</Link>
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
