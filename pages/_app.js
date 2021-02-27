@@ -16,6 +16,7 @@ const message = {
   az:az,
   en:en,
   ru:ru,
+  ua:au,
 }
 
 export default function MyApp({ Component, pageProps }){
