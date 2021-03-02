@@ -3,14 +3,13 @@ $base-size:16;
     @return($target/$base-size)+rem
 }
 /*Spacing*/
-$fluid-size:165px;
 $margin-top:size(25);
 $margin-left:size(25);
 $margin-bottom:size(25);
 $margin-bottom__btn:size(10);
 $margin-right:size(25);
 $margin:size(25);
-$padding:size(25);
+$padding:size(18);
 
 $slider__margin-top:35px;
 $slider__margin-bottom:38px;
