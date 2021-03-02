@@ -13,6 +13,7 @@ function GetData(props) {
   useEffect(()=>{
     props.getDataAction('https://jsonplaceholder.typicode.com/posts',{});
   },[])
+  
  return (
   <div>
     {
