@@ -1,0 +1,64 @@
+$base-size:16;
+@function size($target){
+    @return($target/$base-size)+rem
+}
+/*Spacing*/
+$margin-top:size(25);
+$margin-left:size(25);
+$margin-bottom:size(25);
+$margin-bottom__btn:size(10);
+$margin-right:25px;
+$margin:25px;
+$padding:18px;
+
+$slider__margin-top:35px;
+$slider__margin-bottom:38px;
+
+/*Border-radius*/
+$btn__download-border-radius:3px;
+$btn__border-radius:5px;
+$card-sm__border-radius:0 30px 30px 30px;
+$card-xs__border-radius:0 20px 20px 20px;
+$flag-only__border-radius:0 7px 7px 7px;
+$card-lg__border-radius:10px;
+
+/*logo and menu*/
+$width__logo:149px;
+$height__logo:55px;
+$height__menu:76px;
+$width__right:369px;
+$width__left:828px;
+$width__user-mob:35px;
+$height__user-mob:35px;
+
+/*font*/
+$font-size:size(16);
+$font-size__cn:size(15);
+$font-size__ex:size(9);
+$font-size__strong:size(18);
+$font-size__xs:size(12);
+$font-size__xs_1:size(13);
+$font-size__sm:size(14);
+$font-size__subtitle:size(20);
+$font-size__balance:size(32);
+$font-size__faq-title:size(33);
+$font-size__lg:size(36);
+$font-size-title__md:size(28);
+
+$font-weight__menu:400;
+$font-weight__reg:500;
+
+/*color*/
+$color__menu:#707070;
+$color__yellow:#ffc528;
+$color__bg:#f6f6f6;
+$color__icon:#292929;
+$color__black:#000000;
+$color__subtitle:#78747474;
+$color__label:#464646;
+$color__white:#ffffff;
+$color__err:#ea0000;
+$color__success:#7DBB00;
+
+
+

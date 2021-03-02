@@ -10,13 +10,14 @@ import { useRouter } from 'next/router'
 import az from '../locale/az.json'
 import en from '../locale/en.json'
 import ru from '../locale/ru.json'
+import ua from '../locale/ua.json'
 
 
 const message = {
   az:az,
   en:en,
   ru:ru,
-  ua:au,
+  ua:ua,
 }
 
 export default function MyApp({ Component, pageProps }){

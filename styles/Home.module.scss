@@ -1,3 +1,4 @@
+@import './scss/variables' ;
 .container {
   min-height: 100vh;
   padding: 0 0.5rem;
@@ -25,8 +26,11 @@
   align-items: center;
 }
 
-.footer img {
-  margin-left: 0.5rem;
+.footer {
+  img {
+    margin-left: 0.5rem;
+  }
+  
 }
 
 .footer a {
@@ -49,7 +53,7 @@
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: $font-size__strong;
 }
 
 .title,
