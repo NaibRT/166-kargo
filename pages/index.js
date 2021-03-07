@@ -4,6 +4,7 @@ import {useIntl} from 'react-intl';
 import Header from '../components/header';
 import Navbar from '../components/Navbar';
 
+
 export default function Home() {
   const {formatMessage: f} = useIntl();
   return (
