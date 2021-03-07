@@ -1,0 +1,43 @@
+@import '/public/assets/styles/scss/variables.scss';
+
+.card{
+//  padding: $padding;
+ border: 1px solid transparent;
+}
+.p-sm{
+  padding: $padding_sm;
+}
+.p-md{
+  padding: $padding_md;
+}
+.p-lg{
+  padding: $padding_lg;
+}
+.card-body{
+  padding: $padding_md;
+ }
+
+.cardHeader{
+   margin-bottom: $margin-bottom;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+  .cardHeaderText{
+   font-size: $font-size-title__md;
+   font-weight: 700;
+  }
+ }
+
+.sm{
+  border-radius: $card-sm__border-radius;
+}
+.lg{
+ border-radius: $card-lg__border-radius;
+}
+.xs{
+ border-radius: $card-xs__border-radius;
+}
+
+.card-footer{
+ display: flex;
+}

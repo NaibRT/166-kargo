@@ -1,8 +1,6 @@
-import '../styles/globals.css'
-import App from 'next/app'
+import '../public/assets/styles/globals.scss'
 import React from 'react'
 import { Provider } from 'react-redux'
-import {createWrapper} from 'next-redux-wrapper'
 import Store from '../redux/store'
 import { PersistGate } from 'redux-persist/integration/react'
 import {IntlProvider} from 'react-intl'
@@ -11,6 +9,7 @@ import az from '../locale/az.json'
 import en from '../locale/en.json'
 import ru from '../locale/ru.json'
 import ua from '../locale/ua.json'
+import Layout from '../components/layout'
 
 
 const message = {
@@ -31,7 +30,9 @@ export default function MyApp({ Component, pageProps }){
       <Provider store={Store.store}>
         <PersistGate loading={null} persistor={Store.persistor}>
           <IntlProvider locale={locale} messages={message[locale]}>
-                <Component {...pageProps} />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
           </IntlProvider>
         </PersistGate>
       </Provider>

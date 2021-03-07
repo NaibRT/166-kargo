@@ -1,0 +1,41 @@
+@import '../../public/assets/styles/scss/variables.scss';
+
+
+.post-item{
+  // width: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  align-items: center;
+  border-top-right-radius: $border_radius_lg;
+  margin-bottom: $margin_sm;
+  
+  img{
+   height: 150px;
+   width: 100%;
+   resize: both;
+   object-fit: fill;
+  }
+
+  .post-item-info{
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   // align-items: center;
+   padding: $padding_xs;
+
+    h5,p{
+     width: 100%;
+     text-overflow: ellipsis;
+     display: -webkit-box;
+     -webkit-line-clamp: 2;
+     -webkit-box-orient: vertical;
+     overflow: hidden;
+     word-break: break-all;
+     margin-bottom: $margin_xs;
+    }
+    small{
+     margin-bottom: $margin_xs;
+    }
+  }
+}

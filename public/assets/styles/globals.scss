@@ -1,0 +1,35 @@
+@import './scss/variables.scss';
+@import './scss/colors.scss';
+@import './scss/fontSizes.scss';
+@import '../../../components/footer/Footer.scss';
+@import '../../../components/card/card.scss';
+@import '../../../components/rate/rate.scss';
+@import '../../../components/news_item/news-item.scss';
+@import '../../../components/post_item/post-item.scss';
+@import '../../../components/form-group/from-group.scss';
+@import './blog.scss';
+@import './post-info.scss';
+
+
+
+
+
+
+
+
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a{
+  text-decoration: none;
+  color: $color__menu;
+}
+
+.container-fluid{
+  margin-left:$fluid-size;
+  margin-right:$fluid-size;
+  margin-bottom: calc(#{$fluid-size} / 2);
+  }

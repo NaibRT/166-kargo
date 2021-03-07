@@ -1,0 +1,35 @@
+.rate{
+  background-color: $color__white;
+  border-radius: $card-sm__border-radius;
+  padding: $padding_md;
+  width: 32%;
+
+  .rate-header{
+   display: flex;
+   align-items: center;
+   margin-bottom: $margin-bottom;
+   img{
+    margin-right: $margin-right;
+   }
+   text{
+    color: $color__black;
+   }
+  }
+
+}
+
+
+
+.rate-item{
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin: 10px 0px;
+ span:first-child {
+  color: $color__label;
+
+ }
+  span:last-child{
+   color: $color__black;
+  }
+}
