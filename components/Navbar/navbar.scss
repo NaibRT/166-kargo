@@ -1,0 +1,115 @@
+@import '../../assets/styles/scss/variables';
+
+.bg{
+    width:100%;
+    background:$color__bg;
+    padding:15px 0 15px 0;
+}
+
+.top__header{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+
+    .top__header-left{
+        display:flex;
+        justify-content:space-between;
+        padding-left: 0;
+        li{
+            list-style-type: none;
+            
+            &:not(:nth-child(1)){
+                margin-left:55px;
+            }
+            a{
+                text-decoration: none;
+                color:$color__menu;
+                font-size:$font-size__xs;
+                font-family: 'Segoe UI';
+            }
+        }
+
+       
+    }
+    .top__header-right{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        
+        li{
+            list-style-type: none;
+            &:not(:nth-child(2)){
+                margin-right:17px;
+            }
+            a{
+                color:$color__icon;
+               
+            }
+            .text__decoration{
+                text-decoration:none;
+            }
+        }
+    }
+}
+.flex{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    margin-top:10px;
+    .navbar{
+        display:flex;
+        justify-content: center;
+        align-items:center;
+        padding-left:0;
+
+      
+        .navbar__item{
+            list-style-type: none;
+            &:not(:nth-child(1)){
+                margin-left:$margin-size;
+            }
+           
+            &:nth-child(2){
+                margin-left:74px !important;
+            }
+           
+            a{
+                text-decoration: none;
+                color:$color__menu;
+                font-size:$font-size;
+                font-family: $font-family
+            }
+            .navbar__item_lang{
+                border: none;
+                outline: none;
+                cursor: pointer;
+                width:82px;
+                text-transform: uppercase;
+                color:$color__menu;
+                appearance:none;
+                background-image: url(
+                   '/download.png' );
+                background-repeat: no-repeat, repeat;
+                background-position: right 75% top 50%, 0 0;
+                background-size: .7em auto, 83%;
+                
+               
+            }
+           
+             span{
+                 font-weight:200;
+                 margin-top:1px !important;
+                 margin-left: 5px !important;
+                 .img{
+                   cursor:pointer;
+                 }
+             }
+        }
+    }
+    .call{
+        font-family:$font-family;
+        color:$color__yellow;
+        font-size:$font-size__lg;
+        font-weight:800 !important;
+    }
+}

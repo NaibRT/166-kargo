@@ -1,3 +1,25 @@
 {
- "name":"Ad"
-}
+    "name":"name",
+    "faq":"Tez-tez verilən suallar",
+    "calculator":"Kalkulyator",
+    "converter":"Valyuta konverteri",
+    "contact":"Əlaqə",
+    "whereis":"Bağlamam haradadır?",
+    "about":"Haqqımızda",
+    "addresses":"Ünvanımız",
+    "examples":"Nümunə saytlar",
+    "prices":"Qiymətlər",
+    "blog":"Bloq",
+    "signup":"Qeydiyyatdan keç",
+    "signin":"Daxil ol",
+    "howitworks":"Necə işləyir?",
+    "gotoregister":"Qeydiyyatdan keç",
+    "alttext1":"Sizə Türkiyə və ABŞ-da yerləşən anbarların ünvanlarını göndəririk",
+    "makeorder":"Sifariş et",
+    "alttext2":"ABŞ və Türkiyəyə çatdıran veb saytdan alış-veriş edirsiniz(əgər sifariş etməkdə problem yaranırsa, məhsulun linkini bizə göndərin, bank kartının vasitəsilə ödənişi həyata keçirin, biz sizin üçün sifariş edək",
+    "getpackage":"Bağlamanı əldə et",
+    "alttext3":"Sifairşinizi Bakı ofisimizdən götürürsünüz(və ya evinizə çatdırılma xidmətimizdən istifadə edirsiniz)",
+    "shops":"Bəzi mağazalar"
+
+
+   }

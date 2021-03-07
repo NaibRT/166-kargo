@@ -1,3 +1,13 @@
 {
-    "name":"имa"
+    "name":"name",
+    "faq":"Tez-tez verilən suallar",
+    "calculator":"Kalkulyator",
+    "converter":"Valyuta konverteri",
+    "contact":"Əlaqə",
+    "whereis":"Bağlamam haradadır?",
+    "about":"Haqqımızda",
+    "addresses":"Ünvanımız",
+    "examples":"Nümunə saytlar",
+    "prices":"Qiymətlər",
+    "blog":"Bloq"
    }
