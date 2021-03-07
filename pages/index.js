@@ -1,69 +1,83 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.scss'
 import Link from 'next/link';
-
+import {useIntl} from 'react-intl';
+import Header from '../components/header';
+import Navbar from '../components/Navbar';
 
 export default function Home() {
+  const {formatMessage: f} = useIntl();
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-        <Link
-         href='/getData'
-        >Get Spotify Data</Link>
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+ 
+    <div>
+    <style jsx global>{`
+    a {
+      cursor:pointer;
+    }
+  `}</style>
+       <Navbar />
+      <main>
+        <div className='container-fluid'>
+        <p className='title mg__bottom'>{f({id:'howitworks'})}</p>
+        <div className='work__flex--container'>
+    <div className='work__flex'>
+        <figure className='background__radius'>
+        <img src={'/Frame 1 (5).svg'} width={116} height={116}/>
+        </figure>
+        <div className='work__main'>
+          <p className='work__title'>{f({id:'gotoregister'})}</p>
+          <p className='work__text'>{f({id:'alttext1'})}</p>
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+    </div>
+    <div className='work__flex'>
+        <figure className='background__radius'>
+        <img src={'/Frame 1 (2).svg'} width={116} height={116}/>
+        </figure>
+        <div className='work__main'>
+          <p className='work__title'>{f({id:'makeorder'})}</p>
+          <p className='work__text'>{f({id:'alttext2'})}</p>
+        </div>
+    </div>
+    <div className='work__flex'>
+        <figure className='background__radius'>
+        <img src={'/Frame 1 (6).svg'} width={116} height={116}/>
+        </figure>
+        <div className='work__main'>
+          <p className='work__title'>{f({id:'getpackage'})}</p>
+          <p className='work__text'>{f({id:'alttext3'})}</p>
+        </div>
+    </div>
+    </div>    
+    </div>  
+      
+    <section className='mg__size'>
+        <div className='container-fluid'>
+        <div className='flex__item'>
+        <p className='title mg__bottom2'>{f({id:'shops'})}</p>
+        <p className='title__sm mg__bottom2'>Hamısını gör &rsaquo;</p>
+        </div>
+        <div className='flex__item'>
+          <Link href='https://www.trendyol.com/'>
+           <a target="_blank"> <img src={'/a00.svg'}/></a>
+          </Link>
+          <Link href='https://www.defacto.com.tr/'>
+          <a target="_blank"> <img src={'/a01.svg'}/></a>
+        </Link>
+        <Link href='https://www.koton.com/en/'>
+        <a target="_blank"> <img src={'/a02.svg'}/></a>
+        </Link>
+        <Link href='https://www.zara.com/'>
+        <a target="_blank"> <img src={'/a03.svg'}/></a>
+        </Link>
+        <Link href='https://www.gittigidiyor.com'>
+        <a target="_blank"> <img src={'/a04.svg'}/></a>
+        </Link> 
+        <Link href='https://www.hm.com/entrance.ahtml?orguri=%2F'>
+        <a target="_blank"> <img src={'/a05.svg'}/></a>
+        </Link>
+        </div>
+        </div>
+    </section>
+        </main>
     </div>
   )
 }
