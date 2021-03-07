@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Page from '../page/page';
 
 
 const data = [
@@ -26,10 +27,10 @@ const data = [
 const contact = () => (
   <address className={'address_container'}>
     <div className={'link_item_head'}>Əlaqə</div>
-    <div><img src='/assets/icons/45060.svg'/><em>Baki şəhəri. Səbail ray...Ş.Şamil küç. 16</em></div>
+    <div><img src='/assets/icons/45060.svg'/><span>Baki şəhəri. Səbail ray...Ş.Şamil küç. 16</span></div>
     <div><img src='/assets/icons/129932.svg'/><a href='tel:*0166'>*0166</a></div>
     <div><img src='/assets/icons/121923.svg'/><a href='mailto:info@166kargo.az'>info@166kargo.az</a></div>
-    <div><img src='/assets/icons/time-work_318-10641.svg'/><em>Həftə içi 10:00 - 19:00</em></div>
+    <div><img src='/assets/icons/time-work_318-10641.svg'/><span>Həftə içi 10:00 - 19:00</span></div>
   </address>
 )
 
@@ -37,6 +38,7 @@ const contact = () => (
 export default function Footer() {
  return (
   <footer className={'footer'}>
+    <Page>
     <div className={'footer_container container-fluid'}>
     <div className={'footer_container_head'}>
         <img className={'footer_logo'} src='/assets/icons/166ye.svg'/>
@@ -56,6 +58,7 @@ export default function Footer() {
       {links(data)}
       {contact()}
     </div> 
+    </Page>
   </footer>
  )
 }

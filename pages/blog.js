@@ -1,14 +1,14 @@
 import Link from 'next/link'
 import React from 'react'
 import Card from '../components/card/card'
+import Page from '../components/page/page'
 import PostItem from '../components/post_item/post-item'
 
 function Blog() {
  return (
   <div className='blog-page bg-bg'>
-    <div className="container-fluid">
+    <Page >
      <div className='blog-page-container'>
-
    <main className='bg-white' >
      <Card className='p-lg'>
        <Card.Header text="Artıq Amerikadan mebel sifarişi edə biləcəksiniz"/>
@@ -45,7 +45,7 @@ function Blog() {
    </Card>
    </aside>
    </div>
-  </div>
+  </Page>
   </div>
 
  )

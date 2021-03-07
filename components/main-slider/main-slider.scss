@@ -1,0 +1,29 @@
+.swiper-container{
+height: 100%;
+width: 100%;
+overflow: hidden;
+
+ .swiper-wrapper{
+  display: flex;
+  justify-content: center;
+  height: 500px;
+  position: relative;
+
+  // overflow: hidden;
+
+  .swiper-slide{
+  height: 500px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+
+  }
+ }
+}

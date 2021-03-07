@@ -1,0 +1,85 @@
+@import './scss/variables';
+.title{
+    font-family:$font-family;
+    font-weight:600;
+    font-size:$font-size-title__md;
+    color:$color__black;
+  }
+  .mg__bottom{
+    margin-bottom:67px;
+    margin-top:79px;
+  }
+  .work__flex--container{
+    display: flex;
+    justify-content: space-between;
+    .work__flex{
+      display: flex;
+      flex:2;
+      padding: 0px $padding_xs;
+    
+    .background__radius{
+      width:50%;
+      height:60%;
+      border-radius:50%;
+      position:relative;
+        img{
+      position: absolute;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      left: 50%;
+      top: 50%;
+        }
+     
+  
+    }
+    .work__main{
+      width:100%;
+      margin-left:28px;
+      .work__title{
+        font-size: $font-size__subtitle;
+        font-weight:800;
+        margin-bottom:5px;
+      }
+      .work__text{
+        font-size: $font-size__sm;
+         
+      }
+    }
+  }
+   
+  }
+.fluid_bottom{
+
+  .flex__item{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    .title__sm{
+     font-size:$font-size;
+   }
+   .mg__bottom2{
+     margin-bottom:47px;
+      
+   }
+  }
+}
+
+.page{
+  .tariff-section{
+    width: 1006px;
+   display: flex;
+  //  justify-content: space-between;
+   align-items: center;
+
+   .card{
+     .card-body{
+       div{
+         .rate{
+          //  width: 33%;
+           margin-right: $margin_sm;
+         }
+       }
+     }
+   }
+ }
+}

@@ -3,6 +3,16 @@
 .card{
 //  padding: $padding;
  border: 1px solid transparent;
+ box-sizing: border-box !important;
+}
+
+.card-body{
+  padding: $padding_md;
+ }
+
+ 
+.p-xs{
+  padding: $padding_xs;
 }
 .p-sm{
   padding: $padding_sm;
@@ -13,9 +23,7 @@
 .p-lg{
   padding: $padding_lg;
 }
-.card-body{
-  padding: $padding_md;
- }
+
 
 .cardHeader{
    margin-bottom: $margin-bottom;

@@ -1,22 +1,25 @@
-import '../public/assets/styles/globals.scss'
-import React from 'react'
-import { Provider } from 'react-redux'
-import Store from '../redux/store'
-import { PersistGate } from 'redux-persist/integration/react'
-import {IntlProvider} from 'react-intl'
-import { useRouter } from 'next/router'
-import az from '../locale/az.json'
-import en from '../locale/en.json'
-import ru from '../locale/ru.json'
-import ua from '../locale/ua.json'
+import '../public/assets/styles/globals.scss';
+import React from 'react';
+import { Provider } from 'react-redux';
+import {createWrapper} from 'next-redux-wrapper';
+import Store from '../redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import {IntlProvider} from 'react-intl';
+import { useRouter } from 'next/router';
 import Layout from '../components/layout'
 
 
+import AZ from '../locale/az.json';
+import EN from '../locale/en.json';
+import RU from '../locale/ru.json';
+import UA from '../locale/ua.json';
+
+
 const message = {
-  az:az,
-  en:en,
-  ru:ru,
-  ua:ua,
+  az:AZ,
+  en:EN,
+  ru:RU,
+  ua:UA,
 }
 
 export default function MyApp({ Component, pageProps }){

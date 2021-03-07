@@ -1,3 +1,24 @@
 {
- "name":"имя"
-}
+    "name":"name",
+    "faq":"Часто задаваемые вопросы",
+    "calculator":"Kalkulyator",
+    "converter":"Valyuta konverteri",
+    "contact":"Контакт",
+    "whereis":"Узнай где товар?",
+    "about":"О Нас",
+    "addresses":"Наши адреса",
+    "examples":"Магазины",
+    "prices":"Тарифы",
+    "blog":"Блог",
+    "signup":"Регистрация",
+    "signin":"Войти",
+    "howitworks":"Как это работает?",
+    "gotoregister":"Qeydiyyatdan keç",
+    "alttext1":"Sizə Türkiyə və ABŞ-da yerləşən anbarların ünvanlarını göndəririk",
+    "makeorder":"Sifariş et",
+    "alttext2":"ABŞ və Türkiyəyə çatdıran veb saytdan alış-veriş edirsiniz(əgər sifariş etməkdə problem yaranırsa, məhsulun linkini bizə göndərin, bank kartının vasitəsilə ödənişi həyata keçirin, biz sizin üçün sifariş edək",
+    "getpackage":"Bağlamanı əldə et",
+    "alttext3":"Sifairşinizi Bakı ofisimizdən götürürsünüz(və ya evinizə çatdırılma xidmətimizdən istifadə edirsiniz)",
+    "shops":"Магазины"
+
+   }

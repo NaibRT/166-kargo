@@ -21,7 +21,7 @@ Card.Body = ({
              className,
              style
             }) => (
-   <div style={style} className={`card-body ${className}`}>
+   <div  className={`card-body ${className}`} style={style}>
      {children}
    </div>
  );

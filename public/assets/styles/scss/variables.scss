@@ -5,6 +5,7 @@ $base-size:16;
 }
 /*Spacing*/
 $fluid-size:165px;
+
 $margin-top:size(25);
 $margin-left:size(25);
 $margin-bottom:size(25);
@@ -46,6 +47,7 @@ $width__user-mob:35px;
 $height__user-mob:35px;
 
 /*font*/
+$font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif;  
 $font-size:size(16);
 $font-size__cn:size(15);
 $font-size__ex:size(9);
@@ -86,7 +88,7 @@ $color__yellow:#ffc528;
 $color__bg:#f6f6f6;
 $color__icon:#292929;
 $color__black:#000000;
-$color__subtitle:#78747474;
+$color__subtitle:#787474;
 $color__label:#464646;
 $color__white:#ffffff;
 $color__err:#ea0000;

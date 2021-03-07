@@ -10,24 +10,30 @@ function RateItem({itemData = {}}){
    <span>{itemData?.min} - {itemData?.max} kq</span>
    <span>{itemData?.amount} $</span>
   </div>
-  <Divider/>
   </>
  )
 }
 
 
-function Rate({data = [],icon,headerText}) {
+function Rate({data = [],icon,headerText,style}) {
  return (
-  <div className='rate'>
+  <div className='rate' style={style}>
       <div className='rate-header'>
         <img src={icon}/>
-        <b>{headerText}</b>  
+        <span>{headerText}</span>  
   </div>
 
      <div className='rate-body'>
       {
        data.map((x,i) => (
+         <>
          <RateItem key={i} itemData={x}/>
+           {
+           (data.length-1)!==i ?
+             <Divider/>  : null
+           }
+         
+         </>
        ))
       }   
      </div>
