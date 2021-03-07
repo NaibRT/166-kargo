@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p $PORT",
-    "heroku-postbuild":"npm run build"
-  }, 
+    "heroku-postbuild": "npm run build"
+  },
   "dependencies": {
     "axios": "^0.21.1",
     "i18next-browser-languagedetector": "^4.1.1",
