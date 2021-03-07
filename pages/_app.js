@@ -1,7 +1,4 @@
-import '../assets/styles/Home.scss'; 
-import '../assets/styles/globals.scss';
-import '../assets/styles/reset.scss';
-import App from 'next/app';
+import '../public/assets/styles/globals.scss';
 import React from 'react';
 import { Provider } from 'react-redux';
 import {createWrapper} from 'next-redux-wrapper';
@@ -9,6 +6,8 @@ import Store from '../redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import {IntlProvider} from 'react-intl';
 import { useRouter } from 'next/router';
+import Layout from '../components/layout'
+
 
 import AZ from '../locale/az.json';
 import EN from '../locale/en.json';
@@ -34,7 +33,9 @@ export default function MyApp({ Component, pageProps }){
       <Provider store={Store.store}>
         <PersistGate loading={null} persistor={Store.persistor}>
           <IntlProvider locale={locale} messages={message[locale]}>
-                <Component {...pageProps} />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
           </IntlProvider>
         </PersistGate>
       </Provider>

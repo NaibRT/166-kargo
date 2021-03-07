@@ -1,0 +1,49 @@
+.rate{
+  background-color: $color__white;
+  border-radius: $card-sm__border-radius;
+  padding: $padding_xs;
+  width: 215px;
+
+  .rate-header{
+   display: flex;
+   align-items: center;
+   margin-bottom: $margin_xs;
+   img{
+    margin-right: $margin-right;
+   }
+   text{
+    color: $color__black;
+   }
+   span{
+     width: 100%;
+     font-weight: bolder;
+     font-family: 'Segoe UI';
+     color: $color__subtitle;
+     font-size: $font-size
+   }
+  }
+
+}
+
+
+
+.rate-item{
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin: 5px 0px;
+
+ span{
+  color: $color__subtitle;
+  font-size: $font-size;
+ }
+ span:first-child {
+  color: $color__subtitle;
+  font-size: $font-size;
+  font-weight: 500;
+ }
+  span:last-child{
+  font-weight: 800;
+
+  }
+}

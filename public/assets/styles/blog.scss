@@ -1,0 +1,38 @@
+@import '../styles//scss/variables.scss';
+
+.blog-page{
+  height: 100%;
+  padding-bottom: $margin-bottom;
+  padding-top: $margin-bottom;
+  margin-bottom: calc(#{$fluid-size} / 2);
+
+ .blog-page-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+ 
+   main{
+    width: 75%;
+    margin-right: $margin-right;
+    .card{
+     padding-top: $padding_md;
+    }
+    .blog-post-container{
+     display: flex;
+     justify-content: space-between;
+     flex-flow:  wrap;
+
+     .post-item{
+      width: 31%;
+     }
+    }
+   }
+   aside{
+    width: 25%;
+    .card{
+     padding-top: $padding_md;
+    }
+   }
+ }
+}

@@ -1,0 +1,31 @@
+
+.about-page{
+  display: flex;
+  justify-content: center;
+
+  img,h6,h1{
+   display: flex;
+   align-self: center;
+   font-size: $font-size__sm;
+  }
+  h6{
+   margin-bottom: 20px;
+  }
+  h1{
+   margin-bottom: 30px;
+   font-size: $font-size__lg;
+  }
+
+ .about-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p{
+   margin-bottom: $margin_sm;
+   font-size: $font-size__sm;
+
+  }
+}
+}
