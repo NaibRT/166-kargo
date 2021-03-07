@@ -1,0 +1,18 @@
+@import './variables.scss';
+
+@each $name,$value in $colors {
+ .color-#{$name} {
+   color: $value;
+ }
+}
+
+@each $name,$value in $colors {
+ .bg-#{$name} {
+   background-color: $value;
+ }
+}
+
+.border-color{
+ border-color: $color__bg;
+}
+

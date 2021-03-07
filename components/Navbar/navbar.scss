@@ -1,5 +1,7 @@
-@import '../../assets/styles/scss/variables';
+@import '../../public/assets/styles/scss/variables.scss';
 
+.header{
+  margin-bottom: $margin_lg;
 .bg{
     width:100%;
     background:$color__bg;
@@ -66,7 +68,7 @@
         .navbar__item{
             list-style-type: none;
             &:not(:nth-child(1)){
-                margin-left:$margin-size;
+                margin-left:$margin_md;
             }
            
             &:nth-child(2){
@@ -83,17 +85,13 @@
                 border: none;
                 outline: none;
                 cursor: pointer;
-                width:82px;
+                // width:82px;
                 text-transform: uppercase;
                 color:$color__menu;
-                appearance:none;
-                background-image: url(
-                   '/download.png' );
+                background-color: $color__white;
                 background-repeat: no-repeat, repeat;
                 background-position: right 75% top 50%, 0 0;
                 background-size: .7em auto, 83%;
-                
-               
             }
            
              span{
@@ -112,4 +110,6 @@
         font-size:$font-size__lg;
         font-weight:800 !important;
     }
+}
+
 }

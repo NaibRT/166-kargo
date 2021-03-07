@@ -1,6 +1,5 @@
 import React from 'react';
 import ButtonComponent from '../button';
-import Link from 'next/Link';
 import {useRouter} from 'next/router';
 import {useIntl} from 'react-intl';
 

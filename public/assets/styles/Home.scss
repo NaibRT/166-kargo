@@ -15,6 +15,7 @@
     .work__flex{
       display: flex;
       flex:2;
+      padding: 0px $padding_xs;
     
     .background__radius{
       width:50%;
@@ -47,8 +48,8 @@
   }
    
   }
-.mg__size{
-  padding:129px 0 299px 0;
+.fluid_bottom{
+
   .flex__item{
     display:flex;
     justify-content: space-between;
@@ -61,4 +62,24 @@
       
    }
   }
+}
+
+.page{
+  .tariff-section{
+    width: 1006px;
+   display: flex;
+  //  justify-content: space-between;
+   align-items: center;
+
+   .card{
+     .card-body{
+       div{
+         .rate{
+          //  width: 33%;
+           margin-right: $margin_sm;
+         }
+       }
+     }
+   }
+ }
 }

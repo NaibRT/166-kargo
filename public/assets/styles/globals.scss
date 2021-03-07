@@ -1,0 +1,82 @@
+@import './scss/variables.scss';
+@import './scss/colors.scss';
+@import './scss/fontSizes.scss';
+@import '../../../components/footer/Footer.scss';
+@import '../../../components/card/card.scss';
+@import '../../../components/rate/rate.scss';
+@import '../../../components/news_item/news-item.scss';
+@import '../../../components/post_item/post-item.scss';
+@import '../../../components/form-group/from-group.scss';
+@import '../../../components/page/page.scss';
+@import './blog.scss';
+@import './about.scss';
+@import './post-info.scss';
+@import '../../../components/button/button';
+@import '../../../components/Navbar/navbar';
+@import '../../../components/main-slider/main-slider.scss';
+
+@import './Home';
+
+
+
+
+
+
+
+@font-face {
+  font-family: "Segoe UI";
+  src: url("../fonts/Segoe UI.ttf");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Segoe UI";
+  src: url("../fonts/Segoe UI Bold.ttf");
+  font-style: bold;
+  font-weight: 800;
+  font-display: swap;
+}
+ @font-face {
+  font-family: "Segoe UI";
+  src: url("../fonts/seguibl.ttf");
+  font-style: bold;
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Segoe UI";
+  src: url("../fonts/seguisb.ttf");
+  font-style: bold;
+  font-weight: 800;
+  font-display: swap;
+}
+
+#__next{
+margin:0;
+padding:0;
+box-sizing: border-box;
+font-family: $font-family;
+
+}
+
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a{
+  text-decoration: none;
+  color: $color__menu;
+}
+
+.container-fluid{
+  max-width: 1006px;
+  width: 100%;
+  // box-sizing: border-box;
+}
+
+.fluid_bottom{
+  margin-bottom: calc(#{$fluid-size} / 2);
+}
