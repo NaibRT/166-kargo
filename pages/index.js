@@ -22,9 +22,9 @@ export default function Home() {
           {/* <MainSlider/> */}
          </section>
         <section className='tariff-section'>
-          <Card style={{marginRight:10}}>
+          <Card className='mr-xs'>
             <Card.Header text='Tarifler' />
-            <Card.Body className='bg-bg sm p-sm'>
+            <Card.Body className='bg-bg p-sm'>
               <div className='bg-bg ' style={{ display: 'flex',justifyContent:'space-between'}}>
                 <Rate data={data} icon={'/assets/icons/turkish.svg'} headerText='Türkiyə' />
                 <Rate data={data} icon={'/assets/icons/turkish.svg'} headerText='Türkiyə (Maye)' />
@@ -34,7 +34,7 @@ export default function Home() {
           </Card>
           <Card>
             <Card.Header text='Kalkulyator'/>
-            <Card.Body className='bg-bg sm p-sm'>
+            <Card.Body className='bg-bg p-sm'>
             <Rate data={data} icon={'/assets/icons/turkish.svg'} headerText='Türkiyə' />
               
             </Card.Body>   

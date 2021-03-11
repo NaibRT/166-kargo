@@ -1,0 +1,103 @@
+@import './variables.scss';
+
+// -----------------paddings
+// .p-xs{
+//  padding: $padding_xs !important;
+// }
+// .p-sm{
+//  padding: $padding_sm !important;
+// }
+// .p-md{
+//  padding: $padding_md !important;
+// }
+// .p-lg{
+//  padding: $padding_lg !important;
+// }
+
+@each $name,$value in $paddings {
+ .p-#{$name}{
+  padding: $value !important;
+ }
+};
+
+@each $name,$value in $margins {
+ .pr-#{$name}{
+  padding-right: $value !important;
+ }
+};
+
+@each $name,$value in $margins {
+ .pl-#{$name}{
+  padding-left: $value !important;
+ }
+};
+
+@each $name,$value in $margins {
+ .pt-#{$name}{
+  padding-top: $value !important;
+ }
+};
+
+@each $name,$value in $margins {
+ .pb-#{$name}{
+  padding-bottom: $value !important;
+ }
+};
+
+// -------------- borders
+.br-sm{
+ border-radius: $card-sm__border-radius !important;
+}
+.br-lg{
+border-radius: $card-lg__border-radius !important;
+}
+.br-xs{
+border-radius: $card-xs__border-radius !important;
+}
+
+//----------------- margins
+
+@each $name,$value in $margins {
+ .m-#{$name}{
+  margin: $value !important;
+ }
+};
+
+@each $name,$value in $margins {
+ .mr-#{$name}{
+  margin-right: $value !important;
+ }
+};
+
+@each $name,$value in $margins {
+ .ml-#{$name}{
+  margin-left: $value !important;
+ }
+};
+
+@each $name,$value in $margins {
+ .mt-#{$name}{
+  margin-top: $value !important;
+ }
+};
+
+@each $name,$value in $margins {
+ .mb-#{$name}{
+  margin-bottom: $value !important;
+ }
+};
+
+//---------------- widths
+
+.w-25{
+ width: 25% !important;
+}
+.w-50{
+ width: 50% !important;
+}
+.w-75{
+ width: 75% !important;
+}
+.w-100{
+ width: 100% !important;
+}

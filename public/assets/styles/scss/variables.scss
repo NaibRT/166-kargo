@@ -17,11 +17,16 @@ $margin_lg:size(50);
 $margin_md:size(25);
 $margin_sm:size(22);
 $margin_xs:size(10);
+$margin_none:0px;
+
+
 
 $padding_lg:size(50);
 $padding_md:size(25);
 $padding_sm:size(22);
 $padding_xs:size(10);
+$padding_none:0px;
+
 
 
 
@@ -36,6 +41,8 @@ $card-xs__border-radius:0 20px 20px 20px;
 $flag-only__border-radius:0 7px 7px 7px;
 $card-lg__border-radius:10px;
 $border_radius_lg:30px;
+
+$border-radius_sm: 5px;
 
 /*logo and menu*/
 $width__logo:149px;
@@ -103,7 +110,22 @@ $colors:('menu':#707070,
 'label':#464646,
 'white':#ffffff,
 'err':#ea0000,
-'success':#7DBB00,)
+'success':#7DBB00,);
 
+$margins : (
+    'lg':#{$margin_lg},
+    'md':#{$margin_md},
+    'sm':#{$margin_sm},
+    'xs':#{$margin_xs},
+    'none':#{$margin_none},
 
+);
+
+$paddings : (
+    'lg':#{$padding_lg},
+    'md':#{$padding_md},
+    'sm':#{$padding_sm},
+    'xs':#{$padding_xs},
+    'none':#{$padding_none},
+);
 

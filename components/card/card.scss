@@ -11,18 +11,7 @@
  }
 
  
-.p-xs{
-  padding: $padding_xs;
-}
-.p-sm{
-  padding: $padding_sm;
-}
-.p-md{
-  padding: $padding_md;
-}
-.p-lg{
-  padding: $padding_lg;
-}
+
 
 
 .cardHeader{
@@ -35,16 +24,6 @@
    font-weight: 700;
   }
  }
-
-.sm{
-  border-radius: $card-sm__border-radius;
-}
-.lg{
- border-radius: $card-lg__border-radius;
-}
-.xs{
- border-radius: $card-xs__border-radius;
-}
 
 .card-footer{
  display: flex;
