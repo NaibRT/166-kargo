@@ -1,0 +1,23 @@
+@import './scss/variables';
+
+.faq-page{
+    .faq-head{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .faq-head-img{
+            margin-right: $margin_md;
+        }
+        .faq-head-title{}
+    }
+    .faq-body{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .faq-item{
+            width: 45%;
+        }
+    }
+}

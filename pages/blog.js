@@ -9,13 +9,13 @@ function Blog() {
   <div className='blog-page bg-bg'>
     <Page >
      <div className='blog-page-container'>
-   <main className='bg-white' >
+   <main className='bg-white br-lg' >
      <Card className='p-lg'>
        <Card.Header text="Artıq Amerikadan mebel sifarişi edə biləcəksiniz"/>
-         <Card.Body className='sm' style={{padding:0}}>
+         <Card.Body className='br-sm' style={{padding:0}}>
           <Link href="">
            <a>
-           <img className='sm bg-bg' src='./assets/images/img1.jpg' width={'100%'} height={'300px'}/>
+           <img className='br-sm bg-bg' src='./assets/images/img1.jpg' width={'100%'} height={'300px'}/>
            </a>
           </Link>
          </Card.Body>
@@ -33,7 +33,7 @@ function Blog() {
      </Card>
    </main>
 
-   <aside className="bg-white">
+   <aside className="bg-white br-lg">
    <Card className='p-sm'>
     <Card.Header text='Çox oxunanlar'/>
     <Card.Body style={{padding:0}}>

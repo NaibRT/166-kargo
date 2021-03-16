@@ -1,0 +1,30 @@
+@import '../../public/assets/styles/scss/variables.scss';
+
+
+.radio-btn,.radio-btn-lbl{
+ margin-right: 5px;
+}
+.radio-btn{
+ -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  // position: relative;
+  display: inline-block;
+  background-clip: content-box;
+  padding:2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  outline-style: none;
+  border: 1px solid $color__label;
+  background-color: $color__menu;
+
+  &:checked{
+    background-color: $color__yellow;
+  }
+}
+
+.radio-btn-lbl{
+ margin-right: 10px;
+}

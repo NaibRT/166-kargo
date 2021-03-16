@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import React from 'react'
 
-function PostItem({}) {
+function PostItem({item}) {
  return (
    <div className='post-item bg-bg'>
       <Link href='' >
    <a>
-   <img className='sm' src='./assets/images/img1.jpg'/>
+   <img className='br-sm' src='./assets/images/img1.jpg'/>
     <div className='post-item-info'>
        <h5>166 kargo artıq afrikada ofisini açdı</h5>
        <small>4 dekabr 2021</small>

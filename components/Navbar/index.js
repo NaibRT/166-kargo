@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import { useIntl } from 'react-intl';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Button from '../button'
+import { useIntl } from 'react-intl';
+import Button from '../button';
 import Page from '../page/page';
 
 const Navbar = () => {
@@ -34,7 +34,7 @@ const Navbar = () => {
                                 <Link href='/'><a>{f({ id: 'converter' })}</a></Link>
                             </li>
                             <li>
-                                <Link href='/'><a>{f({ id: 'contact' })}</a></Link>
+                                <Link href='/contact'><a>{f({ id: 'contact' })}</a></Link>
                             </li>
                             <li>
                                 <Link href='/'><a>{f({ id: 'whereis' })}</a></Link>
@@ -42,7 +42,7 @@ const Navbar = () => {
                         </ul>
                         <ul className='top__header-right'>
                             <li>
-                                <Link href='/'><a>{f({ id: 'signup' })}</a></Link>
+                                <Link href='/register'><a>{f({ id: 'signup' })}</a></Link>
                             </li>
                             <li>
                                 <Link href='/'><a className='text__decoration'><Button style={{ marginTop: '-10px' }} label={f({ id: 'signin' })} startElement={<Image src={'/assets/icons/user.svg'} width={18} height={16} />} /></a></Link>

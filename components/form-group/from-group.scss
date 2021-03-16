@@ -1,0 +1,29 @@
+@import '../../public/assets/styles/scss/variables.scss';
+
+.form-group{
+//  width: 100%;
+
+ .txt-lbl-container{
+  .txt-lbl{
+    width: 100%;
+   color: $color__icon;
+   margin-right: 5px;
+   margin-left: 2px;
+   font-size: $font-size__xs;
+   font-weight: 500;
+  }
+ }
+   .form-group-body{
+     height: 37px;
+     display: flex;
+     align-items: center;
+     border: 1px solid transparent;
+     border-radius: $border-radius_sm;
+     padding: 2px;
+   }
+
+ .err-lbl{
+  color: $color__err;
+  margin-left: 2px;
+ }
+}

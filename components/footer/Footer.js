@@ -59,6 +59,14 @@ export default function Footer() {
       {contact()}
     </div> 
     </Page>
+    <div className='footer-bottom'>
+      <div>
+      &#169;
+      <span>
+        166Karqo | Bütün hüquqlar qorunur
+      </span>
+      </div>
+    </div>
   </footer>
  )
 }

@@ -26,8 +26,8 @@ Card.Body = ({
    </div>
  );
 
- Card.Footer = ({text,className,style}) => (
+ Card.Footer = ({children,className,style}) => (
   <div className={`card-footer ${className}`} style={style}>
-   {text}
+   {children}
   </div>
  )

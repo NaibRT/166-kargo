@@ -1,0 +1,44 @@
+@import '../../public/assets/styles/scss/variables';
+
+.faq-item{
+    transition: all 0.5s ease;
+    border: 1px solid $color__bg;
+    border-radius: $border-radius_sm;
+    padding: $padding_sm;
+    margin-bottom: $margin-bottom;
+    &[open] summary::after {
+      transition: all 0.1s ease;
+        transform: rotate(180deg);
+    } 
+    .faq-title{
+      outline-style: none;
+       position: relative;
+      &::marker{
+        content: '';
+        -webkit-appearance: none;
+      }
+      &::-webkit-details-marker{
+        content: '';
+        display: none;
+        -webkit-appearance: none;
+      }
+      &::after{
+        content: '\005E';
+      transition: all 0.1s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20px;
+        font-size: xx-large;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+      }
+
+    }
+    .faq-info{
+      transition: all 0.5s ease;
+      margin-top: $margin-top;
+      color: $color__menu;
+    }
+}

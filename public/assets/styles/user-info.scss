@@ -1,0 +1,18 @@
+@import './scss/variables';
+
+.user-info-page{
+
+.container-fluid{
+    display: flex;
+    flex-wrap: wrap;
+    .uip-aside{
+      flex-basis: 33%;
+
+    }
+
+    .uip-main{
+        flex-basis: 66%;
+    }
+}
+
+}
