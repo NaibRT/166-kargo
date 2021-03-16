@@ -1,0 +1,23 @@
+@import './scss/variables';
+
+.contact-page{
+    display: flex;
+    justify-content: space-between;
+    // position: relative;
+    flex-flow: wrap;
+
+    .contact-info{
+        flex-basis: 60%;
+        margin-left: -100px;
+        // position: absolute;
+        // left: 0px;
+        // top: 0px;
+    }
+
+    .contact-page-form{
+        // position: absolute;
+        // right: $padding_lg;
+    flex-basis: 43%;
+
+    }
+}

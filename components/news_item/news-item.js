@@ -1,6 +1,6 @@
 import React from 'react'
 
-function NewsItem({style,className}) {
+function NewsItem({style,className,item}) {
  return (
   <div className={`news-item bg-bg br-sm ${className}`} style={style}>
    <img className='br-sm' src='./assets/images/img1.jpg'/>

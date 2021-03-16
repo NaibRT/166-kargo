@@ -5,9 +5,12 @@
 
  .txt-lbl-container{
   .txt-lbl{
+    width: 100%;
    color: $color__icon;
    margin-right: 5px;
    margin-left: 2px;
+   font-size: $font-size__xs;
+   font-weight: 500;
   }
  }
    .form-group-body{
@@ -22,6 +25,5 @@
  .err-lbl{
   color: $color__err;
   margin-left: 2px;
-
  }
 }

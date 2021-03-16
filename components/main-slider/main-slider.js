@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import Swiper from 'swiper';
 
 function MainSlider() {
@@ -41,7 +41,7 @@ function MainSlider() {
 
 
  return (
-  <div>
+
    <div className="swiper-container">
   <div className="swiper-wrapper">
 
@@ -62,7 +62,6 @@ function MainSlider() {
   <div className="swiper-button-next"></div>
   <div className="swiper-scrollbar"></div>
 </div>
-  </div>
  )
 }
 

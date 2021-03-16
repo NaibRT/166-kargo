@@ -1,10 +1,11 @@
-import React from 'react'
-import Page from '../components/page/page';
+import React from 'react';
+import Checkbox from "../components/checkbox/checkbox";
 import FromGroup from '../components/form-group/form-group';
-import RadioButton from '../components/radio-button/radio-button';
-import Switch from '../components/switch/switch';
-import Selectbox from '../components/selectbox/selectbox';
 import Input from '../components/input/input';
+import Page from '../components/page/page';
+import RadioButton from '../components/radio-button/radio-button';
+import Selectbox from '../components/selectbox/selectbox';
+import Switch from '../components/switch/switch';
 
 
 const selecData = [
@@ -36,6 +37,9 @@ function Test() {
     </FromGroup>
     <FromGroup bodyClass='bg-bg' >
     <Selectbox name='number' className='bg-white  p-xs' data={telData}/><Input type='tel' name='number' placeholder='ener phone'/>
+    </FromGroup>
+    <FromGroup bodyClass='' >
+      <Checkbox />
     </FromGroup>
   </Page>
  )

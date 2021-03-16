@@ -1,12 +1,13 @@
 import Link from 'next/link'
 import React from 'react'
 import Card from '../components/card/card'
+import Page from '../components/page/page'
 import PostItem from '../components/post_item/post-item'
 
 function PostInfo() {
  return (
-  <div className='post-info-page bg-bg'>
-    <div className='container-fluid'>
+  <div className='post-info-page bg-bg pt-lg'>
+      <Page>
       <div className='pip-container'>
         <main className='bg-white'>
           <Card className='p-sm'>
@@ -39,7 +40,7 @@ function PostInfo() {
           </Card>
         </aside>
       </div>
-    </div>
+      </Page>
   </div>
  )
 }

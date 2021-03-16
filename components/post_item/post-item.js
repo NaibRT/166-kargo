@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-function PostItem({}) {
+function PostItem({item}) {
  return (
    <div className='post-item bg-bg'>
       <Link href='' >

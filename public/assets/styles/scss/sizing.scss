@@ -54,6 +54,9 @@ border-radius: $card-lg__border-radius !important;
 .br-xs{
 border-radius: $card-xs__border-radius !important;
 }
+.br-xxs{
+    border-radius: $btn__border-radius !important;
+}
 
 //----------------- margins
 
@@ -100,4 +103,18 @@ border-radius: $card-xs__border-radius !important;
 }
 .w-100{
  width: 100% !important;
+}
+
+
+.h-25{
+height: 25% !important;
+}
+.h-50{
+height: 50% !important;
+}
+.h-75{
+height: 75% !important;
+}
+.h-100{ 
+height: 100% !important;
 }

@@ -9,7 +9,7 @@ function Input({
                 ...rest
                }) {
  return (
-  <input type={type} name={name} ref={ref} {...rest} className={`input ${className||''}`} style={style}/>
+  <input type={type} name={name} autoComplete='false' ref={ref} {...rest} className={`input ${className||''}`} style={style}/>
  )
 }
 

@@ -21,7 +21,9 @@ function FromGroup(
     <div className={`form-group-body ${bodyClass||''}`} style={bodyStyle}>
     {children}
     </div>
-    <label className='err-lbl'>{error}</label>
+    {
+     error && <label className='err-lbl'>{error}</label>
+    }
   </div>
  )
 

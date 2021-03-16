@@ -3,8 +3,7 @@
 .footer{
   background-color: $color__bg;
   padding-top: $fluid-size/2;
-  padding-bottom: $fluid-size/2;
-
+  // padding-bottom: $fluid-size/2;
   .footer_container{
     display: flex;
     flex-flow: wrap;
@@ -84,6 +83,7 @@
    }
 
  .footer-bottom{
+  margin-top: $fluid-size/2;
    display: flex;
    justify-content: center;
    align-items: center;

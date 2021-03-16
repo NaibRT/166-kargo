@@ -1,10 +1,10 @@
 import React from 'react'
 
-function Switch({name,value,rest}) {
+function Switch({name,value,...rest}) {
  return (
-<label class="switch">
-  <input type="checkbox" name={name} value={value} {...rest}/>
-  <span class="slider round"></span>
+<label className="switch">
+  <input type="checkbox"  name={name} value={value} {...rest}/>
+  <span className="slider round"></span>
 </label>
  )
 }
