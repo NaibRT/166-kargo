@@ -18,6 +18,7 @@ const data = [
   {min:0.70,max:1.00,amount:4.50},
  ]
 
+
 export default function Home() {
   const { formatMessage: f } = useIntl();
   return (

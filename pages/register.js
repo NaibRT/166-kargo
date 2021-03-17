@@ -86,9 +86,9 @@ function Register() {
       <Card className='w-50'>
        <Card.Body className='w-100 h-100 p-none'>
          <p className='pb-sm'>Qeydiyyatda kecmekde centinlik cekirsizse videonu izleyin</p>
-         {/* <video  poster='./assets/images/img1.jpg'>
+         {/* <video  poster='./assets/images/img1.png'>
             </video> */}
-         <img className='w-100' src='./assets/images/img1.jpg'/>
+         <img className='w-100' src='./assets/images/img1.png'/>
        </Card.Body>
       </Card>
     </main>

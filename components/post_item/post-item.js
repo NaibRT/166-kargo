@@ -6,7 +6,7 @@ function PostItem({item,link}) {
    <div className='post-item bg-bg'>
       <Link href={`${link}`} >
    <a>
-   <img className='br-sm' src='./assets/images/img1.jpg'/>
+   <img className='br-sm' src='./assets/images/img1.png'/>
     <div className='post-item-info'>
        <h5>166 kargo artıq afrikada ofisini açdı</h5>
        <small>4 dekabr 2021</small>

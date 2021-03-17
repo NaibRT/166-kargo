@@ -1,5 +1,4 @@
 @import './scss/variables';
-
 .title{
     font-family:$font-family;
     font-weight:600;
@@ -16,7 +15,6 @@
     .work__flex{
       display: flex;
       flex:2;
-      padding: 0px $padding_xs;
     
     .background__radius{
       width:50%;
@@ -49,8 +47,8 @@
   }
    
   }
-.fluid_bottom{
-
+.mg__size{
+  padding:129px 0 299px 0;
   .flex__item{
     display:flex;
     justify-content: space-between;
@@ -61,46 +59,6 @@
    .mg__bottom2{
      margin-bottom:47px;
       
-   }
-  }
-}
-
-.home-page{
-  .main-section{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .container-fluid{
-      display: flex;
-      justify-content: space-between;
-      .slider-container{
-        width: 66%;
-        height: auto;
-      }
-      .login-card{
-        width: 33%;
-      }
-    }
-  }
-  .page{
-
-    .tariff-section{
-      width: 1006px;
-     display: flex;
-    //  justify-content: space-between;
-     align-items: center;
-  
-     .card{
-       .card-body{
-         div{
-           .rate{
-            //  width: 33%;
-             margin-right: $margin_sm;
-           }
-         }
-       }
-     }
    }
   }
 }

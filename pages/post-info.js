@@ -13,7 +13,7 @@ function PostInfo() {
           <Card className='p-sm'>
             <Card.Body>
               <div className="pip-img">
-                <img src='./assets/images/img1.jpg'/>
+                <img src='./assets/images/img1.png'/>
                 <div className='pip-date'><span>4 dekabr 2021 - 14:30</span></div>
               </div>
               <div className='pip-info'>

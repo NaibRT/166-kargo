@@ -15,7 +15,7 @@ function Blog() {
          <Card.Body className='br-sm' style={{padding:0}}>
           <Link href="/post-info">
            <a>
-           <img className='br-sm bg-bg' src='./assets/images/img1.jpg' width={'100%'} height={'300px'}/>
+           <img className='br-sm bg-bg' src='./assets/images/img1.png' width={'100%'} height={'300px'}/>
            </a>
           </Link>
          </Card.Body>

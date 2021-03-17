@@ -45,7 +45,7 @@ const Navbar = () => {
                                 <Link href='/register'><a>{f({ id: 'signup' })}</a></Link>
                             </li>
                             <li>
-                                <Link href='/'><a className='text__decoration'><Button style={{ marginTop: '-10px' }} label={f({ id: 'signin' })} startElement={<Image src={'/assets/icons/user.svg'} width={18} height={16} />} /></a></Link>
+                                <Link href='/'><a className='text__decoration'><Button className='p-sm' style={{ marginTop: '-10px',width:'130px' }} label={f({ id: 'signin' })} startElement={<img className='mr-xs' src={'/assets/icons/user.svg'} />} /></a></Link>
                             </li>
                         </ul>
                     </nav>

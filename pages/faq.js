@@ -7,7 +7,7 @@ function Faq() {
         <Page className='bg-bg'>
             <main className='bg-white faq-page p-lg mt-md'>
                <div className='faq-head'>
-                 <img className='faq-head-img' src='./assets/images/img1.jpg'/>
+                 <img className='faq-head-img' src='./assets/images/img1.png'/>
                  <div className='faq-head-title'>
                      <h3>Tez-tez verilen suallar</h3>
                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.

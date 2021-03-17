@@ -2,10 +2,16 @@
   "name": "166-kargo",
   "version": "0.1.0",
   "private": true,
+  "engines":{
+    "node":"15.9.0",
+    "npm":"7.5.3"
+  },
+
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start -p $PORT",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "axios": "^0.21.1",
