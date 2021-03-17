@@ -1,0 +1,67 @@
+@import '../../public/assets/styles/scss/variables';
+
+.faq-item{
+    transition: all 1s ease;
+    border: 1px solid $color__bg;
+    border-radius: $border-radius_sm;
+    padding: $padding_sm;
+    margin-bottom: $margin-bottom;
+    height: 67px;
+    &[open] .faq-info{
+      // height: 100%;
+      border-top: 0px;
+    } 
+    &[open]{
+      border-bottom: 0px;
+    } 
+    &[open] summary::after {
+      transition: all 0.1s ease;
+      transform: rotate(180deg);
+    }
+
+
+    .faq-title{
+      outline-style: none;
+       position: relative;
+      &::marker{
+        content: '';
+        -webkit-appearance: none;
+      }
+      &::-webkit-details-marker{
+        content: '';
+        display: none;
+        -webkit-appearance: none;
+      }
+      &::after{
+        content: '\005E';
+      transition: all 0.1s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20px;
+        font-size: xx-large;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+      }
+
+    }
+
+      .faq-info{
+        transition: all 1s ease;
+        margin-top: $margin-top;
+        color: $color__menu;
+        border: 1px solid $color__bg;
+        padding: $padding_sm;
+        margin:#{$padding_sm} -#{$padding_sm};
+        background-color: white !important;
+        position: relative;
+        z-index: 1;
+
+    }
+}
+
+// @keyframes sweep {
+//   0%   {height: 67px;}
+//   100% {height: 100%;}
+// }

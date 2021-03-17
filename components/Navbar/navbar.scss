@@ -19,7 +19,7 @@
         padding-left: 0;
         li{
             list-style-type: none;
-            
+
             &:not(:nth-child(1)){
                 margin-left:55px;
             }
@@ -31,13 +31,13 @@
             }
         }
 
-       
+
     }
     .top__header-right{
         display:flex;
         justify-content:space-between;
         align-items:center;
-        
+
         li{
             list-style-type: none;
             &:not(:nth-child(2)){
@@ -45,7 +45,7 @@
             }
             a{
                 color:$color__icon;
-               
+
             }
             .text__decoration{
                 text-decoration:none;
@@ -64,17 +64,17 @@
         align-items:center;
         padding-left:0;
 
-      
+
         .navbar__item{
             list-style-type: none;
             &:not(:nth-child(1)){
                 margin-left:20px;
             }
-           
+
             &:nth-child(2){
                 margin-left:74px !important;
             }
-           
+
             a{
                 text-decoration: none;
                 color:$color__menu;
@@ -93,7 +93,7 @@
                 background-position: right 75% top 50%, 0 0;
                 background-size: .7em auto, 83%;
             }
-           
+
              span{
                  font-weight:200;
                  margin-top:1px !important;

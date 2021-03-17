@@ -5,19 +5,22 @@
 .tire{
     background-color:red !important;
 }
-li{
-    padding:10px;
-    .d-flex{
-        display:flex;
-        align-items: center;
-        img{
-            margin-right:15px
-        }
-        span{
-          white-space:nowrap
-        }
-      }
+.aside-list-container{
+    li{
+        padding:10px;
+        .d-flex{
+            display:flex;
+            align-items: center;
+            img{
+                margin-right:15px
+            }
+            span{
+              white-space:nowrap
+            }
+          }
+    }
 }
+
 .border-color{
     opacity: .1;
 }

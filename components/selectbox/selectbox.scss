@@ -1,0 +1,12 @@
+@import '../../public/assets/styles/scss/variables.scss';
+
+.select-box{
+ width: fit-content;
+ height: 100%;
+ outline: none;
+ border-style: none;
+ background-color: transparent;
+ color: $color__icon;
+//  padding: 10px;
+ margin-right: 10px;
+}

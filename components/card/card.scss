@@ -10,26 +10,6 @@
   padding: $padding_md;
  }
 
-.mg-lg{
-   margin:$margin_lg;
- }
- .mg-md{
-  margin:$margin_md;
- }
-.p-xs{
-  padding: $padding_xs;
-}
-.p-sm{
-  padding: $padding_sm;
-}
-.p-md{
-  padding: $padding_md;
-}
-.p-lg{
-  padding: $padding_lg;
-}
-
-
 .cardHeader{
    margin-bottom: $margin-bottom;
    display: flex;
@@ -41,15 +21,7 @@
   }
  }
  
-.sm{
-  border-radius: $card-sm__border-radius;
-}
-.lg{
- border-radius: $card-lg__border-radius;
-}
-.xs{
- border-radius: $card-xs__border-radius;
-}
+ 
 .fl{
  border-radius: $flag-only__border-radius;
  margin-right:12px;

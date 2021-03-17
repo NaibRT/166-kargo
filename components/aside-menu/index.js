@@ -1,8 +1,8 @@
+import Link from 'next/link';
 import React from 'react';
+import ButtonComponent from '../button/index';
 import Card from '../card/card';
-import ButtonComponent from '../button/index'
-import Link from 'next/link'
-import Divider from '../divider/divider'
+import Divider from '../divider/divider';
 
 
 export default function AsideMenu() {
@@ -31,7 +31,7 @@ export default function AsideMenu() {
       <Card className='p-md bg-white lg'  style={{margin: '40px 0 40px 0'}}>
     
         <Card.Body className='sm' style={{padding:0}}>
-        <ul style={{listStyleType:'none'}}>
+        <ul className='aside-list-container' style={{listStyleType:'none'}}>
             <li>
                 <Link href="">
                     <a className="d-flex">

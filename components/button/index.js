@@ -1,9 +1,9 @@
 import React from 'react';
 
-const  ButtonComponent = ({label, startElement, endElement, style})=>{
+const  ButtonComponent = ({label, startElement, endElement, className, style, ...rest})=>{
     
     return(
-        <button className = 'btn' style={style}>{startElement}{label}{endElement}</button>
+        <button className ={`btn ${className||''}`} style={style} {...rest} >{startElement}{label}{endElement}</button>
     );
 }
 

@@ -8,11 +8,17 @@
 
 @each $name,$value in $colors {
  .bg-#{$name} {
-   background-color: $value;
+   background-color: $value !important;
  }
 }
 
+@each $name,$value in $colors {
+  .border-#{$name} {
+    border-color: $value !important;
+  }
+ }
+
 .border-color{
- border-color: $color__bg;
+ border-color: $color__bg !important;
 }
 
