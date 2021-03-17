@@ -31,50 +31,50 @@ function Register() {
        }}/></div>}/>
        <Card.Body className='p-none'>
         <form style={{display:'flex',flexWrap:'wrap'}} autoComplete=''>
-         <FromGroup label='Adiniz' bodyClass='bg-bg p-xs' className='w-50 pr-xs'>
+         <FromGroup label='Adiniz' bodyClass='bg-bg p-xs' className='w-50 pr-xs mb-xs'>
           <Input type='text' name='name' />
          </FromGroup>
-         <FromGroup label='Soyadiniz' bodyClass='bg-bg p-xs' className='w-50 pr-xs'>
+         <FromGroup label='Soyadiniz' bodyClass='bg-bg p-xs' className='w-50 pr-xs mb-xs'>
           <Input type='text' name='surname'/>
          </FromGroup>
          <FromGroup label='E-mail' bodyClass='bg-bg p-xs' className='w-50 pr-xs' >
           <Input type='email' />
          </FromGroup>
-         <FromGroup label='Telefon' bodyClass='bg-bg' className='w-50 pr-xs' >
+         <FromGroup label='Telefon' bodyClass='bg-bg' className='w-50 pr-xs mb-xs' >
            <Selectbox className='bg-white' data={telData}/>
           <Input type='tel' />
          </FromGroup>
-         <FromGroup label='Cins' bodyClass=''  className='w-50 pr-xs'>
+         <FromGroup label='Cins' bodyClass=''  className='w-50 pr-xs mb-xs'>
            <RadioButton text='Kisi' name='gender' id='male' value='male' />
            <RadioButton text='Qadin' name='gender' id='female' value='female' />
          </FromGroup>
-         <FromGroup label='Dogum tarixi' bodyClass='bg-bg' className='w-50 pr-xs' >
+         <FromGroup label='Dogum tarixi' bodyClass='bg-bg' className='w-50 pr-xs mb-xs' >
            <Input className='' name='date' type='date' format='dd/mm/yyyy'/>
          </FromGroup>
-         <FromGroup label='S/v seriya nomresi' bodyClass='bg-bg' className='w-50 pr-xs' >
+         <FromGroup label='S/v seriya nomresi' bodyClass='bg-bg' className='w-50 pr-xs mb-xs' >
            <Selectbox className='bg-white' data={telData}/>
           <Input type='tel' />
          </FromGroup>
-         <FromGroup label='S/V Fin kodu' bodyClass='bg-bg' className='w-50 pr-xs' >
+         <FromGroup label='S/V Fin kodu' bodyClass='bg-bg' className='w-50 pr-xs mb-xs' >
            <Selectbox className='bg-white' data={telData}/>
           <Input type='tel' />
          </FromGroup>
-         <FromGroup label='Milliyet' bodyClass='bg-bg' className='w-50 pr-xs' >
-           <Selectbox className='w-100' data={telData}/>
+         <FromGroup label='Milliyet' bodyClass='bg-bg' className='w-50 pr-xs mb-xs' >
+           <Selectbox className='w-100 m-none' data={telData}/>
          </FromGroup>
-         <FromGroup label='Unvan' className='w-50 pr-xs'>
+         <FromGroup label='Unvan' className='w-50 pr-xs mb-xs'>
            <Input name='address' type='text' placeholder=' hvhgv'/>
          </FromGroup>
          {
           isKorporative && 
-         <FromGroup label='Voen' bodyClass='bg-bg' className='w-100'>
+         <FromGroup label='Voen' bodyClass='bg-bg' className='w-100 mb-xs'>
            <Input type='text' />
          </FromGroup>
          }
          <FromGroup label='Sifre' bodyClass='bg-bg' className='w-50 pr-xs'>
            <Input name='password' type='password' />
          </FromGroup>
-         <FromGroup label='Sifrenin tekrari' bodyClass='bg-bg' className='w-50 pr-xs'>
+         <FromGroup label='Sifrenin tekrari' bodyClass='bg-bg' className='w-50 pr-xs mb-xs'>
            <Input name='repeat-password' type='password'/>
          </FromGroup>
         </form>

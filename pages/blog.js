@@ -13,7 +13,7 @@ function Blog() {
      <Card className='p-lg'>
        <Card.Header text="Artıq Amerikadan mebel sifarişi edə biləcəksiniz"/>
          <Card.Body className='br-sm' style={{padding:0}}>
-          <Link href="">
+          <Link href="/post-info">
            <a>
            <img className='br-sm bg-bg' src='./assets/images/img1.jpg' width={'100%'} height={'300px'}/>
            </a>
@@ -23,12 +23,12 @@ function Blog() {
      <Card className='p-lg' style={{paddingTop:0}}>
        <Card.Header text='Digər yazılar'/>
        <Card.Body className='blog-post-container' style={{padding:0}}>
-           <PostItem/>
-           <PostItem/>
-           <PostItem/>
-           <PostItem/>
-           <PostItem/>
-           <PostItem/>
+           <PostItem  link="/post-info"/>
+           <PostItem  link="/post-info"/>
+           <PostItem  link="/post-info"/>
+           <PostItem  link="/post-info"/>
+           <PostItem  link="/post-info"/>
+           <PostItem  link="/post-info"/>
        </Card.Body>
      </Card>
    </main>

@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import React from 'react'
 
-function PostItem({item}) {
+function PostItem({item,link}) {
  return (
    <div className='post-item bg-bg'>
-      <Link href='' >
+      <Link href={`${link}`} >
    <a>
    <img className='br-sm' src='./assets/images/img1.jpg'/>
     <div className='post-item-info'>

@@ -25,7 +25,7 @@ const Navbar = () => {
                     <nav className='top__header'>
                         <ul className='top__header-left'>
                             <li>
-                                <Link href='/'><a>{f({ id: 'faq' })}</a></Link>
+                                <Link href='/faq'><a>{f({ id: 'faq' })}</a></Link>
                             </li>
                             <li>
                                 <Link href='/'><a>{f({ id: 'calculator' })}</a></Link>
