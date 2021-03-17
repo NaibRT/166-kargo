@@ -8,27 +8,27 @@ import Divider from '../divider/divider';
 export default function AsideMenu() {
     return (
         <div>
-        <Card className='p-md bg-white lg'  style={{margin: '40px 0 40px 0'}}>
+        <Card className='p-md bg-white lg br-lg'>
         <Card.Header text="Nihad Abdullayev" style={{fontSize:'20px'}}/>
         <p>Müştəri kodu: #540728</p>
         <small>Balansım</small>
         <small>0.00 AZN</small>
-          <Card.Body className='sm' style={{padding:0}}>
+          <Card.Body className='mt-xs' style={{padding:0}}>
            <Link href="">
             <a>
-           <ButtonComponent label='Sifariş et' startElement={<img src="/assets/icons/el.svg"/>} style={{marginBottom:'10px'}} />
+           <ButtonComponent className='w-100' label='Sifariş et' startElement={<img className='mr-xs' src="/assets/icons/el.svg"/>} style={{marginBottom:'10px'}} />
             </a>
            </Link>
            <Link href="">
            <a>
-          <ButtonComponent  label='Balansı artır' startElement={<img src="/assets/icons/el2.svg"/>}/>
+          <ButtonComponent className='w-100' label='Balansı artır' startElement={<img className='mr-xs' src="/assets/icons/el2.svg"/>}/>
            </a>
           </Link>
           </Card.Body>
       </Card>
 
 
-      <Card className='p-md bg-white lg'  style={{margin: '40px 0 40px 0'}}>
+      <Card className='p-md bg-white br-lg'  style={{margin: '40px 0 40px 0'}}>
     
         <Card.Body className='sm' style={{padding:0}}>
         <ul className='aside-list-container' style={{listStyleType:'none'}}>

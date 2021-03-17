@@ -1,18 +1,20 @@
 import React from 'react';
+import AsideMenu from "../components/aside-menu/index";
 import ButtonComponent from "../components/button/index";
 import Card from "../components/card/card";
 import FromGroup from "../components/form-group/form-group";
 import Input from "../components/input/input";
 import Page from "../components/page/page";
 
+
 function UserInfo() {
     return (
         <Page className='user-info-page bg-bg pt-lg'>
-            <aside className='uip-aside '>
-
+            <aside className='uip-aside mr-sm'>
+              <AsideMenu/>
             </aside>
-         <main className='uip-main'>
-         <Card className='bg-white p-sm'>
+         <main className='uip-main '>
+         <Card className='bg-white p-sm br-lg'>
           <Card.Header text='Sexsi melumatlar'/>
           <Card.Body className='bg-bg'>
             <form style={{display:'flex',flexWrap:'wrap'}}>
@@ -43,7 +45,7 @@ function UserInfo() {
             </form>
           </Card.Body>
           <Card.Footer className='mt-sm' style={{justifyContent:'flex-end'}}>
-              <ButtonComponent  label='Melumati yenile'/>
+              <ButtonComponent className='w-25'  label='Melumati yenile'/>
             </Card.Footer>
          </Card>
 
@@ -63,7 +65,7 @@ function UserInfo() {
             </form>
           </Card.Body>
           <Card.Footer className='mt-sm' style={{justifyContent:'flex-end'}}>
-              <ButtonComponent  label='Sifreni deyis'/>
+              <ButtonComponent className='w-25' label='Sifreni deyis'/>
             </Card.Footer>
          </Card>
             </main>
