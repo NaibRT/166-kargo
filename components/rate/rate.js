@@ -5,12 +5,12 @@ import Divider from '../divider/divider'
 function RateItem({itemData = {}}){
 
  return (
-  <>
+  <React.Fragment>
   <div className='rate-item'>
    <span>{itemData?.min} - {itemData?.max} kq</span>
-   <span>{itemData?.amount} $</span>
+   <span>{itemData?.amount} $ </span>
   </div>
-  </>
+  </React.Fragment>
  )
 }
 

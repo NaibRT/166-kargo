@@ -10,7 +10,12 @@
   padding: $padding_md;
  }
 
- 
+.mg-lg{
+   margin:$margin_lg;
+ }
+ .mg-md{
+  margin:$margin_md;
+ }
 .p-xs{
   padding: $padding_xs;
 }
@@ -35,7 +40,7 @@
    font-weight: 700;
   }
  }
-
+ 
 .sm{
   border-radius: $card-sm__border-radius;
 }
@@ -44,6 +49,10 @@
 }
 .xs{
  border-radius: $card-xs__border-radius;
+}
+.fl{
+ border-radius: $flag-only__border-radius;
+ margin-right:12px;
 }
 
 .card-footer{

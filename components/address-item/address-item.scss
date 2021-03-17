@@ -1,0 +1,14 @@
+.flex__grow{
+    flex:2 2 30%;
+    margin-bottom:40px;
+}
+.flexible__address{
+    display:flex;
+
+    .title{
+        font-size: $font-size;
+    }
+    p{
+        font-size:$font-size__sm    
+    }
+}
