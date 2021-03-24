@@ -33,7 +33,7 @@ export default function AsideMenu() {
         <Card.Body className='sm' style={{padding:0}}>
         <ul className='aside-list-container' style={{listStyleType:'none'}}>
             <li>
-                <Link href="/test">
+                <Link href="/myaddresses">
                     <a className="d-flex">
                     <img src={'/assets/icons/book.svg'}/><span>Xaricdəki ünvanlarım</span> 
                     </a>

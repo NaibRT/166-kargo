@@ -14,14 +14,6 @@ const initialState = {
 const entryReducer = (state = initialState, action) => {
   switch (action.type) {
    case LOGIN:
-<<<<<<< HEAD
-     state={
-       user:{
-         ...action.payload,
-       },
-       isLoged:action.payload.err ? false : true,
-     }
-=======
       if(action.payload.isError){
         state = {
            ...state,
@@ -37,7 +29,6 @@ const entryReducer = (state = initialState, action) => {
         } 
       }
 
->>>>>>> 2919030bf44e73720f23685aba28e216f1862cb9
     break;
    case LOGOUT:
       state = {
@@ -47,13 +38,10 @@ const entryReducer = (state = initialState, action) => {
       }
     break; 
    case REGISTER:
-<<<<<<< HEAD
-=======
      state = {
        user:action.payload,
        isLoged:true
      }
->>>>>>> 2919030bf44e73720f23685aba28e216f1862cb9
     break;  
    default:
     state = { ...state }

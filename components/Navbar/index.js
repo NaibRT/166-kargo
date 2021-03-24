@@ -44,14 +44,6 @@ const Navbar = (props) => {
                             </li>
                         </ul>
                         <ul className='top__header-right'>
-<<<<<<< HEAD
-                            <li>
-                                <Link href='/register'><a>{f({ id: 'signup' })}</a></Link>
-                            </li>
-                            <li>
-                                <Link href='/'><a className='text__decoration'><Button className='p-sm' style={{ marginTop: '-10px' }} label={f({ id: 'signin' })} startElement={<img className='mr-xs' src={'/assets/icons/user.svg'} />} /></a></Link>
-                            </li>
-=======
                         {
                             !props.entry.isLoged ?
                                <>
@@ -59,7 +51,7 @@ const Navbar = (props) => {
                                     <Link href='/register'><a>{f({ id: 'signup' })}</a></Link>
                                 </li>
                                 <li>
-                                  <Link href='/'><a className='text__decoration'><Button className='p-sm' style={{ marginTop: '-10px' }} label={f({ id: 'signin' })} startElement={<img className='mr-xs' src={'/assets/icons/user.svg'} />} /></a></Link>  
+                                  <Link href='/'><a className='text__decoration'><Button   style={{ marginTop: '-10px',padding:'10px' }} label={f({ id: 'signin' })} startElement={<img className='mr-xs' src={'/assets/icons/user.svg'} />} /></a></Link>  
                                </li>
                                </>
 
@@ -79,7 +71,6 @@ const Navbar = (props) => {
                                      </div>
                                </li>
                          }
->>>>>>> 2919030bf44e73720f23685aba28e216f1862cb9
                         </ul>
                     </nav>
                     {/*Top menu ends*/}
