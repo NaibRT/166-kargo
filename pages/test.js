@@ -1,10 +1,24 @@
-import React from 'react'
+import { router } from "next/router"
+import React, { memo } from 'react'
+import { connect } from "react-redux"
 import AddressItem from '../components/address-item'
 import AsideMenu from '../components/aside-menu'
 import Card from '../components/card/card'
 import Page from '../components/page/page'
 
-export default function test() {
+ function Test(props) {
+
+
+    if(!props.entry.isLoged){
+
+        router.push('/register');
+
+        return (
+            <div style={{height:'100vh'}}></div>
+        )
+    }
+
+
     const data = {
         ["Ad,Soyad"]: "Nihad Abdual",
         ["Adress Satır 1"]:"Barbaros mah.178 Sk. Kardeşler apt. No:30/A 540728 llayev",
@@ -19,6 +33,7 @@ export default function test() {
         ["Vergi Dairesi"]:"Kocasinan",
         ["Adres Basligi"]:"166 Cargo"
     }
+
     return (
        <div className='bg-bg'>
         <Page >
@@ -66,3 +81,8 @@ export default function test() {
         </div>
     )
 }
+
+const mapStateToProps=state => ({
+    entry: state.entry
+});
+export default connect(mapStateToProps)(memo(Test))

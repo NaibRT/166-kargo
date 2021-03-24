@@ -22,13 +22,13 @@ function Contact() {
              <h3 className='mb-sm'>Əlaqə formu</h3>
                <p className='mb-sm'>Asagidaki formaya elaqe melumatlarinizi ve mesajinii daxil edin, biz size geri donus edek.</p>
                <form>
-                   <FromGroup  className=' w-100' bodyClass='border-menu'>
+                   <FromGroup  className=' w-100 mb-xs' bodyClass='border-menu'>
                       <Input className='p-xs' placeholder='Adiniz' name='name' type='text' />
                    </FromGroup>
-                   <FromGroup  className=' w-100' bodyClass='border-menu'>
+                   <FromGroup  className=' w-100 mb-xs' bodyClass='border-menu'>
                       <Input className='p-xs' placeholder='E-poct ve ya telefon nomreniz' name='email' type='email' />
                    </FromGroup>
-                   <FromGroup  className=' w-100' bodyStyle={{height:'150px',verticalAlign:'text-top'}}>
+                   <FromGroup  className=' w-100 mb-xs' bodyStyle={{height:'150px',verticalAlign:'text-top'}}>
                       <textarea className='p-xs border-menu w-100 h-100 br-xxs' style={{outline:'none',}} placeholder='Mesajiniz' name='message' />
                    </FromGroup>
                    <ButtonComponent className='w-100 mt-xs' label='gonder'/>

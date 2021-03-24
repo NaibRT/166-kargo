@@ -1,5 +1,7 @@
 import Link from "next/link";
-import React from 'react';
+import { router } from "next/router";
+import React, { memo } from 'react';
+import { connect } from "react-redux";
 import Button from "../components/button";
 import Card from "../components/card/card";
 import Checkbox from '../components/checkbox/checkbox';
@@ -8,7 +10,15 @@ import Input from '../components/input/input';
 import Page from "../components/page/page";
 
 
-function NewOrder() {
+function NewOrder(props) {
+
+  if(!props.entry.isLoged){
+    router.push('/register');
+    return (
+        <div style={{height:'100vh'}}></div>
+    )
+  }
+
     return (
         <Page className='bg-bg pt-lg'>
             <aside className='bg-white'>
@@ -69,4 +79,7 @@ function NewOrder() {
     )
 }
 
-export default NewOrder
+const mapStateToProps  = state => ({
+  entry: state.entry
+});
+export default connect(mapStateToProps)(memo(NewOrder)) 

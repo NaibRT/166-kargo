@@ -1,19 +1,32 @@
-import React from 'react';
+import { router } from "next/router";
+import React, { memo } from 'react';
+import { connect } from "react-redux";
 import AsideMenu from "../components/aside-menu/index";
+import Aside from '../components/aside/aside';
 import ButtonComponent from "../components/button/index";
 import Card from "../components/card/card";
 import FromGroup from "../components/form-group/form-group";
 import Input from "../components/input/input";
+import Main from '../components/main/main';
 import Page from "../components/page/page";
 
 
-function UserInfo() {
+function UserInfo(props) {
+
+  if(!props.entry.isLoged){
+    router.push('/register');
     return (
-        <Page className='user-info-page bg-bg pt-lg'>
-            <aside className='uip-aside mr-sm'>
+        <div style={{height:'100vh'}}></div>
+    )
+  }
+
+
+    return (
+        <Page className='user-profile-page bg-bg pt-lg'>
+            <Aside>
               <AsideMenu/>
-            </aside>
-         <main className='uip-main '>
+            </Aside>
+         <Main>
          <Card className='bg-white p-sm br-lg'>
           <Card.Header text='Sexsi melumatlar'/>
           <Card.Body className='bg-bg'>
@@ -68,9 +81,12 @@ function UserInfo() {
               <ButtonComponent className='w-25' label='Sifreni deyis'/>
             </Card.Footer>
          </Card>
-            </main>
+            </Main>
         </Page>
     )
 }
 
-export default UserInfo
+const mapStateToProps = state => ({
+  entry: state.entry
+})
+export default connect(mapStateToProps)(memo(UserInfo))

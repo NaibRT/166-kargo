@@ -17,6 +17,7 @@ $margin_lg:size(50);
 $margin_md:size(25);
 $margin_sm:size(22);
 $margin_xs:size(10);
+$margin_xxs:size(5);
 $margin_none:0px;
 
 
@@ -25,6 +26,7 @@ $padding_lg:size(50);
 $padding_md:size(25);
 $padding_sm:size(22);
 $padding_xs:size(10);
+$padding_xxs:size(5);
 $padding_none:0px;
 
 
@@ -117,6 +119,7 @@ $margins : (
     'md':#{$margin_md},
     'sm':#{$margin_sm},
     'xs':#{$margin_xs},
+    'xxs':#{$margin_xxs},
     'none':#{$margin_none},
 
 );
@@ -126,6 +129,7 @@ $paddings : (
     'md':#{$padding_md},
     'sm':#{$padding_sm},
     'xs':#{$padding_xs},
+    'xxs':#{$padding_xxs},
     'none':#{$padding_none},
 );
 

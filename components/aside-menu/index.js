@@ -33,7 +33,7 @@ export default function AsideMenu() {
         <Card.Body className='sm' style={{padding:0}}>
         <ul className='aside-list-container' style={{listStyleType:'none'}}>
             <li>
-                <Link href="">
+                <Link href="/test">
                     <a className="d-flex">
                     <img src={'/assets/icons/book.svg'}/><span>Xaricdəki ünvanlarım</span> 
                     </a>
@@ -41,7 +41,7 @@ export default function AsideMenu() {
             </li>
             <Divider />
             <li>
-                <Link href="">
+                <Link href="/orders">
                 <a className="d-flex">
                     <img src={'/assets/icons/shopping-bag.svg'}/><span>Sifarişlərim</span>
                     </a>
@@ -49,7 +49,7 @@ export default function AsideMenu() {
             </li>
             <Divider />
             <li>
-                <Link href="">
+                <Link href="/packages">
                 <a className="d-flex">
                     <img src={'/assets/icons/package.svg'}/><span>Bağlamalarım</span>
                     </a>
@@ -57,7 +57,7 @@ export default function AsideMenu() {
             </li>
             <Divider />
             <li>
-                <Link href="">
+                <Link href="/user-info">
                 <a className="d-flex">
                     <img src={'/assets/icons/personal-data.svg'}/><span>Şəxsi məlumatlar</span>
                     </a>
@@ -65,7 +65,7 @@ export default function AsideMenu() {
             </li>
             <Divider />
             <li>
-                <Link href="">
+                <Link href="/balance">
                 <a className="d-flex">
                     <img src={'/assets/icons/cashback.svg'}/><span>Balansımız</span>
                     </a>
@@ -73,7 +73,7 @@ export default function AsideMenu() {
             </li>
             <Divider />
              <li>
-                <Link href="">
+                <Link href="/lends">
                 <a className="d-flex">
                     <img src={'/assets/icons/loan.svg'}/><span>Borclarım</span>
                     </a>

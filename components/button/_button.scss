@@ -5,6 +5,7 @@ font-size:$font-size__sm;
 background:$color__yellow;
 border-color: $color__yellow;
 border-radius: $btn__border-radius;
+padding: $padding_sm;
 outline:none;
 border:none;
 font-weight:400;
@@ -13,4 +14,5 @@ height:36px;
 display:flex;
 justify-content: center;
 align-items: center;
+cursor: pointer;
      }

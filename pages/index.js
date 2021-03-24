@@ -1,5 +1,8 @@
 import Link from 'next/link';
+import { memo, useEffect } from "react";
+import { useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
+import { connect } from 'react-redux';
 import ButtonComponent from '../components/button';
 import Card from '../components/card/card';
 import FromGroup from '../components/form-group/form-group';
@@ -10,6 +13,12 @@ import Page from '../components/page/page';
 import Rate from '../components/rate/rate';
 import Selectbox from "../components/selectbox/selectbox";
 import Switch from '../components/switch/switch';
+import { Login } from '../redux/entry/entryActions';
+import { GetSettings } from '../redux/settings/settingsActions';
+
+
+
+
 
 const data = [
   {min:0,max:0.25,amount:1.66},
@@ -19,28 +28,57 @@ const data = [
  ]
 
 
-export default function Home() {
+ function Home(props) {
   const { formatMessage: f } = useIntl();
+  
+  const { register,handleSubmit,errors } = useForm();
+
+
+  useEffect(() => {
+     props.GetSettings('settings');
+  },[])
+
+  const submit = (data) => {
+    console.log(data)
+    props.Login('auth/login',JSON.stringify(data),{'content-type':'application/json'})
+  }
+  
   return (
        
          <main className='home-page'>
            <section className='main-section bg-bg mb-sm' >
            <div className=' container-fluid pt-sm pb-sm' style={{display:'flex'}}>
-           <div className='slider-container mr-sm'>
+           <div className='slider-container pr-sm'>
           <MainSlider/>
            </div>
            <Card className='login-card bg-white p-sm'>
              <Card.Header text='Istifadecei girisi'/>
              <Card.Body className='p-none'>
-             <form className='login-form'>
-               <FromGroup label='E-mail' bodyClass='bg-bg w-100' >
-                 <Input type='email' name='mail'/>
+             <form className='login-form' onSubmit={handleSubmit(submit)}>
+               <FromGroup 
+                  label='E-mail' 
+                  bodyClass='bg-bg w-100' 
+                  error={errors.email?.message}
+                  >
+                 <Input Ref={register({
+                   required:{value:true,message:'email is not valid'},
+                  //  pattern:/^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/
+                 })} type='email' name='email'/>
                </FromGroup>
-               <FromGroup label='Sifre' bodyClass='bg-bg w-100' >
-                 <Input type='password' name='password'/>
+               <FromGroup 
+                 label='Sifre' 
+                 bodyClass='bg-bg w-100'
+                 error={errors.password?.message}
+               >
+                 <Input
+                 Ref={register({
+                  required:{value:true,message:'password is not valid'},
+                  // pattern:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
+                })}
+                  type='password' name='password'/>
                </FromGroup>
+             <ButtonComponent type='submit' className='w-100 mt-xs' label='Daxil ol'/>
              </form>
-             <ButtonComponent className='w-100 mt-xs' label='Daxil ol'/>
              </Card.Body>
            </Card>
          </div>
@@ -139,12 +177,10 @@ export default function Home() {
           </Card>
         </section>
 
-        <section className='fluid_bottom'>
-          <div >
-            <div className='flex__item'>
-              <p className='title mg__bottom2'>{f({ id: 'shops' })}</p>
-              <p className='title__sm mg__bottom2'>Hamısını gör &rsaquo;</p>
-            </div>
+        <section className='fluid_bottom w-100'>
+          <Card>
+            <Card.Header text='Bəzi mağazalar' endElelment={<Link href=''>Hamsını gör &rsaquo;</Link>} />
+            <Card.Body>
             <div className='flex__item'>
               <Link href='https://www.trendyol.com/'>
                 <a target="_blank"> <img src={'/assets/images/a00.svg'} /></a>
@@ -165,9 +201,30 @@ export default function Home() {
                 <a target="_blank"> <img src={'/assets/images/a05.svg'} /></a>
               </Link>
             </div>
-          </div>
+            </Card.Body>
+          </Card>
+
+          {/* <div >
+            <div className='flex__item'>
+              <p className='title mg__bottom2'>{f({ id: 'shops' })}</p>
+              <p className='title__sm mg__bottom2'>Hamısını gör &rsaquo;</p>
+            </div>
+
+          </div> */}
         </section>
         </Page>
         </main>
   )
 }
+
+const mapStateToProp = state => ({
+  Entry: state.entry
+});
+
+const mapDispatchToProp = { 
+  Login ,
+  GetSettings
+}
+
+
+export default connect(mapStateToProp, mapDispatchToProp)(memo(Home))

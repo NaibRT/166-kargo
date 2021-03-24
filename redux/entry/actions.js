@@ -1,8 +1,9 @@
-import {
- LOGIN,
- LOGOUT,
- REGISTER
-} from './actionTypes'
+import
+  {
+    LOGIN,
+    LOGOUT,
+    REGISTER
+  } from './actionTypes'
 
 export const login = (data) => {
   return {

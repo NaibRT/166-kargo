@@ -1,20 +1,26 @@
 import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import EntryReducer from '../entry/reducer';
 import SpotifyReducer from '../getData/reducer';
-import { persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+import SettingReducer from '../settings/reducer';
+
 
 
 
 const persistConfig = {
  key: 'root',
- storage,
- whitelist: ['spotify']
+ storage: storage,
+ whitelist: [
+     'entry',
+     
+    ]
 }
 
 const rootReducers = combineReducers({
  entry: EntryReducer,
- spotify: SpotifyReducer
+ spotify: SpotifyReducer,
+ settings: SettingReducer
 })
 
 export default persistReducer(persistConfig, rootReducers);
