@@ -4,7 +4,8 @@
     transition: all 1s ease;
     border: 1px solid $color__bg;
     border-radius: $border-radius_sm;
-    padding: $padding_sm;
+    padding: $padding_xs;
+    text-align:left;
     margin-bottom: $margin-bottom;
     height: 67px;
     &[open] .faq-info{

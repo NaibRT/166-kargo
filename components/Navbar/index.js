@@ -1,11 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { memo } from "react";
 import { useIntl } from 'react-intl';
-import Button from '../button';
+import { connect } from "react-redux";
+import { LogOut } from "../../redux/entry/entryActions";
+import { default as Button, default as ButtonComponent } from '../button';
 import Page from '../page/page';
 
-const Navbar = () => {
+const Navbar = (props) => {
 
     // const {locale, locales} = useRouter();
 
@@ -41,12 +44,42 @@ const Navbar = () => {
                             </li>
                         </ul>
                         <ul className='top__header-right'>
+<<<<<<< HEAD
                             <li>
                                 <Link href='/register'><a>{f({ id: 'signup' })}</a></Link>
                             </li>
                             <li>
                                 <Link href='/'><a className='text__decoration'><Button className='p-sm' style={{ marginTop: '-10px' }} label={f({ id: 'signin' })} startElement={<img className='mr-xs' src={'/assets/icons/user.svg'} />} /></a></Link>
                             </li>
+=======
+                        {
+                            !props.entry.isLoged ?
+                               <>
+                                <li>
+                                    <Link href='/register'><a>{f({ id: 'signup' })}</a></Link>
+                                </li>
+                                <li>
+                                  <Link href='/'><a className='text__decoration'><Button className='p-sm' style={{ marginTop: '-10px' }} label={f({ id: 'signin' })} startElement={<img className='mr-xs' src={'/assets/icons/user.svg'} />} /></a></Link>  
+                               </li>
+                               </>
+
+                               :
+
+                               <li className='profile-container'>
+                                <Link href='/orders'>
+                                     <img
+                                       className='profile-img'
+                                       src='https://cdn3.iconfinder.com/data/icons/avatars-add-on-pack-1/48/v-06-512.png'
+                                     />
+                                 </Link>
+                                     <div
+                                     className='profile-dropdown'
+                                     >
+                                         <ButtonComponent onClick={props.LogOut} label='Logout'/>
+                                     </div>
+                               </li>
+                         }
+>>>>>>> 2919030bf44e73720f23685aba28e216f1862cb9
                         </ul>
                     </nav>
                     {/*Top menu ends*/}
@@ -105,4 +138,11 @@ const Navbar = () => {
 
 }
 
-export default Navbar;
+const mapStateToProps = state => ({
+    entry: state.entry,
+});
+
+const mapDispatchToProps = {
+    LogOut
+}
+export default connect(mapStateToProps, mapDispatchToProps)(memo(Navbar));

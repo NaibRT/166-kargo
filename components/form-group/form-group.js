@@ -15,7 +15,7 @@ function FromGroup(
  return (
   <div className={`form-group ${className||''}`} style={style||{}} >
    <div className='txt-lbl-container'>
-   <label className='txt-lbl'>{label}</label>
+   { label && <label className='txt-lbl'>{label}</label>}
     {labelStartIcon}
    </div>
     <div className={`form-group-body ${bodyClass||''}`} style={bodyStyle}>

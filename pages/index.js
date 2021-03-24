@@ -1,6 +1,12 @@
 import Link from 'next/link';
+<<<<<<< HEAD
 import React,{useEffect} from 'react'
+=======
+import { memo, useEffect } from "react";
+import { useForm } from 'react-hook-form';
+>>>>>>> 2919030bf44e73720f23685aba28e216f1862cb9
 import { useIntl } from 'react-intl';
+import { connect } from 'react-redux';
 import ButtonComponent from '../components/button';
 import Card from '../components/card/card';
 import FromGroup from '../components/form-group/form-group';
@@ -11,10 +17,19 @@ import Page from '../components/page/page';
 import Rate from '../components/rate/rate';
 import Selectbox from "../components/selectbox/selectbox";
 import Switch from '../components/switch/switch';
+<<<<<<< HEAD
 import {useForm} from 'react-hook-form';
 import {Login} from '../redux/entry/EntryActions'
 import {connect} from 'react-redux'
 import  {GetSetting} from '../redux/settings/settingsActions'
+=======
+import { Login } from '../redux/entry/entryActions';
+import { GetSettings } from '../redux/settings/settingsActions';
+
+
+
+
+>>>>>>> 2919030bf44e73720f23685aba28e216f1862cb9
 
 const data = [
   {min:0,max:0.25,amount:1.66},
@@ -26,6 +41,7 @@ const data = [
 
  function Home(props) {
   const { formatMessage: f } = useIntl();
+<<<<<<< HEAD
   const {register,handleSubmit,errors}=useForm();
 
   useEffect(()=>{
@@ -36,17 +52,33 @@ const data = [
     props.Login('auth/login', JSON.stringify(data),{'content-type':'application/json'})
 
   }
+=======
+  
+  const { register,handleSubmit,errors } = useForm();
+
+
+  useEffect(() => {
+     props.GetSettings('settings');
+  },[])
+
+  const submit = (data) => {
+    console.log(data)
+    props.Login('auth/login',JSON.stringify(data),{'content-type':'application/json'})
+  }
+  
+>>>>>>> 2919030bf44e73720f23685aba28e216f1862cb9
   return (
        
          <main className='home-page'>
            <section className='main-section bg-bg mb-sm' >
            <div className=' container-fluid pt-sm pb-sm' style={{display:'flex'}}>
-           <div className='slider-container mr-sm'>
+           <div className='slider-container pr-sm'>
           <MainSlider/>
            </div>
            <Card className='login-card bg-white p-sm'>
              <Card.Header text='Istifadecei girisi'/>
              <Card.Body className='p-none'>
+<<<<<<< HEAD
              <form onSubmit={handleSubmit(submit)} className='login-form'>
                <FromGroup label='E-mail' 
                bodyClass='bg-bg w-100' 
@@ -68,6 +100,32 @@ const data = [
                </FromGroup>
                 <ButtonComponent className='w-100 mt-xs' label='Daxil ol'/>
             
+=======
+             <form className='login-form' onSubmit={handleSubmit(submit)}>
+               <FromGroup 
+                  label='E-mail' 
+                  bodyClass='bg-bg w-100' 
+                  error={errors.email?.message}
+                  >
+                 <Input Ref={register({
+                   required:{value:true,message:'email is not valid'},
+                  //  pattern:/^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/
+                 })} type='email' name='email'/>
+               </FromGroup>
+               <FromGroup 
+                 label='Sifre' 
+                 bodyClass='bg-bg w-100'
+                 error={errors.password?.message}
+               >
+                 <Input
+                 Ref={register({
+                  required:{value:true,message:'password is not valid'},
+                  // pattern:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
+                })}
+                  type='password' name='password'/>
+               </FromGroup>
+             <ButtonComponent type='submit' className='w-100 mt-xs' label='Daxil ol'/>
+>>>>>>> 2919030bf44e73720f23685aba28e216f1862cb9
              </form>
              </Card.Body>
            </Card>
@@ -167,12 +225,10 @@ const data = [
           </Card>
         </section>
 
-        <section className='fluid_bottom'>
-          <div >
-            <div className='flex__item'>
-              <p className='title mg__bottom2'>{f({ id: 'shops' })}</p>
-              <p className='title__sm mg__bottom2'>Hamısını gör &rsaquo;</p>
-            </div>
+        <section className='fluid_bottom w-100'>
+          <Card>
+            <Card.Header text='Bəzi mağazalar' endElelment={<Link href=''>Hamsını gör &rsaquo;</Link>} />
+            <Card.Body>
             <div className='flex__item'>
               <Link href='https://www.trendyol.com/'>
                 <a target="_blank"> <img src={'/assets/images/a00.svg'} /></a>
@@ -193,7 +249,16 @@ const data = [
                 <a target="_blank"> <img src={'/assets/images/a05.svg'} /></a>
               </Link>
             </div>
-          </div>
+            </Card.Body>
+          </Card>
+
+          {/* <div >
+            <div className='flex__item'>
+              <p className='title mg__bottom2'>{f({ id: 'shops' })}</p>
+              <p className='title__sm mg__bottom2'>Hamısını gör &rsaquo;</p>
+            </div>
+
+          </div> */}
         </section>
         </Page>
         </main>
@@ -201,6 +266,7 @@ const data = [
 }
 
 const mapStateToProp = state => ({
+<<<<<<< HEAD
   entry: state.entry
 });
 
@@ -208,3 +274,15 @@ const mapDispatchToProp = { Login }
 
 
 export default connect(mapStateToProp, mapDispatchToProp)(React.memo(Home))
+=======
+  Entry: state.entry
+});
+
+const mapDispatchToProp = { 
+  Login ,
+  GetSettings
+}
+
+
+export default connect(mapStateToProp, mapDispatchToProp)(memo(Home))
+>>>>>>> 2919030bf44e73720f23685aba28e216f1862cb9
