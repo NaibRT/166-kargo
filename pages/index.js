@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import React,{useEffect} from 'react'
 import { useIntl } from 'react-intl';
 import ButtonComponent from '../components/button';
 import Card from '../components/card/card';
@@ -10,6 +11,10 @@ import Page from '../components/page/page';
 import Rate from '../components/rate/rate';
 import Selectbox from "../components/selectbox/selectbox";
 import Switch from '../components/switch/switch';
+import {useForm} from 'react-hook-form';
+import {Login} from '../redux/entry/EntryActions'
+import {connect} from 'react-redux'
+import  {GetSetting} from '../redux/settings/settingsActions'
 
 const data = [
   {min:0,max:0.25,amount:1.66},
@@ -19,8 +24,18 @@ const data = [
  ]
 
 
-export default function Home() {
+ function Home(props) {
   const { formatMessage: f } = useIntl();
+  const {register,handleSubmit,errors}=useForm();
+
+  useEffect(()=>{
+    props.GetSettings('settings')
+  },[])
+  const submit=(data)=>{
+    console.log(errors);
+    props.Login('auth/login', JSON.stringify(data),{'content-type':'application/json'})
+
+  }
   return (
        
          <main className='home-page'>
@@ -32,15 +47,28 @@ export default function Home() {
            <Card className='login-card bg-white p-sm'>
              <Card.Header text='Istifadecei girisi'/>
              <Card.Body className='p-none'>
-             <form className='login-form'>
-               <FromGroup label='E-mail' bodyClass='bg-bg w-100' >
-                 <Input type='email' name='mail'/>
+             <form onSubmit={handleSubmit(submit)} className='login-form'>
+               <FromGroup label='E-mail' 
+               bodyClass='bg-bg w-100' 
+               error={errors.email?.message}>
+                 <Input Ref={register({
+                   required:{value:true,message:'email is not valid' },
+                  // pattern:/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+                 })} type='email' name='email'/>
+               
                </FromGroup>
-               <FromGroup label='Sifre' bodyClass='bg-bg w-100' >
-                 <Input type='password' name='password'/>
+               <FromGroup label='Sifre'
+                bodyClass='bg-bg w-100'
+                error={errors.password?.message} >
+                 <Input Ref={register({
+                  required:{value:true,message:'password is not valid' },
+                  // pattern:/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
+                })} type='password' name='password'/>
+                 
                </FromGroup>
+                <ButtonComponent className='w-100 mt-xs' label='Daxil ol'/>
+            
              </form>
-             <ButtonComponent className='w-100 mt-xs' label='Daxil ol'/>
              </Card.Body>
            </Card>
          </div>
@@ -60,7 +88,7 @@ export default function Home() {
           <Card>
             <Card.Header text='Kalkulyator'/>
             <Card.Body className='bg-bg p-sm br-sm'>
-              <form className='calculator-form' style={{display:'flex',flexWrap:'wrap'}}>
+              <form   className='calculator-form' style={{display:'flex',flexWrap:'wrap'}}>
               <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label='Olke sec'>
                   <Selectbox className='w-100' data={[]}/>
                 </FromGroup>
@@ -78,6 +106,7 @@ export default function Home() {
                 </FromGroup>
                 <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label='Hundurluk (sm)'>
                   <Input type='text'/>
+                  <ButtonComponent type='submit'/>
                 </FromGroup>
               </form>
               <Card.Footer className='mt-xs'>
@@ -86,8 +115,7 @@ export default function Home() {
                   <span className='w-25' style={{fontSize:'12px'}}>Catdirilma qiymeti</span>
                   <strong style={{textAlign:'center',fontSize:'large'}}>10 $</strong>
                 </div>
-                <ButtonComponent className='w-50' label='Hesabla'/>
-                </>
+                 </>
               </Card.Footer>
             </Card.Body>   
           </Card>
@@ -171,3 +199,12 @@ export default function Home() {
         </main>
   )
 }
+
+const mapStateToProp = state => ({
+  entry: state.entry
+});
+
+const mapDispatchToProp = { Login }
+
+
+export default connect(mapStateToProp, mapDispatchToProp)(React.memo(Home))

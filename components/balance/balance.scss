@@ -1,0 +1,33 @@
+@import '../../public/assets/styles/scss/variables';
+
+.card__flex{
+    display:flex;
+    justify-content:space-between;
+    width:100%;
+    flex-flow:row wrap;
+
+    .card{
+        border-radius:$card-lg__border-radius;
+        flex: 2;
+        height:200px;
+        margin:40px 0 0 20px!important;
+    }
+    .card_input{
+        width:200px;
+        border:1px solid #ebebeb;
+        padding:15px 25px;
+        border-radius:$btn__border-radius;
+         margin-bottom:5px
+    
+
+    }
+    .max-width{
+        width:200px
+    }
+    .btn-green{
+        background:#0E8E00;
+        color:#fafafa;
+        font-weight:700;
+        height:48px
+    }
+}

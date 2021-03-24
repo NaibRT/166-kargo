@@ -25,7 +25,8 @@ export default function test() {
        <div style={{display:'flex'}}> 
             <AsideMenu />
             <div>
-            <Card className='p-md bg-white lg' style={{margin: '40px 0 40px 40px'}}>
+
+        <Card className='p-md bg-white lg' style={{margin: '40px 0 40px 40px'}}>
             <Card.Header style={{justifyContent:'flex-start'}}
                          startElement ={<img src={'/assets/icons/turkish.svg'} className='fl'/>}
                          text='Türkiyə Ünvanı'

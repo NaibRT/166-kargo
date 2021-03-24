@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 import React from 'react';
 import ButtonComponent from '../button';
 import {useRouter} from 'next/router';
@@ -33,4 +32,3 @@ const Header =()=>{
 }
 
 export default Header
->>>>>>> 2e2e550374229de3d6e76ddbe2f6b45932c41230

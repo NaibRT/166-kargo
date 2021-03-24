@@ -1,6 +1,7 @@
-import React from 'react'
+import React ,{memo} from 'react'
 import Link from 'next/link'
 import Page from '../page/page';
+import {connect} from 'react-redux'
 
 
 const data = [
@@ -24,18 +25,17 @@ const data = [
   </div>
 );
 
-const contact = () => (
+const contact = (data) => (
   <address className={'address_container'}>
     <div className={'link_item_head'}>Əlaqə</div>
-    <div><img src='/assets/icons/45060.svg'/><span>Baki şəhəri. Səbail ray...Ş.Şamil küç. 16</span></div>
-    <div><img src='/assets/icons/129932.svg'/><a href='tel:*0166'>*0166</a></div>
-    <div><img src='/assets/icons/121923.svg'/><a href='mailto:info@166kargo.az'>info@166kargo.az</a></div>
-    <div><img src='/assets/icons/time-work_318-10641.svg'/><span>Həftə içi 10:00 - 19:00</span></div>
+    <div><img src='/assets/icons/45060.svg'/><span>{data?.address}</span></div>
+    <div><img src='/assets/icons/129932.svg'/><a href='tel:*0166'>{data?.phone}</a></div>
+    <div><img src='/assets/icons/121923.svg'/><a href='mailto:info@166kargo.az'>{data?.email}</a></div>
+    <div><img src='/assets/icons/time-work_318-10641.svg'/><span>{data?.work_hours_from}-{data?.work_hours_till}</span></div>
   </address>
 )
 
-
-export default function Footer() {
+  function Footer() {
  return (
   <footer className={'footer'}>
     <Page>
@@ -54,9 +54,8 @@ export default function Footer() {
           <a href='https://youtube.com'><img src='/assets/icons/youtube.svg'/></a>
         </div>
       </div>
-      {links(data)}
-      {links(data)}
-      {contact()}
+     
+     
     </div> 
     </Page>
     <div className='footer-bottom'>
@@ -70,5 +69,8 @@ export default function Footer() {
   </footer>
  )
 }
+const mapStateToProps=state=>{
+  data:state.settings.data
+}
 
-
+export default connect(mapStateToProps)(React.memo(Footer))
