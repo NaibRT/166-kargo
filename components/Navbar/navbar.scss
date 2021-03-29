@@ -65,8 +65,7 @@
             }
 
             &:hover .profile-dropdown{
-                display: block !important;
-                
+                display: block !important; 
             }
             }
 
@@ -77,6 +76,22 @@
                 right: 0%;
                 position: absolute;
                 display:none;
+
+
+                ul{
+                    li{
+                        a{
+                            display: flex;
+                            align-items: center;
+
+                            img{
+                                margin-right: 10px;
+                            }
+
+                        }
+                
+                    }
+                }
                
         }
     }
@@ -181,10 +196,8 @@
         .user__menu{
             display:flex;
             flex-direction:column;
-
            
             .profile-dropdown{
-                 
                 display:none;
                 top: 7%;
                 background: white;

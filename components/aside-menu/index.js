@@ -1,17 +1,23 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { memo } from 'react';
+import { connect } from "react-redux";
 import ButtonComponent from '../button/index';
 import Card from '../card/card';
 import Divider from '../divider/divider';
 
 
+
 function AsideMenu(props) {
+
+    const { pathname } = location;
+    const splitLocation = pathname.split("/");
+
     return (
         <div>
         <Card className='p-md bg-white lg br-lg'>
         <Card.Header text={`${props.entry.user.user.firstname} ${props.entry.user.user.lastname}`} style={{fontSize:'20px'}}/>
         <p>Müştəri kodu: {props.entry.user.user.customer_number}</p>
-        <small>Balansım</small>
+        <small className='mr-xs'>Balansım</small>
         <small>0.00 AZN</small>
           <Card.Body className='mt-xs' style={{padding:0}}>
            <Link href="/new-order">
@@ -86,7 +92,7 @@ function AsideMenu(props) {
              </li>
              <Divider />
              <li >
-                <Link    href="/courier-order">
+                <Link href="/courier-order">
                 <a className={splitLocation[1] === "courier-order" ? "d-flex active" : "d-flex"}>
                     <img src={'/assets/icons/delivery-man.svg'}/><span>Kuryer sifarişi</span>
                     </a>

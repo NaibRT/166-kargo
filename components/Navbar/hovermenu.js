@@ -1,8 +1,13 @@
-import React, {useRef, useEffect} from 'react'
-import Link from 'next/link'
-import Divider from '../divider/divider'
+import Link from 'next/link';
+import React, { memo } from 'react';
+import { connect } from "react-redux";
+import { LogOut } from "../../redux/entry/EntryActions";
+import ButtonComponent from "../button/index";
+import Divider from '../divider/divider';
 
-export default function Hovermenu(props) {
+
+
+function Hovermenu(props) {
     const { pathname } = location;
 
     //Javascript split method to get the name of the path in array
@@ -70,11 +75,12 @@ export default function Hovermenu(props) {
                 </li>
                 <Divider />
                 <li>
-                <Link href="/courier-order">
-                    <a onClick={props.LogOut}>
-                        <img src={'/assets/icons/logout.svg'} /><span>Çıxış</span>
-                    </a>
-                </Link>
+                    <ButtonComponent
+                      className='bg-white'
+                     startElement={ <img src={'/assets/icons/logout.svg'} />}
+                    label="Çıxış"
+                     onClick={() => props.logOut()}
+                    />
             </li>
 
         </ul>
@@ -83,3 +89,13 @@ export default function Hovermenu(props) {
         </>
     )
 }
+
+const mapStateToProps = (state) => ({
+
+})
+
+const mapDispatchToProps = {
+   logOut:LogOut
+}
+
+export default  connect(mapStateToProps,mapDispatchToProps)(memo(Hovermenu))

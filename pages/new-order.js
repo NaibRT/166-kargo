@@ -103,7 +103,7 @@ function NewOrder(props) {
                   'Authorization':`Bearer ${props.entry.user.accessToken}`
                 }
      }).then(res => {
-       res.console.log(res.data)
+       console.log(res.data)
        Swal.fire({
          success:'success',
          text: 'emeliyyat ugurlu oldu',

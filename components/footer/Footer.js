@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import React, { memo } from 'react';
 import { connect } from "react-redux";
-import { Parallax } from 'swiper';
 import Page from '../page/page';
 
 
@@ -47,7 +46,7 @@ function Footer(props) {
   console.log(props)
   return (
 
-    <footer className={'footer'}>
+    <footer className={'footer mt-lg'}>
       <Page>
         <div className={'footer_container container-fluid'}>
           <div className={'footer_container_head'}>

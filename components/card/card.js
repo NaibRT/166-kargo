@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 export default function Card({children,className,style}){
  return (
-  <div className={`card ${className}`} style={style}>
+  <div className={`card mb-lg ${className}`} style={style}>
     {children}
   </div>
  )

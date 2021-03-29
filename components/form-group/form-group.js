@@ -22,7 +22,7 @@ function FromGroup(
     {children}
     </div>
     {
-     error && <label className='err-lbl'>{error}</label>
+     error && <label style={{ fontSize:'11px'}}  className='err-lbl'>{error}</label>
     }
   </div>
  )

@@ -83,7 +83,7 @@ function Orders(props) {
           </Aside> 
           <Main>
             <Card className='p-sm'>
-                <Card.Header text='Sifarişlərim' endElelment={<Link href='./new-order'><ButtonComponent startElement={<span>&#x2b;</span>} label={'Yeni sifariş əlavə et'}/></Link>}/>
+                <Card.Header text='Sifarişlərim' endElelment={<Link href='./new-order'><ButtonComponent className='p-xs' startElement={<span>&#x2b;</span>} label={'Yeni sifariş əlavə et'}/></Link>}/>
                 <Card.Body className='p-none'>
                    <div className='orders-container'>
                        <div className='orders-container-head'>
@@ -100,7 +100,7 @@ function Orders(props) {
                                 <div className='order-item-summary-head'>
                                     <span>No {item.order_number}</span>
                                     <span>{item.country}</span>
-                                    <span>{item.date}</span>
+                                    <span>{new Date(item.date).toLocaleDateString(locale)}</span>
                                     <span>{item.price} TL</span>
                                     <span>{item.status ?'Ödənilib' : 'Ödənilməyib'}</span>
                                     <span><span className='mr-xs'>&#128065;</span>Sifariş detallari</span>
