@@ -17,6 +17,7 @@ export const Login = (url,data,headers = {}) => dispatch => {
       })
 }
 
+
 export const UserRegister = (url,data,headers = {}) => dispatch => {
   console.log(url)
   axios.post(`${process.env.NEXT_PUBLIC_API_URL}${url}`,data,{
