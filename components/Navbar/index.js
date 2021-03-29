@@ -45,7 +45,7 @@ const Navbar = (props) => {
                         </ul>
                         <ul className='top__header-right'>
                         {
-                            !props.entry.isLoged ?
+                            !props.entry?.isLoged ?
                                <>
                                 <li>
                                     <Link href='/register'><a>{f({ id: 'signup' })}</a></Link>

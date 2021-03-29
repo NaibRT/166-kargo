@@ -1,10 +1,38 @@
-import React from 'react';
+import axios from 'axios';
+import { useRouter } from "next/router";
+import React, { useState } from 'react';
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 import ButtonComponent from "../components/button/index";
 import FromGroup from "../components/form-group/form-group";
 import Input from "../components/input/input";
 import Page from "../components/page/page";
 
 function Contact() {
+
+    const {register,handleSubmit,errors,setError} = useForm();
+    const [error,setErrors] = useState({});
+    const {locale} = useRouter()
+
+    const submit = (data) => {
+      axios.post(`${process.env.NEXT_PUBLIC_API_URL}contact?lan=${locale}`,data,{
+        headers: {
+          'content-type': 'application/json'
+        }
+      }).then(response => {
+        Swal.fire({
+          title: 'Success!',
+          text: response.data.message,
+          icon: 'success',
+          confirmButtonText: 'OK',
+        })
+      }).catch(err => {
+        setErrors({
+          ...err.response.data
+        })
+      })
+    }
+
     return (
         <Page className='bg-bg'>
             <main className='contact-page bg-white br-xs mt-lg p-lg'>
@@ -21,17 +49,41 @@ function Contact() {
              <div className='contact-page-form'>
              <h3 className='mb-sm'>Əlaqə formu</h3>
                <p className='mb-sm'>Asagidaki formaya elaqe melumatlarinizi ve mesajinii daxil edin, biz size geri donus edek.</p>
-               <form>
-                   <FromGroup  className=' w-100 mb-xs' bodyClass='border-menu'>
-                      <Input className='p-xs' placeholder='Adiniz' name='name' type='text' />
+               <form onSubmit={handleSubmit(submit)}>
+                   <FromGroup  className=' w-100 mb-xs' bodyClass='border-menu'
+                   error={errors.fullname?.message}
+                   >
+                      <Input className='p-xs' placeholder='Adiniz' name='fullname' type='text'
+                         Ref={register({
+                           required:{value:true,message:'name is required'}
+                         })}
+                       />
                    </FromGroup>
-                   <FromGroup  className=' w-100 mb-xs' bodyClass='border-menu'>
-                      <Input className='p-xs' placeholder='E-poct ve ya telefon nomreniz' name='email' type='email' />
+                   <FromGroup  className=' w-100 mb-xs' bodyClass='border-menu'
+                   error={errors.contact?.message}
+                   >
+                      <Input className='p-xs' placeholder='E-poçt' name='contact' type='email'
+                         Ref={register({
+                          required:{value:true, message:'email is required'},
+                          pattern:{value:/^(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/,message:'email only takes letters'}
+                        })} 
+                       />
                    </FromGroup>
-                   <FromGroup  className=' w-100 mb-xs' bodyStyle={{height:'150px',verticalAlign:'text-top'}}>
-                      <textarea className='p-xs border-menu w-100 h-100 br-xxs' style={{outline:'none',}} placeholder='Mesajiniz' name='message' />
+                   <FromGroup  className=' w-100 mb-xs' bodyStyle={{height:'150px',verticalAlign:'text-top'}}
+                   error={errors.message?.message}
+                   >
+                      <textarea className='p-xs border-menu w-100 h-100 br-xxs' style={{outline:'none',}} placeholder='Mesajiniz' name='message'
+                        ref={register({
+                          required:{value:true,message:'email is required'}    
+                        })} 
+                      />
                    </FromGroup>
-                   <ButtonComponent className='w-100 mt-xs' label='gonder'/>
+                      { Object.keys(error).length>0 && 
+                        Object.values(error).map(value =>(
+                          <div><span className='color-err'>{value}</span></div>
+                        ))
+                    }
+                   <ButtonComponent type='submit' className='w-100 mt-xs' label='gonder'/>
                </form>
              </div>
 

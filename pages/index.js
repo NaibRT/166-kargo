@@ -1,8 +1,10 @@
+import axios from 'axios';
 import Link from 'next/link';
-import { memo, useEffect } from "react";
+import { memo, useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
 import { connect } from 'react-redux';
+import Swal from "sweetalert2";
 import ButtonComponent from '../components/button';
 import Card from '../components/card/card';
 import FromGroup from '../components/form-group/form-group';
@@ -32,6 +34,54 @@ const data = [
   const { formatMessage: f } = useIntl();
   
   const { register,handleSubmit,errors } = useForm();
+  const [calculator,setCalculator] = useState({
+    weight:'',
+    height:'',
+    length:'',
+    width:'',
+    isliquid:false,
+    country:'TÜRKİYƏ',
+    total: 0.00
+  });
+
+  const calculatorInputHandler = (ev) => {
+    let {name,value} = ev.target;
+    setCalculator({
+      ...calculator,
+      [name]: value
+    })
+
+  }
+
+  const calculatePrize = () => {
+     let total;
+      let datas =  props.tariffs.filter(x =>
+                                         (x.country.toUpperCase()) == (calculator.country.toUpperCase())
+                                         && x.is_liquid ==  calculator.isliquid
+                                        && (x.weight_min <= parseFloat(calculator.weight) && x.weight_max >= parseFloat(calculator.weight))
+                                      );
+      if(datas.length > 0){
+        if(calculator.height>=80 || calculator.length>=80 || calculator.width>=80 && calculator.weight < 1){
+        
+          total = (((calculator.width * calculator.height) * calculator.length) / 6000) * datas[0].price;
+  
+        }else{
+          total = calculator.weight * datas[0].price;
+        }
+
+            
+      setCalculator({
+        ...calculator,
+        total:total
+      })
+
+      }else{
+        Swal.fire({
+          text: 'Secilen deyerlere uygun tarif tapilmadi'
+        })
+      }
+
+  }
 
 
   useEffect(() => {
@@ -48,10 +98,12 @@ const data = [
          <main className='home-page'>
            <section className='main-section bg-bg mb-sm' >
            <div className=' container-fluid pt-sm pb-sm' style={{display:'flex'}}>
-           <div className='slider-container pr-sm'>
-          <MainSlider/>
+           <div className={`slider-container pr-sm ${props.Entry.isLoged && 'w-100'}`}>
+             <MainSlider/>
            </div>
-           <Card className='login-card bg-white p-sm'>
+           {
+             !props.Entry.isLoged &&
+             <Card className='login-card bg-white p-sm'>
              <Card.Header text='Istifadecei girisi'/>
              <Card.Body className='p-none'>
              <form className='login-form' onSubmit={handleSubmit(submit)}>
@@ -77,10 +129,15 @@ const data = [
                 })}
                   type='password' name='password'/>
                </FromGroup>
+                { Object.keys(props.Entry.errorMessages).length>0 && 
+                <div><span className='color-err'>{props.Entry.errorMessages.message}</span></div>
+                }
              <ButtonComponent type='submit' className='w-100 mt-xs' label='Daxil ol'/>
              </form>
+             <div className='mt-xs'><span>Hesabınız yoxdur?</span><Link href='/register'><span className='color-yellow' style={{cursor:'pointer'}}>Qeydiyyatdan keçin</span></Link></div>
              </Card.Body>
            </Card>
+           }
          </div>
            </section>
            <Page>
@@ -88,10 +145,16 @@ const data = [
           <Card className='mr-sm'>
             <Card.Header text='Tarifler' />
             <Card.Body className='bg-bg p-sm br-sm'>
-              <div className='bg-bg ' style={{ display: 'flex',justifyContent:'space-between'}}>
-                <Rate data={data} icon={'/assets/icons/turkish.svg'} headerText='Türkiyə' />
-                <Rate data={data} icon={'/assets/icons/turkish.svg'} headerText='Türkiyə (Maye)' />
-                <Rate data={data} icon={'/assets/icons/usa.svg'} headerText='ABŞ' style={{marginRight:0}} />
+              <div className='bg-bg rate-container' style={{ display: 'flex',justifyContent:'space-between'}}>
+                {
+                  <Rate data={props?.tariffs.filter(x => x.country === 'TÜRKİYƏ' && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/turkish.svg'} headerText='TÜRKİYƏ' /> 
+                }
+                {
+                  <Rate data={props?.tariffs.filter(x => x.country === 'TÜRKİYƏ' && x.is_liquid===1).splice(0,4)} icon={'/assets/icons/turkish.svg'} headerText='Türkiyə (Maye)' />
+                }
+                {
+                  <Rate data={props?.tariffs.filter(x => x.country === 'ABŞ' && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/usa.svg'} headerText='ABŞ' style={{marginRight:0}} />
+                } 
               </div>
             </Card.Body>
           </Card>
@@ -100,31 +163,75 @@ const data = [
             <Card.Body className='bg-bg p-sm br-sm'>
               <form className='calculator-form' style={{display:'flex',flexWrap:'wrap'}}>
               <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label='Olke sec'>
-                  <Selectbox className='w-100' data={[]}/>
+                  <Selectbox className='w-100 m-none' data={[
+                    {id:'TÜRKİYƏ',name:'TÜRKİYƏ'},
+                    {id:'ABŞ',name:'ABŞ'},
+                    {id:'Ukrayna',name:'Ukrayna'}
+                  ]}
+                     name='country'
+                     value={calculator?.country}
+                     onChange={calculatorInputHandler}
+                  />
                 </FromGroup>
               <FromGroup className='w-50 pr-xs' bodyClass=' h-50' label='Maye'>
-                  <Switch/>
+
+                  <Switch 
+                  name='isliquid'
+                  onClick={(e) => {
+                    e.target.checked?
+                    setCalculator({
+                      ...calculator,
+                      [e.target.name]:true
+                    })
+                    :
+                    setCalculator({
+                      ...calculator,
+                      [e.target.name]:false
+                    })
+                  }}
+                  value={calculator?.isliquid}
+                  />
               </FromGroup>
                 <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label='Ceki (kq)'>
-                  <Input type='text'/>
+                  <Input type='text'
+                     name='weight'
+                     value={calculator?.weight}
+                     onChange={calculatorInputHandler}
+                  />
                 </FromGroup>
                 <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label='Uzunluq (sm)'>
-                  <Input type='text'/>
+                  <Input type='text'
+                    name='length'
+                    value={calculator?.length}
+                    onChange={calculatorInputHandler}
+                  />
                 </FromGroup>
                 <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label='EN (sm)'>
-                  <Input type='text'/>
+                  <Input type='text'
+                    name='width'
+                    value={calculator?.width}
+                    onChange={calculatorInputHandler}
+                  />
                 </FromGroup>
                 <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label='Hundurluk (sm)'>
-                  <Input type='text'/>
+                  <Input type='text'
+                     name='height'
+                     value={calculator?.height}
+                     onChange={calculatorInputHandler}
+                  />
                 </FromGroup>
               </form>
               <Card.Footer className='mt-xs'>
                 <>
-                <div className='w-50 pr-xs' style={{display:'flex',justifyContent:'space-between'}}>
-                  <span className='w-25' style={{fontSize:'12px'}}>Catdirilma qiymeti</span>
-                  <strong style={{textAlign:'center',fontSize:'large'}}>10 $</strong>
+                <div className='w-50 pr-xs' style={{display:'flex',flexDirection:'column'}}>
+                  <span className='w-100' style={{fontSize:'11px'}}>Catdirilma qiymeti</span>
+                  <strong style={{textAlign:'center',fontSize:'14px'}}>{calculator.total.toFixed(2)}$</strong>
                 </div>
-                <ButtonComponent className='w-50' label='Hesabla'/>
+                <ButtonComponent 
+                  className='w-50' 
+                  label='Hesabla' 
+                  onClick={calculatePrize}
+                />
                 </>
               </Card.Footer>
             </Card.Body>   
@@ -168,11 +275,13 @@ const data = [
 
         <section className='fluid_bottom' >
           <Card>
-            <Card.Header text='Son Xəbərlər' endElelment={<Link href=''>Hamsını gör &rsaquo;</Link>} />
+            <Card.Header text='Son Xəbərlər' endElelment={<Link href='/blog'>Hamsını gör &rsaquo;</Link>} />
             <Card.Body style={{ padding: 0, display: 'flex'}}>
-              <NewsItem />
-              <NewsItem />
-              <NewsItem style={{marginRight:0}} />
+              {
+                props.news.slice(0,3).map((x,i,arr) =>{
+                  return <NewsItem key={x.id} item={x} style={i==(arr.length-1)?{margin:0}:{}}/>
+                })
+              }
             </Card.Body>
           </Card>
         </section>
@@ -226,5 +335,18 @@ const mapDispatchToProp = {
   GetSettings
 }
 
+export async function getStaticProps({locale}) {
+  let news = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}news/main?lan=${locale}`);
+  let tariffs = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}tariffs?lan=${locale}`);
+
+  return {
+    props: {
+     news:news.data,
+     tariffs:tariffs.data
+    },
+  }
+
+}
 
 export default connect(mapStateToProp, mapDispatchToProp)(memo(Home))
+

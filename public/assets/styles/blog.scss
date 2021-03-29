@@ -20,11 +20,12 @@
     }
     .blog-post-container{
      display: flex;
-     justify-content: space-between;
+    //  justify-content: space-between;
      flex-flow:  wrap;
 
      .post-item{
       width: 31%;
+      margin-left: 13px;
      }
     }
    }

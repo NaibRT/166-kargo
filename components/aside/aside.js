@@ -2,7 +2,7 @@ import React from 'react'
 
 function Aside({children,style,className}) {
     return (
-        <aside className={`aside mr-sm ${className||''}`} style={style}>
+        <aside className={`aside ${className||''}`} style={style}>
           {children}
         </aside>
     )

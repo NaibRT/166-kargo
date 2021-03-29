@@ -2,7 +2,7 @@ import React from 'react';
 import ButtonComponent from "../button/index";
 import Checkbox from "../checkbox/checkbox";
 
-function PackageItem() {
+function PackageItem({item}) {
     return (
         <div className='package-item'>
             <div className='package-item-header'>

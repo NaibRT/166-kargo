@@ -1,4 +1,4 @@
-import { router } from "next/router"
+import router from "next/router"
 import React, { memo } from 'react'
 import { connect } from "react-redux"
 import AddressItem from '../components/address-item'

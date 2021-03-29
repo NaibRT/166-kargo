@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
+import DayPickerInput from 'react-day-picker/DayPickerInput'
+import 'react-day-picker/lib/style.css'
 import AsideMenu from '../components/aside-menu'
 import Aside from '../components/aside/aside'
 import ButtonComponent from '../components/button'
@@ -51,9 +53,9 @@ const data = [
 function CourierOrder() {
     return (
         <Page className='bg-bg pt-sm'>
-            <Aside>
+            <Aside className='mr-sm'>
               <AsideMenu/>
-            </Aside>
+            </Aside >
             <Main className='bg-bg'>
               <Card className='p-sm bg-white'>
                   <Card.Header text='Kuryer sifarişi'/>
@@ -64,7 +66,15 @@ function CourierOrder() {
                              <Input type='text'/>
                           </FromGroup>
                           <FromGroup label='Vaxt seçin' className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
-                             <Input type='date'/>
+                          <DayPickerInput
+                              classNames='w-100'
+                              name='date'
+                              ref={register({
+                                required:{value:true, message:'date is required'},
+                              })} 
+                            format='dd-MM-YYYY'
+                            placeholder='dd-MM-YYYY'
+                            />
                           </FromGroup>
                           <FromGroup label='Dəqiq ünvan əlavə edin' className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
                              <Input type='text'/>

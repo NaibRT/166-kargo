@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Swiper from 'swiper';
 
-function MainSlider() {
+function MainSlider({className}) {
 
  useEffect(() => {
 
@@ -42,7 +42,7 @@ function MainSlider() {
 
  return (
 
-   <div className="swiper-container">
+   <div className={`swiper-container ${className || ''}`}>
   <div className="swiper-wrapper">
 
     <div className="swiper-slide">

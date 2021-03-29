@@ -1,4 +1,4 @@
-import { router } from "next/router";
+import router from "next/router";
 import React, { memo } from 'react';
 import { connect } from "react-redux";
 import AsideMenu from '../components/aside-menu';
@@ -56,7 +56,7 @@ function Lends(props) {
 
     return (
         <Page className='bg-bg pt-sm'>
-            <Aside>
+            <Aside className='mr-sm'>
               <AsideMenu/>
             </Aside>
             <Main>

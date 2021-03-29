@@ -1,5 +1,7 @@
-import router from 'next/router';
-import React, { memo } from 'react';
+import axios from 'axios';
+import Link from "next/link";
+import router, { useRouter } from 'next/router';
+import React, { memo, useLayoutEffect, useState } from 'react';
 import { connect } from "react-redux";
 import AsideMenu from "../components/aside-menu/index";
 import Aside from "../components/aside/aside";
@@ -47,24 +49,41 @@ import Tabel from "../components/tabel/tabel";
 
 
 function Orders(props) {
+    if(!props.entry.isLoged){
 
-        if(!props.entry.isLoged){
+        router.push('/register');
 
-            router.push('/register');
+        return (
+            <div style={{height:'100vh'}}></div>
+        )
+    }
 
-            return (
-                <div style={{height:'100vh'}}></div>
-            )
-        }
+    const [orders, setOrders] = useState([]);
+    const {locale} = useRouter();
+
+    useLayoutEffect(() => {
+        
+          axios.get(`${process.env.NEXT_PUBLIC_API_URL}orders?lan=${locale}`,{
+                headers: {
+                     'Content-Type':'application/json',
+                      'Accepts': 'application/json',
+                      'Authorization':` Bearer ${props.entry.user.accessToken}`
+                }
+            }).then(res => {
+             setOrders(res.data)
+             console.log(res)
+         })
+    },[])
+
 
     return (
         <Page className='bg-bg pt-lg'>
-          <Aside>
+          <Aside className='mr-sm'>
               <AsideMenu/>
           </Aside> 
           <Main>
             <Card className='p-sm'>
-                <Card.Header text='Sifarişlərim' endElelment={<a href='./new-order'><ButtonComponent startElement={<span>&#x2b;</span>} label={'Yeni sifariş əlavə et'}/></a>}/>
+                <Card.Header text='Sifarişlərim' endElelment={<Link href='./new-order'><ButtonComponent startElement={<span>&#x2b;</span>} label={'Yeni sifariş əlavə et'}/></Link>}/>
                 <Card.Body className='p-none'>
                    <div className='orders-container'>
                        <div className='orders-container-head'>
@@ -74,71 +93,46 @@ function Orders(props) {
                            <span>Yekun qiymət</span>
                            <span>Status</span>
                        </div>
-                  <details className='orders-item-details'>
-                      <summary className='order-item-summary'>
-                          <div className='order-item-summary-head'>
-                              <span>No 11481</span>
-                              <span>Turkiye</span>
-                              <span>11-02-21, 10:58</span>
-                              <span>1250 TL</span>
-                              <span>Ödənilib</span>
-                              <span><span className='mr-xs'>&#128065;</span>Sifariş detallari</span>
-                          </div>
-                      </summary>
-                      <Tabel th={dataHead} thClassName='bg-white' data={data} renderBody={(x,i) => {
-                          if(i===0){
-                            return  <td key={i++}>
-                                       <span className='color-err'>{x.split(',')[0]}</span>
-                                       <span>{x.split(',')[1]}</span>
-                                    </td>  
-                          }
-                          return  <td key={i++}>{x}</td>
-                      }}/>
-                  </details>
+                       {
+                           orders.map((item) => (
+                            <details className='orders-item-details' key={item.id}>
+                            <summary className='order-item-summary'>
+                                <div className='order-item-summary-head'>
+                                    <span>No {item.order_number}</span>
+                                    <span>{item.country}</span>
+                                    <span>{item.date}</span>
+                                    <span>{item.price} TL</span>
+                                    <span>{item.status ?'Ödənilib' : 'Ödənilməyib'}</span>
+                                    <span><span className='mr-xs'>&#128065;</span>Sifariş detallari</span>
+                                </div>
+                            </summary>
+                            <Tabel th={[
+                                'ID',
+                                'Mağaza/Məhsul',
+                                'Qiymət',
+                                'Say',
+                                'Ölçü',
+                                'Rəng',
+                                'Qeyd',
+                                'Rəy',
+                                'Status'
+                            ]} thClassName='bg-white' data={item.orders} renderBody={(x,i) => {
+                                if(i==1){
+                                  return  <td key={i++}>
+                                            <Link href={`${x}`}><a><span style={{color:'darkblue'}}>Link</span></a></Link>
+                                             {/* <span>{x.split(',')[1]}</span> */}
+                                          </td>  
+                                }else{
+                                    return <td key={i++}>
+                                            <span >{x}</span>
+                                             {/* <span>{x.split(',')[1]}</span> */}
+                                           </td> 
+                                }
+                            }}/>
+                        </details>
+                           ))
+                       }
 
-                  <details className='orders-item-details'>
-                      <summary className='order-item-summary'>
-                          <div className='order-item-summary-head'>
-                              <span>No 11481</span>
-                              <span>Turkiye</span>
-                              <span>11-02-21, 10:58</span>
-                              <span>1250 TL</span>
-                              <span>Ödənilib</span>
-                              <span><span className='mr-xs'>&#128065;</span>Sifariş detallari</span>
-                          </div>
-                      </summary>
-                      <Tabel th={dataHead} thClassName='bg-white' data={data} renderBody={(x,i) => {
-                          if(i===0){
-                            return  <td key={i++}>
-                                       <span className='color-err'>{x.split(',')[0]}</span>
-                                       <span>{x.split(',')[1]}</span>
-                                    </td>  
-                          }
-                          return  <td key={i++}>{x}</td>
-                      }}/>
-                  </details>
-
-                  <details className='orders-item-details'>
-                      <summary className='order-item-summary'>
-                          <div className='order-item-summary-head'>
-                              <span>No 11481</span>
-                              <span>Turkiye</span>
-                              <span>11-02-21, 10:58</span>
-                              <span>1250 TL</span>
-                              <span>Ödənilib</span>
-                              <span><span className='mr-xs'>&#128065;</span>Sifariş detallari</span>
-                          </div>
-                      </summary>
-                      <Tabel th={dataHead} thClassName='bg-white' data={data} renderBody={(x,i) => {
-                          if(i===0){
-                            return  <td key={i++}>
-                                       <span className='color-err'>{x.split(',')[0]}</span>
-                                       <span>{x.split(',')[1]}</span>
-                                    </td>  
-                          }
-                          return  <td key={i++}>{x}</td>
-                      }}/>
-                  </details>
                   </div>
                 </Card.Body>
             </Card>
@@ -151,4 +145,6 @@ function Orders(props) {
 const mapStateToProps = state => ({
     entry: state.entry,
 })
+
+
 export default connect(mapStateToProps)(memo(Orders))

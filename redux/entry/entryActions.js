@@ -1,6 +1,8 @@
 
 import axios from "axios";
-import { login, logout, register } from "./actions";
+import router from "next/router";
+import Swal from "sweetalert2";
+import { login, logout, register, updateUser } from "./actions";
 
 export const Login = (url,data,headers = {}) => dispatch => {
     console.log(url)
@@ -11,7 +13,7 @@ export const Login = (url,data,headers = {}) => dispatch => {
         let data = await res.data;
         dispatch(login(data))
       }).catch(errors => {
-        dispatch(login({isError:true,errors:errors}))
+        dispatch(login({isError:true,errors:errors.response.data}))
       })
 }
 
@@ -21,16 +23,30 @@ export const UserRegister = (url,data,headers = {}) => dispatch => {
       headers:headers,
     })
     .then(async res => {
+      Swal.fire({
+        title: 'Success!',
+        text: 'Əməliyyat uğurla tamamlandı',
+        icon: 'success',
+        confirmButtonText: 'OK',
+      }).then(res => {
+        if(res.isConfirmed){
+          router.push('/')
+        }
+      })
       let data = await res.data;
       dispatch(register(data))
-    }).catch(errors => {
-      console.log(errors)
-      // dispatch(login({isError:true,errors:errors}))
+    }).catch(err => {
+      dispatch(register({isError:true,errors:err.response.data}))
     })
 }
 
 export const LogOut = () => dispatch => {
     dispatch(logout())
 }
+
+export const UpdateUser = (data) => dispatch => {
+  dispatch(updateUser(data))
+}
+
 
 
