@@ -1,0 +1,52 @@
+@import '../../public/assets/styles/scss/variables';
+
+.package-item{
+  padding: $padding_sm;
+  margin-bottom: $margin_sm;
+  background-color: $color__white;
+  border-radius: $btn__border-radius;
+  width: 31%;
+    .package-item-header{
+      img{
+
+      }
+      h5{
+          font-size: $font-size__xs_1;
+      }
+    }
+
+    .package-item-body{
+      ul{
+          list-style-type: none;
+
+          li{
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin: $margin_xs 0px;
+            strong{
+                font-size: $font-size__xs_1;
+                font-weight: 700;
+            }
+            small{
+                font-size: 10px;
+            }
+          }
+      }
+    }
+
+    .package-item-footer{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: $margin_sm;
+
+      .pif-amount{
+        display: flex;
+        flex-direction: column;
+        span{
+            font-size: $font-size__xs;
+        }
+      }
+    }
+}

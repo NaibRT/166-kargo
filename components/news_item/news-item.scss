@@ -2,13 +2,14 @@
 
 
 .news-item{
-  width: 391px;
+  // width: 391px;
   height: 195px;
   padding: $padding_sm;
   display: flex;
   justify-content:space-between;
   align-items: center;
   margin-right: $margin_sm;
+  cursor: pointer;
   img{
    height: 173px;
    width: 173px;

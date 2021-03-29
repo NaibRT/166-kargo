@@ -10,3 +10,18 @@
 //  content-visibility: hidden;
 //  }
 }
+
+.react-datepicker-wrapper{
+    .react-datepicker__input-container{
+        .input{
+            width: 100% !important;
+            height: 100% !important;
+            outline: none !important;
+            border-style: none !important;
+            background-color: transparent !important;
+           //  &:-webkit-autofill{
+           //  content-visibility: hidden;
+           //  }
+           }
+    }
+}

@@ -1,8 +1,10 @@
-import {
- LOGIN,
- LOGOUT,
- REGISTER
-} from './actionTypes'
+import
+  {
+    LOGIN,
+    LOGOUT,
+    REGISTER,
+    UPDATE_USER
+  } from './actionTypes'
 
 export const login = (data) => {
   return {
@@ -23,3 +25,11 @@ export const register = (data) => {
   payload: data
  }
 }
+
+export const updateUser = (data) => {
+  return {
+   type: UPDATE_USER,
+   payload: data
+  }
+ }
+

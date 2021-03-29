@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
+import ReactHtmlParser from 'react-html-parser';
 
-function Summary() {
+function Summary({item}) {
     return (
         <details className='faq-item'>
-            <summary className='faq-title'>Sifarisler nece gune catdirilir</summary>
-            <p className='faq-info'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+            <summary className='faq-title'>{item.question}</summary>
+            <p className='faq-info'>{ReactHtmlParser(item.answer)}</p>
         </details>
     )
 }

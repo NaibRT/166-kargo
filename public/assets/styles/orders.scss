@@ -1,0 +1,41 @@
+@import './scss/variables';
+
+.orders-container{
+    .orders-container-head{
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        padding: $padding_sm;
+
+        span{
+            margin-right: 33px;
+        }
+    }
+    .orders-item-details{
+        margin-bottom: $margin_xs;
+        .order-item-summary{
+            outline-style: none ;
+            background-color: $color__bg;
+            padding: $padding_sm;
+            cursor: pointer;
+            &::marker{
+                content: '';
+                -webkit-appearance: none;
+              }
+              &::-webkit-details-marker{
+                content: '';
+                display: none;
+                -webkit-appearance: none;
+              }
+        
+              .order-item-summary-head{
+                display:flex;
+                justify-content:space-between;
+                flex-direction:row;
+                align-items:center;
+              }
+        }
+    }
+
+}
+

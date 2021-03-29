@@ -21,6 +21,14 @@
 @import '../../../components/input/input.scss';
 @import '../../../components/summary/summary.scss';
 @import '../../../components/checkbox/checkbox.scss';
+@import '../../../components/aside/aside.scss';
+@import '../../../components/main/main.scss';
+@import '../../../components/tabel/tabel.scss';
+@import '../../../components/package_item/package-item.scss';
+
+
+
+
 
 @import './blog.scss';
 @import './about.scss';
@@ -30,6 +38,9 @@
 @import './Home';
 @import './contact.scss';
 @import './faq.scss';
+@import './orders.scss';
+@import './decleration.scss';
+
 
 
 
@@ -90,8 +101,20 @@ a{
 .container-fluid{
   max-width: 1006px;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   // box-sizing: border-box;
 }
+
+.p-r{
+ position: relative;
+}
+
+// .cf-flex{
+//   display: flex;
+//   flex-wrap: wrap;
+// }
 
 .fluid_bottom{
   margin-bottom: calc(#{$fluid-size} / 2);

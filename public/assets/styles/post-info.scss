@@ -1,43 +1,18 @@
 @import './scss//variables.scss';
 
-.post-info-page{
 
- padding-bottom: $margin_lg;
- margin-bottom: calc(#{$margin_lg} * 2);
-
- .container-fluid{
-  margin-bottom: 0px;
-  .pip-container{
-   display: flex;
-   justify-content: center;
-   main{
-   margin-right: $margin_md;
-   width: 73%;
-   .card{
-    .card-body{
      .pip-img{
       margin-bottom: $margin_sm;
+      img{
+          width: 100%;
+      }
       .pip-date{
        display: flex;
        justify-content: flex-end;
       }
      }
-    }
     .pip-info{
      h3{
       margin-bottom: $margin_sm;
      }
     }
-   }
-   }
-   aside{
-    width: 25;
-    .card{
-     .card-footer{
-      justify-content: center;
-     }
-    }
-   }
-  }
- }
-}

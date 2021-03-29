@@ -9,6 +9,7 @@
 }
 
 .top__header{
+    width:100%;
     display: flex;
     justify-content: space-between;
     align-items:center;
@@ -30,8 +31,6 @@
                 font-family: 'Segoe UI';
             }
         }
-
-
     }
     .top__header-right{
         display:flex;
@@ -51,6 +50,29 @@
                 text-decoration:none;
             }
         }
+
+        .profile-container{
+            position: relative;
+            .profile-img{
+                position: relative;
+                width:50px ;
+                height:50px ;
+                border-radius:50% ;
+                background-color:$color__yellow;
+                cursor:pointer;
+            }
+
+            &:hover .profile-dropdown{
+                display: block !important;
+            }
+
+            .profile-dropdown{
+                width:50px;
+                display:none;
+                top: 50px;
+                position: absolute;
+            }
+        }
     }
 }
 .flex{
@@ -58,6 +80,7 @@
     justify-content: space-between;
     align-items:center;
     margin-top:10px;
+    width: 100%;
     .navbar{
         display:flex;
         justify-content: center;
