@@ -126,7 +126,7 @@ function UserInfo(props) {
             </Aside>
          <Main>
          <Card className='bg-white p-sm br-lg'>
-          <Card.Header text='Sexsi melumatlar'/>
+          <Card.Header text='Şəxsi melumatlar'/>
           <form onSubmit={uHandleSubmit(updateUserData)}>
           <Card.Body className='bg-bg'>
             <div style={{display:'flex',flexWrap:'wrap'}}>
