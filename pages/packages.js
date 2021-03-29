@@ -93,10 +93,10 @@ function Packages(props) {
                    <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
                         <FromGroup bodyClass='bg-white pl-xs' bodyStyle={{height:'44px',width:'200px'}} className='mr-xs'>
                             <Input placeholder='kodu əlavə et'/>
-                            <ButtonComponent className='color-white bg-success' label='Təsdiqlə'/>
+                            <ButtonComponent style={{padding: '0 10px'}} className='color-white bg-success' label='Təsdiqlə'/>
                         </FromGroup>
-                       <ButtonComponent className='color-white bg-success mr-xs' label='Kartla ödə' endElement={<span className='color-white pl-sm'>&#8594;</span>}/>
-                       <ButtonComponent label='Balansla ödə' endElement={<span className='color-black mr-xs pl-sm'>&#8594;</span>}/>
+                       <ButtonComponent style={{padding: '0 10px'}} className='color-white bg-success mr-xs' label='Kartla ödə' endElement={<span className='color-white pl-sm'>&#8594;</span>}/>
+                       <ButtonComponent style={{padding: '0 10px'}} label='Balansla ödə' endElement={<span className='color-black mr-xs pl-sm'>&#8594;</span>}/>
                    </div>
                  </Card.Footer>
              </Card>

@@ -1,0 +1,30 @@
+@import './scss/variables';
+.table__title{
+    font-size:$font-size__sm;
+}
+.table-striped{
+    width:100%;
+    border-collapse: collapse;
+    tbody{
+        tr{
+            font-size:$font-size__sm;
+            &:nth-of-type(odd) {
+                background-color: rgba(0,0,0,.05);
+
+              
+            }
+            th{
+                font-size:$font-size__sm;
+                padding: .75rem;
+                vertical-align: top;
+                text-align:center;
+            }
+            td{
+                font-size:$font-size__sm;
+                padding: .75rem;
+                vertical-align: top;
+                text-align:center;
+            }
+        }
+    }
+}  

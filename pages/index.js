@@ -11,7 +11,9 @@ import MainSlider from "../components/main-slider/main-slider";
 import NewsItem from '../components/news_item/news-item';
 import Page from '../components/page/page';
 import Rate from '../components/rate/rate';
+import MobileRate from '../components/rate/m-rate';
 import Selectbox from "../components/selectbox/selectbox";
+import NewsSlider from '../components/main-slider/slider-news'
 import Switch from '../components/switch/switch';
 import { Login } from '../redux/entry/entryActions';
 import { GetSettings } from '../redux/settings/settingsActions';
@@ -47,21 +49,21 @@ const data = [
        
          <main className='home-page'>
            <section className='main-section bg-bg mb-sm' >
-           <div className=' container-fluid pt-sm pb-sm' style={{display:'flex'}}>
+           <div className=' container-fluid pt-sm pb-sm flex' >
            <div className='slider-container pr-sm'>
           <MainSlider/>
            </div>
-           <Card className='login-card bg-white p-sm'>
-             <Card.Header text='Istifadecei girisi'/>
+           <Card className='login-card bg-white p-sm br-lg'>
+             <Card.Header text={f({ id: 'signin' })}/>
              <Card.Body className='p-none'>
              <form className='login-form' onSubmit={handleSubmit(submit)}>
                <FromGroup 
-                  label='E-mail' 
+                  label={f({ id: 'email' })}
                   bodyClass='bg-bg w-100' 
                   error={errors.email?.message}
                   >
                  <Input Ref={register({
-                   required:{value:true,message:'email is not valid'},
+                   required:{value:true,message:f({ id: 'emailerror' })},
                   //  pattern:/^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/
                  })} type='email' name='email'/>
                </FromGroup>
@@ -85,22 +87,26 @@ const data = [
            </section>
            <Page>
         <section className='tariff-section'>
-          <Card className='mr-sm'>
+          <Card className='mr-sm sm-mob'>
             <Card.Header text='Tarifler' />
-            <Card.Body className='bg-bg p-sm br-sm'>
+            <Card.Body className='bg-bg p-sm br-sm desktop'>
               <div className='bg-bg ' style={{ display: 'flex',justifyContent:'space-between'}}>
                 <Rate data={data} icon={'/assets/icons/turkish.svg'} headerText='Türkiyə' />
                 <Rate data={data} icon={'/assets/icons/turkish.svg'} headerText='Türkiyə (Maye)' />
                 <Rate data={data} icon={'/assets/icons/usa.svg'} headerText='ABŞ' style={{marginRight:0}} />
               </div>
             </Card.Body>
+            <Card.Body className='bg-bg p-xs br-sm for-mobile'>
+                  <Card.Header></Card.Header>
+                 <MobileRate data={data} text='Çəki' />
+            </Card.Body>
           </Card>
           <Card>
             <Card.Header text='Kalkulyator'/>
-            <Card.Body className='bg-bg p-sm br-sm'>
+            <Card.Body className='bg-bg  br-sm' style={{padding:'14px'}}>
               <form   className='calculator-form' style={{display:'flex',flexWrap:'wrap'}}>
-              <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label='Olke sec'>
-                  <Selectbox className='w-100' data={[]}/>
+              <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label='Ölkə seç'>
+                  <Selectbox className='w-100' data={['Türkiye','Amerika']}/>
                 </FromGroup>
               <FromGroup className='w-50 pr-xs' bodyClass=' h-50' label='Maye'>
                   <Switch/>
@@ -131,7 +137,7 @@ const data = [
           </Card>
         </section>
 
-
+        <section className='howworks'>
         <div className='fluid_bottom'>
           <p className='title mg__bottom'>{f({ id: 'howitworks' })}</p>
           <div className='work__flex--container'>
@@ -164,12 +170,12 @@ const data = [
             </div>
           </div>
         </div>
-
+        </section>
 
         <section className='fluid_bottom' >
           <Card>
             <Card.Header text='Son Xəbərlər' endElelment={<Link href=''>Hamsını gör &rsaquo;</Link>} />
-            <Card.Body style={{ padding: 0, display: 'flex'}}>
+            <Card.Body className='flex__news'>
               <NewsItem />
               <NewsItem />
               <NewsItem style={{marginRight:0}} />

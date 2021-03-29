@@ -1,6 +1,7 @@
-import { router } from "next/router";
-import React, { memo } from 'react';
-import { connect } from "react-redux";
+import axios from 'axios'
+import React, {memo, useLayoutEffect, useState} from 'react'
+import  {connect} from 'react-redux'
+import router, { useRouter } from 'next/router'
 import AsideMenu from '../components/aside-menu';
 import Aside from '../components/aside/aside';
 import ButtonComponent from '../components/button';
@@ -10,39 +11,12 @@ import Page from "../components/page/page";
 import Tabel from '../components/tabel/tabel';
 
 const dataHead = [
-  'Tracking',
-  'Mağaza',
-  'Kateqoriya',
-  'Malın dəyəri',
-  'Çəki',
-  'Çatdırılma'
+  ' Sifariş N',
+  'Borcun yaranma səbəbi',
+  'Ödəniş'
+  
 ];
-const data = [
- {
-     Tracking:'OSS-182328, 89264824182328',
-     shop:'kolaygelsin',
-     category:'Geyim,blazer',
-     amount:'239.99 TRY',
-     weight:'1.200 kq',
-     delivery:'4.78$ (8.12m)'
-   },
-   {
-       Tracking:'OSS-182328, 89264824182328',
-       shop:'kolaygelsin',
-       category:'Geyim,blazer',
-       amount:'239.99 TRY',
-       weight:'1.200 kq',
-       delivery:'4.78$ (8.12m)'
-     },
-     {
-       Tracking:'OSS-182328, 89264824182328',
-       shop:'kolaygelsin',
-       category:'Geyim,blazer',
-       amount:'239.99 TRY',
-       weight:'1.200 kq',
-       delivery:'4.78$ (8.12m)'
-     }
-]
+ 
 
 function Lends(props) {
 
@@ -51,7 +25,22 @@ function Lends(props) {
     return (
         <div style={{height:'100vh'}}></div>
     )
+
   }
+console.log('lend',props)
+const [lend, setLend]= useState([]);
+const {locale} = useRouter();
+
+useLayoutEffect(()=>{
+  axios.get(`${process.env.NEXT_PUBLIC_API_URL}lends`,{
+    headers:{
+      'Content-Type':'application/json',
+      'Authorization':`Bearer ${props.entry.user.accessToken}`
+    }
+  }).then(res=>{
+    setLend(res.data)
+  }).catch(err=>console.log(err))
+},[])
 
 
     return (
@@ -65,21 +54,20 @@ function Lends(props) {
                    <Card.Body className='p-none'>
                      <Tabel
                       th={dataHead}
-                      data={data}
+                      data={lend}
                       renderBody={(x,i) => {
-                        if(i===0){
+                        
                           return  <td key={i++}>
-                                     <span className='color-err'>{x.split(',')[0]}</span>
-                                     <span>{x.split(',')[1]}</span>
+                                     <span>{x}</span>
                                   </td>  
-                        }
-                        return  <td key={i++}>{x}</td>
+                        
+                 
                     }}
                      />
                    </Card.Body>
                    <Card.Footer style={{justifyContent:'space-between',alignItems:'center'}}>
                        <h6 className='ml-xs'>Sizin Borcunuz 3 TRY təşkil edir</h6>
-                     <ButtonComponent label='Borcu ödə'/>
+                     <ButtonComponent style={{width:'20%'}} label='Borcu ödə'/>
                    </Card.Footer>
                </Card>
             </Main>

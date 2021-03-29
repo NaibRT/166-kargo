@@ -7,11 +7,11 @@ function PackageItem() {
         <div className='package-item'>
             <div className='package-item-header'>
               <img style={{marginLeft:'-10px'}} src='./assets/images/a02.svg'/>
-              <h5 className='color-err'>Xarici anvbardan</h5>
+              <h5 className='color-err'>Xarici anbardan</h5>
               <div className='package-item-body'>
                  <ul>
-                     <li><strong>izləmə kodu:</strong><small>123242824823272</small></li>
-                     <li><strong>Smart Customs ID:</strong><small>123242824823272</small></li>
+                     <li className='bg-img'><strong>izləmə kodu:</strong><small>123242824823272</small></li>
+                     <li><strong>Smart Customs ID:</strong><small>OSS-52264310</small></li>
                      <li><strong>Hardan:</strong><small>Türkiyə</small></li>
                      <li><strong>Ümumi Qiymət:</strong><small>118.97 TRY</small></li>
                      <li><strong>Kateqoriya:</strong><small>Ceket</small></li>

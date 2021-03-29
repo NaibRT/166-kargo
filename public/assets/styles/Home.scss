@@ -1,5 +1,7 @@
 @import './scss/variables';
-
+.flex{
+  display: flex;
+}
 .title{
     font-family:$font-family;
     font-weight:600;
@@ -10,6 +12,7 @@
     margin-bottom:67px;
     margin-top:79px;
   }
+ .howworks{
   .work__flex--container{
     display: flex;
     justify-content: space-between;
@@ -49,8 +52,12 @@
   }
    
   }
+ }
 .fluid_bottom{
-
+  .flex__news{
+    display: flex;
+    padding:0
+  }
   .flex__item{
     display:flex;
     justify-content: space-between;
@@ -86,12 +93,16 @@
   .page{
 
     .tariff-section{
-      width: 1006px;
+     
      display: flex;
     //  justify-content: space-between;
      align-items: center;
+     
   
      .card{
+       .for-mobile{
+         display: none;
+       }
        .card-body{
          div{
            .rate{
@@ -103,4 +114,56 @@
      }
    }
   }
+}
+
+@media(max-width:990px){
+  .for-mobile{
+    display:block  !important;
+  }
+  .desktop{
+    display:none !important;
+  }
+  
+  .fluid_bottom{
+    .flex__news{
+      flex-flow:row wrap
+    }
+    .flex__item{
+      flex-wrap: wrap;
+    }
+    }
+    .sm-mob{
+      margin-right:2px !important
+    }
+    
+}
+@media(max-width:600px){
+  .flex{
+    display: flex;
+    justify-content:space-between;
+  }
+  .login-card{
+    display:none;
+    
+  }
+  .slider-container {
+    width: 100% !important
+  }
+  .news-item{
+    width:100%;
+    margin-bottom: 15px;
+    img{
+      width:50%;
+    }
+  }
+  .howworks{
+    display:none
+  }
+  .tariff-section{
+    flex-wrap:wrap;
+  }
+}
+@media(max-width:500px){
+ 
+  
 }

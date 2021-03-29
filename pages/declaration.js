@@ -28,7 +28,7 @@ function UserInfo(props) {
             </Aside>
          <Main>
          <Card className='bg-white p-sm br-lg'>
-          <Card.Header text='Sexsi melumatlar'/>
+          <Card.Header text='Yeni Bəyannamə'/>
           <Card.Body className='bg-bg'>
             <form style={{display:'flex',flexWrap:'wrap'}}>
                 <FromGroup label='Ad' bodyClass='bg-white' className='w-50 pr-xs'>

@@ -1,15 +1,16 @@
 @import '../../public/assets/styles/scss/variables';
-
+.mg-rr{
+    margin:90px 0 0 20px
+}
 .card__flex{
     display:flex;
     justify-content:space-between;
     width:100%;
-    flex-flow:row wrap;
+  
 
     .card{
         border-radius:$card-lg__border-radius;
         flex: 2;
-        height:200px;
         margin:40px 0 0 20px!important;
     }
     .card_input{
@@ -28,6 +29,7 @@
         background:#0E8E00;
         color:#fafafa;
         font-weight:700;
-        height:48px
+        height:48px;
+        width:100%
     }
 }

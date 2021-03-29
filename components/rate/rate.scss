@@ -8,7 +8,7 @@
    display: flex;
    align-items: center;
    margin-bottom: $margin_xs;
-   img{
+   .img{
     margin-right: $margin-right;
    }
    text{
@@ -45,5 +45,49 @@
   span:last-child{
   font-weight: 800;
 
+  }
+}
+@media(max-width:1200px){
+  .rate{
+    width:155px;
+  }
+}
+@media(max-width:990px){
+  .rate{
+    width:300px;
+    .img-2{
+      margin-right:0 !important
+    }
+  }
+}
+
+@media screen and(max-width:750px) and( min-width:600px){
+  .rate{
+    width:250px;
+    .img{
+      margin-right: 5px !important;
+    }
+  }
+}
+@media screen and (max-width:600px)and(min-width:442px){
+  .rate{
+    width:390px;
+    .img{
+      margin-right: 50px !important;
+    }
+    .img-2{
+      margin-right:0 !important
+    }
+  }
+}
+@media screen and (max-width:442px)and(min-width:300px){
+  .rate{
+    width:100%;
+    .img{
+      margin-right: 22px !important;
+    }
+    .img-2{
+      margin-right:0 !important
+    }
   }
 }

@@ -6,13 +6,15 @@
   background-color: $color__white;
   border-radius: $btn__border-radius;
   width: 31%;
+  background-image: url('../../public/assets/images/shop.png');
+  background-repeat: no-repeat;
+  background-position: 100% 0%;
     .package-item-header{
-      img{
-
-      }
+      
       h5{
           font-size: $font-size__xs_1;
       }
+       
     }
 
     .package-item-body{
@@ -25,11 +27,11 @@
               justify-content: space-between;
               margin: $margin_xs 0px;
             strong{
-                font-size: $font-size__xs_1;
+                font-size: 11px;
                 font-weight: 700;
             }
             small{
-                font-size: 10px;
+                font-size: 11px;
             }
           }
       }

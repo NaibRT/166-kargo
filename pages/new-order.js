@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { router } from "next/router";
+import  router  from "next/router";
 import React, { memo } from 'react';
 import { connect } from "react-redux";
 import Button from "../components/button";
@@ -22,7 +22,6 @@ function NewOrder(props) {
     return (
         <Page className='bg-bg pt-lg'>
             <aside className='bg-white'>
-
             </aside>
          <main className='br-sm bg-white br-lg'>
            <Card className='p-sm'>
