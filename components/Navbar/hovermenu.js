@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { memo } from 'react';
 import { connect } from "react-redux";
-import { LogOut } from "../../redux/entry/EntryActions";
+import { LogOut } from "../../redux/entry/entryActions";
 import ButtonComponent from "../button/index";
 import Divider from '../divider/divider';
 

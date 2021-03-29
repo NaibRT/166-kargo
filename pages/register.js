@@ -9,7 +9,7 @@ import Page from '../components/page/page'
 import RadioButton from '../components/radio-button/radio-button'
 import Selectbox from '../components/selectbox/selectbox'
 import Switch from "../components/switch/switch"
-import { UserRegister } from "../redux/entry/EntryActions"
+import { UserRegister } from "../redux/entry/entryActions"
 
 
 
