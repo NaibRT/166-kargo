@@ -41,6 +41,8 @@
 @import './contact.scss';
 @import './faq.scss';
 @import './orders.scss';
+@import './decleration.scss';
+
 
 
 
@@ -158,6 +160,14 @@ a{
     // box-sizing: border-box;
   }
 }
+.p-r{
+ position: relative;
+}
+
+// .cf-flex{
+//   display: flex;
+//   flex-wrap: wrap;
+// }
 
 .fluid_bottom{
   margin-bottom: calc(#{$fluid-size} / 2);

@@ -15,7 +15,7 @@ import { UserRegister } from "../redux/entry/entryActions"
 
 
 const telData = [
-  '+994'
+  {id:'+994',name:'+994'}
  ]
 
 function Register(props) {
@@ -123,7 +123,7 @@ function Register(props) {
          >
            <Selectbox onChange={(ev)=>{
               setCheckSerial(ev.target.value)
-           }} className='bg-white' data={['AA','AZE']}/>
+           }} className='bg-white' data={[{id:'AA',name:'AA'},{id:'AZE',name:'AZE'}]}/>
           <Input type='text' name='serial'
             maxLength={checkSerial==='AA' ? '7' : '8'}
             Ref={register({
@@ -148,7 +148,7 @@ function Register(props) {
          <FromGroup label='Milliyet' bodyClass='bg-bg' className='w-50 pr-xs mb-xs' 
            error={errors.nationality?.message}
          >
-           <Selectbox className='w-100 m-none' name='nationality' data={['Azerbaijan','Foreign']}
+           <Selectbox className='w-100 m-none' name='nationality' data={[{id:'Azerbaijan',name:'Azerbaijan'},{id:'Foreign',name:'Foreign'}]}
                Ref={register({
                 required:{value:true, message:'nationality is required'},
               })} 
@@ -200,6 +200,11 @@ function Register(props) {
            />
          </FromGroup>
         </form>
+        {/* { Object.keys(props.Entry.errorMessages).length>0 && 
+            Object.values(props.Entry.errorMessages).map(value =>(
+              <div><span className='color-err'>{value}</span></div>
+            ))
+        } */}
         <Card.Footer className='mt-sm'>
           <Button label='Qeydiyyati tamamla' 
                   endElement={<span className='ml-xs'>&rarr;</span>} 
@@ -223,6 +228,7 @@ function Register(props) {
 }
 
 const mapStateToProps = state => ({
+  Entry: state.entry
 });
 
 const mapDispatchToProps = {

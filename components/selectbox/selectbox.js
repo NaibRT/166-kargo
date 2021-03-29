@@ -5,7 +5,7 @@ function Selectbox({name,id,data=[],className,style,Ref,...rest}) {
   <select className={`select-box ${className||''}`} style={style} name={name} id={id} ref={Ref} {...rest}>
      {
       data.map((option,index) => (
-       <option value={option} key={index}>{option}</option>
+       <option value={option?.id} key={index}>{option?.name}</option>
       ))
      }
   </select>

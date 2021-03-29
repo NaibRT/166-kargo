@@ -1,7 +1,6 @@
-import axios from 'axios'
-import React, {memo, useLayoutEffect, useState} from 'react'
-import  {connect} from 'react-redux'
-import router, { useRouter } from 'next/router'
+import router from "next/router";
+import React, { memo } from 'react';
+import { connect } from "react-redux";
 import AsideMenu from '../components/aside-menu';
 import Aside from '../components/aside/aside';
 import ButtonComponent from '../components/button';
@@ -45,7 +44,7 @@ useLayoutEffect(()=>{
 
     return (
         <Page className='bg-bg pt-sm'>
-            <Aside>
+            <Aside className='mr-sm'>
               <AsideMenu/>
             </Aside>
             <Main>

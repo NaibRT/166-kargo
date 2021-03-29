@@ -7,9 +7,8 @@ function RateItem({itemData = {}}){
  return (
   <React.Fragment>
   <div className='rate-item'>
- 
-   <span>{itemData?.min} - {itemData?.max} kq</span>
-   <span>{itemData?.amount} $ </span>
+   <span>{itemData?.weight_min} - {itemData?.weight_max} kq</span>
+   <span>{itemData?.price} $ </span>
   </div>
   </React.Fragment>
  )
@@ -33,7 +32,6 @@ function Rate({data = [],icon,headerText,style}) {
            (data.length-1)!==i ?
              <Divider/>  : null
            }
-         
          </>
        ))
       }   

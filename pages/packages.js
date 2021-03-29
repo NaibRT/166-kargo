@@ -1,5 +1,6 @@
-import router from 'next/router';
-import React, { memo } from 'react';
+import axios from 'axios';
+import router, { useRouter } from 'next/router';
+import React, { memo, useLayoutEffect, useState } from 'react';
 import { connect } from "react-redux";
 import AsideMenu from "../components/aside-menu/index";
 import Aside from "../components/aside/aside";
@@ -51,6 +52,8 @@ const data = [
 
 function Packages(props) {
 
+  console.log('props',props)
+
   if(!props.entry.isLoged){
 
     router.push('/register');
@@ -60,23 +63,36 @@ function Packages(props) {
     )
 }
 
+const [packages,setPackages] = useState([])
+const {locale} = useRouter()
+
+
+useLayoutEffect(()=> {
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}batches?lan=${locale}`,{
+    headers: {
+      'authorization': `Bearer ${props.entry.user.accessToken}`
+    }
+  }).then(res => {
+    setPackages(res.data)
+  }).catch(err => console.log(err))
+},[])
+
 
     return (
         <Page className='bg-bg pt-lg'>
-           <Aside>
+           <Aside className='mr-sm'>
              <AsideMenu/>
            </Aside> 
            <Main>
              <Card className='bg-bg pb-sm'>
                  <Card.Header text='Aktiv bağlamalarım'/>
                  <Card.Body className='p-none'>
-                     <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-between'}}>
-                       <PackageItem/>
-                       <PackageItem/>
-                       <PackageItem/>
-                       <PackageItem/>
-                       <PackageItem/>
-                       <PackageItem/>
+                     <div style={{display:'flex',flexWrap:'wrap'}}>
+                       {
+                         packages.filter(x => x.status.id !== 6).map(p => (
+                            <PackageItem item={p}/>
+                          ))
+                       }
                      </div>
                  </Card.Body>
                  <Card.Footer style={{justifyContent:'space-between'}}>
@@ -127,4 +143,5 @@ function Packages(props) {
 const mapStateToProps = (state) => ({
   entry: state.entry
 });
+
 export default connect(mapStateToProps)(memo(Packages))

@@ -1,18 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { memo } from "react";
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { connect } from "react-redux";
 import { LogOut } from "../../redux/entry/entryActions";
 import { default as Button, default as ButtonComponent } from '../button';
+import Card from '../card/card';
+import Modal from '../modal-form/modal';
 import Page from '../page/page';
+import Burger from './burger';
+import Hovermenu from './hovermenu';
 import MenuMobile from './menu-mobile';
-import Burger from './burger'
-import Card from '../card/card'
-import Hovermenu from './hovermenu'
-import Modal from '../modal-form/modal'
 
 
 

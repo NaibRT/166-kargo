@@ -103,9 +103,13 @@
        .for-mobile{
          display: none;
        }
+      height: 100%;
        .card-body{
-         div{
+        height: 240px;
+        .rate-container{
+        height: 100%;
            .rate{
+            max-height: 100%;
             //  width: 33%;
              margin-right: $margin_sm;
            }
