@@ -1,5 +1,6 @@
-import router from "next/router";
-import React, { memo } from 'react';
+import axios from 'axios';
+import router, { useRouter } from "next/router";
+import React, { memo, useLayoutEffect, useState } from 'react';
 import { connect } from "react-redux";
 import AsideMenu from '../components/aside-menu';
 import Aside from '../components/aside/aside';
@@ -8,7 +9,6 @@ import Card from '../components/card/card';
 import Main from '../components/main/main';
 import Page from "../components/page/page";
 import Tabel from '../components/tabel/tabel';
-
 const dataHead = [
   ' Sifariş N',
   'Borcun yaranma səbəbi',

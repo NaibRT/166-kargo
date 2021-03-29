@@ -25,7 +25,6 @@ export const UserRegister = (url,data,headers = {}) => dispatch => {
     })
     .then(async res => {
       Swal.fire({
-        title: 'Success!',
         text: 'Əməliyyat uğurla tamamlandı',
         icon: 'success',
         confirmButtonText: 'OK',

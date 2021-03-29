@@ -124,13 +124,7 @@ useLayoutEffect(()=> {
                     th={dataHead}
                     data={data}
                     renderBody={(x,i) => {
-                        if(i===0){
-                          return  <td key={i++}>
-                                     <span className='color-err'>{x.split(',')[0]}</span>
-                                     <span>{x.split(',')[1]}</span>
-                                  </td>  
-                        }
-                        return  <td key={i++}>{x}</td>
+                          return   <td key={i++}>{x}</td>  
                     }}
                    />
                  </Card.Body>
