@@ -1,6 +1,4 @@
 import React, { memo, useRef, useState } from 'react'
-import DayPickerInput from 'react-day-picker/DayPickerInput'
-import 'react-day-picker/lib/style.css'
 import { useForm } from 'react-hook-form'
 import { connect } from "react-redux"
 import Button from '../components/button'
@@ -34,7 +32,6 @@ function Register(props) {
 
 
  const submit = (data) => {
-   console.log(data.birthday)
    let newData = {
      ...data,
      phone:phone.current + data.phone,
@@ -115,21 +112,11 @@ function Register(props) {
          <FromGroup label='Dogum tarixi' bodyClass='bg-bg' className='w-50 pr-xs mb-xs'
            error={errors.birthday?.message}
          >
-            <DayPickerInput
-              
-               classNames='w-100'
-               name='birthday'
-               ref={register({
-               required:{value:true, message:'date is required'},
-               })} 
-               format='dd-MM-YYYY'
-               placeholder='dd-MM-YYYY'
-            />
-           {/* <Input className='' name='birthday' type='date' format='dd/mm/yyyy'
+           <Input className='' name='birthday' type='date' format='dd/mm/yyyy'
                Ref={register({
                 required:{value:true, message:'birthday is required'},
               })} 
-           /> */}
+           />
          </FromGroup>
          <FromGroup label='S/v seriya nomresi' bodyClass='bg-bg' className='w-50 pr-xs mb-xs' 
            error={errors.serial?.message}

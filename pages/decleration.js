@@ -1,7 +1,6 @@
 import axios from 'axios';
 import router, { useRouter } from "next/router";
 import React, { memo, useState } from 'react';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
@@ -23,9 +22,11 @@ const telData = [
  ]
 
  const curData = [
-  {id:'ytl',name:'Türkiyə'},
-  {id:'aze',name:'Azərbaycan'},
-  {id:'ua',name:'Ukrayna'}
+  {id:'try',name:'Türkiyə Lirəsi'},
+  {id:'azn',name:'Azərbaycan Manatı'},
+  {id:'eur',name:'Avro'},
+  {id:'usd',name:'ABŞ dolları'}
+
  ]
  
 function Decleration(props) {
@@ -62,13 +63,11 @@ function Decleration(props) {
        newFormData.append(key,data[key]);
      }
 
-     newFormData.append('_method','PUT')
+     newFormData.append('_method','POST')
 
      console.log(newFormData);
 
-     fetch(`${process.env.NEXT_PUBLIC_API_URL}batches?lan=${locale}`,{
-       method:'POST',
-       body:newFormData,
+     axios.post(`${process.env.NEXT_PUBLIC_API_URL}batches?lan=${locale}`,newFormData,{
        headers: {
         'Content-Type':'multipart/form-data',
          'Accepts':'application/json',
@@ -133,27 +132,14 @@ function Decleration(props) {
                 <FromGroup label='Tarix' bodyClass='bg-white' className='w-50 pr-xs'
                 error={errors.date?.message}
                 >
-                  {/* <Input type='date' name='date'
+                  <Input type='date' name='date'
                      Ref={register({
                       required:{value:true, message:'date is required'},
                     })} 
                     //  onChange={handleChange}
-                  /> */}
-                <DayPickerInput
-                   classNames='w-100'
-                   name='date'
-                   ref={register({
-                    required:{value:true, message:'date is required'},
-                  })} 
-                 format='dd-MM-YYYY'
-                 placeholder='dd-MM-YYYY'
-                />
-                  
+                  />
+
                 </FromGroup>
-
-
-
-
                 <FromGroup label='Magaza adı' bodyClass='bg-white' className='w-50 pr-xs'
                 error={errors.shop_name?.message}
                 >

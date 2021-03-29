@@ -1,8 +1,6 @@
 import axios from "axios";
 import router, { useRouter } from "next/router";
 import React, { memo, useRef, useState } from 'react';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
-import 'react-day-picker/lib/style.css';
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
@@ -258,26 +256,13 @@ function UserInfo(props) {
                 <FromGroup label='Doğum tarixi' bodyClass='bg-white' className='w-50 pr-xs'
                 error={uErrors.birthday?.message}
                 >
-
-                 <DayPickerInput
-                   classNames='w-100'
-                   name='birthday'
-                   ref={register({
-                    required:{value:true, message:'date is required'},
-                  })} 
-                 format='dd-MM-YYYY'
-                 placeholder='dd-MM-YYYY'
-                 value={user.birthday}
-                 onChange={handleChange}
-                />
-                
-                  {/* <Input type='date' name='birthday'
+                  <Input type='date' name='birthday'
                      Ref={uRegister({
                       required:{value:true, message:'birthday is required'},
                     })} 
                     value={user.birthday}
                      onChange={handleChange}
-                  /> */}
+                  />
                   
                 </FromGroup>
                 <FromGroup label='Ünvan' bodyClass='bg-white' className='w-50 pr-xs'

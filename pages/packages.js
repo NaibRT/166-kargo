@@ -87,9 +87,9 @@ useLayoutEffect(()=> {
              <Card className='bg-bg pb-sm'>
                  <Card.Header text='Aktiv bağlamalarım'/>
                  <Card.Body className='p-none'>
-                     <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-between'}}>
+                     <div style={{display:'flex',flexWrap:'wrap'}}>
                        {
-                         packages.map(p => (
+                         packages.filter(x => x.status.id !== 6).map(p => (
                             <PackageItem item={p}/>
                           ))
                        }
