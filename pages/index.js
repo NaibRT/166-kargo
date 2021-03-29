@@ -12,6 +12,7 @@ import Input from '../components/input/input';
 import MainSlider from "../components/main-slider/main-slider";
 import NewsItem from '../components/news_item/news-item';
 import Page from '../components/page/page';
+import MobileRate from '../components/rate/m-rate';
 import Rate from '../components/rate/rate';
 import Selectbox from "../components/selectbox/selectbox";
 import Switch from '../components/switch/switch';
@@ -104,16 +105,16 @@ const data = [
            {
              !props.Entry.isLoged &&
              <Card className='login-card bg-white p-sm'>
-             <Card.Header text='Istifadecei girisi'/>
+             <Card.Header text={f({ id: 'signin' })}/>
              <Card.Body className='p-none'>
              <form className='login-form' onSubmit={handleSubmit(submit)}>
                <FromGroup 
-                  label='E-mail' 
+                  label={f({ id: 'email' })}
                   bodyClass='bg-bg w-100' 
                   error={errors.email?.message}
                   >
                  <Input Ref={register({
-                   required:{value:true,message:'email is not valid'},
+                   required:{value:true,message:f({ id: 'emailerror' })},
                   //  pattern:/^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/
                  })} type='email' name='email'/>
                </FromGroup>
@@ -142,7 +143,7 @@ const data = [
            </section>
            <Page>
         <section className='tariff-section'>
-          <Card className='mr-sm'>
+          <Card className='mr-sm sm-mob'>
             <Card.Header text='Tarifler' />
             <Card.Body className='bg-bg p-sm br-sm'>
               <div className='bg-bg rate-container' style={{ display: 'flex',justifyContent:'space-between'}}>
@@ -156,6 +157,10 @@ const data = [
                   <Rate data={props?.tariffs.filter(x => x.country === 'ABŞ' && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/usa.svg'} headerText='ABŞ' style={{marginRight:0}} />
                 } 
               </div>
+            </Card.Body>
+            <Card.Body className='bg-bg p-xs br-sm for-mobile'>
+                  <Card.Header></Card.Header>
+                 <MobileRate data={data} text='Çəki' />
             </Card.Body>
           </Card>
           <Card>
@@ -214,11 +219,13 @@ const data = [
                   />
                 </FromGroup>
                 <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label='Hundurluk (sm)'>
+                  
                   <Input type='text'
                      name='height'
                      value={calculator?.height}
                      onChange={calculatorInputHandler}
-                  />
+                   />
+                   
                 </FromGroup>
               </form>
               <Card.Footer className='mt-xs'>
@@ -238,7 +245,7 @@ const data = [
           </Card>
         </section>
 
-
+        <section className='howworks'>
         <div className='fluid_bottom'>
           <p className='title mg__bottom'>{f({ id: 'howitworks' })}</p>
           <div className='work__flex--container'>
@@ -271,7 +278,7 @@ const data = [
             </div>
           </div>
         </div>
-
+        </section>
 
         <section className='fluid_bottom' >
           <Card>

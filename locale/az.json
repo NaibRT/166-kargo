@@ -13,13 +13,42 @@
     "signup":"Qeydiyyatdan keç",
     "signin":"Daxil ol",
     "howitworks":"Necə işləyir?",
-    "gotoregister":"Qeydiyyatdan keç",
+    "gotoregister":"Qeydiyyatdan keçirsiniz",
     "alttext1":"Sizə Türkiyə və ABŞ-da yerləşən anbarların ünvanlarını göndəririk",
     "makeorder":"Sifariş et",
     "alttext2":"ABŞ və Türkiyəyə çatdıran veb saytdan alış-veriş edirsiniz(əgər sifariş etməkdə problem yaranırsa, məhsulun linkini bizə göndərin, bank kartının vasitəsilə ödənişi həyata keçirin, biz sizin üçün sifariş edək",
-    "getpackage":"Bağlamanı əldə et",
+    "getpackage":"Bağlamanı əldə edin",
     "alttext3":"Sifairşinizi Bakı ofisimizdən götürürsünüz(və ya evinizə çatdırılma xidmətimizdən istifadə edirsiniz)",
-    "shops":"Bəzi mağazalar"
+    "shops":"Bəzi mağazalar",
+    "tarifftitle":"Ölkələr üzrə tariflərimiz",
+    "turkey":"Türkiyə",
+    "date":"Tarix",
+    "isluqidturkey":"Türkiyə(maye)",
+    "liquid":"Maye məhsullar",
+    "usa":"ABŞ",
+    "weight":"Çəki(kq)",
+    "length":"Uzunluq(sm)",
+    "width":"En(sm)",
+    "height":"Hündürlük(sm)",
+    "calc":"Hesabla",
+    "emailerror":"Email yanlışdır",
+    "passworderror":"Şifrə yanlışdır",
+    "choosectry":"Ölkə seç",
+    "deliveryprice":"Çatdırılma qiyməti",
+    "seeall":"Hamısını gör",
+    "lastnews":"Son xəbərlər",
+    "stores":"Bəzi mağazalar",
+    "email":"E-poçta",
+    "paybalance":"Balansa artırdığınız məbləğ ilə yalnız çatdırılma haqqını ödəyə bilərsiniz!",
+    "refundable":"Ödənilən məbləğ geri qaytarılmır!",
+    "transaction":"Tranzaksiyalar",
+    "payment":"Ödəniş",
+    "balance-service":"Balans(xidmətlər)"
+    
+    
+    
+
+
 
 
    }

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34" height="23" viewBox="0 0 34 23">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Rectangle_435" data-name="Rectangle 435" d="M0,0H27a7,7,0,0,1,7,7v9a7,7,0,0,1-7,7H7a7,7,0,0,1-7-7V0A0,0,0,0,1,0,0Z" transform="translate(967 -704)" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_12" data-name="Mask Group 12" transform="translate(-967 704)" clip-path="url(#clip-path)">
+    <g id="Flag_of_Ukraine" transform="translate(966 -704)">
+      <rect id="Rectangle_433" data-name="Rectangle 433" width="35" height="23" transform="translate(0 0)" fill="#005bbb"/>
+      <rect id="Rectangle_434" data-name="Rectangle 434" width="35" height="11" transform="translate(0 12)" fill="#ffd500"/>
+    </g>
+  </g>
+</svg>

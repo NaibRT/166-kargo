@@ -6,8 +6,12 @@
     background-color:red !important;
 }
 .aside-list-container{
+  
     li{
         padding:10px;
+        .navbar__link--active{
+            color:red
+        }
         .d-flex{
             display:flex;
             align-items: center;
@@ -23,4 +27,9 @@
 
 .border-color{
     opacity: .1;
+}
+
+.active{
+      
+    color: $color__yellow;
 }
