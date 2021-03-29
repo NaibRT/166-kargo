@@ -7,18 +7,14 @@ import Layout from '../components/layout';
 import AZ from '../locale/az.json';
 import EN from '../locale/en.json';
 import RU from '../locale/ru.json';
-import UA from '../locale/ua.json';
 import '../public/assets/styles/globals.scss';
 import Store from '../redux/store';
-
-
 
 
 const message = {
   az:AZ,
   en:EN,
   ru:RU,
-  ua:UA,
 }
 
 export default function MyApp({ Component, pageProps }){
