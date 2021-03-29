@@ -44,6 +44,7 @@ export const LogOut = () => dispatch => {
     dispatch(logout())
 }
 
+
 export const UpdateUser = (data) => dispatch => {
   dispatch(updateUser(data))
 }
