@@ -44,5 +44,6 @@
     "transaction":"Транзакции",
     "date":"Дата",
     "payment":"Оплата",
-    "balance-service":"Баланс"
+    "balance-service":"Баланс",
+    "tariff":"Тарифы"
    }

@@ -218,9 +218,10 @@ function NewOrder(props) {
                       <Link href='/'><><a className='mr-xs' style={{width:'-webkit-max-content'}}>Qaydalarla</a>Raziyam</></Link>
                       </Checkbox>
                     <Button 
-                      label='Sifaris et ve ode' 
+                      style={{padding: '0 5px'}}
+                      label='Sifariş et və öde' 
                       endElement={<span className='ml-xs'>&#8250;</span>} 
-                      className='p-sm w-100'
+                      className=' w-100'
                       disabled={!cardData.ruleAccepted}
                       />
                     </div>

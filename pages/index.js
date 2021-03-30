@@ -144,7 +144,7 @@ const data = [
            <Page>
         <section className='tariff-section'>
           <Card className='mr-sm sm-mob'>
-            <Card.Header text='Tarifler' />
+            <Card.Header text={f({ id: 'tariff' })} />
             <Card.Body className='bg-bg p-sm br-sm'>
               <div className='bg-bg rate-container' style={{ display: 'flex',justifyContent:'space-between'}}>
                 {
@@ -164,7 +164,7 @@ const data = [
             </Card.Body>
           </Card>
           <Card>
-            <Card.Header text='Kalkulyator'/>
+            <Card.Header text={f({ id: 'calculator' })}/>
             <Card.Body className='bg-bg p-sm br-sm'>
               <form className='calculator-form' style={{display:'flex',flexWrap:'wrap'}}>
               <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label='Olke sec'>
@@ -282,7 +282,7 @@ const data = [
 
         <section className='fluid_bottom' >
           <Card>
-            <Card.Header text='Son Xəbərlər' endElelment={<Link href='/blog'>Hamsını gör &rsaquo;</Link>} />
+            <Card.Header text={f({ id: 'lastnews' })} endElelment={<Link href='/blog'>Hamsını gör &rsaquo;</Link>} />
             <Card.Body style={{ padding: 0, display: 'flex'}}>
               {
                 props.news.slice(0,3).map((x,i,arr) =>{
@@ -295,7 +295,7 @@ const data = [
 
         <section className='fluid_bottom w-100'>
           <Card>
-            <Card.Header text='Bəzi mağazalar' endElelment={<Link href=''>Hamsını gör &rsaquo;</Link>} />
+            <Card.Header text={f({ id: 'shops' })} endElelment={<Link href=''>Hamsını gör &rsaquo;</Link>} />
             <Card.Body>
             <div className='flex__item'>
               <Link href='https://www.trendyol.com/'>
