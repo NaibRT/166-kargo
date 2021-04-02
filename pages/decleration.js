@@ -25,7 +25,9 @@ const telData = [
   {id:'try',name:'Türkiyə Lirəsi'},
   {id:'azn',name:'Azərbaycan Manatı'},
   {id:'eur',name:'Avro'},
-  {id:'usd',name:'ABŞ dolları'}
+  {id:'usd',name:'ABŞ dolları'},
+  {id:'bla',name:'bla dolları'}
+
 
  ]
  
@@ -40,9 +42,8 @@ function Decleration(props) {
 
   const [checkSerial, setCheckSerial] = useState('AA');
   const { locale } = useRouter();
-  const {register,errors,handleSubmit,watch} = useForm();
+  const {register,errors,handleSubmit,watch,setError} = useForm();
   const [subCategories, setSubCategories] = useState('AA');
-
 
 
   const handleChange = (ev) => {
@@ -78,7 +79,11 @@ function Decleration(props) {
          title:res.message,
          icon:'success',
        })
-     }).then(err => console.log(err))
+     }).then(err => {
+      for(let key in err.response.data.errors){
+        setError(key,{message: err.response.data.errors[key].join('\n')})
+      }
+     })
   }
 
 
