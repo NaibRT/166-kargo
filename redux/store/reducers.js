@@ -13,6 +13,7 @@ const rootPersistConfig = {
  storage: storage,
  whitelist: [
      'entry',
+     'settings'
     ]
 }
 

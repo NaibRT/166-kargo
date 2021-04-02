@@ -57,7 +57,9 @@ export async function getStaticPaths() {
 
   let paths = data.map(x => {
     return {
-      params:{slug:[x.slug.toString()]}
+      params:{slug:[
+         x.slug.toString()
+        ]}
     }
   })
 

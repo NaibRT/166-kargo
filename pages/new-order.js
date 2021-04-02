@@ -25,32 +25,35 @@ function NewOrder(props) {
     )
   }
   
-  const {locale} = useRouter()
- const {register,handleSubmit,errors} = useForm();
+ const {locale} = useRouter();
+
+ const {register,handleSubmit,errors,setError,clearErrors} = useForm();
+
  const [cards, setCards] = useState([{
-   url:'',
-   price:'',
-   notes:'',
-   color:'',
-   size:'',
-   count:'',
+  url:{value:'',error:''},
+  price:{value:'',error:''},
+  notes:{value:'',error:''},
+  color:{value:'',error:''},
+  size:{value:'',error:''},
+  count:{value:'',error:''},
  }]);
+
  const [cardData, setCardData] = useState({
    country:'15',
    is_fast:0,
    ruleAccepted:false
  });
 
-
  const addCard = (ev) => {
    ev.preventDefault();
   cards.push({
-    url:'',
-    price:'',
-    notes:'',
-    color:'',
-    size:'',
-    count:'',
+    url:{value:'',error:''},
+    price:{value:'',error:''},
+    notes:{value:'',error:''},
+    color:{value:'',error:''},
+    size:{value:'',error:''},
+    count:{value:'',error:''},
+
   });
    setCards([...cards])
  }
@@ -60,7 +63,7 @@ function NewOrder(props) {
   cards.splice(id,1)
 
   setCards([...cards])
-}
+ }
 
 
  const handleInput = (ev) => {
@@ -70,13 +73,17 @@ function NewOrder(props) {
 
    cards[id]={
     ...cards[id],
-    [name]:value
+    [name]:{
+      ...cards[id][name],
+      value:value
+    }
    }
 
    if(cards[id].count && cards[id].price){
     cards[id]={
       ...cards[id],
-      total:(cards[id].count*cards[id].price)
+      total: cardData.is_fast ? (cards[id].count.value*cards[id].price.value)+props.fastOrderPrice 
+                              : (cards[id].count.value*cards[id].price.value)
      }
    }else{
     cards[id]={
@@ -84,16 +91,31 @@ function NewOrder(props) {
       total:''
      }
    }
+   
    setCards([...cards])
  }
 
+ const addFastPrize = (isfast , price) => {
+  let newCards = cards;
+  newCards.forEach(x => isfast ? x.total+=price : x.total-=price);
+  console.log(newCards)
+  // setCards([...newCards])
+ }
 
  const submit = () => {
-
+   
    if(cardData.ruleAccepted){
+
      let data = {
        ...cardData,
-       items:[...cards]
+       items:cards.map(x => {
+          let newObj = {};
+          for (let key in x) {
+             newObj[key]= x[key].value 
+          }
+
+          return newObj;
+       })
      };
 
      axios.post(`${process.env.NEXT_PUBLIC_API_URL}orders?lan=${locale}`,data,{
@@ -109,7 +131,24 @@ function NewOrder(props) {
          text: 'emeliyyat ugurlu oldu',
          icon:'success'
        })
-     }).catch((err) => console.log(err))
+     }).catch((err) => {
+       let items = err.response.data.errors.items;
+        items.forEach((x,i) => {
+          for(let key in x){
+             cards[i] = {
+               ...cards[i],
+               [key] : {
+                ...cards[i][key],
+                error: x[key]
+               }
+              
+              
+             };
+          }
+          
+        });
+        setCards([...cards])
+     })
    }
  }
 
@@ -134,23 +173,29 @@ function NewOrder(props) {
                       }
                     <div className='' style={{display:'flex'}}>
                      <div className='w-50 mr-sm' style={{}}>
-                        <FromGroup label='Link' className='w-100' bodyClass='bg-white'>
-                        <Input type='text' name='url' data-id={i} value={x.link}
+                        <FromGroup label='Link' className='w-100' bodyClass='bg-white'
+                         error={x.url.error}
+                        >
+                        <Input type='text' name='url' data-id={i} value={x.url.value}
                           Ref={register({required:true})}
                           onChange={handleInput}
                         />
                       </FromGroup>
                       <div style={{display:'flex'}}>
-                      <FromGroup label='Rengi' className='w-50 mr-sm' bodyClass='bg-white'>
+                      <FromGroup label='Rengi' className='w-50 mr-sm' bodyClass='bg-white'
+                      error={x.color.error}
+                      >
                         <Input type='text' name='color' data-id={i}
-                          value={x.color}
+                          value={x.color.value}
                           Ref={register({required:true})}
                           onChange={handleInput}
                         />
                       </FromGroup>
-                      <FromGroup label='Olcusu' className='w-50' bodyClass='bg-white'>
+                      <FromGroup label='Olcusu' className='w-50' bodyClass='bg-white'
+                      error={x.size.error}
+                      >
                         <Input type='text' name='size' data-id={i}
-                        value={x.size}
+                        value={x.size.value}
                         Ref={register({required:true})}
                         onChange={handleInput}
                         />
@@ -159,21 +204,26 @@ function NewOrder(props) {
                      </div>
                       <div className='w-50'>
                           <div className='w-100' style={{display:'flex',justifyContent:'space-between'}}>
-                           <FromGroup label='Mehsul sayi' className='mr-xs' bodyClass='bg-white'>
+                           <FromGroup label='Mehsul sayi' className='mr-xs' bodyClass='bg-white'
+                           error={x.count.error}
+                           >
                               <Input type='number' name='count' data-id={i}
-                                value={x.count}
+                                value={x.count.value}
                                 Ref={register({required:true})}
                                 onChange={handleInput}
                               />
                             </FromGroup>
-                            <FromGroup label='Qiymet' className='mr-xs' bodyClass='bg-white'>
+                            <FromGroup label='Qiymet' className='mr-xs' bodyClass='bg-white'
+                             error={x.price.error}
+                            >
                               <Input type='number' name='price' data-id={i}
-                                value={x.price}
+                                value={x.price.value}
                                 Ref={register({required:true})}
                                 onChange={handleInput}
                               />
                             </FromGroup>
-                            <FromGroup label='Cemi' className='mr-xs' bodyClass='bg-white'>
+                            <FromGroup label='Cemi' className='mr-xs' bodyClass='bg-white'
+                            >
                               <Input type='number' name='total' data-id={i}
                                 value={x.total}
                                 Ref={register({required:true})}
@@ -181,9 +231,11 @@ function NewOrder(props) {
                               />
                             </FromGroup>
                           </div>
-                          <FromGroup label='Elave Qeyd' className='w-100' bodyClass='bg-white'>
+                          <FromGroup label='Elave Qeyd' className='w-100' bodyClass='bg-white'
+                          error={x.notes.error}
+                          >
                               <Input type='text' name='notes' data-id={i}
-                                value={x.note}
+                                value={x.notes.value}
                                 Ref={register({required:true})}
                                 onChange={handleInput}
                               />
@@ -205,6 +257,9 @@ function NewOrder(props) {
                             ...cardData,
                             is_fast:+ev.target.checked,
                           })
+
+                          addFastPrize(ev.target.checked,props.fastOrderPrice)
+
                     }} 
                     />
                     <Checkbox
@@ -233,6 +288,8 @@ function NewOrder(props) {
 }
 
 const mapStateToProps  = state => ({
-  entry: state.entry
+  entry: state.entry,
+  fastOrderPrice: state.settings.data.fast_order_fixed_price,
+  serviceFeePersentage: state.settings.data.service_fee_percent
 });
 export default connect(mapStateToProps)(memo(NewOrder)) 

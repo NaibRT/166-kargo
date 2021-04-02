@@ -41,11 +41,27 @@ export const UserRegister = (url,data,headers = {}) => dispatch => {
 }
 
 export const LogOut = () => dispatch => {
+
     dispatch(logout())
 }
 
-export const UpdateUser = (data) => dispatch => {
-  dispatch(updateUser(data))
+export const UpdateUser = (url,data,headers = {}) => dispatch => {
+
+    axios.put(`${process.env.NEXT_PUBLIC_API_URL}${url}`,data,{
+        headers: headers
+      })
+      .then( res => {
+        dispatch(updateUser(res.data))
+         Swal.fire({
+           text: 'Əməliyyat uğurla yerinə yetirildi',
+           icon: 'success',
+           confirmButtonText: 'OK',
+         })
+      })
+      .catch(err => {
+        dispatch(updateUser({isError:true,errors:err.response.data}))
+      })
+  
 }
 
 

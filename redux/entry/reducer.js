@@ -57,16 +57,24 @@ const entryReducer = (state = initialState, action) => {
     }
     break;  
     case UPDATE_USER:
-     state = {
-       ...state,
-       user:{
-         ...user,
-         user:{
-           ...user,
-           ...action.payload
-         }
-       }
-     }
+      if(action.payload.isError){
+        state = {
+          ...state,
+          user:{
+            ...state.user,
+          },
+          errorMessages:{...action.payload.errors},
+        }
+      }else{
+        state = {
+          ...state,
+          user:{
+            ...state.user,
+           user:{...action.payload.user} 
+          },
+          errorMessages:{},
+        }
+      }
     break;
    default:
     state = { ...state }

@@ -1,4 +1,4 @@
-import React, { memo, useRef, useState } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { connect } from "react-redux"
 import Button from '../components/button'
@@ -19,10 +19,17 @@ const telData = [
  ]
 
 function Register(props) {
+
+  useEffect(() => {
+    for(let key in props.Entry.errorMessages.errors){
+      setError(key,{message: props.Entry.errorMessages.errors[key].join('\n')})
+    }
+  },[props.Entry.errorMessages])
+
  const [isKorporative, setisKorporative] = useState(false);
  const [checkSerial, setCheckSerial] = useState('AA');
 
- const {register,handleSubmit,errors,reset,watch} = useForm();
+ const {register,handleSubmit,errors,reset,watch,setError,clearErrors} = useForm();
 
  const password = useRef({});
  const phone = useRef({});
@@ -30,8 +37,9 @@ function Register(props) {
  phone.current = watch("phone_typ",'');
  password.current = watch("password",'');
 
-
  const submit = (data) => {
+  clearErrors();
+  
    let newData = {
      ...data,
      phone:phone.current + data.phone,
@@ -40,6 +48,7 @@ function Register(props) {
    console.log(newData)
    props.UserRegister('auth/register',newData,{'content-type':'application/json'});
  }
+
  
  return (
   <Page className='bg-bg register-page'>
@@ -200,11 +209,6 @@ function Register(props) {
            />
          </FromGroup>
         </form>
-        {/* { Object.keys(props.Entry.errorMessages).length>0 && 
-            Object.values(props.Entry.errorMessages).map(value =>(
-              <div><span className='color-err'>{value}</span></div>
-            ))
-        } */}
         <Card.Footer className='mt-sm'>
           <Button label='Qeydiyyatı tamamla' 
                   endElement={<span className='ml-xs'>&rarr;</span>} 

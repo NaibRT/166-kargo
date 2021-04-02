@@ -1,4 +1,4 @@
-
+import { REHYDRATE } from 'redux-persist';
 import { GETSETTING } from "./actionTypes";
 
 const initialState = {
@@ -9,6 +9,8 @@ const initialState = {
 const SettingsReducer = (state = initialState, action) => {
 
      switch (action.type) {
+        case REHYDRATE:
+            break;
          case GETSETTING:
                state = {
                    data: action.payload,

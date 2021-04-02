@@ -1,6 +1,6 @@
 import axios from "axios";
 import router, { useRouter } from "next/router";
-import React, { memo, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
@@ -14,6 +14,8 @@ import Main from '../components/main/main';
 import Page from "../components/page/page";
 import RadioButton from "../components/radio-button/radio-button";
 import Selectbox from "../components/selectbox/selectbox";
+import { UpdateUser } from "../redux/entry/entryActions";
+
 
 const telData = [
   {id:'+994',name:'+994'}
@@ -34,10 +36,16 @@ function UserInfo(props) {
   });
 
   const { locale, locales, defaultLocale } = useRouter();
-  const {register,errors,handleSubmit,watch} = useForm();
-  const {register:uRegister,errors:uErrors,handleSubmit:uHandleSubmit} = useForm();
+  const {register,errors,handleSubmit,watch,setError} = useForm();
+  const {register:uRegister,errors:uErrors,handleSubmit:uHandleSubmit,setError:uSetError} = useForm();
 
-  
+  useEffect(() => {
+    for(let key in props.entry.errorMessages.errors){
+      setError(key,{message: props.entry.errorMessages.errors[key].join('\n')})
+      uSetError(key,{message: props.entry.errorMessages.errors[key].join('\n')})
+    }
+  },[props.entry.errorMessages])
+
   const password = useRef();
   const phone = useRef();
 
@@ -73,40 +81,18 @@ function UserInfo(props) {
   }
 
   const updateUserData = (data) => {
-      console.log(data)
-      console.log(phone.current)
-
     let newData = {
       ...data,
       phone:data.phone_typ + data.phone,
       birthday: data.birthday.split('-').reverse().join('-')
     }
 
-    axios.put(`${process.env.NEXT_PUBLIC_API_URL}user?lan=${locale}`,newData,{
-      headers: {
-          'content-type': 'application/json',
-          'accept':'application/json',
-          'authorization': `Bearer ${props.entry.user.accessToken}`
-        }
+     props.UpdateUser(`user?lan=${locale}`,newData,{
+      'content-type': 'application/json',
+      'accept':'application/json',
+      'authorization': `Bearer ${props.entry.user.accessToken}`
     })
-    .then(async res => {
-       let data = await res;
-       Swal.fire({
-         title: 'Success!',
-         text: data.message,
-         icon: 'success',
-         confirmButtonText: 'OK',
-       })
-    })
-    .catch(error => {
-      console.log(error)
-     Swal.fire({
-       title: 'Error!',
-       text: error.message,
-       icon: 'error',
-       confirmButtonText: 'OK',
-     })
-    })
+
   }
 
   const handleChange = (ev) => {
@@ -339,6 +325,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-
+  UpdateUser
 }
-export default connect(mapStateToProps)(memo(UserInfo))
+export default connect(mapStateToProps,mapDispatchToProps)(memo(UserInfo))
