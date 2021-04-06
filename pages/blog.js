@@ -26,7 +26,11 @@ function Blog(props) {
        <Card.Body className='blog-post-container' style={{padding:0}}>
          {
            props.news.map((a) => (
-             <PostItem item={a} link={`blog/${a.slug}`}/>   
+             <PostItem  
+               img={a.image} 
+               title={a.title}
+               desc={a.description}
+               link={`blog/${a.slug}`}/>   
            ))
          }
        </Card.Body>
@@ -39,7 +43,14 @@ function Blog(props) {
     <Card.Body style={{padding:0}}>
       {
          props.news.slice(0,7).map((a) => (
-          <PostItem item={a} link={`blog/${a.slug}`}/>   
+          <PostItem 
+           img={a.image} 
+           link={`blog/${a.slug}`}
+           title={a.title}
+           bClassName='bg-white'
+           className='bg-white'
+
+           />   
         ))
       }
     </Card.Body>

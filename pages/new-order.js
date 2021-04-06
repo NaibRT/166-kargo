@@ -1,6 +1,6 @@
 import axios from "axios";
 import Link from "next/link";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { memo, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
@@ -14,15 +14,13 @@ import FromGroup from '../components/form-group/form-group';
 import Input from '../components/input/input';
 import Main from "../components/main/main";
 import Page from "../components/page/page";
+import Redirect from "../components/redirect/redirect";
 
 
 function NewOrder(props) {
 
   if(!props.entry.isLoged){
-    router.push('/register');
-    return (
-        <div style={{height:'100vh'}}></div>
-    )
+    return <Redirect/>
   }
   
  const {locale} = useRouter();

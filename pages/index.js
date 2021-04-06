@@ -32,9 +32,10 @@ const data = [
 
 
  function Home(props) {
-  const { formatMessage: f } = useIntl();
-  
+  const { formatMessage: f } = useIntl();  
   const { register,handleSubmit,errors } = useForm();
+
+  
   const [calculator,setCalculator] = useState({
     weight:'',
     height:'',
@@ -342,7 +343,9 @@ const mapDispatchToProp = {
   GetSettings
 }
 
-export async function getStaticProps({locale}) {
+
+export async function getServerSideProps({locale,req,res}) {
+  
   let news = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}news/main?lan=${locale}`);
   let tariffs = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}tariffs?lan=${locale}`);
 
@@ -352,8 +355,22 @@ export async function getStaticProps({locale}) {
      tariffs:tariffs.data
     },
   }
-
 }
+
+// export async function getStaticProps({locale}) {
+
+//   let news = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}news/main?lan=${locale}`);
+//   let tariffs = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}tariffs?lan=${locale}`);
+
+//   return {
+//     props: {
+//      news:news.data,
+//      tariffs:tariffs.data
+//     },
+//   }
+
+// }
+
 
 export default connect(mapStateToProp, mapDispatchToProp)(memo(Home))
 

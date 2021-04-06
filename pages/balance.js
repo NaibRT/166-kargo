@@ -1,14 +1,49 @@
-import React from 'react'
+import axios from 'axios';
+import { useRouter } from "next/router";
+import React, { memo, useLayoutEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import Balans from '../components/balance/balance'
-import Page from '../components/page/page'
-import AsideMenu from '../components/aside-menu/index'
-import Card from '../components/card/card'
+import { connect } from "react-redux";
+import AsideMenu from '../components/aside-menu/index';
 import Aside from "../components/aside/aside";
+import Balans from '../components/balance/balance';
+import Card from '../components/card/card';
 import Main from "../components/main/main";
+import Page from '../components/page/page';
+import Redirect from "../components/redirect/redirect";
+import Tabel from '../components/tabel/tabel';
 
-function Balance() {
+
+const data = [
+  {
+    "id": "2021-01-29 17:39:36",
+    "balance": "6.00",
+    "payment": "+6.00"
+  },
+  {
+    "id": "2021-01-29 18:12:47",
+    "balance": "12.00",
+    "payment": "+6.00"
+  }
+]
+function Balance(props) {
+
+  if(!props.entry.isLoged){
+    return <Redirect/>
+   }
+   
   const { formatMessage: f } = useIntl();
+  const {locale} = useRouter();
+  const {transactions,setTransaction} = useState([])
+
+  useLayoutEffect(() => {
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}balanceService?lan=${locale}`,{
+      headers: {
+        'authorization': `Bearer ${props.entry.user.accessToken}`
+      }
+    }).then(res => {
+      setTransaction(res.data)
+    }).catch(err => console.log(err))
+  })
  
     return (
         <div className='bg-bg'>
@@ -18,43 +53,33 @@ function Balance() {
                     <AsideMenu />
                 </Aside>
                 <Main className='bg-bg'>
-                    <Balans />
+                    <Balans balance={props.entry.user.user.agreement}/>
                 <div className='mg-rr'>
                     <small style={{ display: 'block', color: '#D60000', marginBottom:'10px' }}>{f({ id: 'paybalance' })}</small>
                     <small style={{ display: 'block', color: '#D60000', marginBottom:'10px'  }}>{f({ id: 'refundable' })}</small>
                     <Card className="bg-white p-md br-lg">
-                    <h3 className='table__title'>{f({ id: 'transaction' })}</h3>
-                    <table className="table table-striped ">
-                    <thead>
-                      <tr>
-                        <th scope="col">№</th>
-                        <th scope="col">{f({ id: 'date' })}</th>
-                        <th scope="col">{f({ id: 'payment' })}</th>
-                        <th scope="col">{f({ id: 'balance-service' })}</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>12.02.2020</td>
-                        <td>-15 AZN</td>
-                        <td>0.00 AZN</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>12.02.2020</td>
-                        <td>-15 AZN</td>
-                        <td>0.00 AZN</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>12.02.2020</td>
-                        <td>-15 AZN</td>
-                        <td>0.00 AZN</td>
-                      </tr>
-                    </tbody>
-                  
-                  </table>
+                      <Card.Header text='Tranzakisyalar'/>
+                      <Card.Body>
+                      <Tabel
+                        th={[
+                          'Tarix',
+                          'Ödəniş',
+                          'Balans(xidmətlər)'
+                        ]}
+                         data={data.map(x => (
+                           {
+                             id: x.id,
+                             payment: x.payment,
+                             balance: x.balance
+                           }
+                         ))}
+                        renderBody={(x) => {
+                          return(
+                            <td>{x}</td>
+                          )
+                        }}
+                      />
+                      </Card.Body>
                     </Card>
                 </div>
                 </Main>
@@ -63,4 +88,8 @@ function Balance() {
     )
 }
 
-export default Balance
+const mapStateToProps = (state) => ({
+  entry: state.entry
+});
+
+export default connect(mapStateToProps)(memo(Balance))
