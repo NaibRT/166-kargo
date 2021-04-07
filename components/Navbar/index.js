@@ -32,6 +32,7 @@ const useOnClickOutside = (ref, handler) => {
 const Navbar = (props) => {
     const [open, setOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    
     const node = useRef();
     useOnClickOutside(node, () => setOpen(false));
 
@@ -43,15 +44,15 @@ const Navbar = (props) => {
         console.log(data)
         props.Login('auth/login', JSON.stringify(data), { 'content-type': 'application/json' })
     }
-    const { locale, locales } = useRouter();
+    const { locale, locales, basePath,asPath } = useRouter();
     const router = useRouter();
     const { formatMessage: f } = useIntl();
 
     const handleLocaleChange = (e) => {
         const locale = e.target.value;
-        router.push('/', '/', { locale })
+        router.push(`${asPath}`,`${asPath}`, { locale })
     }
-   
+
     return (
         <>
             <header className='header deskmenu'>
@@ -62,6 +63,9 @@ const Navbar = (props) => {
                             <ul className='top__header-left'>
                                 <li>
                                     <Link href='/faq'><a>{f({ id: 'faq' })}</a></Link>
+                                </li>
+                                <li>
+                                    <Link href='/search'><a>Bağlamam hardadır?</a></Link>
                                 </li>
 
                             </ul>
@@ -79,7 +83,11 @@ const Navbar = (props) => {
 
                                         :
 
-                                        <li className='profile-container'>
+                                        <li className='profile-container' style={{display:'flex',alignItems:'center'}}>
+                                            <span className='mr-xs'>
+                                                {props.entry.user.user.firstname}
+                                                {props.entry.user.user.lastname} 
+                                            </span>
                                             <Link href=''>
                                                 <img
                                                     className='profile-img'

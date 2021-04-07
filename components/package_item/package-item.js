@@ -3,7 +3,7 @@ import React from 'react';
 import ButtonComponent from "../button/index";
 import Checkbox from "../checkbox/checkbox";
 
-function PackageItem({item}) {
+function PackageItem({item,checkRef,onCheck}) {
     const {locale} = useRouter()
     return (
         <div className='package-item mr-sm'>
@@ -25,9 +25,14 @@ function PackageItem({item}) {
               <div className='package-item-footer'>
                <div className='pif-amount'>
                    <span>Çatdırma haqqı</span>
-                   <span>4.50$ (7.65M)</span>
+                   <span>{item.delivery_price || 0.00}</span>
                </div>
-               <Checkbox text='Seç'/>
+               <Checkbox 
+                  Ref={checkRef} 
+                  onClick={onCheck} 
+                  value={item.id} 
+                  data-price={item.price} 
+                  text='Seç'/>
               </div>
             </div>
         </div>

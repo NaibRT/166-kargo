@@ -32,9 +32,10 @@ const data = [
 
 
  function Home(props) {
-  const { formatMessage: f } = useIntl();
+  const { formatMessage: f } = useIntl();  
+  const { register,handleSubmit,errors,clearErrors,setError } = useForm();
+
   
-  const { register,handleSubmit,errors } = useForm();
   const [calculator,setCalculator] = useState({
     weight:'',
     height:'',
@@ -87,6 +88,10 @@ const data = [
 
   useEffect(() => {
      props.GetSettings('settings');
+     clearErrors();
+     for(let key in props.Entry.errorMessages.errors){
+       setError(key,{message: props.Entry.errorMessages.errors[key].join('\n')})
+     }
   },[])
 
   const submit = (data) => {
@@ -99,19 +104,20 @@ const data = [
          <main className='home-page'>
            <section className='main-section bg-bg mb-sm' >
            <div className=' container-fluid pt-sm pb-sm' style={{display:'flex'}}>
-           <div className={`slider-container pr-sm ${props.Entry.isLoged && 'w-100'}`}>
+           <div style={{height:'400px'}} className={`slider-container pr-sm ${props.Entry.isLoged && 'w-100'}`}>
              <MainSlider/>
            </div>
            {
              !props.Entry.isLoged &&
              <Card className='login-card bg-white p-sm'>
-             <Card.Header text={f({ id: 'signin' })}/>
+             <Card.Header style={{textAlign:'center'}} text={f({ id: 'signin' })}/>
              <Card.Body className='p-none'>
              <form className='login-form' onSubmit={handleSubmit(submit)}>
                <FromGroup 
                   label={f({ id: 'email' })}
                   bodyClass='bg-bg w-100' 
                   error={errors.email?.message}
+                  className='mb-sm'
                   >
                  <Input Ref={register({
                    required:{value:true,message:f({ id: 'emailerror' })},
@@ -122,6 +128,7 @@ const data = [
                  label='Sifre' 
                  bodyClass='bg-bg w-100'
                  error={errors.password?.message}
+                 className='mb-lg'
                >
                  <Input
                  Ref={register({
@@ -130,10 +137,7 @@ const data = [
                 })}
                   type='password' name='password'/>
                </FromGroup>
-                { Object.keys(props.Entry.errorMessages).length>0 && 
-                <div><span className='color-err'>{props.Entry.errorMessages.message}</span></div>
-                }
-             <ButtonComponent type='submit' className='w-100 mt-xs' label='Daxil ol'/>
+             <ButtonComponent type='submit' className='w-100 mt-xs mb-sm' label='Daxil ol'/>
              </form>
              <div className='mt-xs'><span>Hesabınız yoxdur?</span><Link href='/register'><span className='color-yellow' style={{cursor:'pointer'}}>Qeydiyyatdan keçin</span></Link></div>
              </Card.Body>
@@ -342,7 +346,9 @@ const mapDispatchToProp = {
   GetSettings
 }
 
-export async function getStaticProps({locale}) {
+
+export async function getServerSideProps({locale,req,res}) {
+  
   let news = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}news/main?lan=${locale}`);
   let tariffs = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}tariffs?lan=${locale}`);
 
@@ -352,8 +358,22 @@ export async function getStaticProps({locale}) {
      tariffs:tariffs.data
     },
   }
-
 }
+
+// export async function getStaticProps({locale}) {
+
+//   let news = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}news/main?lan=${locale}`);
+//   let tariffs = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}tariffs?lan=${locale}`);
+
+//   return {
+//     props: {
+//      news:news.data,
+//      tariffs:tariffs.data
+//     },
+//   }
+
+// }
+
 
 export default connect(mapStateToProp, mapDispatchToProp)(memo(Home))
 

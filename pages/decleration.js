@@ -1,5 +1,5 @@
 import axios from 'axios';
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { memo, useState } from 'react';
 import 'react-day-picker/lib/style.css';
 import { useForm } from "react-hook-form";
@@ -13,6 +13,7 @@ import FromGroup from "../components/form-group/form-group";
 import Input from "../components/input/input";
 import Main from '../components/main/main';
 import Page from "../components/page/page";
+import Redirect from "../components/redirect/redirect";
 import Selectbox from "../components/selectbox/selectbox";
 
 const telData = [
@@ -34,10 +35,7 @@ const telData = [
 function Decleration(props) {
 
   if(!props.entry.isLoged){
-    router.push('/register');
-    return (
-        <div style={{height:'100vh'}}></div>
-    )
+    return <Redirect/>
   }
 
   const [checkSerial, setCheckSerial] = useState('AA');
@@ -79,7 +77,7 @@ function Decleration(props) {
          title:res.message,
          icon:'success',
        })
-     }).then(err => {
+     }).catch(err => {
       for(let key in err.response.data.errors){
         setError(key,{message: err.response.data.errors[key].join('\n')})
       }
