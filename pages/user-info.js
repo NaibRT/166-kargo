@@ -104,7 +104,7 @@ function UserInfo(props) {
 
 
     return (
-        <Page className='user-profile-page bg-bg pt-lg'>
+        <Page className='user-profile-page bg-bg pt-lg pb-lg'>
             <Aside className='mr-sm'>
               <AsideMenu/>
             </Aside>

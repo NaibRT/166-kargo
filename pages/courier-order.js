@@ -184,7 +184,7 @@ function CourierOrder(props) {
   }, [])
 
   return (
-    <Page className='bg-bg pt-sm'>
+    <Page className='bg-bg pt-lg pb-lg'>
       <Aside>
         <AsideMenu />
       </Aside>

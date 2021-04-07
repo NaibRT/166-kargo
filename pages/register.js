@@ -15,12 +15,13 @@ import { UserRegister } from "../redux/entry/entryActions"
 
 
 const telData = [
-  {id:'+994',name:'+994'}
+  {id:'+994',name:'+994'},
  ]
 
 function Register(props) {
 
   useEffect(() => {
+    clearErrors();
     for(let key in props.Entry.errorMessages.errors){
       setError(key,{message: props.Entry.errorMessages.errors[key].join('\n')})
     }
@@ -56,7 +57,7 @@ function Register(props) {
       <Card className='bg-white br-sm mr-sm p-sm w-50'>
        <Card.Header text='Qeydiyyat' endElelment={
        <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-         <h3 className='cardHeaderText pr-xs'>Korporativ</h3>
+         <h3 className='cardHeaderText pr-xs' style={{fontSize:'1.5rem'}}>Korporativ</h3>
          <Switch value={isKorporative} onClick={(e)=>{
           setisKorporative(e.target.checked)
        }}/></div>}/>

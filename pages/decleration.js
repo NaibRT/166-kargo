@@ -77,7 +77,7 @@ function Decleration(props) {
          title:res.message,
          icon:'success',
        })
-     }).then(err => {
+     }).catch(err => {
       for(let key in err.response.data.errors){
         setError(key,{message: err.response.data.errors[key].join('\n')})
       }

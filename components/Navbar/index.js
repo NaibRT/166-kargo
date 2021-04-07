@@ -83,7 +83,11 @@ const Navbar = (props) => {
 
                                         :
 
-                                        <li className='profile-container'>
+                                        <li className='profile-container' style={{display:'flex',alignItems:'center'}}>
+                                            <span className='mr-xs'>
+                                                {props.entry.user.user.firstname}
+                                                {props.entry.user.user.lastname} 
+                                            </span>
                                             <Link href=''>
                                                 <img
                                                     className='profile-img'

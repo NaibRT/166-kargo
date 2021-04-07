@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import ReactHtmlParser from "react-html-parser";
-import { connect } from "react-redux";
 import { useIntl } from 'react-intl';
+import { connect } from "react-redux";
 import Card from '../components/card/card';
 import Page from '../components/page/page';
 
@@ -10,8 +10,8 @@ function About(props) {
  
  return (
    
-  <Page>
-   <div className='about-page'>
+  <Page className='bg-bg'>
+   <div className='about-page bg-white mt-lg mb-lg'>
     <Card>
       <Card.Body style={{width:'100%'}}>
       
