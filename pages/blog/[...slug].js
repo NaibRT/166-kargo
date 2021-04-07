@@ -19,7 +19,7 @@ function PostInfo(props) {
           <Card className='p-sm'>
             <Card.Body className='p-none'>
               <div className="pip-img">
-                <img src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${props.currentNews.image}`}/>
+                <img src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${props.currentNews.image}`} className='br-sm'/>
                 <div className='pip-date'><span>{props.currentNews.created_at}</span></div>
               </div>
               <div className='pip-info'>

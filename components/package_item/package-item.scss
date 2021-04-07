@@ -52,3 +52,44 @@
       }
     }
 }
+.package__btns{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer__pck{
+  display:flex;
+  justify-content:space-between
+}
+.btn__fkl{
+display: none;
+}
+@media(max-width:990px){
+  .chng__bodystyle{
+    width:100%  !important;
+    margin-bottom: 20px;
+  }
+  .mgm_ss{
+    margin:0 15px
+  }
+  .bg-c{
+    background-color:#f6f6f6 !important;
+  }
+  .desk{
+    display: none !important
+  }
+  .footer__pck{
+    display: block;
+    .btn__fkl{
+      display: flex !important;
+      justify-content: space-between;
+      }
+  }
+  .package__btns{
+    display:block
+  }
+.package-item{
+width:100% !important;
+}
+ 
+}

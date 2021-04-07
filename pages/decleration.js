@@ -79,7 +79,7 @@ function Decleration(props) {
          title:res.message,
          icon:'success',
        })
-     }).then(err => {
+     }).catch(err => {
       for(let key in err.response.data.errors){
         setError(key,{message: err.response.data.errors[key].join('\n')})
       }
@@ -98,7 +98,7 @@ function Decleration(props) {
           <Card.Header text='Yeni Bəyənnamə'/>
           <form onSubmit={handleSubmit(submit)}>
           <Card.Body className='bg-bg'>
-            <div style={{display:'flex',flexWrap:'wrap'}}>
+            <div className='declaration__flex'>
                 <FromGroup label='Ölkə seç' bodyClass='bg-white' className='w-50 pr-xs'
                  error={errors.country?.message}
                 >

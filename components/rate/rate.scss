@@ -49,12 +49,12 @@
 }
 @media(max-width:1200px){
   .rate{
-    width:155px;
+    width:100%;
   }
 }
 @media(max-width:990px){
   .rate{
-    width:300px;
+    width:100%;
     .img-2{
       margin-right:0 !important
     }
@@ -71,7 +71,7 @@
 }
 @media screen and (max-width:600px)and(min-width:442px){
   .rate{
-    width:390px;
+    width:100%;
     .img{
       margin-right: 50px !important;
     }

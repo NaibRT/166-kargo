@@ -11,7 +11,7 @@ function Blog(props) {
     <Page >
      <div className='blog-page-container'>
    <main className='bg-white br-lg' >
-     <Card className='p-lg'>
+     <Card className='p-md'>
        <Card.Header text={props.news[0].title}/>
          <Card.Body className='br-sm' style={{padding:0}}>
           <Link href={`/blog/${props.news[0].slug}`}>
@@ -21,7 +21,7 @@ function Blog(props) {
           </Link>
          </Card.Body>
      </Card>
-     <Card className='p-lg' style={{paddingTop:0}}>
+     <Card className='p-sm' style={{paddingTop:0}}>
        <Card.Header text='Digər yazılar'/>
        <Card.Body className='blog-post-container' style={{padding:0}}>
          {

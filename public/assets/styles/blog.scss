@@ -37,3 +37,39 @@
    }
  }
 }
+@media(max-width:750px){
+  .blog-page-container{
+    flex-direction:column !important;
+    aside{
+      width: 100% !important;
+      margin-top: 20px  !important;
+    }
+    main{
+      width:100% !important;
+      margin-right:0 !important;
+      .card-body{
+        img{
+          height: 183px !important;
+        }
+      }
+      .post-item {
+        width:45% !important;
+        margin-left: 10px !important;
+        .post-item-info{
+          small, p{
+            display:none
+          }
+        }
+        img{
+          height:100px !important;
+        }
+       
+      }
+    }
+
+    .p-lg{
+      padding:12px !important;
+    }
+  }
+ 
+}

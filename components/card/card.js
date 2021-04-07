@@ -8,8 +8,8 @@ export default function Card({children,className,style}){
  )
 }
 
-Card.Header = ({startElement,endElelment,text, style}) => (
- <div className={'cardHeader'} style={style}>
+Card.Header = ({startElement,endElelment,text, style, className}) => (
+ <div className={`cardHeader ${className}`} style={style}>
    {startElement}
    <h3 className={'cardHeaderText'}>{text}</h3>
    {endElelment}

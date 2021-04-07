@@ -6,3 +6,18 @@
         align-items: flex-start;
     }
 }
+
+@media(max-width:800px){
+    .mobile{
+        display: none;
+    }
+    .register-page{
+        .w-50{
+            width:100% !important;
+        }
+        .mr-sm{
+            margin:0 !important;
+        }
+    }
+    
+}

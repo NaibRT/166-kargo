@@ -12,3 +12,15 @@
         font-size:$font-size__sm    
     }
 }
+.mobile__bt{
+    display: none !important;
+}
+@media(max-width:990px){
+    .flex__grow{
+        display:block !important
+    }
+    .mobile__bt{
+        display:flex !important;
+        justify-content: space-between;
+    }
+}

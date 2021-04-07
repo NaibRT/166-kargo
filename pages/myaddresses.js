@@ -7,6 +7,8 @@ import Card from '../components/card/card'
 import Page from '../components/page/page'
 import Aside from '../components/aside/aside'
 import Main from '../components/main/main'
+import ButtonComponent from '../components/button/index'
+import Link from 'next/link'
 
 function Test(props) {
 
@@ -44,8 +46,19 @@ function Test(props) {
                 </Aside>
                 <Main style={{background:'none'}}>
                 <div>
-
-                    <Card className='p-md bg-white br-lg' style={{ margin: '40px 0 40px 40px' }}>
+               <div className='mobile__bt'>
+               <Link href="/balance">
+               <a>
+              <ButtonComponent className='w-100' label='Balansı artır' startElement={<img className='mr-xs' src="/assets/icons/el2.svg"/>}/>
+               </a>
+              </Link>
+              <Link href="/new-order">
+            <a>
+           <ButtonComponent className='w-100' label='Sifariş et' startElement={<img className='mr-xs' src="/assets/icons/el.svg"/>} style={{marginBottom:'10px'}} />
+            </a>
+           </Link>
+               </div>
+                    <Card className='p-md bg-white br-lg r_lf_mg'  >
                         <Card.Header style={{ justifyContent: 'flex-start' }}
                             startElement={<img src={'/assets/icons/turkish.svg'} className='fl' />}
                             text='Türkiyə Ünvanı'
@@ -62,7 +75,7 @@ function Test(props) {
                         </Card.Body>
                     </Card>
 
-                    <Card className='p-md bg-white br-lg' style={{ margin: '40px 0 40px 40px' }}>
+                    <Card className='p-md bg-white br-lg r_lf_mg' >
                         <Card.Header style={{ justifyContent: 'flex-start' }}
                             startElement={<img src={'/assets/icons/usa.svg'} className='fl' />}
                             text='Amerika Ünvanı'

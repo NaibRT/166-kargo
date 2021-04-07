@@ -83,11 +83,11 @@ useLayoutEffect(()=> {
            <Aside className='mr-sm'>
              <AsideMenu/>
            </Aside> 
-           <Main>
-             <Card className='bg-bg pb-sm'>
+           <Main className='bg-c'>
+             <Card className='bg-bg pb-sm mgm_ss'>
                  <Card.Header text='Aktiv bağlamalarım'/>
                  <Card.Body className='p-none'>
-                     <div style={{display:'flex',flexWrap:'wrap'}}>
+                     <div className='packages__fr'>
                        {
                          packages.filter(x => x.status.id !== 6).map(p => (
                             <PackageItem item={p}/>
@@ -95,7 +95,7 @@ useLayoutEffect(()=> {
                        }
                      </div>
                  </Card.Body>
-                 <Card.Footer style={{justifyContent:'space-between'}}>
+                 <div className='footer__pck'>
                    <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
                        <smal>2 bağlama seçilib</smal>
                        <div style={{display:'flex',justifyContent:'space-between'}}>
@@ -106,20 +106,26 @@ useLayoutEffect(()=> {
                            </div>
                        </div>
                    </div>
-                   <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-                        <FromGroup bodyClass='bg-white pl-xs' bodyStyle={{height:'44px',width:'200px'}} className='mr-xs'>
+                   <div className='package__btns'>
+                        <FromGroup bodyClass='bg-white pl-xs '  className='mr-xs chng__bodystyle'>
                             <Input placeholder='kodu əlavə et'/>
                             <ButtonComponent style={{padding: '0 10px'}} className='color-white bg-success' label='Təsdiqlə'/>
                         </FromGroup>
+                         
+                       <ButtonComponent style={{padding: '0 10px'}} className='color-white bg-success mr-xs desk' label='Kartla ödə' endElement={<span className='color-white pl-sm'>&#8594;</span>}/>
+                       <ButtonComponent style={{padding: '0 10px'}} className='desk' label='Balansla ödə' endElement={<span className='color-black mr-xs pl-sm '>&#8594;</span>}/>
+                       
+                        <div className='btn__fkl'>
                        <ButtonComponent style={{padding: '0 10px'}} className='color-white bg-success mr-xs' label='Kartla ödə' endElement={<span className='color-white pl-sm'>&#8594;</span>}/>
                        <ButtonComponent style={{padding: '0 10px'}} label='Balansla ödə' endElement={<span className='color-black mr-xs pl-sm'>&#8594;</span>}/>
+                       </div>
                    </div>
-                 </Card.Footer>
+                 </div>
              </Card>
 
-             <Card className='p-sm'>
+             <Card className='p-sm bg-white'>
                  <Card.Header text='Sifariş tarixçəsi'/>
-                 <Card.Body className='p-none'>
+                 <Card.Body className='p-none overflow__package '>
                    <Tabel
                     th={dataHead}
                     data={data}

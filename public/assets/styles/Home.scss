@@ -103,7 +103,7 @@
        .for-mobile{
          display: none;
        }
-      height: 100%;
+      // height: 100%;
        .card-body{
         height: 240px;
         .rate-container{
@@ -164,6 +164,7 @@
     display:none
   }
   .tariff-section{
+    display:block !important;
     flex-wrap:wrap;
   }
 }

@@ -1,8 +1,8 @@
 import axios from 'axios'
 import Link from 'next/link'
-import router, { useRouter } from 'next/router'
 import React, { memo, useLayoutEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import router, { useRouter } from 'next/router'
 import AsideMenu from '../components/aside-menu'
 import Aside from '../components/aside/aside'
 import ButtonComponent from '../components/button'
@@ -159,11 +159,11 @@ function CourierOrder(props) {
         <AsideMenu />
       </Aside>
       <Main className='bg-bg'>
-        <Card className='p-sm bg-white'>
+        <Card className='p-sm bg-white coruier__cards'>
           <Card.Header text='Kuryer sifarişi' />
           <Card.Body className='p-none'>
             <p className='mb-lg'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <form style={{ display: 'flex', flexWrap: 'wrap' }}>
+            <form   className='courier__form'>
               <FromGroup label='Rayon seçin' className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
                 <Input type='text' />
               </FromGroup>
@@ -179,9 +179,9 @@ function CourierOrder(props) {
             </form>
             <Link href='/'><a style={{ color: 'darkblue', textDecoration: 'underline' }}>Xəritədən təyin et</a></Link>
           </Card.Body>
-          <Card className='p-none'>
+          <Card className='p-none coruier__cards'>
             <Card.Header text={<small style={{ fontSize: 'small' }}>Ödənilmiş bağlamalar</small>} />
-            <Card.Body className='p-none'>
+            <Card.Body className='p-none table__scroll'>
               <Tabel
                 th={dataHead}
                 data={data}
@@ -197,11 +197,11 @@ function CourierOrder(props) {
               />
             </Card.Body>
           </Card>
-          <Card.Footer style={{ justifyContent: 'flex-end' }}>
+          <Card.Footer  className='footer__courier' >
             <ButtonComponent className='w-25' label='Sifariş ver' />
           </Card.Footer>
         </Card>
-        <Card className='p-sm bg-white mt-sm'>
+        <Card className='p-sm bg-white mt-sm coruier__cards'>
           <Card.Header text='Sifariş tarixçəsi' />
           <Card.Body className='p-none'>
             <div className='orders-container'>
@@ -215,7 +215,7 @@ function CourierOrder(props) {
                   <details className='orders-item-details' key={item.id}>
                     <summary className='order-item-summary'>
                       <div className='order-item-summary-head' >
-                        <span style={{textAlign:'center'}}>No </span>
+                        <span style={{textAlign:'center'}}>№</span>
                         <span style={{textAlign:'center'}}>Tarix</span>
                         <span style={{textAlign:'center'}}>Say</span>
                         <span style={{textAlign:'center'}}>Status</span>
@@ -228,8 +228,7 @@ function CourierOrder(props) {
 
                       </td>
                       }
-                     
-
+      
                     }} />
                   </details>
                 ))

@@ -1,6 +1,9 @@
 @import './scss/variables';
 .flex__item{
-    display:flex
+    display:flex;
+    justify-content: space-between;
+    flex-wrap:wrap
+
 }
 .color-yellow{
     color:$color__yellow

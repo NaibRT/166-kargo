@@ -3,3 +3,8 @@
 .aside{
     flex-basis: 26%;
 }
+@media(max-width:990px){
+    .aside{
+        display:none
+    }
+}

@@ -21,3 +21,14 @@
 
     }
 }
+.mb-size{
+    display:none
+}
+@media(max-width:990px){
+    .mb-size{
+        display: block;
+    }
+    .desktop-size {
+        display: none ;
+    }
+}

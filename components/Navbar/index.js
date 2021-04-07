@@ -151,7 +151,7 @@ const Navbar = (props) => {
 
             {/*MOBILE MENU*/}
             <header className="mobile-header">
-                <Page style={{ diplay: 'block' }}>
+                <Page style={{ display: 'block !important' }}>
                     <div className='nav flex'>
 
                         <div ref={node}>
