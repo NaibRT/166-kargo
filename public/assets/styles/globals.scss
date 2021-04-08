@@ -240,7 +240,7 @@ ul{
   margin-bottom: calc(#{$fluid-size} / 2);
 }
 .pack-active{
-  // border: 1px solid transparent !important;
+ 
   border-bottom-left-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
   border-bottom: 2px solid $color__success !important;
