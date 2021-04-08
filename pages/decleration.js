@@ -64,8 +64,6 @@ function Decleration(props) {
 
      newFormData.append('_method','POST')
 
-     console.log(newFormData);
-
      axios.post(`${process.env.NEXT_PUBLIC_API_URL}batches?lan=${locale}`,newFormData,{
        headers: {
         'Content-Type':'multipart/form-data',

@@ -71,7 +71,6 @@ export async function getStaticPaths() {
     }
   })
 
-  console.log(paths)
 
   return {
     paths:paths,
@@ -85,7 +84,6 @@ export async function getStaticPaths() {
 export async function getStaticProps({params,locale}) {
   let responce = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}news`);
   let res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}news/${params.slug[0]}?lan=${locale}`);
-  console.log('res',res.data)
   return {
     props: {
       news: responce.data,

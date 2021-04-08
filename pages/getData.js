@@ -55,16 +55,6 @@ function GetData(props) {
  )
 }
 
-// export async function getStaticProps(context){
-//   console.log('context',context)
-//  console.log('worked')
-//  await store.dispatch(getDataAction('https://jsonplaceholder.typicode.com/posts',{}));
-
-//   return { props: {}}
-// }
-
-// GetData.getInitialProps = async ({ store }) => await store.dispatch(getDataAction('https://jsonplaceholder.typicode.com/posts',{}));
-
 const mapStateToProp = state => ({
   SpotifyReducer: state.SpotifyReducer
 });

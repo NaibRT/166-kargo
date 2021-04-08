@@ -24,7 +24,6 @@ function Lends(props) {
     return <Redirect/>
   }
 
-console.log('lend',props)
 const [lend, setLend]= useState([]);
 const {locale} = useRouter();
 

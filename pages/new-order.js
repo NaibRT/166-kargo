@@ -96,7 +96,6 @@ function NewOrder(props) {
   const addFastPrize = (isfast, price) => {
     let newCards = cards;
     newCards.forEach(x => isfast ? x.total += price : x.total -= price);
-    console.log(newCards)
     // setCards([...newCards])
   }
 
@@ -123,7 +122,6 @@ function NewOrder(props) {
           'Authorization': `Bearer ${props.entry.user.accessToken}`
         }
       }).then(res => {
-        console.log(res.data)
         Swal.fire({
           success: 'success',
           text: 'emeliyyat ugurlu oldu',

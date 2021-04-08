@@ -60,7 +60,6 @@ const tabButtonClick = (ev) => {
   tabRefs.current.forEach(x => x.classList.remove('pack-active'));
   ev.target.classList.add('pack-active');
   let id = ev.target.getAttribute('data-id');
-  console.log(id)
   if(id!=0){
     let newPackages = packages.filter(x => x.status.id == id);
     setFilteredPacks([...newPackages])

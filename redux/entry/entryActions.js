@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 import { login, logout, register, updateUser } from "./actions";
 
 export const Login = (url,data,headers = {}) => dispatch => {
-    console.log(url)
     axios.post(`${process.env.NEXT_PUBLIC_API_URL}${url}`,data,{
         headers:headers,
       })
@@ -19,7 +18,6 @@ export const Login = (url,data,headers = {}) => dispatch => {
 
 
 export const UserRegister = (url,data,headers = {}) => dispatch => {
-  console.log(url)
   axios.post(`${process.env.NEXT_PUBLIC_API_URL}${url}`,data,{
       headers:headers,
     })

@@ -53,18 +53,18 @@ function Contact() {
                <form onSubmit={handleSubmit(submit)}>
                    <FromGroup  className=' w-100 mb-xs' bodyClass='border-menu'
                    error={errors.fullname?.message}>
-                      <Input className='p-xs' placeholder='Adiniz' name='fullname' type='text'
+                      <Input className='p-xs' placeholder={f({id:"name"})} name='fullname' type='text'
                          Ref={register({
-                           required:{value:true,message:'name is required'}
+                           required:{value:true,message:f({id:'name-requir'})}
                          })}
                        />
                    </FromGroup>
                    <FromGroup  className=' w-100 mb-xs' bodyClass='border-menu'
                    error={errors.contact?.message}
                    >
-                      <Input className='p-xs' placeholder='E-poçt' name='contact' type='email'
+                      <Input className='p-xs' placeholder={f({id:'email'})} name='contact' type='email'
                          Ref={register({
-                          required:{value:true, message:'email is required'},
+                          required:{value:true, message:f({id:'email-requir'})},
                           pattern:{value:/^(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/,message:'email only takes letters'}
                         })} 
                        />
@@ -72,9 +72,9 @@ function Contact() {
                    <FromGroup  className=' w-100 mb-xs' bodyStyle={{height:'150px',verticalAlign:'text-top'}}
                    error={errors.message?.message}
                    >
-                      <textarea className='p-xs border-menu w-100 h-100 br-xxs' style={{outline:'none',}} placeholder='Mesajiniz' name='message'
+                      <textarea className='p-xs border-menu w-100 h-100 br-xxs' style={{outline:'none',}} placeholder={f({id:"message"})} name='message'
                         ref={register({
-                          required:{value:true,message:'email is required'}    
+                          required:{value:true,message:f({id:'message-requir'})}    
                         })} 
                       />
                    </FromGroup>
@@ -83,7 +83,7 @@ function Contact() {
                           <div><span className='color-err'>{value}</span></div>
                         ))
                     }
-                   <ButtonComponent type='submit' className='w-100 mt-xs' label='gonder'/>
+                   <ButtonComponent type='submit' className='w-100 mt-xs' label={f({id:'send'})}/>
                </form>
              </div>
 
@@ -108,7 +108,7 @@ function Contact() {
              </address>
              </div>
 
-             <h3 className='mb-sm'>Əlaqə formu</h3>
+             <h3 className='mb-sm'>{f({id:'contact-form'})}</h3>
                <p className='mb-sm'>Asagidaki formaya elaqe melumatlarinizi ve mesajinii daxil edin, biz size geri donus edek.</p>
              
              <div className='contact-page-form bg-white' style={{padding:'25px 25px'}}>

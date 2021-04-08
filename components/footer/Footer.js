@@ -43,7 +43,6 @@ const contactmob = (datamob) => (
 )
 
 function Footer(props) {
-  console.log(props)
   return (
 
     <footer className={'footer mt-lg'}>

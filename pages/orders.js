@@ -68,7 +68,6 @@ function Orders(props) {
                 }
             }).then(res => {
              setOrders(res.data)
-             console.log(res)
          })
     },[])
 

@@ -42,7 +42,6 @@ const Navbar = (props) => {
     }
 
     const submit = (data) => {
-        console.log(data)
         props.Login('auth/login', JSON.stringify(data), { 'content-type': 'application/json' })
     }
     const { locale, locales, basePath, asPath } = useRouter();

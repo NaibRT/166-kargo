@@ -95,7 +95,6 @@ const data = [
   },[])
 
   const submit = (data) => {
-    console.log(data)
     props.Login('auth/login',JSON.stringify(data),{'content-type':'application/json'})
   }
   
@@ -345,7 +344,6 @@ export async function getServerSideProps({locale,req,res}) {
   
   let news = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}news/main?lan=${locale}`);
   let tariffs = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}tariffs?lan=${locale}`);
-  console.log(tariffs.data)
   return {
     props: {
      news:news.data,

@@ -48,7 +48,6 @@ function Register(props) {
      phone:phone.current + data.phone,
      birthday: data.birthday.split('-').reverse().join('-')
    }
-   console.log(newData)
    props.UserRegister('auth/register',newData,{'content-type':'application/json'});
  }
 
