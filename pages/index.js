@@ -125,21 +125,21 @@ const data = [
                  })} type='email' name='email'/>
                </FromGroup>
                <FromGroup 
-                 label='Sifre' 
+                 label={f({id:'password'})} 
                  bodyClass='bg-bg w-100'
                  error={errors.password?.message}
                  className='mb-lg'
                >
                  <Input
                  Ref={register({
-                  required:{value:true,message:'password is not valid'},
+                  required:{value:true,message:f({id:'pass-requir'})},
                   // pattern:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
                 })}
                   type='password' name='password'/>
                </FromGroup>
-             <ButtonComponent type='submit' className='w-100 mt-xs mb-sm' label='Daxil ol'/>
+             <ButtonComponent type='submit' className='w-100 mt-xs mb-sm' label={f({id:'login'})}/>
              </form>
-             <div className='mt-xs'><span>Hesabınız yoxdur?</span><Link href='/register'><span className='color-yellow' style={{cursor:'pointer'}}>Qeydiyyatdan keçin</span></Link></div>
+             <div className='mt-xs'><span>{f({id:'no-account'})}</span><Link href='/register'><span className='color-yellow' style={{cursor:'pointer'}}>{f({id:'signup'})}</span></Link></div>
              </Card.Body>
            </Card>
            }
@@ -148,41 +148,41 @@ const data = [
            <Page>
         <section className='tariff-section'>
           <Card className='mr-sm sm-mob'>
-            <Card.Header text={f({ id: 'tariff' })} />
+            <Card.Header text={f({id:'tariffs'})} />
             <Card.Body className='bg-bg p-sm br-sm d-n'>
               <div className='bg-bg rate-container' style={{ display: 'flex',justifyContent:'space-between'}}>
                 {
-                  <Rate data={props?.tariffs.filter(x => x.country === 'TÜRKİYƏ' && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/turkish.svg'} headerText='TÜRKİYƏ' /> 
+                  <Rate data={props.tariffs.filter(x => x.country_id === 15 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/turkish.svg'} headerText={f({id:'turkey'})} /> 
                 }
                 {
-                  <Rate data={props?.tariffs.filter(x => x.country === 'TÜRKİYƏ' && x.is_liquid===1).splice(0,4)} icon={'/assets/icons/turkish.svg'} headerText='Türkiyə (Maye)' />
+                  <Rate data={props.tariffs.filter(x => x.country_id === 15 && x.is_liquid===1).splice(0,4)} icon={'/assets/icons/turkish.svg'} headerText={f({id:'isluqidturkey'})} />
                 }
                 {
-                  <Rate data={props?.tariffs.filter(x => x.country === 'ABŞ' && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/usa.svg'} headerText='ABŞ' style={{marginRight:0}} />
+                  <Rate data={props.tariffs.filter(x => x.country === 16 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/usa.svg'} headerText={f({id:'usa'})} style={{marginRight:0}} />
                 } 
               </div>
             </Card.Body>
             <Card.Body className='bg-bg p-xs br-sm for-mobile'>
                   <Card.Header></Card.Header>
-                 <MobileRate data={data} text='Çəki' />
+                 <MobileRate data={data} text={f({id:'weight'})} />
             </Card.Body>
           </Card>
           <Card>
-            <Card.Header text={f({ id: 'calculator' })}/>
+            <Card.Header text={f({id:'calculator'})}/>
             <Card.Body className='bg-bg p-sm br-sm'>
               <form className='calculator-form' style={{display:'flex',flexWrap:'wrap'}}>
-              <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label='Olke sec'>
+              <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label={f({id:'choosectry'})}>
                   <Selectbox className='w-100 m-none' data={[
-                    {id:'TÜRKİYƏ',name:'TÜRKİYƏ'},
-                    {id:'ABŞ',name:'ABŞ'},
-                    {id:'Ukrayna',name:'Ukrayna'}
+                    {id:'TÜRKİYƏ',name:f({id:'turkey'})},
+                    {id:'ABŞ',name:f({id:'usa'})},
+                    {id:'Ukrayna',name:f({id:'ukraina'})}
                   ]}
                      name='country'
                      value={calculator?.country}
                      onChange={calculatorInputHandler}
                   />
                 </FromGroup>
-              <FromGroup className='w-50 pr-xs' bodyClass=' h-50' label='Maye'>
+              <FromGroup className='w-50 pr-xs' bodyClass=' h-50' label={f({id:'liquid'})}>
 
                   <Switch 
                   name='isliquid'
@@ -201,28 +201,28 @@ const data = [
                   value={calculator?.isliquid}
                   />
               </FromGroup>
-                <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label='Ceki (kq)'>
+                <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label={f({id:'weight'})}>
                   <Input type='text'
                      name='weight'
                      value={calculator?.weight}
                      onChange={calculatorInputHandler}
                   />
                 </FromGroup>
-                <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label='Uzunluq (sm)'>
+                <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label={f({id:'length'})}>
                   <Input type='text'
                     name='length'
                     value={calculator?.length}
                     onChange={calculatorInputHandler}
                   />
                 </FromGroup>
-                <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label='EN (sm)'>
+                <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label={f({id:'width'})}>
                   <Input type='text'
                     name='width'
                     value={calculator?.width}
                     onChange={calculatorInputHandler}
                   />
                 </FromGroup>
-                <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label='Hundurluk (sm)'>
+                <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label={f({id:'height'})}>
                   
                   <Input type='text'
                      name='height'
@@ -235,12 +235,12 @@ const data = [
               <Card.Footer className='mt-xs'>
                 <>
                 <div className='w-50 pr-xs' style={{display:'flex',flexDirection:'column'}}>
-                  <span className='w-100' style={{fontSize:'11px'}}>Catdirilma qiymeti</span>
+                  <span className='w-100' style={{fontSize:'11px'}}>{f({id:'deliveryprice'})}</span>
                   <strong style={{textAlign:'center',fontSize:'14px'}}>{calculator.total.toFixed(2)}$</strong>
                 </div>
                 <ButtonComponent 
                   className='w-50' 
-                  label='Hesabla' 
+                  label={f({id:'calc'})}
                   onClick={calculatePrize}
                 />
                 </>
@@ -286,7 +286,7 @@ const data = [
 
         <section className='fluid_bottom' >
           <Card>
-            <Card.Header text={f({ id: 'lastnews' })} endElelment={<Link href='/blog'>Hamsını gör &rsaquo;</Link>} />
+            <Card.Header text={f({ id: 'lastnews' })} endElelment={<Link href='/blog'><>{f({id:'seeall'})} &rsaquo;</></Link>} />
             <Card.Body style={{ padding: 0, display: 'flex', flexWrap:'wrap'}}>
               {
                 props.news.slice(0,3).map((x,i,arr) =>{
@@ -299,7 +299,7 @@ const data = [
 
         <section className='fluid_bottom w-100'>
           <Card>
-            <Card.Header text={f({ id: 'shops' })} endElelment={<Link href=''>Hamsını gör &rsaquo;</Link>} />
+            <Card.Header text={f({id:"stores"})} endElelment={<Link href=''><>{f({id:'seeall'})} &rsaquo;</></Link>} />
             <Card.Body>
             <div className='flex__item'>
               <Link href='https://www.trendyol.com/'>
@@ -345,7 +345,7 @@ export async function getServerSideProps({locale,req,res}) {
   
   let news = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}news/main?lan=${locale}`);
   let tariffs = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}tariffs?lan=${locale}`);
-
+  console.log(tariffs.data)
   return {
     props: {
      news:news.data,
