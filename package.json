@@ -10,7 +10,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p $PORT",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "postinstall": "npm rebuild node-sass"
   },
   "dependencies": {
     "axios": "^0.21.1",
