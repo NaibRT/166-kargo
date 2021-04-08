@@ -33,7 +33,6 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-persist": "5.10.0",
     "redux-thunk": "^2.3.0",
-    "sharp": "^0.26.3",
     "styled-components": "^5.2.1",
     "sweetalert2": "^10.15.6",
     "swiper": "^6.5.0"
