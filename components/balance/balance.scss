@@ -6,6 +6,7 @@
     display:flex;
     justify-content:space-between;
     width:100%;
+    flex-wrap:wrap;
   
 
     .card{
@@ -32,4 +33,15 @@
         height:48px;
         width:100%
     }
+}
+
+@media(max-width:990px){
+    .mg-rr{
+        margin:20px !important
+        }
+        .card__flex{
+            .card{
+                margin:20px !important
+            }
+        }
 }

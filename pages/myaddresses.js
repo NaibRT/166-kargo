@@ -7,6 +7,8 @@ import AsideMenu from '../components/aside-menu'
 import Aside from '../components/aside/aside'
 import Card from '../components/card/card'
 import Main from '../components/main/main'
+import ButtonComponent from '../components/button/index'
+import Link from 'next/link'
 import Page from '../components/page/page'
 import Redirect from "../components/redirect/redirect"
 import { useIntl } from 'react-intl';
@@ -53,9 +55,22 @@ function Test(props) {
                 </Aside>
                 <Main style={{background:'none'}}>
                 <div>
+               <div className='mobile__bt'>
+               <Link href="/balance">
+               <a>
+              <ButtonComponent style={{padding:'0 25px'}} className='w-100' label='Balansı artır' startElement={<img className='mr-xs' src="/assets/icons/el2.svg"/>}/>
+               </a>
+              </Link>
+              <Link href="/new-order">
+            <a>
+           <ButtonComponent style={{padding:'0 35px'}} className='w-100' label='Sifariş et' startElement={<img className='mr-xs' src="/assets/icons/el.svg"/>}  />
+            </a>
+           </Link>
+               </div>
+                    
                     {
                       addresses.isLoaded && addresses.data.map(a => (
-                            <Card className='p-md bg-white br-lg' style={{ margin: '40px 0 40px 40px' }}>
+                            <Card className='p-md bg-white br-lg r_lf_mg' >
                         <Card.Header style={{ justifyContent: 'flex-start' }}
                             startElement={<img src={'/assets/icons/turkish.svg'} className='fl' />}
                             text={`${a.name} ${f({id:'address'})}`}

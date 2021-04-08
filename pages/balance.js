@@ -59,7 +59,7 @@ function Balance(props) {
                     <small style={{ display: 'block', color: '#D60000', marginBottom:'10px'  }}>{f({ id: 'refundable' })}</small>
                     <Card className="bg-white p-md br-lg">
                       <Card.Header text='Tranzakisyalar'/>
-                      <Card.Body>
+                      <Card.Body className='f-mobile'>
                       <Tabel
                         th={[
                           'Tarix',

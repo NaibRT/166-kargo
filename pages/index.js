@@ -58,8 +58,8 @@ const data = [
   const calculatePrize = () => {
      let total;
       let datas =  props.tariffs.filter(x =>
-                                         (x.country.toUpperCase()) == (calculator.country.toUpperCase())
-                                         && x.is_liquid ==  calculator.isliquid
+                                     (x.country.toUpperCase()) == (calculator.country.toUpperCase())
+                                        && x.is_liquid ==  calculator.isliquid
                                         && (x.weight_min <= parseFloat(calculator.weight) && x.weight_max >= parseFloat(calculator.weight))
                                       );
       if(datas.length > 0){
@@ -149,7 +149,7 @@ const data = [
         <section className='tariff-section'>
           <Card className='mr-sm sm-mob'>
             <Card.Header text={f({id:'tariffs'})} />
-            <Card.Body className='bg-bg p-sm br-sm'>
+            <Card.Body className='bg-bg p-sm br-sm d-n'>
               <div className='bg-bg rate-container' style={{ display: 'flex',justifyContent:'space-between'}}>
                 {
                   <Rate data={props.tariffs.filter(x => x.country_id === 15 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/turkish.svg'} headerText={f({id:'turkey'})} /> 
@@ -286,8 +286,8 @@ const data = [
 
         <section className='fluid_bottom' >
           <Card>
-            <Card.Header text={f({id:"lastnews"})} endElelment={<Link href='/blog'><>{f({id:'seeall'})} &rsaquo;</></Link>} />
-            <Card.Body style={{ padding: 0, display: 'flex'}}>
+            <Card.Header text={f({ id: 'lastnews' })} endElelment={<Link href='/blog'><>{f({id:'seeall'})} &rsaquo;</></Link>} />
+            <Card.Body style={{ padding: 0, display: 'flex', flexWrap:'wrap'}}>
               {
                 props.news.slice(0,3).map((x,i,arr) =>{
                   return <NewsItem key={x.id} item={x} style={i==(arr.length-1)?{margin:0}:{}}/>
@@ -324,13 +324,7 @@ const data = [
             </Card.Body>
           </Card>
 
-          {/* <div >
-            <div className='flex__item'>
-              <p className='title mg__bottom2'>{f({ id: 'shops' })}</p>
-              <p className='title__sm mg__bottom2'>Hamısını gör &rsaquo;</p>
-            </div>
-
-          </div> */}
+        
         </section>
         </Page>
         </main>

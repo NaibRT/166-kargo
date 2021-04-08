@@ -14,7 +14,7 @@ function Blog(props) {
     <Page >
      <div className='blog-page-container'>
    <main className='bg-white br-lg' >
-     <Card className='p-lg'>
+     <Card className='p-md'>
        <Card.Header text={props.news[0].title}/>
          <Card.Body className='br-sm' style={{padding:0}}>
           <Link href={`/blog/${props.news[0].slug}`}>

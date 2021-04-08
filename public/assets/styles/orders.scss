@@ -1,6 +1,7 @@
 @import './scss/variables';
 
 .orders-container{
+  height:auto;
     .orders-container-head{
         display:flex;
         flex-direction:row;
@@ -39,3 +40,11 @@
 
 }
 
+@media(max-width:600px){
+  .orders-container{
+    overflow-x:scroll
+  }
+  .orders-container-head{
+    overflow:scroll
+  }
+}

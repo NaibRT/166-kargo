@@ -62,12 +62,16 @@ useLayoutEffect(()=>{
                     }}
                      />
                    </Card.Body>
-                   <Card.Footer style={{justifyContent:'space-between',alignItems:'center'}}>
-                       <h6 className='ml-xs'>Sizin Borcunuz 3 TRY təşkil edir</h6>
-                     <ButtonComponent style={{width:'20%'}} label='Borcu ödə'/>
+                   <Card.Footer className='footer__card'>
+                       <h6 className='ml-xs mt-xs'>Sizin Borcunuz 3 TRY təşkil edir</h6>
+                     <ButtonComponent className='size_btn' label='Borcu ödə'/>
                    </Card.Footer>
                </Card>
             </Main>
+            <Card.Footer className='footer__cart'>
+            <h6 className='ml-xs mb-xs'>Sizin Borcunuz 3 TRY təşkil edir</h6>
+          <ButtonComponent className='size_btn_m' label='Borcu ödə'/>
+        </Card.Footer>
         </Page>
     )
 }

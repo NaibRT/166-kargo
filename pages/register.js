@@ -77,6 +77,7 @@ function Register(props) {
          </FromGroup>
          <FromGroup label={f({id:'surname'})} bodyClass='bg-bg p-xs' className='w-50 pr-xs mb-xs'
            error={errors.lastname?.message}
+           
          >
           <Input type='text' name='lastname'
              Ref={register({
@@ -221,7 +222,7 @@ function Register(props) {
         </Card.Footer>
        </Card.Body>
       </Card>
-      <Card className='w-50'>
+      <Card className='w-50  mobile'>
        <Card.Body className='w-100 h-100 p-none'>
          <p className='pb-sm'>{f({id:'register-hard'})}</p>
          {/* <video  poster='./assets/images/img1.png'>

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import {useForm} from 'react-hook-form'
 import { useRouter } from 'next/router';
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -32,7 +33,7 @@ const useOnClickOutside = (ref, handler) => {
 const Navbar = (props) => {
     const [open, setOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-    
+
     const node = useRef();
     useOnClickOutside(node, () => setOpen(false));
 
@@ -44,15 +45,15 @@ const Navbar = (props) => {
         console.log(data)
         props.Login('auth/login', JSON.stringify(data), { 'content-type': 'application/json' })
     }
-    const { locale, locales, basePath,asPath } = useRouter();
+    const { locale, locales, basePath, asPath } = useRouter();
     const router = useRouter();
     const { formatMessage: f } = useIntl();
 
     const handleLocaleChange = (e) => {
         const locale = e.target.value;
-        router.push(`${asPath}`,`${asPath}`, { locale })
+        router.push(`${asPath}`, `${asPath}`, { locale })
     }
-
+    const {register, handleSubmit, errors} = useForm()
     return (
         <>
             <header className='header deskmenu'>
@@ -67,6 +68,12 @@ const Navbar = (props) => {
                                 <li>
                                     <Link href='/search'><a>Bağlamam hardadır?</a></Link>
                                 </li>
+                                  <li>
+                                    <Link href='/carryconditions'><a>Daşınma şərtləri</a></Link>
+                                </li>
+                                <li>
+                                    <Link href='/orderscondition'><a>İstifadəçi şərtləri</a></Link>
+                                </li>
 
                             </ul>
                             <ul className='top__header-right'>
@@ -79,14 +86,16 @@ const Navbar = (props) => {
                                             <li>
                                                 <Link href='/'><a className='text__decoration'><Button style={{ padding: '10px' }} label={f({ id: 'signin' })} startElement={<img className='mr-xs' src={'/assets/icons/user.svg'} />} /></a></Link>
                                             </li>
+                                        
+
                                         </>
 
                                         :
 
-                                        <li className='profile-container' style={{display:'flex',alignItems:'center'}}>
+                                        <li className='profile-container' style={{ display: 'flex', alignItems: 'center' }}>
                                             <span className='mr-xs'>
                                                 {props.entry.user.user.firstname}
-                                                {props.entry.user.user.lastname} 
+                                                {props.entry.user.user.lastname}
                                             </span>
                                             <Link href=''>
                                                 <img
@@ -118,7 +127,9 @@ const Navbar = (props) => {
                             <li className='navbar__item'>
                                 <Link href='/about'><a>{f({ id: 'about' })}</a></Link>
                             </li>
-
+                            <li className='navbar__item'>
+                            <Link href='/tarif'><a>{f({ id: 'tariff' })}</a></Link>
+                        </li>
 
 
                             <li className='navbar__item'>
@@ -159,7 +170,7 @@ const Navbar = (props) => {
 
             {/*MOBILE MENU*/}
             <header className="mobile-header">
-                <Page style={{ diplay: 'block' }}>
+                <Page>
                     <div className='nav flex'>
 
                         <div ref={node}>
@@ -218,12 +229,12 @@ const Navbar = (props) => {
                                     <figure className='user__menu'>
                                         <img src={'/assets/icons/useri.svg'} />
                                         <div
-                                        className='profile-dropdown'
-                                    >
-                                        <Hovermenu />
-                                    </div>
+                                            className='profile-dropdown'
+                                        >
+                                            <Hovermenu />
+                                        </div>
                                     </figure>
-                                   
+
                                 </>
                         }
 

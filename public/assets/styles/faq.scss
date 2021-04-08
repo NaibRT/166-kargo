@@ -8,15 +8,22 @@
         .faq-head-img{
             margin-right: $margin_md;
         }
-        .faq-head-title{}
+       
     }
     .faq-body{
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-
+ 
+    }
+}
+@media(max-width:990px){
+    .faq-head-img{
+        width:130px !important;
+    }
+    .faq-body{
         .faq-item{
-            // width: 45%;
+            width: 100% !important;
         }
     }
 }

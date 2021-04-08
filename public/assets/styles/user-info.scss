@@ -8,3 +8,15 @@
 }
 
 }
+
+@media(max-width:800px){
+    .flex__column{
+        flex-direction:column !important;
+        .w-50{
+            width:100% !important
+        }
+    }
+    .mobile__color{
+        background:none !important
+    }
+}

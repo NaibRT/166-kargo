@@ -21,9 +21,9 @@ function RateItem({itemData = {}}){
 function MobileRate({data = [],icon,style,text}) {
  return (
   <div className='rate' style={style}>
-      <div className='rate-header' style={{justifyContent:'space-between'}}>
+      <div className='rate-header' style={{display:'flex',justifyContent:'space-between'}}>
         {text} 
-        <div style={{marginLeft:'40px'}}>
+        <div  style={{display:'flex'}}>
         <img src={'/assets/icons/turkish.svg'} className='img br-xs'/>
  
         

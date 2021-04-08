@@ -3,36 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 function MainSlider({className}) {
 
-//  useEffect(() => {
 
-//   const swiper = new Swiper('.swiper-container', {
-//    // Optional parameters
-
-//    direction: 'horizontal',
-//    // spaceBetween:'10'
-//    // If we need pagination
-//    pagination: {
-//      el: '.swiper-pagination',
-//      dynamicBullets: true,
-
-//    },
- 
-//    // Navigation arrows
-//    navigation: {
-//      nextEl: '.swiper-button-next',
-//      prevEl: '.swiper-button-prev',
-//    },
-//   // autoplay:{
-//   //    delay:1000
-//   // },
-//    // And if we need scrollbar
-//    scrollbar: {
-//      el: '.swiper-scrollbar',
-//      draggable:true,
-//      dragSize:10
-//    },
-//  });
-//  }, [])
 
    return(
     <Swiper

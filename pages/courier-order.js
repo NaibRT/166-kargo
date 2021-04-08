@@ -1,8 +1,8 @@
 import axios from 'axios'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import React, { memo, useLayoutEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import router, { useRouter } from 'next/router'
 import AsideMenu from '../components/aside-menu'
 import Aside from '../components/aside/aside'
 import ButtonComponent from '../components/button'
@@ -61,7 +61,8 @@ function CourierOrder(props) {
          paidBatches  : res[1].data
        })
    }).catch(err => console.log(err))
-  })
+  
+  }, [])
 
   return (
     <Page className='bg-bg pt-lg pb-lg'>
@@ -69,7 +70,7 @@ function CourierOrder(props) {
         <AsideMenu />
       </Aside>
       <Main className='bg-bg'>
-        <Card className='p-sm bg-white'>
+        <Card className='p-sm bg-white coruier__cards br-lg'>
           <form>
           <Card.Header text={f({id:'courier-order'})} />
           <Card.Body className='p-none'>
@@ -95,10 +96,9 @@ function CourierOrder(props) {
           </Card.Footer>
           </form>
           </Card>
-          
-          <Card className='p-none bg-white'>
+          <Card className='p-sm bg-white coruier__cards br-lg'>
             <Card.Header text={<small style={{ fontSize: 'small' }}>{f({id:'payed-packages'})}</small>} />
-            <Card.Body className='p-none'>
+            <Card.Body className='p-none table__scroll'>
               <Tabel
                 th={dataHead}
                 data={state.paidBatches.map(x => ({
@@ -115,7 +115,10 @@ function CourierOrder(props) {
               />
             </Card.Body>
           </Card>
-        <Card className='p-sm bg-white mt-sm'>
+          <Card.Footer  className='footer__courier' >
+            <ButtonComponent className='w-25' label='Sifariş ver' />
+          </Card.Footer>
+        <Card className='p-sm bg-white mt-sm coruier__cards br-lg'>
           <Card.Header text={f({id:'order-history'})} />
           <Card.Body className='p-none'>
             <div className='orders-container'>

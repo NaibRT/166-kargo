@@ -108,12 +108,12 @@ function UserInfo(props) {
             <Aside className='mr-sm'>
               <AsideMenu/>
             </Aside>
-         <Main>
+         <Main className='mobile__color'>
          <Card className='bg-white p-sm br-lg'>
-          <Card.Header text='Sexsi melumatlar'/>
+          <Card.Header text='Şəxsi melumatlar'/>
           <form onSubmit={uHandleSubmit(updateUserData)}>
           <Card.Body className='bg-bg'>
-            <div style={{display:'flex',flexWrap:'wrap'}}>
+            <div className='flex__column' style={{display:'flex',flexWrap:'wrap'}}>
                 <FromGroup label='Ad' bodyClass='bg-white' className='w-50 pr-xs'
                  error={uErrors.firstname?.message}
                 >

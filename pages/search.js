@@ -44,7 +44,7 @@ function Search() {
                   <div className=''>
                   <form 
                      onSubmit={handleSubmit(submit)}
-                     style={{display:'flex',alignItems:'center',width:'max-content'}}>
+                     style={{display:'flex',alignItems:'center',width:'max-content'}} className='search__ff'>
                       <FromGroup 
                         className='mr-xs'
                         bodyClass='border-subtitle' 
@@ -59,9 +59,9 @@ function Search() {
                       <Button 
                          type='submit'
                          label='Axtar' 
-                         className='pl-lg pr-lg pt-sm pb-sm'/>
+                         className='pl-lg pr-lg mt-xs mb-xs'/>
                  </form>
-                 <div style={{display:'flex',alignItems:'flex-end'}}><small style={{fontSize:'xx-small'}}>nümunə: 77498777656658</small></div>
+                 <div style={{display:'flex',alignItems:'flex-end'}}><small style={{fontSize:'xx-small',margin:'0 auto'}}>nümunə: 77498777656658</small></div>
                  </div>
                  {
                    results.isloaded === true ? <Tabel

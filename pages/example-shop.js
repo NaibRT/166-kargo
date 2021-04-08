@@ -13,7 +13,7 @@ export default function Shop() {
         <div>
             <Main className='bg-bg'>
                 <Page>
-                    <Card className="bg-white br-lg mt-md p-md">
+                    <Card className="bg-white br-lg mt-md p-md" style={{width:'100%'}}>
                         <div >
                         <h3 className='mb-md'>{f({id:'example-shop'})}</h3>
                             <Card.Body className='bg-bg mb-md br-sm'>

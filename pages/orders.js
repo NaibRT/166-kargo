@@ -82,7 +82,7 @@ function Orders(props) {
             <Card className='p-sm'>
                 <Card.Header text={f({id:'orders'})} endElelment={<Link href='./new-order'><ButtonComponent className='p-xs' startElement={<span>&#x2b;</span>} label={f({id:'addneworder'})}/></Link>}/>
                 <Card.Body className='p-none'>
-                   <div className='orders-container' style={{height: '537px',overflowX:'scroll'}}>
+                   <div className='orders-container'>
                        <div className='orders-container-head'>
                            <span>{f({id:'orders'})} No</span>
                            <span>{f({id:'country'})}</span>
