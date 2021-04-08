@@ -1,7 +1,7 @@
 {
-    "name": "name",
     "faq": "Faq",
     "calculator": "Calculator",
+    "tariffs":"Tariffs",
     "converter": "Valuta converter",
     "contact": "Contact",
     "whereis": "Find my package?",
@@ -12,6 +12,7 @@
     "blog": "Blog",
     "signup": "Sign up",
     "signin": "Sign in",
+    "login":"Log in",
     "howitworks": "How it works?",
     "gotoregister": "Registration",
     "alttext1": "We send you the addresses of warehouses located in Turkey, Ukraine and the United States",
@@ -22,13 +23,25 @@
     "shops": "Shops",
     "tarifftitle": "Our tariffs by countries",
     "turkey": "Turkey",
+    "ukraina":"Ukraina",
     "isluqidturkey":"Turkey(liquid)",
     "liquid": "Liquid products",
     "usa": "USA",
+    "select-country":"Select country",
+    "country":"Country",
     "weight": "Weight",
     "length": "Length",
     "width": "Width",
     "height": "Height",
+    "size":"Size",
+    "note":"Note",
+    "order-detail":"Order detail",
+    "payed":"Payed",
+    "unpayed":"Unpayed",
+    "color":"color",
+    "review":"Review",
+    "addneworder":"Add new order",
+
     "calc": "Calculate",
     "emailerror":"Email is not valid",
     "passworderror":"Password is not valid",
@@ -37,16 +50,112 @@
     "seeall":"See all",
     "lastnews":"Last news",
     "stores":"Stores",
-    "email":"E-mail",
     "password":"Şifrə",
+    "increases-balance":"Increase balance",
     "paybalance":"You can only pay the delivery fee with the amount you add to the balance!",
     "refundable":"The amount paid is non-refundable!",
     "transaction":"Transactions",
     "date":"Date",
     "payment":"Payment",
     "balance-service":"Balance(services)",
-    "tariff":"Tariffs",
-    "balance":"Balance"
+    "balance":"Balance",
+    "declare-inadvance":"Declare in advance",
+    "addresses-abroad":"My addresses abroad",
+     "orders":"orders",
+     "packages":"Packages",
+     "private-info":"Private info",
+     "lends":"Lends",
+     "courier-order":"Courier Order",
+    "customer-code":"Customer code",
 
-    
+
+    "choose-dist":"Choose District",
+    "choose-date":"Choose Date",
+    "correct-addres":"Enter correct address",
+    "enter-number":"Enter phone",
+    "definemap":"Define on the map",
+    "payed-packages":"Payed packages",
+    "order-history":"Order history",
+
+    "tracking":"Tracking",
+    "shop":"Shop",
+    "category":"Category",
+    "amount":"Amount",
+    "delivery":"Delivery",
+    "count":"Count",
+    "status":"Status",
+
+
+    "example-shop":"Sample sites",
+    "from-turkey":"From Turkey",
+    "from-USA":"From America",
+
+    "most-read":"Most read",
+    "other-articles":"Other articles",
+
+    "contact-us":"Contact us",
+    "contact-form":"Contact from",
+    "cf-info":"Enter your contact information and message in the form below and we will refund you.",
+    "send":"send",
+
+    "no-account":"Don't have an account?",
+
+    "message":"message",
+    "message-requir":"message required",
+    "name":"name",
+    "name-requir":"name required",
+    "name-patter":"name only can be letter",
+
+    "surname":"Surname",
+    "surname-requir":"surname required",
+    "surname-patter":"surname only can be letter",
+
+    "email":"E-mail",
+    "email-requir":"email required",
+    "email-patter":"email is not correct format",
+
+    "phone":"Phone",
+    "phone-requir":"phone required",
+    "phone-patter":"phone is not correct format",
+    "phone-len":"phone can be 9 symbol ",
+
+    "gender":"Gender",
+    "men":"Men",
+    "women":"Women",
+
+
+    "date":"Birth Date",
+    "date-requir":"date required",
+
+    "serial":"S/v serial number",
+    "serial-requir":"serial number required",
+    "serial-len":"serial number can be between 7-8 symbol",
+
+    "fin":"S/V Fin code",
+    "fin-requir":"fin code required",
+    "fin-min-max":"maximum 7 symbol can be",
+
+    "nationality":"Nationality",
+    "nationality-requir":"nationality required",
+
+    "address":"Address",
+    "address-requir":"address required",
+
+    "password":"Password",
+    "pass-requir":"password required",
+    "pass-patter":"password can be min 1 letter, 1 number and 8 symbol",
+
+    "repeat-pass":"Repeat password",
+    "repeatpas-requir":"repeat password required",
+    "repeatpas-valid":"repeat password is not match",
+
+    "tin":"Tin",
+    "tin-requir":"tin required",
+
+    "register":"Register",
+    "corporative":"Corporative",
+    "complate-register":"Complate register",
+    "register-hard":"If register is hard please watch video"
+
+
 }

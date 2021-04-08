@@ -193,6 +193,9 @@
     .mobile-header{
         display:block;
         padding:12px 0;
+        .container-fluid{
+            display: block;
+        }
         .user__menu{
             display:flex;
             flex-direction:column;
@@ -236,4 +239,12 @@
    }
   
 
+}
+.mb__dr{
+    display: none;
+}
+@media(max-width:600px){
+    .mb__dr{
+        display:block
+    }
 }

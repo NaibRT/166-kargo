@@ -23,7 +23,6 @@ export default function MyApp({ Component, pageProps }){
   //   return { appProps: appProps };
   // }
    const { locale, locales, defaultLocale } = useRouter();
-   console.log(process.env.NEXT_PUBLIC_API_URL)
     return (
       <Provider store={Store.store}>
         <PersistGate loading={null} persistor={Store.persistor}>

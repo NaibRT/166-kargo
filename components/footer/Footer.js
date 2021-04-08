@@ -7,11 +7,11 @@ import Page from '../page/page';
 
 
 const data = [
-  'Haqqımızda',
-  'Mağazalar',
-  'Tez-tez verilən suallar',
-  'İstifadə şərtləri',
-  'Sayt xəritəsi',
+  {name:'Haqqımızda',link:'/about'},
+  {name:'Mağazalar',link:'/example-shop'},
+  {name:'Tez-tez verilən suallar',link:'/faq'},
+  {name:'İstifadə şərtləri',link:'/orderscondition'},
+  {name:'Daşıma şərtləri',link:'currycondition'}
 ];
 
 
@@ -21,7 +21,7 @@ const links = (data = []) => (
     <div className={'link_item_head'}>Keçidlər</div>
     <ul>
       {
-        data.map((item, index) => (<li key={index}><Link href={{}}>{item}</Link></li>))
+        data.map((item, index) => (<li key={index}><Link href={item.link}>{item.name}</Link></li>))
       }
     </ul>
   </div>
@@ -43,7 +43,6 @@ const contactmob = (datamob) => (
 )
 
 function Footer(props) {
-  console.log(props)
   return (
 
     <footer className={'footer mt-lg'}>

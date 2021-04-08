@@ -11,188 +11,106 @@ import FromGroup from '../components/form-group/form-group'
 import Input from '../components/input/input'
 import Main from '../components/main/main'
 import Page from '../components/page/page'
+import Redirect from "../components/redirect/redirect"
 import Tabel from '../components/tabel/tabel'
+import { useIntl } from 'react-intl';
 
 
-const arr = [
-  {
-    "id": 1,
-    "order_no": "100000",
-    "date": "03-02-2021 11:32",
-    "count": 2,
-    "status": "Təhvil alınıb"
-  },
-  {
-    "id": 3,
-    "order_no": "100002",
-    "date": "22-02-2021 11:31",
-    "count": 1,
-    "status": "Ləğv edilib"
-  },
-  {
-    "id": 4,
-    "order_no": "100003",
-    "date": "04-02-2021 18:06",
-    "count": 0,
-    "status": "Sifariş verilib"
-  },
-  {
-    "id": 5,
-    "order_no": "100004",
-    "date": "22-02-2021 11:14",
-    "count": 1,
-    "status": "Kuryerə təhvil verilib"
-  },
-  {
-    "id": 6,
-    "order_no": "100004",
-    "date": "04-02-2021 22:27",
-    "count": 1,
-    "status": "Sifariş verilib"
-  },
-  {
-    "id": 7,
-    "order_no": "100005",
-    "date": "04-02-2021 22:27",
-    "count": 0,
-    "status": "Sifariş verilib"
-  },
-  {
-    "id": 8,
-    "order_no": "100006",
-    "date": "04-02-2021 22:27",
-    "count": 0,
-    "status": "Sifariş verilib"
-  },
-  {
-    "id": 9,
-    "order_no": "100007",
-    "date": "04-02-2021 22:27",
-    "count": 0,
-    "status": "Sifariş verilib"
-  },
-  {
-    "id": 10,
-    "order_no": "100008",
-    "date": "26-02-2021 13:42",
-    "count": 1,
-    "status": "Ləğv edilib"
-  },
-  {
-    "id": 11,
-    "order_no": "100009",
-    "date": "20-03-2021 12:15",
-    "count": 1,
-    "status": "Ləğv edilib"
-  },
-  {
-    "id": 12,
-    "order_no": "100010",
-    "date": "16-03-2021 23:08",
-    "count": 2,
-    "status": "Ləğv edilib"
-  }
-]
 
-const dataHead = [
-  'Tracking',
-  'Mağaza',
-  'Kateqoriya',
-  'Malın dəyəri',
-  'Çəki',
-  'Çatdırılma'
-];
-const data = [
-  {
-    Tracking: 'OSS-182328, 89264824182328',
-    shop: 'kolaygelsin',
-    category: 'Geyim,blazer',
-    amount: '239.99 TRY',
-    weight: '1.200 kq',
-    delivery: '4.78$ (8.12m)'
-  },
-  {
-    Tracking: 'OSS-182328, 89264824182328',
-    shop: 'kolaygelsin',
-    category: 'Geyim,blazer',
-    amount: '239.99 TRY',
-    weight: '1.200 kq',
-    delivery: '4.78$ (8.12m)'
-  },
-  {
-    Tracking: 'OSS-182328, 89264824182328',
-    shop: 'kolaygelsin',
-    category: 'Geyim,blazer',
-    amount: '239.99 TRY',
-    weight: '1.200 kq',
-    delivery: '4.78$ (8.12m)'
-  }
-]
+
 
 function CourierOrder(props) {
-  if (!props.entry.isLoged) {
 
-    router.push('/register');
-
-    return (
-      <div style={{ height: '100vh' }}></div>
-    )
+  if(!props.entry.isLoged){
+    return <Redirect/>
   }
-  console.log('kuryer', props);
-  const [courier, setCourier] = useState([]);
+
+  const { formatMessage: f } = useIntl(); 
+  const dataHead = [
+    f({id:'tracking'}),
+    f({id:'shop'}),
+    f({id:'category'}),
+    f({id:'amount'}),
+    f({id:'weight'}),
+    f({id:'delivery'})
+  ];
+  const [state, setState] = useState({
+    orderHistory:[],
+    paidBatches:[]
+  });
   const { locale } = useRouter();
 
   useLayoutEffect(() => {
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}kuryers`, {
+     
+   Promise.all([
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}kuryers?lan=${locale}`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${props.entry.user.accessToken}`
       }
-    }).then(res => {
-      setCourier(res.data)
-    }).catch(err => console.log('kurererror', err))
+    }),
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}batches/paid?lan=${locale}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${props.entry.user.accessToken}`
+      }
+    })
+   ]).then(res => {
+       setState({
+         orderHistory : res[0].data,
+         paidBatches  : res[1].data
+       })
+   }).catch(err => console.log(err))
+  
   }, [])
 
   return (
-    <Page className='bg-bg pt-sm'>
+    <Page className='bg-bg pt-lg pb-lg'>
       <Aside>
         <AsideMenu />
       </Aside>
       <Main className='bg-bg'>
-        <Card className='p-sm bg-white coruier__cards'>
-          <Card.Header text='Kuryer sifarişi' />
+        <Card className='p-sm bg-white coruier__cards br-lg'>
+          <form>
+          <Card.Header text={f({id:'courier-order'})} />
           <Card.Body className='p-none'>
             <p className='mb-lg'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <form   className='courier__form'>
-              <FromGroup label='Rayon seçin' className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+              <FromGroup label={f({id:'choose-dist'})} className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
                 <Input type='text' />
               </FromGroup>
-              <FromGroup label='Vaxt seçin' className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
+              <FromGroup label={f({id:'choose-date'})} className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
                 <Input type='date' />
               </FromGroup>
-              <FromGroup label='Dəqiq ünvan əlavə edin' className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
+              <FromGroup label={f({id:'correct-addres'})} className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
                 <Input type='text' />
               </FromGroup>
-              <FromGroup label='Əlaqə nömrəsi daxil edin' className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
+              <FromGroup label={f({id:'enter-number'})} className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
                 <Input type='tel' />
               </FromGroup>
-            </form>
-            <Link href='/'><a style={{ color: 'darkblue', textDecoration: 'underline' }}>Xəritədən təyin et</a></Link>
+            </div>
+            <Link href='/'><a style={{ color: 'darkblue', textDecoration: 'underline' }}>{f({id:'definemap'})}</a></Link>
           </Card.Body>
-          <Card className='p-none coruier__cards'>
-            <Card.Header text={<small style={{ fontSize: 'small' }}>Ödənilmiş bağlamalar</small>} />
+          <Card.Footer style={{ justifyContent: 'flex-end' }}>
+            <ButtonComponent type='submit' className='w-25' label={f({id:'makeorder'})} />
+          </Card.Footer>
+          </form>
+          </Card>
+          <Card className='p-sm bg-white coruier__cards br-lg'>
+            <Card.Header text={<small style={{ fontSize: 'small' }}>{f({id:'payed-packages'})}</small>} />
             <Card.Body className='p-none table__scroll'>
               <Tabel
                 th={dataHead}
-                data={data}
+                data={state.paidBatches.map(x => ({
+                  track_number: x.track_number,
+                  shop: x.shop,
+                  category: x.category,
+                  price: x.price,
+                  weight: x.weight,
+                  delivery_price: x.delivery_price
+                }))}
                 renderBody={(x, i) => {
-                  if (i === 0) {
-                    return <td key={i++}>
-                      <span className='color-err'>{x.split(',')[0]}</span>
-                      <span>{x.split(',')[1]}</span>
-                    </td>
-                  }
-                  return <td key={i++}>{x}</td>
+                  return <td key={i}>{x}</td>
                 }}
               />
             </Card.Body>
@@ -200,35 +118,30 @@ function CourierOrder(props) {
           <Card.Footer  className='footer__courier' >
             <ButtonComponent className='w-25' label='Sifariş ver' />
           </Card.Footer>
-        </Card>
-        <Card className='p-sm bg-white mt-sm coruier__cards'>
-          <Card.Header text='Sifariş tarixçəsi' />
+        <Card className='p-sm bg-white mt-sm coruier__cards br-lg'>
+          <Card.Header text={f({id:'order-history'})} />
           <Card.Body className='p-none'>
             <div className='orders-container'>
               <div className='orders-container-head'>
 
               </div>
               {
-
-
-                courier.map((item) => (
+                state.orderHistory.map((item) => (
                   <details className='orders-item-details' key={item.id}>
                     <summary className='order-item-summary'>
                       <div className='order-item-summary-head' >
-                        <span style={{textAlign:'center'}}>№</span>
-                        <span style={{textAlign:'center'}}>Tarix</span>
-                        <span style={{textAlign:'center'}}>Say</span>
-                        <span style={{textAlign:'center'}}>Status</span>
+                        <span style={{textAlign:'center'}}>No </span>
+                        <span style={{textAlign:'center'}}>{f({id:'date'})}</span>
+                        <span style={{textAlign:'center'}}>{f({id:'count'})}</span>
+                        <span style={{textAlign:'center'}}>{f({id:'status'})}</span>
                       </div>
                     </summary>
                     <Tabel thClassName='bg-white' data={[item]} renderBody={(x, i) => {
                       if(!i==0){
                         return <td key={i++}  style={{textAlign:'center'}}>
                         <span>{x}</span>
-
                       </td>
                       }
-      
                     }} />
                   </details>
                 ))

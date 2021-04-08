@@ -53,7 +53,7 @@ const MenuMobile = ({ open }) => {
 
         <ul className='top__header-menu'>
           <li>
-            <Link href='/'><a href="/">
+            <Link href='/search'><a href="/">
               Bağlamam hardadır?
       </a></Link>
           </li>
@@ -64,6 +64,10 @@ const MenuMobile = ({ open }) => {
           <Divider/>
           <li>
             <Link href='/about'><a>{f({ id: 'about' })}</a></Link>
+          </li>
+          <Divider/>
+          <li>
+            <Link href='/tarif'><a>{f({ id: 'tariff' })}</a></Link>
           </li>
           <Divider/>
           <li>

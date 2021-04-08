@@ -101,7 +101,7 @@
   
      .card{
        .for-mobile{
-         display: none;
+         display: none !important;
        }
       // height: 100%;
        .card-body{
@@ -119,11 +119,27 @@
    }
   }
 }
-
-@media(max-width:990px){
-  .for-mobile{
-    display:block  !important;
+.sm-mob{
+  padding:15px;
+  margin:15px
+}
+.for-mobile-t{
+  display:none !important
+}
+@media(max-width:600px){
+  .main_b{
+    height:70vh !important
   }
+  .for-desk-t{
+    display: none !important;
+  }
+  .for-mobile-t{
+    display: block !important;
+  }
+}
+@media(max-width:990px){
+ 
+  
   .desktop{
     display:none !important;
   }
@@ -137,7 +153,8 @@
     }
     }
     .sm-mob{
-      margin-right:2px !important
+      margin-right:2px !important;
+    
     }
     
 }

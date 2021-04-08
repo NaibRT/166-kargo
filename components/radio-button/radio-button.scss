@@ -18,7 +18,7 @@
   border-radius: 50%;
   outline-style: none;
   border: 1px solid $color__label;
-  background-color: $color__menu;
+  background-color: transparent;
 
   &:checked{
     background-color: $color__yellow;

@@ -4,8 +4,11 @@ import React from 'react'
 import Card from '../components/card/card'
 import Page from '../components/page/page'
 import PostItem from '../components/post_item/post-item'
+import { useIntl } from 'react-intl';
 
 function Blog(props) {
+  const { formatMessage: f } = useIntl(); 
+
  return (
   <div className='blog-page bg-bg'>
     <Page >
@@ -21,12 +24,16 @@ function Blog(props) {
           </Link>
          </Card.Body>
      </Card>
-     <Card className='p-sm' style={{paddingTop:0}}>
-       <Card.Header text='Digər yazılar'/>
+     <Card className='p-lg' style={{paddingTop:0}}>
+       <Card.Header text={f({id:'other-articles'})}/>
        <Card.Body className='blog-post-container' style={{padding:0}}>
          {
            props.news.map((a) => (
-             <PostItem item={a} link={`blog/${a.slug}`}/>   
+             <PostItem  
+               img={a.image} 
+               title={a.title}
+               desc={a.description}
+               link={`blog/${a.slug}`}/>   
            ))
          }
        </Card.Body>
@@ -35,11 +42,18 @@ function Blog(props) {
 
    <aside className="bg-white br-lg">
    <Card className='p-sm'>
-    <Card.Header text='Çox oxunanlar'/>
+    <Card.Header text={f({id:'most-read'})}/>
     <Card.Body style={{padding:0}}>
       {
          props.news.slice(0,7).map((a) => (
-          <PostItem item={a} link={`blog/${a.slug}`}/>   
+          <PostItem 
+           img={a.image} 
+           link={`blog/${a.slug}`}
+           title={a.title}
+           bClassName='bg-white'
+           className='bg-white'
+
+           />   
         ))
       }
     </Card.Body>

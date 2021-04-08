@@ -1,9 +1,9 @@
-import React from 'react'
-import Card from '../card/card'
-import ButtonComponent from '../button/index'
-import Input from '../input/input'
+import React, { memo } from 'react';
+import ButtonComponent from '../button/index';
+import Card from '../card/card';
+import Input from '../input/input';
 
-function CardBalance() {
+function CardBalance({balance}) {
     return (
         <React.Fragment>
             <div class="card__flex">
@@ -11,7 +11,7 @@ function CardBalance() {
                     <Card.Header style={{ marginBottom: '32px' }} text='Balans'></Card.Header>
 
                     <p style={{ marginBottom: '10px' }}>Mövcud balansınız</p>
-                    <h3>33.60 AZN</h3>
+                    <h3>{balance || 0.00} AZN</h3>
 
                 </Card>
                 <Card className="bg-white p-md"  >
@@ -31,4 +31,4 @@ function CardBalance() {
     )
 }
 
-export default CardBalance
+export default memo(CardBalance)

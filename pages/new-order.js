@@ -1,6 +1,6 @@
 import axios from "axios";
 import Link from "next/link";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { memo, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
@@ -14,15 +14,13 @@ import FromGroup from '../components/form-group/form-group';
 import Input from '../components/input/input';
 import Main from "../components/main/main";
 import Page from "../components/page/page";
+import Redirect from "../components/redirect/redirect";
 
 
 function NewOrder(props) {
 
-  if (!props.entry.isLoged) {
-    router.push('/register');
-    return (
-      <div style={{ height: '100vh' }}></div>
-    )
+  if(!props.entry.isLoged){
+    return <Redirect/>
   }
 
   const { locale } = useRouter();
@@ -98,7 +96,6 @@ function NewOrder(props) {
   const addFastPrize = (isfast, price) => {
     let newCards = cards;
     newCards.forEach(x => isfast ? x.total += price : x.total -= price);
-    console.log(newCards)
     // setCards([...newCards])
   }
 
@@ -125,7 +122,6 @@ function NewOrder(props) {
           'Authorization': `Bearer ${props.entry.user.accessToken}`
         }
       }).then(res => {
-        console.log(res.data)
         Swal.fire({
           success: 'success',
           text: 'emeliyyat ugurlu oldu',

@@ -99,6 +99,10 @@ font-family: $font-family;
 a{
   text-decoration: none;
   color: $color__menu;
+  cursor:pointer
+}
+ul{
+  list-style-type:none
 }
 .container-fluid{
   max-width:1100px;
@@ -117,7 +121,7 @@ a{
   width:30%
 }
 .footer-cart{
-  display:none
+  display:none !important
 }
 .courier__form{
   display: flex;
@@ -137,7 +141,7 @@ a{
   padding: 10px 0!important;
 }
 .r_lf_mg{
-  margin:40px 0 40px 40px;
+  margin:40px 0 40px 20px;
 }
 @media(max-width:630px){
   .r_lf_mg{
@@ -159,8 +163,16 @@ a{
 
 }
 @media(max-width:990px){
+  .search__ff{
+    flex-direction: column !important;
+  }
+  .pl-none{
+    .p-sm{
+      padding:0 !important
+    }
+  }
   .coruier__cards{
-    margin:0  20px;
+    margin:10px  20px;
   }
   .overflow__package{
     overflow:scroll;
@@ -179,10 +191,15 @@ a{
   }
   .footer__courier{
     .w-25{
-      width:100% !important
+      width:100% !important;
+      margin:20px !important;
     }
   }
  }
+ .footer__cart{
+  display:none !important;
+  width:100%;
+}
 @media screen  and (max-width:1200px){
 .container-fluid{
   margin:0 20px 0 20px;
@@ -221,4 +238,10 @@ a{
 
 .fluid_bottom{
   margin-bottom: calc(#{$fluid-size} / 2);
+}
+.pack-active{
+  // border: 1px solid transparent !important;
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom: 2px solid $color__success !important;
 }

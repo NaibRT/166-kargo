@@ -1,42 +1,51 @@
-import router from "next/router"
-import React, { memo } from 'react'
+import axios from "axios"
+import { useRouter } from "next/router"
+import React, { memo, useLayoutEffect, useState } from 'react'
 import { connect } from "react-redux"
 import AddressItem from '../components/address-item'
 import AsideMenu from '../components/aside-menu'
-import Card from '../components/card/card'
-import Page from '../components/page/page'
 import Aside from '../components/aside/aside'
+import Card from '../components/card/card'
 import Main from '../components/main/main'
 import ButtonComponent from '../components/button/index'
 import Link from 'next/link'
+import Page from '../components/page/page'
+import Redirect from "../components/redirect/redirect"
+import { useIntl } from 'react-intl';
 
 function Test(props) {
+    if(!props.entry.isLoged){
+        return <Redirect/>
+      }
+    const { formatMessage: f } = useIntl(); 
+    const {locale} = useRouter()
+    const [addresses,setAddresses] = useState({
+        data:[],
+        isLoaded:false
+    })
+    useLayoutEffect(() => {
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}addresses?lan=${locale}`,{
+            headers: {
+                       'Content-Type': 'application/json',
+                       'Accepts':'application/json',
+                       'Authorization':`Bearer ${props.entry.user.accessToken}`
+                     }
+          }).then(res => {
+            setAddresses({
+                data:[...res.data.map(x => ({ 
+                    id:x.id,
+                    address: JSON.parse(x.address),
+                    name:x.name,
+                    abbr:x.abbr,
+                    currency:x.currency 
+                }))],
+                isLoaded:true
+            })
+          }).catch(err => {
+              console.log(err)
+          })
+    },[])
 
-
-    if (!props.entry.isLoged) {
-
-        router.push('/register');
-
-        return (
-            <div style={{ height: '100vh' }}></div>
-        )
-    }
-
-
-    const data = {
-        ["Ad,Soyad"]: "Nihad Abdual",
-        ["Adress Satır 1"]: "Barbaros mah.178 Sk. Kardeşler apt. No:30/A 540728 llayev",
-        ["Adress Satır 2"]: "166 Cargo Lojistik Limited",
-        ["İl"]: "İstanbul",
-        ["Ilce"]: "Bagcilar",
-        ["Semt"]: "Barbaros",
-        ["ZIP/Postal"]: "34203",
-        ["TC Kimlik"]: "333333333",
-        ["Cep Telefonu"]: "+9055555555",
-        ["Vergi Numarasi"]: "5525255",
-        ["Vergi Dairesi"]: "Kocasinan",
-        ["Adres Basligi"]: "166 Cargo"
-    }
 
     return (
         <div className='bg-bg'>
@@ -49,48 +58,46 @@ function Test(props) {
                <div className='mobile__bt'>
                <Link href="/balance">
                <a>
-              <ButtonComponent className='w-100' label='Balansı artır' startElement={<img className='mr-xs' src="/assets/icons/el2.svg"/>}/>
+              <ButtonComponent style={{padding:'0 25px'}} className='w-100' label='Balansı artır' startElement={<img className='mr-xs' src="/assets/icons/el2.svg"/>}/>
                </a>
               </Link>
               <Link href="/new-order">
             <a>
-           <ButtonComponent className='w-100' label='Sifariş et' startElement={<img className='mr-xs' src="/assets/icons/el.svg"/>} style={{marginBottom:'10px'}} />
+           <ButtonComponent style={{padding:'0 35px'}} className='w-100' label='Sifariş et' startElement={<img className='mr-xs' src="/assets/icons/el.svg"/>}  />
             </a>
            </Link>
                </div>
-                    <Card className='p-md bg-white br-lg r_lf_mg'  >
+                    
+                    {
+                      addresses.isLoaded && addresses.data.map(a => (
+                            <Card className='p-md bg-white br-lg r_lf_mg' >
                         <Card.Header style={{ justifyContent: 'flex-start' }}
                             startElement={<img src={'/assets/icons/turkish.svg'} className='fl' />}
-                            text='Türkiyə Ünvanı'
+                            text={`${a.name} ${f({id:'address'})}`}
                         />
 
                         <Card.Body className='bg-bg lg'>
                             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+
                                 {
-                                    Object.keys(data).map((key, index) => (
-                                        <AddressItem style={{ flex: '1 1 30%' }} title={key} label={data[key]} key={index} />
+                                    Object.keys(a.address).map((key, index) => {
+                                        if(index === 0){
+                                            return (
+                                                <AddressItem style={{ flex: '1 1 30%' }} title={key} label={`${props.entry.user.user.firstname} ${props.entry.user.user.lastname}`} key={index} />
+                                            )
+                                        }else{
+                                            return (
+                                                <AddressItem style={{ flex: '1 1 30%' }} title={key} label={a.address[key]} key={index} />
+                                             )
+                                        }
+                                    }
                                     )
-                                    )}
+                                }
                             </div>
                         </Card.Body>
-                    </Card>
-
-                    <Card className='p-md bg-white br-lg r_lf_mg' >
-                        <Card.Header style={{ justifyContent: 'flex-start' }}
-                            startElement={<img src={'/assets/icons/usa.svg'} className='fl' />}
-                            text='Amerika Ünvanı'
-                        />
-
-                        <Card.Body className='bg-bg lg'>
-                            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                                {
-                                    Object.keys(data).map((key, index) => (
-                                        <AddressItem style={{ flex: '1 1 30%' }} title={key} label={data[key]} key={index} />
-                                    )
-                                    )}
-                            </div>
-                        </Card.Body>
-                    </Card>
+                       </Card>
+                     ))
+                    }
 
                 </div>
                 </Main>

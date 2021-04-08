@@ -1,5 +1,5 @@
 import axios from "axios";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
@@ -13,6 +13,7 @@ import Input from "../components/input/input";
 import Main from '../components/main/main';
 import Page from "../components/page/page";
 import RadioButton from "../components/radio-button/radio-button";
+import Redirect from "../components/redirect/redirect";
 import Selectbox from "../components/selectbox/selectbox";
 import { UpdateUser } from "../redux/entry/entryActions";
 
@@ -24,10 +25,7 @@ const telData = [
 function UserInfo(props) {
 
   if(!props.entry.isLoged){
-    router.push('/register');
-    return (
-        <div style={{height:'100vh'}}></div>
-    )
+    return <Redirect/>
   }
   const [checkSerial, setCheckSerial] = useState('AA');
   const [user, setUser] = useState({
@@ -106,7 +104,7 @@ function UserInfo(props) {
 
 
     return (
-        <Page className='user-profile-page bg-bg pt-lg'>
+        <Page className='user-profile-page bg-bg pt-lg pb-lg'>
             <Aside className='mr-sm'>
               <AsideMenu/>
             </Aside>
