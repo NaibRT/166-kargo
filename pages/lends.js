@@ -1,5 +1,5 @@
 import axios from 'axios';
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { memo, useLayoutEffect, useState } from 'react';
 import { connect } from "react-redux";
 import AsideMenu from '../components/aside-menu';
@@ -8,6 +8,7 @@ import ButtonComponent from '../components/button';
 import Card from '../components/card/card';
 import Main from '../components/main/main';
 import Page from "../components/page/page";
+import Redirect from "../components/redirect/redirect";
 import Tabel from '../components/tabel/tabel';
 const dataHead = [
   ' Sifariş N',
@@ -20,12 +21,9 @@ const dataHead = [
 function Lends(props) {
 
   if(!props.entry.isLoged){
-    router.push('/register');
-    return (
-        <div style={{height:'100vh'}}></div>
-    )
-
+    return <Redirect/>
   }
+
 console.log('lend',props)
 const [lend, setLend]= useState([]);
 const {locale} = useRouter();

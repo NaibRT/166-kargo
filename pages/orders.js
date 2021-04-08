@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Link from "next/link";
-import router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import React, { memo, useLayoutEffect, useState } from 'react';
 import { connect } from "react-redux";
 import AsideMenu from "../components/aside-menu/index";
@@ -9,6 +9,7 @@ import ButtonComponent from '../components/button';
 import Card from '../components/card/card';
 import Main from "../components/main/main";
 import Page from "../components/page/page";
+import Redirect from "../components/redirect/redirect";
 import Tabel from "../components/tabel/tabel";
 
              const dataHead = [
@@ -50,12 +51,7 @@ import Tabel from "../components/tabel/tabel";
 
 function Orders(props) {
     if(!props.entry.isLoged){
-
-        router.push('/register');
-
-        return (
-            <div style={{height:'100vh'}}></div>
-        )
+        return <Redirect/>
     }
 
     const [orders, setOrders] = useState([]);
