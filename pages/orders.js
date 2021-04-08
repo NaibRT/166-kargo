@@ -11,6 +11,7 @@ import Main from "../components/main/main";
 import Page from "../components/page/page";
 import Redirect from "../components/redirect/redirect";
 import Tabel from "../components/tabel/tabel";
+import { useIntl } from 'react-intl';
 
              const dataHead = [
                  'Tracking',
@@ -53,7 +54,7 @@ function Orders(props) {
     if(!props.entry.isLoged){
         return <Redirect/>
     }
-
+    const { formatMessage: f } = useIntl(); 
     const [orders, setOrders] = useState([]);
     const {locale} = useRouter();
 
@@ -79,15 +80,15 @@ function Orders(props) {
           </Aside> 
           <Main>
             <Card className='p-sm'>
-                <Card.Header text='Sifarişlərim' endElelment={<Link href='./new-order'><ButtonComponent className='p-xs' startElement={<span>&#x2b;</span>} label={'Yeni sifariş əlavə et'}/></Link>}/>
+                <Card.Header text={f({id:'orders'})} endElelment={<Link href='./new-order'><ButtonComponent className='p-xs' startElement={<span>&#x2b;</span>} label={f({id:'addneworder'})}/></Link>}/>
                 <Card.Body className='p-none'>
                    <div className='orders-container' style={{height: '537px',overflowX:'scroll'}}>
                        <div className='orders-container-head'>
-                           <span>Sifariş No</span>
-                           <span>Ölkə</span>
-                           <span>Sifariş tarixi</span>
-                           <span>Yekun qiymət</span>
-                           <span>Status</span>
+                           <span>{f({id:'orders'})} No</span>
+                           <span>{f({id:'country'})}</span>
+                           <span>{f({id:'order-history'})}</span>
+                           <span>{f({id:'amount'})}</span>
+                           <span>{f({id:'status'})}</span>
                        </div>
                        {
                            orders.map((item) => (
@@ -98,20 +99,20 @@ function Orders(props) {
                                     <span>{item.country}</span>
                                     <span>{new Date(item.date).toLocaleDateString(locale)}</span>
                                     <span>{item.price} TL</span>
-                                    <span>{item.status ?'Ödənilib' : 'Ödənilməyib'}</span>
-                                    <span><span className='mr-xs'>&#128065;</span>Sifariş detallari</span>
+                                    <span>{item.status ?f({id:'payed'}) : f({id:'unpayed'})}</span>
+                                    <span><span className='mr-xs'>&#128065;</span>{f({id:'order-detail'})}</span>
                                 </div>
                             </summary>
                             <Tabel th={[
                                 'ID',
-                                'Mağaza/Məhsul',
-                                'Qiymət',
-                                'Say',
-                                'Ölçü',
-                                'Rəng',
-                                'Qeyd',
-                                'Rəy',
-                                'Status'
+                                f({id:'shop'}),
+                                f({id:'amount'}),
+                                f({id:'count'}),
+                                f({id:'size'}),
+                                f({id:'color'}),
+                                f({id:'note'}),
+                                f({id:'review'}),
+                                f({id:'status'}),
                             ]} thClassName='bg-white' data={item.orders} renderBody={(x,i) => {
                                 if(i==1){
                                   return  <td key={i++}>

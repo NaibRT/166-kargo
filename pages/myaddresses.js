@@ -9,12 +9,13 @@ import Card from '../components/card/card'
 import Main from '../components/main/main'
 import Page from '../components/page/page'
 import Redirect from "../components/redirect/redirect"
+import { useIntl } from 'react-intl';
 
 function Test(props) {
     if(!props.entry.isLoged){
         return <Redirect/>
       }
-
+    const { formatMessage: f } = useIntl(); 
     const {locale} = useRouter()
     const [addresses,setAddresses] = useState({
         data:[],
@@ -57,7 +58,7 @@ function Test(props) {
                             <Card className='p-md bg-white br-lg' style={{ margin: '40px 0 40px 40px' }}>
                         <Card.Header style={{ justifyContent: 'flex-start' }}
                             startElement={<img src={'/assets/icons/turkish.svg'} className='fl' />}
-                            text={`${a.name} Ünvanı`}
+                            text={`${a.name} ${f({id:'address'})}`}
                         />
 
                         <Card.Body className='bg-bg lg'>

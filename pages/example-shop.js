@@ -3,17 +3,21 @@ import Card from '../components/card/card'
 import Link from 'next/link';
 import Page from '../components/page/page'
 import Main from '../components/main/main'
+import { useIntl } from 'react-intl';
 
 export default function Shop() {
+
+    const { formatMessage: f } = useIntl();
+
     return (
         <div>
             <Main className='bg-bg'>
                 <Page>
                     <Card className="bg-white br-lg mt-md p-md">
                         <div >
-                        <h3 className='mb-md'>Nümunə saytlar</h3>
+                        <h3 className='mb-md'>{f({id:'example-shop'})}</h3>
                             <Card.Body className='bg-bg mb-md br-sm'>
-                            <h3 style={{textAlign:'center'}} className='mb-md'><span className='color-yellow'>Türkiyədən</span> nümunə saytlar</h3>
+                            <h3 style={{textAlign:'center'}} className='mb-md'><span className='color-yellow'>{f({id:'from-turkey'})}</span>{f({id:'example-shop'}).toLowerCase()}</h3>
                           
                                 <div className='flex__item'>
                                     <Link href='https://www.trendyol.com/'>
@@ -79,7 +83,7 @@ export default function Shop() {
                             </Card.Body>
                             <Card.Body className='bg-bg mb-md br-sm'>
                                 <div >
-                                    <h3 style={{textAlign:'center'}} className='mb-md'><span className='color-yellow'>Amerikadan</span> nümunə saytlar</h3>
+                                    <h3 style={{textAlign:'center'}} className='mb-md'><span className='color-yellow'>{f({id:'from-USA'})}</span>{f({id:'example-shop'}).toLowerCase()}</h3>
                                     <div className='flex__item'>
                                         <Link href='https://www.trendyol.com/'>
                                             <a target="_blank"> <img src={'/assets/images/a00.svg'} /></a>

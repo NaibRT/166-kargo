@@ -14,6 +14,7 @@ import PackageItem from '../components/package_item/package-item';
 import Page from "../components/page/page";
 import Redirect from "../components/redirect/redirect";
 import Tabel from "../components/tabel/tabel";
+import { useIntl } from 'react-intl';
 
 function Packages(props) {
 
@@ -21,6 +22,7 @@ function Packages(props) {
    return <Redirect/>
   }
 
+const { formatMessage: f } = useIntl(); 
 const [packages,setPackages] = useState([]);
 const [filteredPacks,setFilteredPacks] = useState([]);
 
@@ -215,17 +217,17 @@ const checkHandler = (ev) => {
              </Card>
 
              <Card className='p-sm'>
-                 <Card.Header text='Sifariş tarixçəsi'/>
+                 <Card.Header text={f({id:'order-history'})}/>
                  <Card.Body className='p-none'>
                    <Tabel
                     th={[
-                      'Tracking',
-                      'Mağaza',
-                      'Kateqoriya',
-                      'Malın dəyəri',
-                      'Çəki',
-                      'Çatdırılma',
-                      'Status'
+                      f({id:'tracking'}),
+                      f({id:'shop'}),
+                      f({id:'category'}),
+                      f({id:'amount'}),
+                      f({id:'weight'}),
+                      f({id:'delivery'}),
+                      f({id:'status'}),
                     ]}
                     data={packages.map(x => { 
                       if(x.status.id == 6){

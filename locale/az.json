@@ -1,7 +1,8 @@
 {
-    "name":"name",
+
     "faq":"Tez-tez verilən suallar",
     "calculator":"Kalkulyator",
+    "tariffs":"Tariflər",
     "converter":"Valyuta konverteri",
     "contact":"Əlaqə",
     "whereis":"Bağlamam haradadır?",
@@ -12,6 +13,7 @@
     "blog":"Bloq",
     "signup":"Qeydiyyatdan keç",
     "signin":"İstifadəçi girişi",
+    "login":"Daxil ol",
     "howitworks":"Necə işləyir?",
     "gotoregister":"Qeydiyyatdan keçirsiniz",
     "alttext1":"Sizə Türkiyə və ABŞ-da yerləşən anbarların ünvanlarını göndəririk",
@@ -22,15 +24,30 @@
     "shops":"Bəzi mağazalar",
     "tarifftitle":"Ölkələr üzrə tariflərimiz",
     "turkey":"Türkiyə",
+    "ukraina":"Ukrayna",
     "date":"Tarix",
     "isluqidturkey":"Türkiyə(maye)",
-    "liquid":"Maye məhsullar",
+    "liquid":"Maye",
     "usa":"ABŞ",
     "weight":"Çəki(kq)",
     "length":"Uzunluq(sm)",
     "width":"En(sm)",
     "height":"Hündürlük(sm)",
+    "note":"Qeyd",
+    "color":"Rəng",
+    "review":"Rəy",
+    "size":"Ölçü",
     "calc":"Hesabla",
+    "order-detail":"Sifariş detallari",
+    "payed":"Ödənilib",
+    "unpayed":"Ödənilməyib",
+    "addneworder":"Yeni sifariş əlavə et",
+
+    "active-pack":"Aktiv bağlamalarım",
+    "all":"All",
+
+
+
     "emailerror":"Email yanlışdır",
     "passworderror":"Şifrə yanlışdır",
     "choosectry":"Ölkə seç",
@@ -38,17 +55,125 @@
     "seeall":"Hamısını gör",
     "lastnews":"Son xəbərlər",
     "stores":"Bəzi mağazalar",
-    "email":"E-poçta",
+    "increases-balance":"Balansı artır",
     "paybalance":"Balansa artırdığınız məbləğ ilə yalnız çatdırılma haqqını ödəyə bilərsiniz!",
     "refundable":"Ödənilən məbləğ geri qaytarılmır!",
     "transaction":"Tranzaksiyalar",
     "payment":"Ödəniş",
-    "balance-service":"Balans(xidmətlər)"
-    
-    
-    
+    "balance-service":"Balans(xidmətlər)",
+    "balance":"Balans",
+    "declare-inadvance":"Öncədən bəyan et",
+     "addresses-abroad":"Xaricdəki ünvanlarım",
+     "orders":"Sifarişlərim",
+     "packages":"Bağlamalarım",
+     "private-info":"Şəxsi məlumatlar",
+     "lends":"Borclarım",
+     "courier-order":"Kuryer sifarişi",
+    "customer-code":"Müştəri kodu",
+
+    "choose-dist":"Rayon seçin",
+    "choose-date":"Vaxt seçin",
+    "correct-addres":"Dəqiq ünvan əlavə edin",
+    "enter-number":"Əlaqə nömrəsi daxil edin",
+    "definemap":"Xəritədən təyin et",
+    "payed-packages":"Ödənilmiş bağlamalar",
+    "order-history":"Sifariş tarixçəsi",
+
+    "tracking":"Tracking",
+    "shop":"Mağaza",
+    "category":"Kateqoriya",
+    "amount":"Malın dəyəri",
+    "weight":"Çəki",
+    "delivery":"Çatdırılma",
+    "count":"Say",
+    "status":"Status",
+
+
+    "example-shop":"Nümunə saytlar",
+    "from-turkey":"Türkiyədən",
+    "from-USA":"Amerikadan",
+
+    "most-read":"Çox oxunanlar",
+    "other-articles":"Digər yazılar",
+
+    "contact-us":"Bizimlə Əlaqə",
+    "contact-form":"Əlaqə fromu",
+    "cf-info":"Asagidaki formaya elaqe melumatlarinizi ve mesajinii daxil edin, biz size geri donus edek.",
+    "send":"göndər",
+
+
+    "select-country":"ölkə seç",
+    "country":"ölkə",
+
+
+    "no-account":"Hesabınız yoxdur?",
+
+
+    "message":"mesajınız",
+    "message-requir":"mesaj məcburidir",
+
+    "name":"Adınız",
+    "name-requir":"ad məcburidir",
+    "name-patter":"ad yalnız hərflər ola bilər",
+
+    "surname":"Soyadınız",
+    "surname-requir":"soyad məcburidir",
+    "surname-patter":"soyad yalnız hərflər ola bilər",
+
+    "email":"E-poçta",
+    "email-requir":"email məcburidir",
+    "email-patter":"email düzgün formatda deyil",
+
+    "phone":"Telefon",
+    "phone-requir":"telefon məcburidir",
+    "phone-patter":"telefon düzgün format deyil",
+    "phone-len":"telefon 9 simvoldan ibarət ola bilər",
+
+    "gender":"Cins",
+    "men":"Kişi",
+    "women":"Qadın",
+
+    "date":"Doğum tarixi",
+    "date-requir":"tarix məcburidir",
+
+    "serial":"S/v seriya nömrəsi",
+    "serial-requir":"seriya nömrəsi məcburidir",
+    "serial-len":"seriya nömrə 7-8 simvol aralığında olmalıdır",
+
+    "fin":"S/V Fin kodu",
+    "fin-requir":"fin kod məcburidir",
+    "fin-min-max":"maximum 7 simvol olmalıdır",
+
+    "nationality":"Milliyət",
+    "nationality-requir":"milliyət məcburidir",
+
+    "address":"Ünvan",
+    "address-requir":"ünvan məcburidir",
+
+    "password":"Şifrə",
+    "pass-requir":"şifrə məcburidir",
+    "pass-patter":"şifrə min 1 hərf, 1rəqəm və 8 simvol olmalıdır",
+
+    "repeat-pass":"Təkrar şifrə",
+    "repeatpas-requir":"təkrar şifrə məcburidir",
+    "repeatpas-valid":"təkrar şifrə uyğun deyil",
+
+    "tin":"Vöen",
+    "tin-requir":"vöen məcburidir",
+
+     "register":"Qeydiyyat",
+    "corporative":"Korporativ",
+    "complate-register":"Qeydiyyatı tamamla",
+    "register-hard":"Qeydiyyatdan keçmekdə çəntinlik çəkirsizsə videonu izləyin"
 
 
 
 
+
+
+
+
+
+
+   
    }
