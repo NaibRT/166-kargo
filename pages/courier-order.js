@@ -11,6 +11,7 @@ import FromGroup from '../components/form-group/form-group'
 import Input from '../components/input/input'
 import Main from '../components/main/main'
 import Page from '../components/page/page'
+import Redirect from "../components/redirect/redirect"
 import Tabel from '../components/tabel/tabel'
 
 
@@ -130,40 +131,54 @@ const data = [
 ]
 
 function CourierOrder(props) {
-  if (!props.entry.isLoged) {
-
-    router.push('/register');
-
-    return (
-      <div style={{ height: '100vh' }}></div>
-    )
+  if(!props.entry.isLoged){
+    return <Redirect/>
   }
+
   console.log('kuryer', props);
-  const [courier, setCourier] = useState([]);
+  const [state, setState] = useState({
+    orderHistory:[],
+    paidBatches:[]
+  });
   const { locale } = useRouter();
 
   useLayoutEffect(() => {
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}kuryers`, {
+     
+   Promise.all([
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}kuryers?lan=${locale}`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${props.entry.user.accessToken}`
       }
-    }).then(res => {
-      setCourier(res.data)
-    }).catch(err => console.log('kurererror', err))
+    }),
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}batches/paid?lan=${locale}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${props.entry.user.accessToken}`
+      }
+    })
+   ]).then(res => {
+       setState({
+         orderHistory : res[0].data,
+         paidBatches  : res[1].data
+       })
+   }).catch(err => console.log(err))
+
+    
   }, [])
 
   return (
-    <Page className='bg-bg pt-sm'>
+    <Page className='bg-bg pt-lg pb-lg'>
       <Aside>
         <AsideMenu />
       </Aside>
       <Main className='bg-bg'>
-        <Card className='p-sm bg-white coruier__cards'>
+        <Card className='p-sm bg-white coruier__cards br-lg'>
+          <form>
           <Card.Header text='Kuryer sifarişi' />
           <Card.Body className='p-none'>
             <p className='mb-lg'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <form   className='courier__form'>
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
               <FromGroup label='Rayon seçin' className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
                 <Input type='text' />
               </FromGroup>
@@ -176,23 +191,31 @@ function CourierOrder(props) {
               <FromGroup label='Əlaqə nömrəsi daxil edin' className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
                 <Input type='tel' />
               </FromGroup>
-            </form>
+            </div>
             <Link href='/'><a style={{ color: 'darkblue', textDecoration: 'underline' }}>Xəritədən təyin et</a></Link>
           </Card.Body>
-          <Card className='p-none coruier__cards'>
+          <Card.Footer style={{ justifyContent: 'flex-end' }}>
+            <ButtonComponent type='submit' className='w-25' label='Sifariş ver' />
+          </Card.Footer>
+          </form>
+          </Card>
+          
+          <Card className=' p-sm bg-white coruier__cards br-lg'>
             <Card.Header text={<small style={{ fontSize: 'small' }}>Ödənilmiş bağlamalar</small>} />
             <Card.Body className='p-none table__scroll'>
               <Tabel
                 th={dataHead}
-                data={data}
+                data={state.paidBatches.map(x => ({
+                  track_number: x.track_number,
+                  shop: x.shop,
+                  category: x.category,
+                  price: x.price,
+                  weight: x.weight,
+                  delivery_price: x.delivery_price
+                }))}
                 renderBody={(x, i) => {
-                  if (i === 0) {
-                    return <td key={i++}>
-                      <span className='color-err'>{x.split(',')[0]}</span>
-                      <span>{x.split(',')[1]}</span>
-                    </td>
-                  }
-                  return <td key={i++}>{x}</td>
+                
+                  return <td key={i}>{x}</td>
                 }}
               />
             </Card.Body>
@@ -200,8 +223,8 @@ function CourierOrder(props) {
           <Card.Footer  className='footer__courier' >
             <ButtonComponent className='w-25' label='Sifariş ver' />
           </Card.Footer>
-        </Card>
-        <Card className='p-sm bg-white mt-sm coruier__cards'>
+        
+        <Card className='p-sm bg-white mt-sm coruier__cards br-lg'>
           <Card.Header text='Sifariş tarixçəsi' />
           <Card.Body className='p-none'>
             <div className='orders-container'>
@@ -209,9 +232,7 @@ function CourierOrder(props) {
 
               </div>
               {
-
-
-                courier.map((item) => (
+                state.orderHistory.map((item) => (
                   <details className='orders-item-details' key={item.id}>
                     <summary className='order-item-summary'>
                       <div className='order-item-summary-head' >

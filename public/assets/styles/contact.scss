@@ -12,6 +12,23 @@
         // position: absolute;
         // left: 0px;
         // top: 0px;
+
+        .contact-container{
+            h3{
+                font-size:36px;
+                font-weight:500;
+                font-style:normal
+            }
+
+            div{
+                display: flex;
+                align-items: center;
+                img{width:47px;}
+                span,a{
+                    font-size:18px;
+                }
+            }
+        }
     }
 
     .contact-page-form{

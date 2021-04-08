@@ -18,7 +18,7 @@ function AsideMenu(props) {
         <Card.Header text={`${props.entry.user.user.firstname} ${props.entry.user.user.lastname}`} style={{fontSize:'20px'}}/>
         <p>Müştəri kodu: {props.entry.user.user.customer_number}</p>
         <small className='mr-xs'>Balansım</small>
-        <small>0.00 AZN</small>
+        <small>{props.entry.user.user.agreement} AZN</small>
           <Card.Body className='mt-xs' style={{padding:0}}>
            <Link href="/new-order">
             <a>

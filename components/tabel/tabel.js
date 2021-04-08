@@ -2,10 +2,9 @@ import React from 'react'
 
 
 
-function Tabel({th = [], data = [], renderBody = () => {}, thClassName,}) {
-    console.log(data)
+function Tabel({th = [], data = [], renderBody = () => {}, thClassName,trStyle,className}) {
     return (
-        <table className='tabel'>
+        <table className={`tabel ${className || ''}`}>
         <thead className={`tabel-head ${thClassName || ''}`}>
         <tr className=''>
              {
@@ -19,9 +18,9 @@ function Tabel({th = [], data = [], renderBody = () => {}, thClassName,}) {
         <tbody className='tabel-body'>
             {
                  data.map((d,dIndex) => {
-                    return <tr key={dIndex}>
+                    return <tr key={dIndex} style={trStyle}>
                        {
-                          Object.values(d).map(renderBody)
+                          d && Object.values(d).map(renderBody)
                        }
                     </tr>
                 })

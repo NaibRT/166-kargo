@@ -1,18 +1,6 @@
 @import './variables.scss';
 
-// -----------------paddings
-// .p-xs{
-//  padding: $padding_xs !important;
-// }
-// .p-sm{
-//  padding: $padding_sm !important;
-// }
-// .p-md{
-//  padding: $padding_md !important;
-// }
-// .p-lg{
-//  padding: $padding_lg !important;
-// }
+
 
 @each $name,$value in $paddings {
  .p-#{$name}{

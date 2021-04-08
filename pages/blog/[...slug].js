@@ -1,7 +1,7 @@
 import axios from "axios"
 import Link from 'next/link'
 import React from 'react'
-import ReactHtmlParser from "react-html-parser"
+import ReactHtmlParser, { convertNodeToElement } from "react-html-parser"
 import Aside from "../../components/aside/aside"
 import Card from '../../components/card/card'
 import Main from "../../components/main/main"
@@ -26,7 +26,9 @@ function PostInfo(props) {
                 <h3>{props.currentNews.title}</h3>
                 <p>
                    {
-                     ReactHtmlParser(props.currentNews.content)
+                     ReactHtmlParser(props.currentNews.content,{
+                       transform: (n) => convertNodeToElement(n)
+                     })
                    }
                 </p>
               </div>
@@ -39,7 +41,13 @@ function PostInfo(props) {
             <Card.Body  style={{padding:0}}>
               {
                 props.news.map(item => (
-                 <PostItem item={item} link={`/blog/${item.slug}`}/>
+                 <PostItem 
+                   img={item.image} 
+                   title={item.title}
+                   link={`/blog/${item.slug}`}
+                   bClassName='bg-white'
+                   className='bg-white'
+                   />
                 ))
               }
             </Card.Body>
