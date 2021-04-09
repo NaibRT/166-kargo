@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import Link from 'next/link'
-import { useIntl } from 'react-intl';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Divider from '../divider/divider'
+import React from "react";
+import { useIntl } from 'react-intl';
+import styled from "styled-components";
+import Divider from '../divider/divider';
 
 const StyledMenu = styled.nav`
   display: flex;
@@ -40,7 +40,7 @@ const Overlay = styled.div`
        height:100%
 `
 
-const MenuMobile = ({ open }) => {
+const MenuMobile = ({ open,setOpen }) => {
 
   const { locale, locales } = useRouter();
   const router = useRouter();
@@ -48,12 +48,16 @@ const MenuMobile = ({ open }) => {
 
   return (
     <>
-    <Overlay open={open}></Overlay>
+    <Overlay open={open}
+     onClick={() => {
+      setOpen(!open)
+     }}
+    ></Overlay>
       <StyledMenu  open={open}>
 
         <ul className='top__header-menu'>
           <li>
-            <Link href='/search'><a href="/">
+            <Link href='/search'><a>
               Bağlamam hardadır?
       </a></Link>
           </li>
@@ -83,7 +87,7 @@ const MenuMobile = ({ open }) => {
           </li>
           <Divider/>
           <li>
-            <Link href='' style={{marginBottom:'15px'}}>Dil seçimi</Link>
+            <Link href='' style={{marginBottom:'15px'}}><a>Dil seçimi</a></Link>
             <div className='lang'>
               <figure >
                 <img src={'assets/icons/az.svg'} />

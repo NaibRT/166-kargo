@@ -21,7 +21,7 @@ const links = (data = []) => (
     <div className={'link_item_head'}>Keçidlər</div>
     <ul>
       {
-        data.map((item, index) => (<li key={index}><Link href={item.link}>{item.name}</Link></li>))
+        data.map((item, index) => (<li key={index}><Link href={item.link}><a>{item.name}</a></Link></li>))
       }
     </ul>
   </div>

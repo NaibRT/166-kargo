@@ -1,16 +1,14 @@
-import axios from 'axios'
-import React, { useEffect } from 'react'
-import {connect} from 'react-redux'
-import store from '../redux/store'
 import Link from 'next/link'
-import {
- getDataAction
-} from '../redux/getData/getDataActions'
+import React, { useEffect } from 'react'
 import { useIntl } from 'react-intl'
+import { connect } from 'react-redux'
 import Card from '../components/card/card'
-import Rate from '../components/rate/rate'
-import NewsItem from '../components/news_item/news-item'
 import PostItem from '../components/post_item/post-item'
+import Rate from '../components/rate/rate'
+import
+  {
+    getDataAction
+  } from '../redux/getData/getDataActions'
 
 
 
@@ -44,7 +42,7 @@ function GetData(props) {
 
 <section className='container-fluid'>
  <Card>
-   <Card.Header text='Son Xəbərlər' endElelment={<Link href=''>Hamsını gör &rsaquo;</Link>}/>
+   <Card.Header text='Son Xəbərlər' endElelment={<Link href=''><a>Hamsını gör &rsaquo;</a></Link>}/>
    <Card.Body style={{padding: 0, display:'flex',justifyContent:'space-between',flexFlow:'wrap'}}>
         <PostItem/>
    </Card.Body>

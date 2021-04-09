@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 
 function Redirect() {
     useEffect(() => {
-        router.push('/register');
+        router.push('/');
     })
     return (
 

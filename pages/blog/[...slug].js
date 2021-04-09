@@ -51,7 +51,7 @@ function PostInfo(props) {
                 ))
               }
             </Card.Body>
-            <Card.Footer text={<Link href=''>hamsını gör +</Link>}/>
+            <Card.Footer text={<Link href=''><a>hamsını gör +</a></Link>}/>
           </Card>
         </Aside>
       </Page>

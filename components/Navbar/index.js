@@ -1,13 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import {useForm} from 'react-hook-form'
 import { useRouter } from 'next/router';
 import React, { memo, useEffect, useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
 import { connect } from "react-redux";
 import { LogOut } from "../../redux/entry/entryActions";
 import { default as Button, default as ButtonComponent } from '../button';
 import Card from '../card/card';
+import Divider from "../divider/divider";
 import Modal from '../modal-form/modal';
 import Page from '../page/page';
 import Burger from './burger';
@@ -97,10 +98,12 @@ const Navbar = (props) => {
                                                 {props.entry.user.user.lastname}
                                             </span>
                                             <Link href=''>
+                                                <a>
                                                 <img
                                                     className='profile-img'
                                                     src='https://cdn3.iconfinder.com/data/icons/avatars-add-on-pack-1/48/v-06-512.png'
                                                 />
+                                                </a>
                                             </Link>
                                             <div
                                                 className='profile-dropdown'
@@ -183,8 +186,14 @@ const Navbar = (props) => {
                             !props.entry.isLoged ?
                                 <>
                                     <figure className='user__menu' onClick={togglePopup}>
-                                        <img src={'/assets/icons/useri.svg'} />
+                                        <img style={{width:'20px'}} src={'/assets/icons/useri.svg'} />
                                         <small>Hesabım</small>
+                                        <ul className='log-register'>
+                                             <Divider/>
+                                             <Link href='/login'><a><li>{f({id:'login'})}</li></a></Link>
+                                             <Divider/>
+                                             <Link href='/register'><a><li>{f({id:'signup'})}</li></a></Link>
+                                        </ul>
                                     </figure>
                                 </>
                                 :

@@ -138,7 +138,12 @@ const data = [
                </FromGroup>
              <ButtonComponent type='submit' className='w-100 mt-xs mb-sm' label={f({id:'login'})}/>
              </form>
-             <div className='mt-xs'><span>{f({id:'no-account'})}</span><Link href='/register'><span className='color-yellow' style={{cursor:'pointer'}}>{f({id:'signup'})}</span></Link></div>
+             <div className='mt-xs'><span>{f({id:'no-account'})}</span>
+             <Link href='/register'>
+               <a>
+               <span className='color-yellow' style={{cursor:'pointer'}}>{f({id:'signup'})}</span>
+               </a>
+               </Link></div>
              </Card.Body>
            </Card>
            }
@@ -148,8 +153,8 @@ const data = [
         <section className='tariff-section'>
           <Card className='mr-sm sm-mob'>
             <Card.Header text={f({id:'tariffs'})} />
-            <Card.Body className='bg-bg p-sm br-sm d-n'>
-              <div className='bg-bg rate-container' style={{ display: 'flex',justifyContent:'space-between'}}>
+            <Card.Body className='bg-bg p-sm br-sm'>
+              <div className='bg-bg rate-container' >
                 {
                   <Rate data={props.tariffs.filter(x => x.country_id === 15 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/turkish.svg'} headerText={f({id:'turkey'})} /> 
                 }
@@ -285,7 +290,7 @@ const data = [
 
         <section className='fluid_bottom' >
           <Card>
-            <Card.Header text={f({ id: 'lastnews' })} endElelment={<Link href='/blog'><>{f({id:'seeall'})} &rsaquo;</></Link>} />
+            <Card.Header text={f({ id: 'lastnews' })} endElelment={<Link href='/blog'><a>{f({id:'seeall'})} &rsaquo;</a></Link>} />
             <Card.Body style={{ padding: 0, display: 'flex', flexWrap:'wrap'}}>
               {
                 props.news.slice(0,3).map((x,i,arr) =>{
@@ -298,7 +303,8 @@ const data = [
 
         <section className='fluid_bottom w-100'>
           <Card>
-            <Card.Header text={f({id:"stores"})} endElelment={<Link href=''><>{f({id:'seeall'})} &rsaquo;</></Link>} />
+            <Card.Header text={f({id:"stores"})} endElelment={
+            <Link href=''><a>{f({id:'seeall'})} &rsaquo;</a></Link>} />
             <Card.Body>
             <div className='flex__item'>
               <Link href='https://www.trendyol.com/'>
@@ -352,19 +358,6 @@ export async function getServerSideProps({locale,req,res}) {
   }
 }
 
-// export async function getStaticProps({locale}) {
-
-//   let news = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}news/main?lan=${locale}`);
-//   let tariffs = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}tariffs?lan=${locale}`);
-
-//   return {
-//     props: {
-//      news:news.data,
-//      tariffs:tariffs.data
-//     },
-//   }
-
-// }
 
 
 export default connect(mapStateToProp, mapDispatchToProp)(memo(Home))
