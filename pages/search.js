@@ -37,7 +37,7 @@ function Search() {
           })
     }
     return (
-        <Page className='bg-bg pt-lg pb-lg'>
+        <Page className='bg-bg pt-lg pb-lg fh'>
             <Card className='bg-white w-100 p-lg'>
               <Card.Header text='Bağlamanızı axtarın' style={{justifyContent:'center'}}/>
               <Card.Body style={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
@@ -46,9 +46,11 @@ function Search() {
                      onSubmit={handleSubmit(submit)}
                      style={{display:'flex',alignItems:'center',width:'max-content'}} className='search__ff'>
                       <FromGroup 
-                        className='mr-xs'
+                        className='m-none mr-xs'
                         bodyClass='border-subtitle' 
-                        bodyStyle={{height:'44px',width:'250px'}}>
+                        bodyStyle={{height:'44px',width:'250px'}}
+                        style={{marginBottom:'0px'}}
+                        >
                         <Input 
                            name='searchKey' 
                            className='pl-xs'
@@ -59,9 +61,11 @@ function Search() {
                       <Button 
                          type='submit'
                          label='Axtar' 
-                         className='pl-lg pr-lg mt-xs mb-xs'/>
+                         className='pl-lg pr-lg'
+                         style={{height:'44px'}}
+                         />
                  </form>
-                 <div style={{display:'flex',alignItems:'flex-end'}}><small style={{fontSize:'xx-small',margin:'0 auto'}}>nümunə: 77498777656658</small></div>
+                 <div style={{display:'flex',alignItems:'flex-end'}}><small style={{fontSize:'xx-small'}}>nümunə: 77498777656658</small></div>
                  </div>
                  {
                    results.isloaded === true ? <Tabel

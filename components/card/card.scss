@@ -30,3 +30,22 @@
 .card-footer{
  display: flex;
 }
+
+@media (max-width:900px) {
+  .card{
+    width: 100% !important;
+  }
+}
+@media (max-width:600px) {
+   .card{
+    //  padding-left: 0px !important;
+    //  padding-right: 0px !important;
+   }
+   .calc-footer{
+     flex-direction:column;
+     div,button{
+       width:100% !important;
+       margin:10px 0px
+     }
+   }
+}

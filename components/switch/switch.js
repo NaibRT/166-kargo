@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Switch({name,value,...rest}) {
+function Switch({name,value,rColor,...rest}) {
  return (
 <label className="switch">
   <input type="checkbox"  name={name} value={value} {...rest}/>

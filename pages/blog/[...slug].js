@@ -14,7 +14,7 @@ import PostItem from "../../components/post_item/post-item"
 function PostInfo(props) {
   
  return (
-      <Page className='bg-bg pt-lg'>
+      <Page className='bg-bg pt-lg fh'>
         <Main className='bg-white mr-sm'>
           <Card className='p-sm'>
             <Card.Body className='p-none'>

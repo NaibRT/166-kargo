@@ -31,4 +31,5 @@ function CardBalance({balance}) {
     )
 }
 
+
 export default memo(CardBalance)

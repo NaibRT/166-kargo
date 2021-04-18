@@ -73,12 +73,12 @@ function Orders(props) {
 
 
     return (
-        <Page className='bg-bg pt-lg'>
+        <Page className='bg-bg pt-lg pb-lg'>
           <Aside className='mr-sm'>
               <AsideMenu/>
           </Aside> 
           <Main>
-            <Card className='p-sm'>
+            <Card className='p-sm order-card'>
                 <Card.Header text={f({id:'orders'})} endElelment={
                 <Link href='./new-order'>
                     <a>
