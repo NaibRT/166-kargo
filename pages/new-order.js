@@ -43,6 +43,7 @@ function NewOrder(props) {
   });
 
   const addCard = (ev) => {
+    console.log('klik',ev)
     ev.preventDefault();
     cards.push({
       url: { value: '', error: '' },

@@ -28,8 +28,8 @@
 @import '../../../components/package_item/package-item.scss';
 
 
-
-
+@import './lends.scss';
+@import './valuta.scss';
 @import './example-shop.scss';
 @import './balans.scss';
 @import './blog.scss';
@@ -196,10 +196,7 @@ ul{
     }
   }
  }
- .footer__cart{
-  display:none !important;
-  width:100%;
-}
+ 
 @media screen  and (max-width:1200px){
 .container-fluid{
   margin:0 20px 0 20px;
@@ -211,6 +208,7 @@ ul{
 }
 
 }
+
 @media(max-width:990px){
   .d-n{
     display: none !important;
@@ -218,10 +216,7 @@ ul{
   .footer__card{
     display:none !important;
   }
-  .footer__cart{
-    display:block;
-    width:100%;
-  }
+  
   .size_btn_m{
     width:100%
   }
