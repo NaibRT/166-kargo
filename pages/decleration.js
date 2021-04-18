@@ -14,6 +14,7 @@ import Input from "../components/input/input";
 import Main from '../components/main/main';
 import Page from "../components/page/page";
 import Redirect from "../components/redirect/redirect";
+import { useIntl } from 'react-intl';
 import Selectbox from "../components/selectbox/selectbox";
 
 const telData = [
@@ -33,6 +34,7 @@ const telData = [
  ]
  
 function Decleration(props) {
+  const { formatMessage: f } = useIntl(); 
 
   if(!props.entry.isLoged){
     return <Redirect/>
@@ -42,6 +44,7 @@ function Decleration(props) {
   const { locale } = useRouter();
   const {register,errors,handleSubmit,watch,setError} = useForm();
   const [subCategories, setSubCategories] = useState('AA');
+  const [fileName, setFileName] = useState(null);
 
 
   const handleChange = (ev) => {
@@ -85,17 +88,17 @@ function Decleration(props) {
 
 
     return (
-        <Page className='user-profile-page bg-bg pt-lg'>
+        <Page className='user-profile-page bg-bg pt-lg pb-lg'>
             <Aside className='mr-sm'>
               <AsideMenu/>
             </Aside>
          <Main>
          <Card className='bg-white p-sm br-lg'>
-          <Card.Header text='Yeni Bəyənnamə'/>
+          <Card.Header text={f({id:"decleration"})}/>
           <form onSubmit={handleSubmit(submit)}>
           <Card.Body className='bg-bg'>
             <div className='declaration__flex'>
-                <FromGroup label='Ölkə seç' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label={f({id:"chooseone"})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                  error={errors.country?.message}
                 >
                   <Selectbox className='bg-white w-100' data={telData}
@@ -107,18 +110,7 @@ function Decleration(props) {
                   />
                 </FromGroup>
 
-                <FromGroup label='Bağlamadakı məhsul sayı' bodyClass='bg-white' className='w-50 pr-xs'
-                error={errors.count?.message}
-                >
-                  <Input type='number' name='count'
-                    Ref={register({
-                      required:{value:true, message:'count is required'},
-                    })}  
-                    //  onChange={handleChange}
-                  />
-                  
-                </FromGroup>
-                <FromGroup label='Track İD' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label='Track İD' bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={errors.track_number?.message}
                 >
                   <Input type='text' name='track_number'
@@ -130,18 +122,7 @@ function Decleration(props) {
                   
                 </FromGroup>
 
-                <FromGroup label='Tarix' bodyClass='bg-white' className='w-50 pr-xs'
-                error={errors.date?.message}
-                >
-                  <Input type='date' name='date'
-                     Ref={register({
-                      required:{value:true, message:'date is required'},
-                    })} 
-                    //  onChange={handleChange}
-                  />
-
-                </FromGroup>
-                <FromGroup label='Magaza adı' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label={f({id:"shopname"})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={errors.shop_name?.message}
                 >
                   <Input type='text' name='shop_name'
@@ -152,18 +133,7 @@ function Decleration(props) {
                   />
                 </FromGroup>
 
-                <FromGroup label='Məhsul adı' bodyClass='bg-white' className='w-50 pr-xs'
-                error={errors.product_name?.message}
-                >
-                  <Input type='text' name='product_name'
-                     Ref={register({
-                       required:{value:true, message:'product name is required'},
-                     })}
-                    //  onChange={handleChange}
-                  />
-                </FromGroup>
-
-                <FromGroup label='Əsas qrup' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label={f({id:"main-g"})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                  error={errors.main_group?.message}
                 >
                   <Selectbox className='bg-white w-100 ' data={props.mainCategories}
@@ -178,7 +148,7 @@ function Decleration(props) {
                 </FromGroup>
 
 
-                <FromGroup label='Alt qrup' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label={f({id:"sub-g"})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                  error={errors.sub_category?.message}
                 >
                   <Selectbox className='bg-white w-100' data={subCategories && props.mainCategories.find(x => x.id=== +subCategories)?.sub_categories}
@@ -190,7 +160,7 @@ function Decleration(props) {
                 </FromGroup>
 
 
-                <FromGroup label='Qiymət' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label={f({id:"price-inv"})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={errors.price?.message}
                 >
                   <Input type='number' name='price'
@@ -202,32 +172,41 @@ function Decleration(props) {
                 </FromGroup>
 
 
-                <FromGroup label='Valyuta' bodyClass='bg-white' className='w-50 pr-xs'
-                 error={errors.currency?.message}
-                >
-                  <Selectbox className='bg-white' data={curData}
-                   name='currency'
-                   Ref={register({
-                    required:{value:true, message:'currency type is required'},
-                  })}
-                  />
-                </FromGroup>
-
-                <FromGroup label='İnvoys yüklə' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup 
+                  label={f({id:"upload"})} 
+                  bodyClass='bg-white' 
+                  className='w-50 pr-xs mb-sm'
+                  bodyStyle={{height:'150px'}}
                 error={errors.invoice?.message}
                 >
-                  <Input type='file' name='invoice'
+                  <div className='file-uploade'>
+                  <Input className='w-100' type='file' title=' ' name='invoice'
                      Ref={register({
                        required:{value:true, message:'invoice is required'}
                      })} 
+                     onChange={(e) => {
+                       console.log(e.target.files[0])
+                      setFileName(e.target.files[0].name)
+                     }}
                   />
-                  
+                    <div className='over-layer'>
+                        <img src='/assets/icons/upload.png'/>
+                        <p>
+                           Sürükləyib bura atın <br/>
+                            və ya <br/>
+                            <span>faylı seçin</span> <br/>
+                            {
+                              fileName && <strong>{fileName}</strong>
+                            }
+                        </p>
+                    </div>
+                  </div>
                 </FromGroup>
 
-                <FromGroup label='Qeyd' bodyClass='bg-white' bodyStyle={{height:'150px'}} className='w-50 pr-xs'
+                <FromGroup label={f({id:"note"})} bodyClass='bg-white' bodyStyle={{height:'150px'}} className='w-50 pr-xs mb-sm'
                    error={errors.note?.message}
                    >
-                      <textarea className='p-xs border-menu w-100 h-100 br-xxs' style={{outline:'none',}} placeholder='qeydiniz varsa daxil edin' name='note'
+                      <textarea className='p-xs w-100 h-100' style={{outline:'none',border:'none'}} placeholder='qeydiniz varsa daxil edin' name='note'
                         ref={register({
                           required:{value:true,message:'note is required'}    
                         })} 
@@ -236,7 +215,7 @@ function Decleration(props) {
             </div>
           </Card.Body>
             <Card.Footer className='mt-sm' style={{justifyContent:'flex-end'}}>
-              <ButtonComponent className='w-25'  label='Bəyan et'/>
+              <ButtonComponent className='w-25'  label={f({id:"declare-inadvance"})}/>
             </Card.Footer>
             </form>
          </Card>

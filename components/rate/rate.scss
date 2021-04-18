@@ -2,6 +2,7 @@
   background-color: $color__white;
   border-radius: $card-sm__border-radius;
   padding: $padding_xs;
+  margin:$margin_xs;
   width: 215px;
 
   .rate-header{
@@ -25,13 +26,11 @@
 
 }
 
-
-
 .rate-item{
  display: flex;
  justify-content: space-between;
  align-items: center;
- margin: 5px 0px;
+ margin: 17px 0px;
 
  span{
   color: $color__subtitle;
@@ -47,47 +46,55 @@
 
   }
 }
-@media(max-width:1200px){
+
+// @media(max-width:1200px){
+//   .rate{
+//     width:100%;
+//   }
+// }
+
+@media(max-width:900px){
   .rate{
-    width:100%;
+     display:none !important;
   }
-}
-@media(max-width:990px){
-  .rate{
-    width:100%;
-    .img-2{
-      margin-right:0 !important
-    }
-  }
+
 }
 
-@media screen and(max-width:750px) and( min-width:600px){
-  .rate{
-    width:250px;
-    .img{
-      margin-right: 5px !important;
-    }
-  }
-}
 @media screen and (max-width:600px)and(min-width:442px){
-  .rate{
-    width:100%;
-    .img{
-      margin-right: 50px !important;
-    }
-    .img-2{
-      margin-right:0 !important
-    }
-  }
+  // .rate{
+  //   width:100%;
+  //   .img{
+  //     margin-right: 50px !important;
+  //   }
+  //   .img-2{
+  //     margin-right:0 !important
+  //   }
+  // }
+
+  //   .rate-card{
+  //   padding:0px !important;
+  //   border-radius:0px !important;
+  //   .cardHeader{
+  //     margin:0px !important;
+  //     background-color:$color__bg !important; 
+  //      h3{
+  //        margin-left:10px !important;
+  //      }   
+  //     }
+  //   .card-body{
+  //     padding:20px 10px !important;
+  //     border-radius:0px !important;
+  //   }
+  // }
 }
 @media screen and (max-width:442px)and(min-width:300px){
-  .rate{
-    width:100%;
-    .img{
-      margin-right: 22px !important;
-    }
-    .img-2{
-      margin-right:0 !important
-    }
-  }
+  // .rate{
+  //   width:100%;
+  //   .img{
+  //     margin-right: 22px !important;
+  //   }
+  //   .img-2{
+  //     margin-right:0 !important
+  //   }
+  // }
 }

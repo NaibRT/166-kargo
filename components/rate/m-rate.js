@@ -1,54 +1,42 @@
-import React from 'react'
-import Divider from '../divider/divider'
+import React from 'react';
+import { useIntl } from 'react-intl';
 
 
-function RateItem({itemData = {}}){
+function MRate({data = [],icon,headerText,style}){
+  const { formatMessage: f } = useIntl(); 
 
- return (
-  <React.Fragment>
-  <div className='rate-item'>
- 
-   <span>{itemData?.min} - {itemData?.max} kq</span>
-   <span>{itemData?.amount} $ </span>
-   <span>{itemData?.amount} $ </span>
-   <span>{itemData?.amount} $ </span>
-  </div>
-  </React.Fragment>
- )
-}
+  return (
+    <table className='m-table' style={style}>
+      <thead>
+          <tr>
+           <th>{f({id:'weight'})}</th>
+           <th colspan="3">
+             <div>
+                <img src={'/assets/icons/15.svg'} className='img '/>     
+                <img src={'/assets/icons/15.svg'} className=' img '/>
+                <img src={'/assets/icons/16.svg'} className='img img-2'/>
+             </div>
+           </th>
+         </tr>
+      </thead>
 
-
-function MobileRate({data = [],icon,style,text}) {
- return (
-  <div className='rate' style={style}>
-      <div className='rate-header' style={{display:'flex',justifyContent:'space-between'}}>
-        {text} 
-        <div  style={{display:'flex'}}>
-        <img src={'/assets/icons/turkish.svg'} className='img br-xs'/>
- 
-        
-        <img src={'/assets/icons/turkish.svg'} className=' img br-xs'/>
-
-        <img src={'/assets/icons/usa.svg'} className='img img-2 br-xs'/>
-  
-        </div>
-          </div>
-
-     <div className='rate-body'>
+  <tbody>
       {
        data.map((x,i) => (
-         <>
-         <RateItem key={i} itemData={x}/>
-           {
-           (data.length-1)!==i ?
-             <Divider/>  : null
-           }
-         </>
+        <tr key={i}>
+            <td>{x?.min} - {x?.max}</td>
+            <td>{x?.amount} $</td>
+            <td>{x?.amount} $</td>
+            <td>{x?.amount} $</td>
+        </tr>
        ))
-      }   
-     </div>
-  </div>
- )
+      } 
+
+ 
+  </tbody>
+
+</table>
+  )
 }
 
-export default MobileRate
+export default MRate

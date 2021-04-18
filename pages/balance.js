@@ -58,13 +58,13 @@ function Balance(props) {
                     <small style={{ display: 'block', color: '#D60000', marginBottom:'10px' }}>{f({ id: 'paybalance' })}</small>
                     <small style={{ display: 'block', color: '#D60000', marginBottom:'10px'  }}>{f({ id: 'refundable' })}</small>
                     <Card className="bg-white p-md br-lg">
-                      <Card.Header text='Tranzakisyalar'/>
+                      <Card.Header text={f({id:"transaction"})}/>
                       <Card.Body className='f-mobile'>
                       <Tabel
                         th={[
-                          'Tarix',
-                          'Ödəniş',
-                          'Balans(xidmətlər)'
+                          f({id:"dateon"}),
+                          f({id:"payment"}),
+                          f({id:"balance-service"})
                         ]}
                          data={data.map(x => (
                            {

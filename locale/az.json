@@ -10,11 +10,24 @@
     "addresses":"Ünvanımız",
     "examples":"Nümunə saytlar",
     "prices":"Qiymətlər",
+    "price":"Qiymət",
     "blog":"Bloq",
+    "getwhere":"Hardan",
+    "update":"Yenilə",
+    "enter-money":"Məbləği daxil et",
+    "updatepass":"Şifrəni yenilə",
+    "lastprice":"Ümumi Qiymət",
+    "logout":"Çıxış",
+    "active-pac":"Aktiv bağlamalarım",
     "signup":"Qeydiyyatdan keç",
     "signin":"İstifadəçi girişi",
     "login":"Daxil ol",
+    "search-tr":"Axtar",
+    "not-found":"Axtarışınıza uyğun bağlama tapılmadı",
     "howitworks":"Necə işləyir?",
+    "search-pac":"Bağlamanızı axtarın",
+    
+    "ent-code":"izləmə kodunu daxil edin",
     "gotoregister":"Qeydiyyatdan keçirsiniz",
     "alttext1":"Sizə Türkiyə və ABŞ-da yerləşən anbarların ünvanlarını göndəririk",
     "makeorder":"Sifariş et",
@@ -23,6 +36,8 @@
     "alttext3":"Sifairşinizi Bakı ofisimizdən götürürsünüz(və ya evinizə çatdırılma xidmətimizdən istifadə edirsiniz)",
     "shops":"Bəzi mağazalar",
     "tarifftitle":"Ölkələr üzrə tariflərimiz",
+    "tariff":"Qiymətlər",
+    "search":"Bağlamam hardadır",
     "turkey":"Türkiyə",
     "ukraina":"Ukrayna",
     "isluqidturkey":"Türkiyə(maye)",
@@ -31,8 +46,18 @@
     "length":"Uzunluq(sm)",
     "width":"En(sm)",
     "height":"Hündürlük(sm)",
+    "decleration":"Yeni bəyənnamə",
+    "shopname":"Mağaza adı",
+    "main-g":"Əsas qrup",
+    "sub-g":"Alt qrup",
+    "price-inv":"Invoys qiyməti",
+    
+
     "note":"Qeyd",
     "color":"Rəng",
+    "isfast":"Təcili",
+    "ord-pay":"Sifariş et və ödə",
+    "agreement":"Qaydalarla razıyam",
     "review":"Rəy",
     "size":"Ölçü",
     "calc":"Hesabla",
@@ -40,9 +65,21 @@
     "payed":"Ödənilib",
     "unpayed":"Ödənilməyib",
     "addneworder":"Yeni sifariş əlavə et",
-
+    "addnewproduct":"Yeni məhsul artır",
+     "new-order":"Yeni sifariş",
+     "personalinfo":"Şəxsi məlumatlar",
     "active-pack":"Aktiv bağlamalarım",
     "all":"All",
+    "chooseone":"seç",
+    "addcode":"Kod əlavə et",
+    "confirm":"Təsdiq et",
+    "paybycard":"Kartla ödə",
+    "paybybalance":"Baıansdan ödə",
+    "upload":"Invoys yüklə",
+    "total":"Cəmi",
+    "chosed":"bağlama seçilib",
+    "choose-all":"hamsını seç",
+    "curry-cand":"Daşınma şərtləri",
 
 
 
@@ -53,11 +90,15 @@
     "seeall":"Hamısını gör",
     "lastnews":"Son xəbərlər",
     "stores":"Bəzi mağazalar",
+    "reason":"Borcun yaranma səbəbi",
+    "link":"Link",
     "increases-balance":"Balansı artır",
     "paybalance":"Balansa artırdığınız məbləğ ilə yalnız çatdırılma haqqını ödəyə bilərsiniz!",
     "refundable":"Ödənilən məbləğ geri qaytarılmır!",
     "transaction":"Tranzaksiyalar",
     "payment":"Ödəniş",
+    "paylend":"Borcu ödə",
+
     "balance-service":"Balans(xidmətlər)",
     "balance":"Balans",
     "declare-inadvance":"Öncədən bəyan et",
@@ -77,13 +118,14 @@
     "payed-packages":"Ödənilmiş bağlamalar",
     "order-history":"Sifariş tarixçəsi",
 
-    "tracking":"Tracking",
+    "tracking":"İzləmə kodu",
     "shop":"Mağaza",
     "category":"Kateqoriya",
     "amount":"Malın dəyəri",
     "weight":"Çəki",
     "delivery":"Çatdırılma",
     "count":"Say",
+    "count-pro":"Məhsulun Sayı",
     "status":"Status",
 
 
@@ -149,10 +191,13 @@
     "address-requir":"ünvan məcburidir",
 
     "password":"Şifrə",
+    "newpassword":"Yeni Şifrə",
+    "oldpassword":"Köhnə Şifrə",
     "pass-requir":"şifrə məcburidir",
     "pass-patter":"şifrə min 1 hərf, 1rəqəm və 8 simvol olmalıdır",
 
     "repeat-pass":"Təkrar şifrə",
+
     "repeatpas-requir":"təkrar şifrə məcburidir",
     "repeatpas-valid":"təkrar şifrə uyğun deyil",
 
@@ -162,6 +207,8 @@
      "register":"Qeydiyyat",
     "corporative":"Korporativ",
     "complate-register":"Qeydiyyatı tamamla",
-    "register-hard":"Qeydiyyatdan keçmekdə çəntinlik çəkirsizsə videonu izləyin"
-
+    "register-hard":"Qeydiyyatdan keçmekdə çəntinlik çəkirsizsə videonu izləyin",
+    "dateon":"Tarix",
+    "linksf":"Keçidlər",
+    "use-cond":"İstifadə şərtləri"
    }

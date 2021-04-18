@@ -5,11 +5,13 @@
     background-color: $color__white;
     border-radius: $border-radius_sm;
     height: max-content;
+    padding:$padding_lg
 }
 
-@media(max-width:990px){
+@media(max-width:900px){
     .main{
         flex-basis:100%  !important;
         width:100%;
+        padding:0px !important;
     }
 }

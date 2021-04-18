@@ -14,7 +14,7 @@ import PostItem from "../../components/post_item/post-item"
 function PostInfo(props) {
   
  return (
-      <Page className='bg-bg pt-lg'>
+      <Page className='bg-bg pt-lg fh'>
         <Main className='bg-white mr-sm'>
           <Card className='p-sm'>
             <Card.Body className='p-none'>
@@ -51,7 +51,7 @@ function PostInfo(props) {
                 ))
               }
             </Card.Body>
-            <Card.Footer text={<Link href=''>hamsını gör +</Link>}/>
+            <Card.Footer text={<Link href=''><a>hamsını gör +</a></Link>}/>
           </Card>
         </Aside>
       </Page>

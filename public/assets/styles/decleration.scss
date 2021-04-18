@@ -16,10 +16,44 @@
     display: flex;
     flex-wrap: wrap;
 }
+.file-uploade{
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+    input[type="file"]::-webkit-file-upload-button{
+        display: none;
+    }
+
+    input[type="file"]{
+        position: absolute;
+        top: 0px;
+        opacity: 0;
+        z-index: 1111;
+    }
+    .over-layer{
+        position: absolute;
+        top: 0px;
+        left: calc(50% - 57px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        p{
+            text-align: center;
+            color: lightgrey;
+            font-size: small;
+            span{
+                color: darkturquoise;
+            }
+        }
+        z-index: 1;
+    }
+}
 @media(max-width:990px){
     .declaration__flex{
         .w-50{
-            width:100% !important
+            width:100% !important;
         }
     }
 }

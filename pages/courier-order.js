@@ -66,16 +66,16 @@ function CourierOrder(props) {
 
   return (
     <Page className='bg-bg pt-lg pb-lg'>
-      <Aside>
+      <Aside className='mr-sm'>
         <AsideMenu />
       </Aside>
-      <Main className='bg-bg'>
+      <Main className='bg-white'>
         <Card className='p-sm bg-white coruier__cards br-lg'>
           <form>
           <Card.Header text={f({id:'courier-order'})} />
           <Card.Body className='p-none'>
             <p className='mb-lg'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+            <div className='coruier-cards-form-container' style={{ display: 'flex', flexWrap: 'wrap' }}>
               <FromGroup label={f({id:'choose-dist'})} className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
                 <Input type='text' />
               </FromGroup>
@@ -131,7 +131,7 @@ function CourierOrder(props) {
                     <summary className='order-item-summary'>
                       <div className='order-item-summary-head' >
                         <span style={{textAlign:'center'}}>No </span>
-                        <span style={{textAlign:'center'}}>{f({id:'date'})}</span>
+                        <span style={{textAlign:'center'}}>{f({id:'dateon'})}</span>
                         <span style={{textAlign:'center'}}>{f({id:'count'})}</span>
                         <span style={{textAlign:'center'}}>{f({id:'status'})}</span>
                       </div>

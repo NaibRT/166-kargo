@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
+import { useIntl } from 'react-intl';
 import Swal from "sweetalert2";
 import AsideMenu from "../components/aside-menu/index";
 import Aside from '../components/aside/aside';
@@ -19,18 +20,23 @@ import { UpdateUser } from "../redux/entry/entryActions";
 
 
 const telData = [
-  {id:'+994',name:'+994'}
+  {id:'050',name:'050'},
+  {id:'051',name:'051'},
+  {id:'055',name:'055'},
+  {id:'070',name:'070'},
+  {id:'077',name:'077'},
  ]
  
 function UserInfo(props) {
-
+  const { formatMessage: f } = useIntl();
   if(!props.entry.isLoged){
     return <Redirect/>
   }
   const [checkSerial, setCheckSerial] = useState('AA');
   const [user, setUser] = useState({
     ...props.entry.user.user,
-    phone: props.entry.user.user.phone.slice(4)
+    phone: props.entry.user.user.phone.slice(3),
+    phone_typ:props.entry.user.user.phone.substr(0,3)
   });
 
   const { locale, locales, defaultLocale } = useRouter();
@@ -104,17 +110,18 @@ function UserInfo(props) {
 
 
     return (
+
         <Page className='user-profile-page bg-bg pt-lg pb-lg'>
             <Aside className='mr-sm'>
               <AsideMenu/>
             </Aside>
          <Main className='mobile__color'>
          <Card className='bg-white p-sm br-lg'>
-          <Card.Header text='Şəxsi melumatlar'/>
+          <Card.Header text={f({id:"personalinfo"})}/>
           <form onSubmit={uHandleSubmit(updateUserData)}>
           <Card.Body className='bg-bg'>
             <div className='flex__column' style={{display:'flex',flexWrap:'wrap'}}>
-                <FromGroup label='Ad' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label={f({id:'name'})}  bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                  error={uErrors.firstname?.message}
                 >
                   <Input type='text' name='firstname'
@@ -126,7 +133,7 @@ function UserInfo(props) {
                      onChange={handleChange}
                   />
                 </FromGroup>
-                <FromGroup label='Soyad' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label={f({id:'surname'})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={uErrors.lastname?.message}
                 >
                   <Input type='text' name='lastname'
@@ -139,7 +146,7 @@ function UserInfo(props) {
                   />
                   
                 </FromGroup>
-                <FromGroup label='E-mail' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label={f({id:'email'})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={uErrors.email?.message}
                 >
                   <Input type='email' name='email'
@@ -152,10 +159,12 @@ function UserInfo(props) {
                   />
                   
                 </FromGroup>
-                <FromGroup label='Telefon' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label={f({id:'phone'})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={uErrors.phone?.message}
                 >
-                  <Selectbox className='bg-white' data={telData}
+                  <Selectbox 
+                   className='bg-white' 
+                   data={telData}
                    name='phone_typ'
                    Ref={uRegister({
                     required:{value:true, message:'phone type is required'},
@@ -168,7 +177,7 @@ function UserInfo(props) {
                     maxLength='9'
                      Ref={uRegister({
                        required:{value:true, message:'phone is required'},
-                       pattern:{value:/^\(?(51|60|70|77|50|55)\)?(\s+)?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$/,message:'phone is not correct format'},
+                       pattern:{value:/^[0-9]{3}[0-9]{2}[0-9]{2}$/,message:'phone is not correct format'},
                        maxLength:{value:9, message:'phone must be 9 digits'}
                      })}
                      value={user.phone}
@@ -176,12 +185,19 @@ function UserInfo(props) {
                   />
                   
                 </FromGroup>
-                <FromGroup label='Sexsiyyet vesiqesinin seriya nomresi' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label={f({id:'serial'})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={uErrors.serial?.message}
                 >
-                   <Selectbox onChange={(ev)=>{
-                     setCheckSerial(ev.target.value)
-                   }} className='bg-white' data={[{id:'AA',name:'AA'},{id:'AZE',name:'AZE'}]}/>
+                   <Selectbox 
+                     onChange={(ev)=>{
+                     //setCheckSerial(ev.target.value)
+                     handleChange(ev)
+                     }}
+                     name='serial_type' 
+                     className='bg-white' 
+                     data={[{id:'AA',name:'AA'},{id:'AZE',name:'AZE'}]}
+                     value={user.serial_type}  
+                     />
                   <Input type='text' name='serial'
                      maxLength={checkSerial==='AA' ? '7' : '8'}
                      Ref={uRegister({
@@ -193,21 +209,21 @@ function UserInfo(props) {
                   />
                   
                 </FromGroup>
-                 <FromGroup label='Cins' bodyClass=''  className='w-50 pr-xs'>
-                  <RadioButton text='Kisi' name='gender' id='male' value='M' 
+                 <FromGroup label={f({id:'gender'})} bodyClass=''  className='w-50 pr-xs mb-sm'>
+                  <RadioButton text={f({id:'men'})} name='gender' id='male' value='M' 
                      Ref={uRegister()} 
                      checked={user.gender === 'M' ? true : false}
                      onChange={handleChange}
                   />
                   
-                  <RadioButton text='Qadin' name='gender' id='female' value='F' 
+                  <RadioButton text={f({id:'women'})} name='gender' id='female' value='F' 
                      Ref={uRegister()} 
                      checked={user.gender === 'F' ? true : false}
                      onChange={handleChange}
                   />
                   
                 </FromGroup>
-                 <FromGroup label='FIN' bodyClass='bg-white' className='w-50 pr-xs'
+                 <FromGroup label={f({id:'fin'})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={uErrors.fin?.message}
                 >
                   <Input type='text' name='fin'
@@ -224,7 +240,7 @@ function UserInfo(props) {
                   
                 </FromGroup>
 
-                <FromGroup label='Milliyət' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label={f({id:'nationality'})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={uErrors.nationality?.message}
                 >
                   <Selectbox data={[{id:'Azerbaijan',name:'Azerbaijan'},{id:'Foreign',name:'Foreign'}]} name='nationality'
@@ -237,7 +253,7 @@ function UserInfo(props) {
                   
                 </FromGroup>
 
-                <FromGroup label='Doğum tarixi' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label={f({id:'date'})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={uErrors.birthday?.message}
                 >
                   <Input type='date' name='birthday'
@@ -249,7 +265,7 @@ function UserInfo(props) {
                   />
                   
                 </FromGroup>
-                <FromGroup label='Ünvan' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label={f({id:'address'})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={uErrors.address?.message}
                 >
                   <Input type='text' name='address'
@@ -264,17 +280,17 @@ function UserInfo(props) {
             </div>
           </Card.Body>
             <Card.Footer className='mt-sm' style={{justifyContent:'flex-end'}}>
-              <ButtonComponent className='w-25'  label='Melumati yenile'/>
+              <ButtonComponent className='w-25'  label={f({id:'update'})}/>
             </Card.Footer>
             </form>
          </Card>
 
          <Card className='bg-white p-sm'>
-          <Card.Header text='Sifreni yenile'/>
+          <Card.Header text={f({id:'updatepass'})}/>
           <form onSubmit={handleSubmit(resetPassword)}>
           <Card.Body className='bg-bg'>
             <div style={{display:'flex',flexWrap:'wrap'}}>
-                <FromGroup label='Köhnə şifrə' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label={f({id:'oldpassword'})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                   error={errors.old_password?.message}
                 >
                   <Input type='password' name='old_password'
@@ -284,7 +300,9 @@ function UserInfo(props) {
                     })}
                   />
                 </FromGroup>
-                <FromGroup label='Yeni sifre' bodyClass='bg-white' className='w-50 pr-xs'
+                <div className="w-50"></div>
+
+                <FromGroup label={f({id:'newpassword'})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                   error={errors.new_password?.message}
                 >
                   <Input type='password' name='new_password'
@@ -294,7 +312,8 @@ function UserInfo(props) {
                     })}
                   />
                 </FromGroup>
-                <FromGroup label='Yeni sifreni terkrar' bodyClass='bg-white' className='w-50 pr-xs'
+
+                <FromGroup label={f({id:'repeat-pass'})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                   error={errors.new_password_confirmation?.message}
 
                 >
@@ -306,10 +325,11 @@ function UserInfo(props) {
                     })}
                   />
                 </FromGroup>
+
             </div>
           </Card.Body>
           <Card.Footer className='mt-sm' style={{justifyContent:'flex-end'}}>
-              <ButtonComponent className='w-25' label='Sifreni deyis'/>
+              <ButtonComponent className='w-25' label={f({id:"updatepass"})}/>
             </Card.Footer>
           </form>
          </Card>

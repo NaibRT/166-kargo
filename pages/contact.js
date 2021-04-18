@@ -8,6 +8,7 @@ import FromGroup from "../components/form-group/form-group";
 import Input from "../components/input/input";
 import Page from "../components/page/page";
 import { useIntl } from 'react-intl';
+import Map from '../components/map'
 
 function Contact() {
     const { formatMessage: f } = useIntl(); 
@@ -86,19 +87,21 @@ function Contact() {
                    <ButtonComponent type='submit' className='w-100 mt-xs' label={f({id:'send'})}/>
                </form>
              </div>
-
-             <div className='w-100 h-100'>
-              <map>
-
-              </map>
-             </div>
+             <div className='mt-lg'>
+             <Map src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12159.547075170436!2d49.8278507!3d40.367035!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4a085896c76182bc!2s166%20Cargo!5e0!3m2!1sen!2s!4v1618748097032!5m2!1sen!2s" 
+                     width="1000" 
+                     height="600" 
+                     style={{border:'0px'}} 
+               />
+        </div>
+             
             </main>
 
 
                   {/*mobile*/}
                   <main className='mb-size contact-page  br-xs mt-lg '>
              <div>
-             <h3 className='mb-sm'> Bizimle Əlaqə</h3>
+             <h3 className='mb-sm'>{f({id:'contact-us'})}</h3>
              <address className='contact-container p-lg bg-yellow br-sm'>
               
                <div className='mb-sm'><img className='mr-sm'  src='/assets/icons/45060.svg'/><span>Baki şəhəri. Səbail ray...Ş.Şamil küç. 16</span></div>
@@ -109,8 +112,7 @@ function Contact() {
              </div>
 
              <h3 className='mb-sm'>{f({id:'contact-form'})}</h3>
-               <p className='mb-sm'>Asagidaki formaya elaqe melumatlarinizi ve mesajinii daxil edin, biz size geri donus edek.</p>
-             
+             <p className='mb-sm'>{f({id:'cf-info'})}</p>
              <div className='contact-page-form bg-white' style={{padding:'25px 25px'}}>
                <form onSubmit={handleSubmit(submit)}>
                   
@@ -147,11 +149,7 @@ function Contact() {
                </form>
              </div>
 
-             <div className='w-100 h-100'>
-              <map>
-
-              </map>
-             </div>
+              
             </main>
 
         </Page>

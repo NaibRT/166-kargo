@@ -5,9 +5,7 @@
     display: none;
 }
 @media(max-width:990px){
-    .vh{
-        height: 100vh;
-      }
+   
     .mobile__lend__show{
         display:block !important;
         table{
@@ -19,8 +17,7 @@
     }
     .mobi__lend{
         display:block !important;
-        margin-top:-200px;
-        
+       
         .size_btn{
             width: 100%;
         }

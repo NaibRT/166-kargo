@@ -2,6 +2,7 @@ import axios from 'axios';
 import Link from "next/link";
 import { useRouter } from 'next/router';
 import React, { memo, useLayoutEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 import { connect } from "react-redux";
 import AsideMenu from "../components/aside-menu/index";
 import Aside from "../components/aside/aside";
@@ -11,7 +12,6 @@ import Main from "../components/main/main";
 import Page from "../components/page/page";
 import Redirect from "../components/redirect/redirect";
 import Tabel from "../components/tabel/tabel";
-import { useIntl } from 'react-intl';
 
              const dataHead = [
                  'Tracking',
@@ -73,13 +73,18 @@ function Orders(props) {
 
 
     return (
-        <Page className='bg-bg pt-lg'>
+        <Page className='bg-bg pt-lg pb-lg'>
           <Aside className='mr-sm'>
               <AsideMenu/>
           </Aside> 
           <Main>
-            <Card className='p-sm'>
-                <Card.Header text={f({id:'orders'})} endElelment={<Link href='./new-order'><ButtonComponent className='p-xs' startElement={<span>&#x2b;</span>} label={f({id:'addneworder'})}/></Link>}/>
+            <Card className='p-sm order-card'>
+                <Card.Header text={f({id:'orders'})} endElelment={
+                <Link href='./new-order'>
+                    <a>
+                    <ButtonComponent className='p-xs' startElement={<span>&#x2b;</span>} label={f({id:'addneworder'})}/>
+                    </a>
+                </Link>}/>
                 <Card.Body className='p-none'>
                    <div className='orders-container'>
                        <div className='orders-container-head'>

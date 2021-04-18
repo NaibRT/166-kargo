@@ -2,40 +2,45 @@ import Link from 'next/link';
 import React, { memo } from 'react';
 import { connect } from "react-redux";
 import Page from '../page/page';
+import { useIntl } from 'react-intl';
 
 
 
 
 const data = [
-  {name:'Haqqımızda',link:'/about'},
-  {name:'Mağazalar',link:'/example-shop'},
-  {name:'Tez-tez verilən suallar',link:'/faq'},
-  {name:'İstifadə şərtləri',link:'/orderscondition'},
-  {name:'Daşıma şərtləri',link:'currycondition'}
+  {name:'about',link:'/about'},
+  {name:'examples',link:'/example-shop'},
+  {name:'faq',link:'/faq'},
+  {name:'use-cond',link:'/orderscondition'},
+  {name:'curry-cand',link:'/carryconditions'}
 ];
 
+const links = (data = []) => {
+  const { formatMessage: f } = useIntl();
+  return (  
+    <div className={'link_container'}>
+      <div className={'link_item_head'}>{f({ id: 'linksf' })}</div>
+      <ul>
+        {
+          data.map((item, index) => (<li key={index}><Link href={item.link}><a>{f({id:item.name})}</a></Link></li>))
+        }
+      </ul>
+    </div>
+  )
+};
 
-
-const links = (data = []) => (
-  <div className={'link_container'}>
-    <div className={'link_item_head'}>Keçidlər</div>
-    <ul>
-      {
-        data.map((item, index) => (<li key={index}><Link href={item.link}>{item.name}</Link></li>))
-      }
-    </ul>
-  </div>
-);
-
-const contact = (data) => (
-  <address className={'address_container'}>
-    <div className={'link_item_head'}>Əlaqə</div>
-    <div><img src='/assets/icons/45060.svg' /><span>{data?.address}</span></div>
-    <div><img src='/assets/icons/129932.svg' /><a href='tel:*0166'>{data?.phone}</a></div>
-    <div><img src='/assets/icons/121923.svg' /><a href='mailto:info@166kargo.az'>{data?.email}</a></div>
-    <div><img src='/assets/icons/time-work_318-10641.svg' /><span>{data?.work_hours_from} - {data?.work_hours_till}</span></div>
-  </address>
-)
+const contact = (data) =>{
+  const { formatMessage: f } = useIntl();
+  return (
+    <address className={'address_container'}>
+      <div className={'link_item_head'}>{f({ id: 'contact' })}</div>
+      <div><img src='/assets/icons/45060.svg' /><span>{data?.address}</span></div>
+      <div><img src='/assets/icons/129932.svg' /><a href='tel:*0166'>{data?.phone}</a></div>
+      <div><img src='/assets/icons/121923.svg' /><a href='mailto:info@166kargo.az'>{data?.email}</a></div>
+      <div><img src='/assets/icons/time-work_318-10641.svg' /><span>{data?.work_hours_from} - {data?.work_hours_till}</span></div>
+    </address>
+  )
+} 
 const contactmob = (datamob) => (
   <div className={'address_container'}>
     <div> <span>{datamob?.work_hours_from} - {datamob?.work_hours_till}</span></div>
@@ -43,6 +48,7 @@ const contactmob = (datamob) => (
 )
 
 function Footer(props) {
+ const { formatMessage: f } = useIntl();
   return (
 
     <footer className={'footer mt-lg'}>

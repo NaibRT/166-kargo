@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { memo, useLayoutEffect, useState } from 'react';
 import { connect } from "react-redux";
 import AsideMenu from '../components/aside-menu';
+import { useIntl } from 'react-intl';
 import Aside from '../components/aside/aside';
 import ButtonComponent from '../components/button';
 import Card from '../components/card/card';
@@ -10,17 +11,28 @@ import Main from '../components/main/main';
 import Page from "../components/page/page";
 import Redirect from "../components/redirect/redirect";
 import Tabel from '../components/tabel/tabel';
-const dataHead = [
-  ' Sifariş N',
-  'Borcun yaranma səbəbi',
-  'Ödəniş'
 
-];
-const dataMobile = [
-  '№',
-  'Səbəbi',
-  'Ödəniş'
-]
+const dataFunc=()=>{
+  const { formatMessage: f } = useIntl();
+
+  const dataHead = [
+    `${f({id:'orders'})}№`,
+    f({id:'reason'}),
+    f({id:'payment'})
+  ];
+  return dataHead
+}
+const dataFuncMob=()=>{
+  const { formatMessage: f } = useIntl();
+
+  const dataMobile = [
+    `${f({id:'order'})}№`,
+    f({id:'reason'}),
+    f({id:'payment'})
+  ]
+  return dataMobile
+}
+
 const lendw =[
   {
     "id": 8,
@@ -34,6 +46,7 @@ const lendw =[
   }
 ]
 function Lends(props) {
+  const { formatMessage: f } = useIntl();
 
   if (!props.entry.isLoged) {
     return <Redirect />
@@ -61,10 +74,10 @@ function Lends(props) {
       </Aside>
       <Main className='mobile__lend'>
         <Card className='p-sm'>
-          <Card.Header text='Borclarım' />
+          <Card.Header text={f({id:"lends"})} />
           <Card.Body className='p-none'>
             <Tabel
-              th={dataHead}
+              th={dataFunc()}
               data={lend}
               renderBody={(x, i) => {
 
@@ -75,15 +88,15 @@ function Lends(props) {
             />
           </Card.Body>
           <Card.Footer className='footer__card'>
-            <h6 className='ml-xs mt-xs'>Sizin Borcunuz 3 TRY təşkil edir</h6>
-            <ButtonComponent className='size_btn' label='Borcu ödə' />
+            <h6 className='ml-xs mt-xs'></h6>
+            <ButtonComponent className='size_btn' label={f({id:"paylend"})} />
           </Card.Footer>
         </Card>
       </Main>
      {/*Mobile lend design */}
       <Main className='mobile__lend__show'>
         <Card className='p-sm'>
-          <Card.Header text='Borclarım' />
+          <Card.Header text={f({id:"lends"})} />
           <Card.Body className='p-none'>
 
               {
@@ -96,11 +109,11 @@ function Lends(props) {
                     </tr>
                     <tbody>
                       <tr>
-                        <th>Səbəb</th>
+                        <th>{f({id:"reason"})}</th>
                         <td>{s.reason}</td>
                       </tr>
                       <tr>
-                        <th>Ödəniş</th>
+                        <th>{f({id:"payment"})}</th>
                         <td>{s.amount}</td>
                       </tr>
                     </tbody>

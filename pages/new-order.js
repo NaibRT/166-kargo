@@ -15,6 +15,7 @@ import Input from '../components/input/input';
 import Main from "../components/main/main";
 import Page from "../components/page/page";
 import Redirect from "../components/redirect/redirect";
+import { useIntl } from 'react-intl';
 
 
 function NewOrder(props) {
@@ -22,7 +23,7 @@ function NewOrder(props) {
   if(!props.entry.isLoged){
     return <Redirect/>
   }
-
+  const { formatMessage: f } = useIntl(); 
   const { locale } = useRouter();
 
   const { register, handleSubmit, errors, setError, clearErrors } = useForm();
@@ -43,7 +44,6 @@ function NewOrder(props) {
   });
 
   const addCard = (ev) => {
-    console.log('klik',ev)
     ev.preventDefault();
     cards.push({
       url: { value: '', error: '' },
@@ -123,6 +123,14 @@ function NewOrder(props) {
           'Authorization': `Bearer ${props.entry.user.accessToken}`
         }
       }).then(res => {
+        setCards([{
+           url: { value: '', error: '' },
+           price: { value: '', error: '' },
+           notes: { value: '', error: '' },
+           color: { value: '', error: '' },
+           size: { value: '', error: '' },
+           count: { value: '', error: '' },
+         }])
         Swal.fire({
           success: 'success',
           text: 'emeliyyat ugurlu oldu',
@@ -157,7 +165,7 @@ function NewOrder(props) {
       </Aside>
       <Main className='br-sm bg-white br-lg'>
         <Card className='p-sm desktop__order'>
-          <Card.Header text="Yeni sifaris" />
+          <Card.Header text={f({id:'new-order'})} />
           <form onSubmit={handleSubmit(submit)}>
             {
               cards.map((x, i) => {
@@ -168,9 +176,9 @@ function NewOrder(props) {
                         <span onClick={removeCard} data-id={i} style={{ color: 'red', position: 'absolute', top: '10px', right: '10px', cursor: 'pointer' }}>&#10006;</span>
                         : <></>
                     }
-                    <div className='' style={{ display: 'flex' }}>
-                      <div className='w-50 mr-sm' style={{}}>
-                        <FromGroup label='Link' className='w-100' bodyClass='bg-white'
+                    <div className='from-container' style={{ display: 'flex' }}>
+                      <div className='w-50 mr-sm fc-col' style={{}}>
+                        <FromGroup label={f({id:"link"})} className='w-100' bodyClass='bg-white'
                           error={x.url.error}
                         >
                           <Input type='text' name='url' data-id={i} value={x.url.value}
@@ -179,7 +187,7 @@ function NewOrder(props) {
                           />
                         </FromGroup>
                         <div style={{ display: 'flex' }}>
-                          <FromGroup label='Rengi' className='w-50 mr-sm' bodyClass='bg-white'
+                          <FromGroup label={f({id:"color"})} className='w-50 mr-sm' bodyClass='bg-white'
                             error={x.color.error}
                           >
                             <Input type='text' name='color' data-id={i}
@@ -188,10 +196,14 @@ function NewOrder(props) {
                               onChange={handleInput}
                             />
                           </FromGroup>
-                          <FromGroup label='Olcusu' className='w-50' bodyClass='bg-white'
+                          <FromGroup label={f({id:'size'})} className='w-50' bodyClass='bg-white'
                             error={x.size.error}
                           >
-                            <Input type='text' name='size' data-id={i}
+                            <Input 
+                               min={0}
+                              type='text' 
+                              name='size' 
+                              data-id={i}
                               value={x.size.value}
                               Ref={register({ required: true })}
                               onChange={handleInput}
@@ -199,36 +211,45 @@ function NewOrder(props) {
                           </FromGroup>
                         </div>
                       </div>
-                      <div className='w-50'>
+                      <div className='w-50 fc-col'>
                         <div className='w-100' style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <FromGroup label='Mehsul sayi' className='mr-xs' bodyClass='bg-white'
+                          <FromGroup label={f({id:'count-pro'})} className='mr-xs' bodyClass='bg-white'
                             error={x.count.error}
                           >
-                            <Input type='number' name='count' data-id={i}
+                            <Input 
+                              min={0}
+                              type='number' 
+                              name='count' 
+                              data-id={i}
                               value={x.count.value}
                               Ref={register({ required: true })}
                               onChange={handleInput}
                             />
                           </FromGroup>
-                          <FromGroup label='Qiymet' className='mr-xs' bodyClass='bg-white'
+                          <FromGroup label={f({id:'price'})} className='mr-xs' bodyClass='bg-white'
                             error={x.price.error}
                           >
                             <Input type='number' name='price' data-id={i}
+                              min={0}
                               value={x.price.value}
                               Ref={register({ required: true })}
                               onChange={handleInput}
                             />
                           </FromGroup>
-                          <FromGroup label='Cemi' className='mr-xs' bodyClass='bg-white'
+                          <FromGroup label={f({id:"total"})} className='mr-xs' bodyClass='bg-white'
                           >
-                            <Input type='number' name='total' data-id={i}
+                            <Input 
+                              min={0}
+                              type='number' 
+                              name='total' 
+                              data-id={i}
                               value={x.total}
                               Ref={register({ required: true })}
                               disabled
                             />
                           </FromGroup>
                         </div>
-                        <FromGroup label='Elave Qeyd' className='w-100' bodyClass='bg-white'
+                        <FromGroup label={f({id:"note"})} className='w-100' bodyClass='bg-white'
                           error={x.notes.error}
                         >
                           <Input type='text' name='notes' data-id={i}
@@ -245,10 +266,10 @@ function NewOrder(props) {
             }
             <Card.Footer className='mt-sm' style={{ justifyContent: 'space-between' }}>
               <div>
-                <Button onClick={addCard} className='w-100 p-sm bg-white border-success color-success' startElement={<span className='mr-xs color-success'>+</span>} label='Yeni mehsul artir' />
+                <Button onClick={addCard} className='w-100 p-sm bg-white border-success color-success' startElement={<span className='mr-xs color-success'>+</span>} label={f({id:'addnewproduct'})} />
               </div>
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Checkbox text='Tecili' name='is_fast' value={cardData.is_fast}
+                <Checkbox text={f({id:"isfast"})} name='is_fast' value={cardData.is_fast}
                   onClick={(ev) => {
                     setCardData({
                       ...cardData,
@@ -267,11 +288,11 @@ function NewOrder(props) {
                     })
                   }}
                 >
-                  <Link href='/'><><a className='mr-xs' style={{ width: '-webkit-max-content' }}>Qaydalarla</a>Raziyam</></Link>
+                  <Link href='/'><><a className='mr-xs' style={{ width: '-webkit-max-content' }}></a>{f({id:"agreement"})}</></Link>
                 </Checkbox>
                 <Button
                   style={{ padding: '0 5px' }}
-                  label='Sifariş et və öde'
+                  label={f({id:"ord-pay"})}
                   endElement={<span className='ml-xs'>&#8250;</span>}
                   className=' w-100'
                   disabled={!cardData.ruleAccepted}
@@ -284,7 +305,7 @@ function NewOrder(props) {
 
         {/*Mobile section */}
         <Card className='p-sm mobile__order'>
-          <Card.Header text="Yeni sifaris" />
+          <Card.Header text={f({id:'new-order'})} />
           <form onSubmit={handleSubmit(submit)}>
             {
               cards.map((x, i) => {
@@ -297,7 +318,7 @@ function NewOrder(props) {
                     }
                     <div className=''  >
                       <div>
-                        <FromGroup label='Link' className='w-100' bodyClass='bg-white'
+                        <FromGroup label={f({id:"link"})} className='w-100' bodyClass='bg-white'
                           error={x.url.error}
                         >
                           <Input type='text' name='url' data-id={i} value={x.url.value}
@@ -305,10 +326,14 @@ function NewOrder(props) {
                             onChange={handleInput}
                           />
                         </FromGroup>
-                        <FromGroup label='Mehsul sayi'   bodyClass='bg-white'
+                        <FromGroup label={f({id:'count-pro'})}   bodyClass='bg-white'
                           error={x.count.error}
                         >
-                          <Input type='number' name='count' data-id={i}
+                          <Input 
+                             min={0}
+                            type='number' 
+                            name='count' 
+                            data-id={i}
                             value={x.count.value}
                             Ref={register({ required: true })}
                             onChange={handleInput}
@@ -316,16 +341,24 @@ function NewOrder(props) {
                         </FromGroup>
 
                         <div className='w-100' style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <FromGroup label='Qiymet' className=' w-50 mr-xs' bodyClass='bg-white'
+                          <FromGroup 
+                            
+                            label={f({id:'price'})} 
+                            className=' w-50 mr-xs' 
+                            bodyClass='bg-white'
                             error={x.price.error}
                           >
-                            <Input type='number' name='price' data-id={i}
+                            <Input 
+                              type='number' 
+                              name='price' 
+                              data-id={i}
+                              min={0}
                               value={x.price.value}
                               Ref={register({ required: true })}
                               onChange={handleInput}
                             />
                           </FromGroup>
-                          <FromGroup label='Cemi' className=' w-50' bodyClass='bg-white'
+                          <FromGroup label={f({id:"total"})} className=' w-50' bodyClass='bg-white'
                           >
                             <Input type='number' name='total' data-id={i}
                               value={x.total}
@@ -335,7 +368,7 @@ function NewOrder(props) {
                           </FromGroup>
                         </div>
                         <div style={{ display: 'flex' }}>
-                          <FromGroup label='Rengi' className='w-50 mr-xs'  bodyClass='bg-white'
+                          <FromGroup label={f({id:"color"})} className='w-50 mr-xs'  bodyClass='bg-white'
                             error={x.color.error}
                           >
                             <Input type='text' name='color' data-id={i}
@@ -344,10 +377,18 @@ function NewOrder(props) {
                               onChange={handleInput}
                             />
                           </FromGroup>
-                          <FromGroup label='Olcusu' className='w-50' bodyClass='bg-white'
+                          <FromGroup 
+                             
+                            label={f({id:'size'})} 
+                            className='w-50' 
+                            bodyClass='bg-white'
                             error={x.size.error}
                           >
-                            <Input type='text' name='size' data-id={i}
+                            <Input 
+                              min={0}
+                              type='text' 
+                              name='size' 
+                              data-id={i}
                               value={x.size.value}
                               Ref={register({ required: true })}
                               onChange={handleInput}
@@ -357,7 +398,7 @@ function NewOrder(props) {
                       </div>
                       <div >
 
-                        <FromGroup label='Elave Qeyd' className='w-100' bodyClass='bg-white'
+                        <FromGroup label={f({id:"note"})} className='w-100' bodyClass='bg-white'
                           error={x.notes.error}
                         >
                           <Input type='text' name='notes' data-id={i}
@@ -374,10 +415,10 @@ function NewOrder(props) {
             }
             <div className='mt-sm' >
               <div>
-                <Button onClick={addCard} className='w-100 p-sm bg-white border-success color-success' startElement={<span className='mr-xs color-success'>+</span>} label='Yeni mehsul artir' />
+                <Button onClick={addCard} className='w-100 p-sm bg-white border-success color-success' startElement={<span className='mr-xs color-success'>+</span>} label={f({id:'addnewproduct'})} />
               </div>
               <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0' }}>
-                <Checkbox text='Tecili' name='is_fast' value={cardData.is_fast}
+                <Checkbox text={f({id:"isfast"})} name='is_fast' value={cardData.is_fast}
                   onClick={(ev) => {
                     setCardData({
                       ...cardData,
@@ -396,12 +437,12 @@ function NewOrder(props) {
                     })
                   }}
                 >
-                  <Link href='/'><><a className='mr-xs' style={{ width: '-webkit-max-content' }}>Qaydalarla</a>Raziyam</></Link>
+                  <Link href='/'><><a className='mr-xs' style={{ width: '-webkit-max-content' }}></a>{f({id:"agreement"})}</></Link>
                 </Checkbox>
                 </div> 
                 <Button
                   style={{ padding: '0 5px' }}
-                  label='Sifariş et və öde'
+                  label={f({id:"ord-pay"})}
                   endElement={<span className='ml-xs'>&#8250;</span>}
                   className=' w-100'
                   disabled={!cardData.ruleAccepted}
