@@ -76,14 +76,14 @@
 .btn__fkl{
 display: none;
 }
-@media(max-width:990px){
+@media(max-width:900px){
   .chng__bodystyle{
     width:fit-content !important;
     margin-bottom: 20px;
   }
-  .mgm_ss{
-    margin:0 15px
-  }
+  // .mgm_ss{
+  //   margin:0 15px
+  // }
   .bg-c{
     background-color:#f6f6f6 !important;
   }
@@ -101,6 +101,7 @@ display: none;
   }
 .package-item{
 width:100% !important;
+margin-right:0px !important;
 }
  
 }

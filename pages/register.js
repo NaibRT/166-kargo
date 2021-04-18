@@ -16,7 +16,11 @@ import { UserRegister } from "../redux/entry/entryActions"
 
 
 const telData = [
-  {id:'+994',name:'+994'},
+  {id:'050',name:'050'},
+  {id:'051',name:'051'},
+  {id:'055',name:'055'},
+  {id:'070',name:'070'},
+  {id:'077',name:'077'},
  ]
 
 function Register(props) {
@@ -105,11 +109,11 @@ function Register(props) {
               })} 
            />
           <Input type='tel' name='phone'
-              maxLength='9'
+              maxLength='7'
              Ref={register({
                required:{value:true, message:f({id:'phone-requir'})},
-               pattern:{value:/^\(?(51|60|70|77|50|55)\)?(\s+)?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$/,message:f({id:'phone-patter'})},
-               maxLength:{value:9, message:f({id:'phone-len'})}
+               pattern:{value:/^[0-9]{3}[0-9]{2}[0-9]{2}$/,message:f({id:'phone-patter'})},
+               maxLength:{value:7, message:f({id:'phone-len'})}
              })} 
           />
          </FromGroup>

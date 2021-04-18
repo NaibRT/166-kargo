@@ -19,7 +19,11 @@ import { UpdateUser } from "../redux/entry/entryActions";
 
 
 const telData = [
-  {id:'+994',name:'+994'}
+  {id:'050',name:'050'},
+  {id:'051',name:'051'},
+  {id:'055',name:'055'},
+  {id:'070',name:'070'},
+  {id:'077',name:'077'},
  ]
  
 function UserInfo(props) {
@@ -30,7 +34,8 @@ function UserInfo(props) {
   const [checkSerial, setCheckSerial] = useState('AA');
   const [user, setUser] = useState({
     ...props.entry.user.user,
-    phone: props.entry.user.user.phone.slice(4)
+    phone: props.entry.user.user.phone.slice(3),
+    phone_typ:props.entry.user.user.phone.substr(0,3)
   });
 
   const { locale, locales, defaultLocale } = useRouter();
@@ -170,7 +175,7 @@ function UserInfo(props) {
                     maxLength='9'
                      Ref={uRegister({
                        required:{value:true, message:'phone is required'},
-                       pattern:{value:/^\(?(51|60|70|77|50|55)\)?(\s+)?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$/,message:'phone is not correct format'},
+                       pattern:{value:/^[0-9]{3}[0-9]{2}[0-9]{2}$/,message:'phone is not correct format'},
                        maxLength:{value:9, message:'phone must be 9 digits'}
                      })}
                      value={user.phone}

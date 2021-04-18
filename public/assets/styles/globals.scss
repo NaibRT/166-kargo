@@ -109,7 +109,7 @@ ul{
   width: 100%;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  //flex-wrap: wrap;
   // box-sizing: border-box;
 }
 .footer__card{
@@ -229,15 +229,15 @@ ul{
   width:100%;
 }
 @media screen  and (max-width:1200px){
-.container-fluid{
-  margin:0 20px 0 20px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 0px 15px;
-  // box-sizing: border-box;
-}
+// .container-fluid{
+//   margin:0 20px 0 20px;
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
+//   flex-wrap: wrap;
+//   padding: 0px 15px;
+//   // box-sizing: border-box;
+// }
 
 }
 @media(max-width:900px){
@@ -254,6 +254,15 @@ ul{
   .size_btn_m{
     width:100%
   }
+  .container-fluid{
+  margin:0 20px 0 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0px 15px;
+  // box-sizing: border-box;
+}
 }
 
 @media(max-width:440px){

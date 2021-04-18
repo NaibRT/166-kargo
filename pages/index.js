@@ -298,7 +298,7 @@ const data = [
           </Card>
         </section>
 
-        <section className='fluid_bottom w-100'>
+        <section className='fluid_bottom example-shop-section w-100'>
           <Card>
             <Card.Header text={f({id:"stores"})} endElelment={
             <Link href='/example-shop'><a>{f({id:'seeall'})} &rsaquo;</a></Link>} />

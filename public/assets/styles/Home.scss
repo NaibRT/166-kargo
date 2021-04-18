@@ -130,7 +130,7 @@
 }
 @media(max-width:600px){
   .sm-mob{
-    padding:15px;
+    //padding:15px;
     margin: $margin_sm 0px;
   }
   .main_b{
@@ -143,9 +143,16 @@
     display: block !important;
     width: 100%;
   }
-        .login-card{
+  .login-card{
         width: 100% !important;
+  }
+  .example-shop-section{
+    .card{
+      .card-body{
+        padding:0px !important;
       }
+    }
+  }
 
   // .card-body{
   //   height: auto !important;
@@ -176,6 +183,7 @@
     .slider-container {
       width: 100% !important;
       margin-right: 0px !important;
+      padding:0px !important;
     }
     .sm-mob{
       margin-right:2px !important;
