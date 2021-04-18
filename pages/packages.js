@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import React, { memo, useLayoutEffect, useRef, useState } from 'react';
+import { useIntl } from 'react-intl';
 import { connect } from "react-redux";
 import AsideMenu from "../components/aside-menu/index";
 import Aside from "../components/aside/aside";
@@ -14,7 +15,6 @@ import PackageItem from '../components/package_item/package-item';
 import Page from "../components/page/page";
 import Redirect from "../components/redirect/redirect";
 import Tabel from "../components/tabel/tabel";
-import { useIntl } from 'react-intl';
 
 function Packages(props) {
 
@@ -106,6 +106,7 @@ const checkHandler = (ev) => {
              <Card className='bg-bg pb-sm mgm_ss'>
                  <Card.Header text='Aktiv bağlamalarım' endElelment={
                  <Checkbox 
+                    text={f({id:'choose-all'})}
                     Ref={ref => mainCheckRef.current = ref }
                     onClick={(e) => {
                     let total=0;
@@ -164,7 +165,7 @@ const checkHandler = (ev) => {
                      </div>
                  </Card.Body>
                  <div className='footer__pck'>
-                   <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
+                   <div className='package-total'>
                        <smal>{selectedPackages.packages.length} bağlama seçilib</smal>
                        <div style={{display:'flex',justifyContent:'space-between'}}>
                            <b>Cəmi:</b>
@@ -175,7 +176,13 @@ const checkHandler = (ev) => {
                        </div>
                    </div>
                    <div className='package__btns'>
-                        <FromGroup bodyClass='bg-white pl-xs' bodyStyle={{height:'44px',width:'200px'}} className='mr-xs chng__bodystyle'>
+                        <FromGroup 
+                            bodyClass='bg-white pl-xs' 
+                            bodyStyle={{height:'44px',width:'200px'}} 
+                            className='mr-xs chng__bodystyle'
+                            style={{marginBottom:'0px'}}
+                            >
+                              
                             <Input placeholder='kodu əlavə et'
                               onChange={(e) => setSelectedPackages({
                                 ...selectedPackages,

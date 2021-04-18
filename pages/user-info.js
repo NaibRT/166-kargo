@@ -114,7 +114,7 @@ function UserInfo(props) {
           <form onSubmit={uHandleSubmit(updateUserData)}>
           <Card.Body className='bg-bg'>
             <div className='flex__column' style={{display:'flex',flexWrap:'wrap'}}>
-                <FromGroup label='Ad' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label='Ad' bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                  error={uErrors.firstname?.message}
                 >
                   <Input type='text' name='firstname'
@@ -126,7 +126,7 @@ function UserInfo(props) {
                      onChange={handleChange}
                   />
                 </FromGroup>
-                <FromGroup label='Soyad' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label='Soyad' bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={uErrors.lastname?.message}
                 >
                   <Input type='text' name='lastname'
@@ -139,7 +139,7 @@ function UserInfo(props) {
                   />
                   
                 </FromGroup>
-                <FromGroup label='E-mail' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label='E-mail' bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={uErrors.email?.message}
                 >
                   <Input type='email' name='email'
@@ -152,10 +152,12 @@ function UserInfo(props) {
                   />
                   
                 </FromGroup>
-                <FromGroup label='Telefon' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label='Telefon' bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={uErrors.phone?.message}
                 >
-                  <Selectbox className='bg-white' data={telData}
+                  <Selectbox 
+                   className='bg-white' 
+                   data={telData}
                    name='phone_typ'
                    Ref={uRegister({
                     required:{value:true, message:'phone type is required'},
@@ -176,12 +178,19 @@ function UserInfo(props) {
                   />
                   
                 </FromGroup>
-                <FromGroup label='Sexsiyyet vesiqesinin seriya nomresi' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label='Sexsiyyet vesiqesinin seriya nomresi' bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={uErrors.serial?.message}
                 >
-                   <Selectbox onChange={(ev)=>{
-                     setCheckSerial(ev.target.value)
-                   }} className='bg-white' data={[{id:'AA',name:'AA'},{id:'AZE',name:'AZE'}]}/>
+                   <Selectbox 
+                     onChange={(ev)=>{
+                     //setCheckSerial(ev.target.value)
+                     handleChange(ev)
+                     }}
+                     name='serial_type' 
+                     className='bg-white' 
+                     data={[{id:'AA',name:'AA'},{id:'AZE',name:'AZE'}]}
+                     value={user.serial_type}  
+                     />
                   <Input type='text' name='serial'
                      maxLength={checkSerial==='AA' ? '7' : '8'}
                      Ref={uRegister({
@@ -193,7 +202,7 @@ function UserInfo(props) {
                   />
                   
                 </FromGroup>
-                 <FromGroup label='Cins' bodyClass=''  className='w-50 pr-xs'>
+                 <FromGroup label='Cins' bodyClass=''  className='w-50 pr-xs mb-sm'>
                   <RadioButton text='Kisi' name='gender' id='male' value='M' 
                      Ref={uRegister()} 
                      checked={user.gender === 'M' ? true : false}
@@ -207,7 +216,7 @@ function UserInfo(props) {
                   />
                   
                 </FromGroup>
-                 <FromGroup label='FIN' bodyClass='bg-white' className='w-50 pr-xs'
+                 <FromGroup label='FIN' bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={uErrors.fin?.message}
                 >
                   <Input type='text' name='fin'
@@ -224,7 +233,7 @@ function UserInfo(props) {
                   
                 </FromGroup>
 
-                <FromGroup label='Milliyət' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label='Milliyət' bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={uErrors.nationality?.message}
                 >
                   <Selectbox data={[{id:'Azerbaijan',name:'Azerbaijan'},{id:'Foreign',name:'Foreign'}]} name='nationality'
@@ -237,7 +246,7 @@ function UserInfo(props) {
                   
                 </FromGroup>
 
-                <FromGroup label='Doğum tarixi' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label='Doğum tarixi' bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={uErrors.birthday?.message}
                 >
                   <Input type='date' name='birthday'
@@ -249,7 +258,7 @@ function UserInfo(props) {
                   />
                   
                 </FromGroup>
-                <FromGroup label='Ünvan' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label='Ünvan' bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={uErrors.address?.message}
                 >
                   <Input type='text' name='address'
@@ -274,7 +283,7 @@ function UserInfo(props) {
           <form onSubmit={handleSubmit(resetPassword)}>
           <Card.Body className='bg-bg'>
             <div style={{display:'flex',flexWrap:'wrap'}}>
-                <FromGroup label='Köhnə şifrə' bodyClass='bg-white' className='w-50 pr-xs'
+                <FromGroup label='Köhnə şifrə' bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                   error={errors.old_password?.message}
                 >
                   <Input type='password' name='old_password'
@@ -284,7 +293,9 @@ function UserInfo(props) {
                     })}
                   />
                 </FromGroup>
-                <FromGroup label='Yeni sifre' bodyClass='bg-white' className='w-50 pr-xs'
+                <div className="w-50"></div>
+
+                <FromGroup label='Yeni sifre' bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                   error={errors.new_password?.message}
                 >
                   <Input type='password' name='new_password'
@@ -294,7 +305,8 @@ function UserInfo(props) {
                     })}
                   />
                 </FromGroup>
-                <FromGroup label='Yeni sifreni terkrar' bodyClass='bg-white' className='w-50 pr-xs'
+
+                <FromGroup label='Yeni sifreni terkrar' bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                   error={errors.new_password_confirmation?.message}
 
                 >
@@ -306,6 +318,7 @@ function UserInfo(props) {
                     })}
                   />
                 </FromGroup>
+
             </div>
           </Card.Body>
           <Card.Footer className='mt-sm' style={{justifyContent:'flex-end'}}>

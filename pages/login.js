@@ -65,7 +65,8 @@ function LoginPage(props) {
                </FromGroup>
              <ButtonComponent type='submit' className='w-100 mt-xs mb-sm' label={f({id:'login'})}/>
              </form>
-             <div className='mt-xs'><span>{f({id:'no-account'})}</span>
+             <div className='mt-xs' style={{display:'flex',justifyContent:'space-between'}}>
+             <span>{f({id:'no-account'})}</span>
              <Link href='/register'>
                  <a>
                  <span className='color-yellow' style={{cursor:'pointer'}}>{f({id:'signup'})}</span>

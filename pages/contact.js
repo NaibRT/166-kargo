@@ -35,7 +35,7 @@ function Contact() {
     }
 
     return (
-        <Page className='bg-bg pb-lg'>
+        <Page className='bg-bg pb-lg h-100'>
             <main className='desktop-size contact-page bg-white br-xs mt-lg p-lg'>
              <div className='contact-info mr-lg' >
              <address className='contact-container p-lg bg-yellow br-sm'>

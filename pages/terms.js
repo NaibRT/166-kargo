@@ -5,8 +5,8 @@ import Main from '../components/main/main'
 
 export default function Terms() {
     return (
-        <div>
-            <Page className='bg-bg pt-lg'>
+ 
+            <Page className='bg-bg pt-lg fh'>
                 <Main style={{flexBasis:'100%'}}>
                     <Card>
                         <Card.Header className='pt-sm ml-sm' text='Daşınma şərtləri' />
@@ -61,6 +61,6 @@ export default function Terms() {
                     </Card>
                 </Main>
             </Page>
-        </div>
+
     )
 }

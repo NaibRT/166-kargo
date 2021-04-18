@@ -9,6 +9,7 @@
     "addresses": "Addresses",
     "examples": "Example websites",
     "prices": "Prices",
+    "price":"Price",
     "blog": "Blog",
     "signup": "Sign up",
     "signin": "Sign in",
@@ -22,6 +23,8 @@
     "alttext3": "You take your order from our office in Baku",
     "shops": "Shops",
     "tarifftitle": "Our tariffs by countries",
+    "tariff":"Tariffs",
+    "search":"Where is my package?",
     "turkey": "Turkey",
     "ukraina":"Ukraina",
     "isluqidturkey":"Turkey(liquid)",
@@ -41,6 +44,10 @@
     "color":"color",
     "review":"Review",
     "addneworder":"Add new order",
+    "addnewproduct":"Add new product",
+    "choose-all":"choose all",
+    "curry-cand":"Terms of transportation",
+     "new-order":"New order",
 
     "calc": "Calculate",
     "emailerror":"Email is not valid",
@@ -83,6 +90,7 @@
     "amount":"Amount",
     "delivery":"Delivery",
     "count":"Count",
+    "count-pro":"Product count",
     "status":"Status",
 
 

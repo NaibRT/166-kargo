@@ -1,6 +1,13 @@
 .flex__grow{
     flex:2 2 30%;
     margin-bottom:40px;
+    input::selection {
+         background: gold; 
+        }
+
+        img{
+            cursor: pointer;
+        }
 }
 .flexible__address{
     display:flex;

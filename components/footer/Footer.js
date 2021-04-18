@@ -11,7 +11,7 @@ const data = [
   {name:'Mağazalar',link:'/example-shop'},
   {name:'Tez-tez verilən suallar',link:'/faq'},
   {name:'İstifadə şərtləri',link:'/orderscondition'},
-  {name:'Daşıma şərtləri',link:'currycondition'}
+  {name:'Daşıma şərtləri',link:'/carryconditions'}
 ];
 
 

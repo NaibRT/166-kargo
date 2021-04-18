@@ -10,6 +10,7 @@
     "addresses":"Ünvanımız",
     "examples":"Nümunə saytlar",
     "prices":"Qiymətlər",
+    "price":"Qiymət",
     "blog":"Bloq",
     "signup":"Qeydiyyatdan keç",
     "signin":"İstifadəçi girişi",
@@ -23,6 +24,8 @@
     "alttext3":"Sifairşinizi Bakı ofisimizdən götürürsünüz(və ya evinizə çatdırılma xidmətimizdən istifadə edirsiniz)",
     "shops":"Bəzi mağazalar",
     "tarifftitle":"Ölkələr üzrə tariflərimiz",
+    "tariff":"Qiymətlər",
+    "search":"Bağlamam hardadır",
     "turkey":"Türkiyə",
     "ukraina":"Ukrayna",
     "date":"Tarix",
@@ -42,9 +45,13 @@
     "payed":"Ödənilib",
     "unpayed":"Ödənilməyib",
     "addneworder":"Yeni sifariş əlavə et",
+    "addnewproduct":"Yeni məhsul artır",
+     "new-order":"Yeni sifariş",
 
     "active-pack":"Aktiv bağlamalarım",
     "all":"All",
+    "choose-all":"hamsını seç",
+    "curry-cand":"Daşınma şərtləri",
 
 
 
@@ -86,6 +93,7 @@
     "weight":"Çəki",
     "delivery":"Çatdırılma",
     "count":"Say",
+    "count-pro":"Məhsulun Sayı",
     "status":"Status",
 
 

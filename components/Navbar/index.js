@@ -5,10 +5,12 @@ import React, { memo, useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
 import { connect } from "react-redux";
-import { LogOut } from "../../redux/entry/entryActions";
+import { Login, LogOut } from "../../redux/entry/entryActions";
 import { default as Button, default as ButtonComponent } from '../button';
 import Card from '../card/card';
 import Divider from "../divider/divider";
+import FromGroup from '../form-group/form-group';
+import Input from '../input/input';
 import Modal from '../modal-form/modal';
 import Page from '../page/page';
 import Burger from './burger';
@@ -31,9 +33,13 @@ const useOnClickOutside = (ref, handler) => {
     }, [ref, handler]);
 };
 
+
 const Navbar = (props) => {
     const [open, setOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const [isHoverMenu, setHoverMenu] = useState(false);
+
+
 
     const node = useRef();
     useOnClickOutside(node, () => setOpen(false));
@@ -41,6 +47,14 @@ const Navbar = (props) => {
     const togglePopup = () => {
         setIsOpen(!isOpen);
     }
+
+    const hovermenuToggle = () => {
+        setHoverMenu(!isHoverMenu);
+    }
+
+    useEffect(() => {
+        setOpen(false)
+    }, [basePath])
 
     const submit = (data) => {
         props.Login('auth/login', JSON.stringify(data), { 'content-type': 'application/json' })
@@ -53,7 +67,21 @@ const Navbar = (props) => {
         const locale = e.target.value;
         router.push(`${asPath}`, `${asPath}`, { locale })
     }
-    const {register, handleSubmit, errors} = useForm()
+
+    const {register, handleSubmit, errors} = useForm();
+    const navItemRefs = useRef([]);
+
+    const addNavItems = (ref) => {
+       if(ref && !navItemRefs.current.includes(ref)){
+         navItemRefs.current.push(ref)
+       }
+     }
+    const navItemHandler = (e) => {
+        navItemRefs.current.forEach(x => x.children[0].classList.remove('nav-item-active'));
+        e.target.classList.add('nav-item-active');
+    }
+
+
     return (
         <>
             <header className='header deskmenu'>
@@ -62,17 +90,20 @@ const Navbar = (props) => {
                         {/*Top menu starts*/}
                         <nav className='top__header'>
                             <ul className='top__header-left'>
-                                <li>
+                                <li onClick={navItemHandler} ref={addNavItems}>
                                     <Link href='/faq'><a>{f({ id: 'faq' })}</a></Link>
                                 </li>
-                                <li>
-                                    <Link href='/search'><a>Bağlamam hardadır?</a></Link>
+                                <li onClick={navItemHandler} ref={addNavItems}>
+                                    <Link href='/'><a>{f({id:'calculator'})}</a></Link>
                                 </li>
-                                  <li>
-                                    <Link href='/carryconditions'><a>Daşınma şərtləri</a></Link>
+                                <li onClick={navItemHandler} ref={addNavItems}>
+                                    <Link href='/'><a>{f({id:'converter'})}</a></Link>
                                 </li>
-                                <li>
-                                    <Link href='/orderscondition'><a>İstifadəçi şərtləri</a></Link>
+                                <li onClick={navItemHandler} ref={addNavItems} className='navbar__item'>
+                                  <Link href='/contact'><a>{f({ id: 'contact' })}</a></Link>
+                                </li>
+                                <li onClick={navItemHandler} ref={addNavItems}>
+                                    <Link href='/search'><a>{f({id:'search'})}</a></Link>
                                 </li>
 
                             </ul>
@@ -95,21 +126,25 @@ const Navbar = (props) => {
                                         <li className='profile-container' style={{ display: 'flex', alignItems: 'center' }}>
                                             <span className='mr-xs'>
                                                 {props.entry.user.user.firstname}
+                                                &nbsp;
                                                 {props.entry.user.user.lastname}
                                             </span>
                                             <Link href=''>
                                                 <a>
                                                 <img
+                                                     onClick={hovermenuToggle}
                                                     className='profile-img'
                                                     src='https://cdn3.iconfinder.com/data/icons/avatars-add-on-pack-1/48/v-06-512.png'
                                                 />
                                                 </a>
                                             </Link>
-                                            <div
-                                                className='profile-dropdown'
-                                            >
-                                                <Hovermenu />
-                                            </div>
+                                            {
+                                                isHoverMenu &&
+                                              <div className='profile-dropdown'>
+                                                  <Hovermenu  setOpen={hovermenuToggle} logout={props.LogOut} />
+                                              </div>
+                                            }
+     
                                         </li>
                                 }
                             </ul>
@@ -122,31 +157,28 @@ const Navbar = (props) => {
                 <Page>
                     <nav className='flex'>
                         <ul className='navbar'>
-                            <li className='navbar__item'>
+                            <li onClick={navItemHandler} ref={addNavItems} className='navbar__item'>
                                 <Link href='/'><a><Image src={'/assets/icons/166ye.svg'} width={149} height={55} /></a></Link>
                             </li>
 
-                            <li className='navbar__item'>
+                            <li onClick={navItemHandler} ref={addNavItems} className='navbar__item'>
                                 <Link href='/about'><a>{f({ id: 'about' })}</a></Link>
                             </li>
-                            <li className='navbar__item'>
+                            <li onClick={navItemHandler} ref={addNavItems} className='navbar__item'>
+                                <Link href='/'><a>{f({ id: 'address' })}</a></Link>
+                            </li>
+                            <li onClick={navItemHandler} ref={addNavItems} className='navbar__item'>
+                                <Link href='/example-shop'><a>{f({ id: 'examples' })}</a></Link>
+                            </li>
+                            
+                            <li onClick={navItemHandler} ref={addNavItems} className='navbar__item'>
                             <Link href='/tarif'><a>{f({ id: 'tariff' })}</a></Link>
                         </li>
 
-
-                            <li className='navbar__item'>
-                                <Link href='/example-shop'><a>{f({ id: 'examples' })}</a></Link>
-                            </li>
-
-
-
-                            <li className='navbar__item'>
+                            <li onClick={navItemHandler} ref={addNavItems} className='navbar__item'>
                                 <Link href='/blog'><a>{f({ id: 'blog' })}</a></Link>
                             </li>
 
-                            <li className='navbar__item'>
-                                <Link href='/contact'><a>{f({ id: 'contact' })}</a></Link>
-                            </li>
                             <li className='navbar__item dies'>
                                 <select className='navbar__item_lang' value={locale} onChange={handleLocaleChange}>
                                     {locales.map(locale => (
@@ -198,57 +230,18 @@ const Navbar = (props) => {
                                 </>
                                 :
                                 <>
-                                    {isOpen && <Modal
-                                        content={<>
-                                            <Card className='login-card bg-white p-sm br-lg'>
-                                                <Card.Header text='İstifadəçi girişi' />
-                                                <Card.Body className='p-none'>
-                                                    <form className='login-form' onSubmit={handleSubmit(submit)}>
-                                                        <FromGroup
-                                                            label='E-mail'
-                                                            bodyClass='bg-bg w-100'
-                                                            error={errors.email?.message}
-                                                        >
-                                                            <Input Ref={register({
-                                                                required: { value: true, message: 'email is not valid' },
-                                                                //  pattern:/^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/
-                                                            })} type='email' name='email' />
-                                                        </FromGroup>
-                                                        <FromGroup
-                                                            label='Sifre'
-                                                            bodyClass='bg-bg w-100'
-                                                            error={errors.password?.message}
-                                                        >
-                                                            <Input
-                                                                Ref={register({
-                                                                    required: { value: true, message: 'password is not valid' },
-                                                                    // pattern:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
-                                                                })}
-                                                                type='password' name='password' />
-                                                        </FromGroup>
-                                                        <ButtonComponent type='submit' className='w-100 mt-xs' label='Daxil ol' />
-                                                    </form>
-                                                </Card.Body>
-                                            </Card>
-                                        </>}
-                                        handleClose={togglePopup}
-                                    />}
-
                                     <figure className='user__menu'>
-                                        <img src={'/assets/icons/useri.svg'} />
-                                        <div
-                                            className='profile-dropdown'
-                                        >
-                                            <Hovermenu />
-                                        </div>
+                                        <img onClick={hovermenuToggle} src={'/assets/icons/useri.svg'} />
+                                        {
+                                           isHoverMenu &&  
+                                             <div className='profile-dropdown'>
+                                                 <Hovermenu setOpen={hovermenuToggle} logout={props.LogOut}  />
+                                             </div>
+                                        }
+              
                                     </figure>
-
                                 </>
                         }
-
-
-
-
                     </div>
                 </Page>
             </header>
@@ -262,6 +255,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+    Login,
     LogOut
 }
 export default connect(mapStateToProps, mapDispatchToProps)(memo(Navbar));

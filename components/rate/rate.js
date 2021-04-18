@@ -40,4 +40,5 @@ function Rate({data = [],icon,headerText,style}) {
  )
 }
 
+
 export default Rate

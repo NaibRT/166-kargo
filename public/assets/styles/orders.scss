@@ -42,7 +42,13 @@
 
 @media(max-width:600px){
   .orders-container{
-    overflow-x:scroll
+    overflow-x:scroll;
+    width:745px;
+  }
+  .order-card{
+    .card-body{
+      overflow-x:scroll;
+    }
   }
   .orders-container-head{
     overflow:scroll

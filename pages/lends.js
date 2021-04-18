@@ -40,7 +40,7 @@ useLayoutEffect(()=>{
 
 
     return (
-        <Page className='bg-bg pt-sm'>
+        <Page className='bg-bg pt-lg pb-lg'>
             <Aside className='mr-sm'>
               <AsideMenu/>
             </Aside>

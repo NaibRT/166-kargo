@@ -6,6 +6,7 @@
 @import '../../../components/footer/Footer.scss';
 @import '../../../components/card/card.scss';
 @import '../../../components/rate/rate.scss';
+@import '../../../components/rate/m-rate.scss';
 @import '../../../components/news_item/news-item.scss';
 @import '../../../components/post_item/post-item.scss';
 @import '../../../components/form-group/from-group.scss';
@@ -137,21 +138,40 @@ ul{
 }
 .border-success{
   border: 1px solid #7dbb00;
-  padding: 10px 0!important;
+  padding: 10px 10!important;
 }
 .r_lf_mg{
   margin:40px 0 40px 20px;
 }
-@media(max-width:630px){
+
+
+@media(max-width:700px){
   .r_lf_mg{
     margin:20px 0
   }
   .mobile__order{
     display:block !important
   }
+
+
   .desktop__order{
-    display: none !important;
+    // form{
+    // .card-body{
+    //   .from-container{
+    //      flex-direction:column !important;
+    //     .fc-col{
+    //       width:100% !important;
+    //       flex-direction:column !important;
+    //       .form-group{
+    //         width:100% !important;
+    //       }
+    //     }
+    //   }
+    // }
+    // }
+    display:none !important;
   }
+
 }
 @media screen and (min-width:600px) and (max-width:990px){
   .footer__courier{
@@ -161,17 +181,26 @@ ul{
   }
 
 }
-@media(max-width:990px){
-  .search__ff{
-    flex-direction: column !important;
-  }
+@media(max-width:900px){
   .pl-none{
     .p-sm{
       padding:0 !important
     }
   }
   .coruier__cards{
-    margin:10px  20px;
+    margin:10px  0px;
+    .card-body{
+      overflow-x:scroll;
+
+      .coruier-cards-form-container{
+        flex-direction:column;
+        .form-group{
+          width:100% !important;
+          padding-right:0px !important;
+        }
+      }
+    }
+
   }
   .overflow__package{
     overflow:scroll;
@@ -206,11 +235,12 @@ ul{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  padding: 0px 15px;
   // box-sizing: border-box;
 }
 
 }
-@media(max-width:990px){
+@media(max-width:900px){
   .d-n{
     display: none !important;
   }
@@ -223,6 +253,20 @@ ul{
   }
   .size_btn_m{
     width:100%
+  }
+}
+
+@media(max-width:440px){
+  .search__ff{
+    flex-direction: column !important;
+    width:100% !important;
+    .form-group{
+      margin-right:0px !important;
+    }
+      button{
+       margin-top:10px !important;
+       width:100% !important;
+      }
   }
 }
 

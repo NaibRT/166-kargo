@@ -66,8 +66,7 @@
      font-size:$font-size;
    }
    .mg__bottom2{
-     margin-bottom:47px;
-      
+     margin-bottom:47px; 
    }
   }
 }
@@ -93,19 +92,23 @@
   .page{
 
     .tariff-section{
-     
      display: flex;
     //  justify-content: space-between;
      align-items: center;
-     
-  
+     width:100%;
+     .card:first-child{
+       width: 66%;
+     }
+      .card:last-child{
+       width: 33%;
+     }
      .card{
        .for-mobile{
          display: none !important;
        }
       // height: 100%;
        .card-body{
-        height: 240px;
+        height: 355px;
         .rate-container{
           height: 100%;
           display: flex;
@@ -121,14 +124,15 @@
    }
   }
 }
-.sm-mob{
-  padding:15px;
-  margin:15px
-}
+
 .for-mobile-t{
   display:none !important
 }
 @media(max-width:600px){
+  .sm-mob{
+    padding:15px;
+    margin: $margin_sm 0px;
+  }
   .main_b{
     height:70vh !important
   }
@@ -137,19 +141,23 @@
   }
   .for-mobile-t{
     display: block !important;
+    width: 100%;
   }
-
-  .card-body{
-    height: auto !important;
-    .rate-container{
-      flex-direction: column;
-      .rate{
-        margin-bottom: 10px;
+        .login-card{
+        width: 100% !important;
       }
-   }
-  }
+
+  // .card-body{
+  //   height: auto !important;
+  //   .rate-container{
+  //     flex-direction: column;
+  //     .rate{
+  //       margin-bottom: 10px;
+  //     }
+  //  }
+  // }
 }
-@media(max-width:990px){
+@media(max-width:900px){
  
   
   .desktop{
@@ -161,13 +169,42 @@
       flex-flow:row wrap
     }
     .flex__item{
-      flex-wrap: wrap;
+      flex-wrap: nowrap !important;
+      overflow-x: scroll;
     }
+    }
+    .slider-container {
+      width: 100% !important;
+      margin-right: 0px !important;
     }
     .sm-mob{
       margin-right:2px !important;
     
     }
+    .tariff-section{
+    // display:block !important;
+    flex-wrap:wrap;
+  }
+  .card-body{
+    height: auto !important;
+    .rate-container{
+      flex-wrap:wrap;
+      .rate{
+        margin-bottom: 10px;
+      }
+   }
+  }
+
+    .login-card{
+    display:none;
+  }
+    .news-item{
+    width:100%;
+    margin-bottom: 15px;
+    img{
+      width:50%;
+    }
+  }
     
 }
 @media(max-width:600px){
@@ -175,27 +212,16 @@
     display: flex;
     justify-content:space-between;
   }
-  .login-card{
-    display:none;
-    
-  }
-  .slider-container {
-    width: 100% !important
-  }
-  .news-item{
-    width:100%;
-    margin-bottom: 15px;
-    img{
-      width:50%;
-    }
-  }
+
+
+
   .howworks{
     display:none
   }
-  .tariff-section{
-    display:block !important;
-    flex-wrap:wrap;
-  }
+  // .tariff-section{
+  //   // display:block !important;
+  //   flex-wrap:wrap;
+  // }
 }
 @media(max-width:500px){
  

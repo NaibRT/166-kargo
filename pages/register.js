@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useIntl } from 'react-intl'
 import { connect } from "react-redux"
 import Button from '../components/button'
 import Card from '../components/card/card'
@@ -10,7 +11,6 @@ import RadioButton from '../components/radio-button/radio-button'
 import Selectbox from '../components/selectbox/selectbox'
 import Switch from "../components/switch/switch"
 import { UserRegister } from "../redux/entry/entryActions"
-import { useIntl } from 'react-intl';
 
 
 
@@ -53,8 +53,8 @@ function Register(props) {
 
  
  return (
-  <Page className='bg-bg register-page'>
-    <main className='mt-lg'>
+  <Page className='bg-bg register-page fh'>
+    <main className='mt-lg mb-lg'>
       <Card className='bg-white br-sm mr-sm p-sm w-50'>
        <Card.Header text={f({id:'register'})} endElelment={
        <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
@@ -166,7 +166,7 @@ function Register(props) {
               })} 
            />
          </FromGroup>
-         <FromGroup label={f({id:'address'})} className='w-50 pr-xs mb-xs'
+         <FromGroup label={f({id:'address'})} bodyClass='bg-bg' className='w-50 pr-xs mb-xs'
            error={errors.address?.message}
          >
            <Input name='address' type='text'

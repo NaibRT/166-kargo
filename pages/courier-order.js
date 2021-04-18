@@ -75,7 +75,7 @@ function CourierOrder(props) {
           <Card.Header text={f({id:'courier-order'})} />
           <Card.Body className='p-none'>
             <p className='mb-lg'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+            <div className='coruier-cards-form-container' style={{ display: 'flex', flexWrap: 'wrap' }}>
               <FromGroup label={f({id:'choose-dist'})} className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
                 <Input type='text' />
               </FromGroup>
