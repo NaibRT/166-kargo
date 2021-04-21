@@ -156,13 +156,13 @@ const data = [
             <Card.Body className='bg-bg p-sm br-sm'>
               <div className='bg-bg rate-container' >
                 {
-                  <Rate data={props.tariffs.filter(x => x.country_id === 15 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/turkish.svg'} headerText={f({id:'turkey'})} /> 
+                  <Rate data={props.tariffs.filter(x => x.country_id === 15 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/15.svg'} headerText={f({id:'turkey'})} /> 
                 }
                 {
-                  <Rate data={props.tariffs.filter(x => x.country_id === 15 && x.is_liquid===1).splice(0,4)} icon={'/assets/icons/turkish.svg'} headerText={f({id:'isluqidturkey'})} />
+                  <Rate data={props.tariffs.filter(x => x.country_id === 15 && x.is_liquid===1).splice(0,4)} icon={'/assets/icons/15.svg'} headerText={f({id:'isluqidturkey'})} />
                 }
                 {
-                  <Rate data={props.tariffs.filter(x => x.country_id === 16 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/usa.svg'} headerText={f({id:'usa'})} style={{marginRight:0}} />
+                  <Rate data={props.tariffs.filter(x => x.country_id === 16 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/16.svg'} headerText={f({id:'usa'})} style={{marginRight:0}} />
                 } 
               </div>
               <MobileRate data={data} text={f({id:'weight'})} />

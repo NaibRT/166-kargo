@@ -9,9 +9,7 @@
     .contact-info{
         flex-basis: 60%;
         margin-left: -100px;
-        // position: absolute;
-        // left: 0px;
-        // top: 0px;
+       
 
         .contact-container{
             h3{
@@ -32,14 +30,18 @@
     }
 
     .contact-page-form{
-        // position: absolute;
-        // right: $padding_lg;
-    flex-basis: 43%;
+       
+    flex-basis: 39%;
 
     }
 }
 .mb-size{
     display:none
+}
+@media(max-width:1200px){
+    .contact-info{
+        margin:0 !important;
+    }
 }
 @media(max-width:990px){
     .mb-size{

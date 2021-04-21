@@ -32,9 +32,9 @@ function GetData(props) {
         <Card.Header text='Tarifler'/>
          <Card.Body className='bg-bg sm'>
            <div className='bg-bg' style={{display:'flex',justifyContent:'space-around',flexFlow:'wrap'}}>
-             <Rate data={data} icon={'/assets/icons/turkish.svg'} headerText='Türkiyə'/>
-             <Rate data={data} icon={'/assets/icons/turkish.svg'} headerText='Türkiyə (Maye)'/>
-             <Rate data={data} icon={'/assets/icons/usa.svg'} headerText='ABŞ'/>
+             <Rate data={data} icon={'/assets/icons/15.svg'} headerText='Türkiyə'/>
+             <Rate data={data} icon={'/assets/icons/15.svg'} headerText='Türkiyə (Maye)'/>
+             <Rate data={data} icon={'/assets/icons/16.svg'} headerText='ABŞ'/>
            </div>
          </Card.Body>
        </Card> 

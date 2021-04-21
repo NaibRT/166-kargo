@@ -6,7 +6,7 @@ import Summary from '../components/summary/summary';
 function Faq(props) {
 
     return (
-        <Page className='bg-bg pb-lg pt-lg h-100'>
+        <Page className='bg-bg pb-lg pt-lg'>
             <main className='bg-white faq-page p-lg mt-md'>
                <div className='faq-head'>
                  <img style={{width:'300px'}} className='faq-head-img' src='./assets/images/faqq.svg'/>

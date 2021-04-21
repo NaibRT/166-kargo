@@ -10,9 +10,9 @@ export default function Shop() {
     const { formatMessage: f } = useIntl();
 
     return (
-        <div className='h-100'>
+        <div>
             <Main className='bg-bg'>
-                <Page>
+                <Page className='pb-lg'>
                     <Card className="bg-white br-lg mt-md p-md" style={{width:'100%'}}>
                         <div >
                         <h3 className='mb-md'>{f({id:'example-shop'})}</h3>

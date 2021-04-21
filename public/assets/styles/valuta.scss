@@ -1,0 +1,86 @@
+.d-flexible{
+    display: flex;
+    justify-content: space-between;
+ 
+    .val{
+        display:flex;
+        justify-content:space-between;
+        margin-bottom: 30px;
+        
+    }
+    .valu{
+        display:flex;
+        justify-content:space-between;
+        margin-bottom: 30px;
+    }
+    .input__size{
+        font-size: 35px;
+        border-bottom: 1px solid #efefef;
+        width:50%   
+     }
+     .select__text{
+        border-bottom: 1px solid #efefef;
+        border:none;
+        font-size: 30px;
+        
+     }
+}
+.valuta__text{
+    font-size:24px;
+    font-weight:500;
+    margin-bottom:23px;
+}
+.m-lf{
+    margin-left: 30px;
+}
+.select__text {
+    option[value="USD"]{
+         background-image:url('/assets/icons/16.svg');
+        }
+}
+.select__text {
+    option[value="TRY"]::before{ 
+        background-image:url('/assets/icons/15.svg');
+    }
+}
+ .today_text{
+     font-size:14px
+ }
+@media(max-width:770px){
+    .rm-rf{
+        height:70vh;
+        .d-flexible{
+            flex-wrap: wrap;
+        }
+        .valu{
+            margin-bottom:0  !important
+        }
+    
+        .m-lf{
+            margin-left: 0px;
+        }
+       
+            .input__size{
+                font-size: 20px;
+                  
+             }
+             .select__text{
+              font-size: 20px;
+                
+             }
+             .p-lg{
+                padding:0px !important;
+            }
+             .p-mb{
+                padding:25px !important
+            }
+    
+    }
+    .card-body{
+        padding:14px
+    }
+    .p-md{
+        padding:10px !important;
+    }
+
+}

@@ -119,7 +119,7 @@ const MenuMobile = ({ open,setOpen }) => {
                 <figcaption>RU</figcaption>
               </figure>
               <figure>
-                <img src={'assets/icons/ua.svg'} />
+                <img src={'assets/icons/18.svg'} />
                 <figcaption>UA</figcaption>
               </figure>
             </div>

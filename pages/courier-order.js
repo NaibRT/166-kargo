@@ -66,10 +66,10 @@ function CourierOrder(props) {
 
   return (
     <Page className='bg-bg pt-lg pb-lg'>
-      <Aside>
+      <Aside className='mr-sm'>
         <AsideMenu />
       </Aside>
-      <Main className='bg-bg'>
+      <Main className='bg-white'>
         <Card className='p-sm bg-white coruier__cards br-lg'>
           <form>
           <Card.Header text={f({id:'courier-order'})} />
@@ -131,7 +131,7 @@ function CourierOrder(props) {
                     <summary className='order-item-summary'>
                       <div className='order-item-summary-head' >
                         <span style={{textAlign:'center'}}>No </span>
-                        <span style={{textAlign:'center'}}>{f({id:'date'})}</span>
+                        <span style={{textAlign:'center'}}>{f({id:'dateon'})}</span>
                         <span style={{textAlign:'center'}}>{f({id:'count'})}</span>
                         <span style={{textAlign:'center'}}>{f({id:'status'})}</span>
                       </div>

@@ -29,8 +29,8 @@
 @import '../../../components/package_item/package-item.scss';
 
 
-
-
+@import './lends.scss';
+@import './valuta.scss';
 @import './example-shop.scss';
 @import './balans.scss';
 @import './blog.scss';
@@ -85,6 +85,7 @@
 #__next{
 margin:0;
 padding:0;
+
 box-sizing: border-box;
 font-family: $font-family;
 
@@ -109,7 +110,7 @@ ul{
   width: 100%;
   display: flex;
   justify-content: center;
-  //flex-wrap: wrap;
+  flex-wrap: wrap;
   // box-sizing: border-box;
 }
 .footer__card{
@@ -138,7 +139,7 @@ ul{
 }
 .border-success{
   border: 1px solid #7dbb00;
-  padding: 10px 10!important;
+  padding: 10px 10px!important;
 }
 .r_lf_mg{
   margin:40px 0 40px 20px;
@@ -224,10 +225,7 @@ ul{
     }
   }
  }
- .footer__cart{
-  display:none !important;
-  width:100%;
-}
+ 
 @media screen  and (max-width:1200px){
 // .container-fluid{
 //   margin:0 20px 0 20px;
@@ -240,17 +238,15 @@ ul{
 // }
 
 }
-@media(max-width:900px){
+
+@media(max-width:990px){
   .d-n{
     display: none !important;
   }
   .footer__card{
     display:none !important;
   }
-  .footer__cart{
-    display:block;
-    width:100%;
-  }
+  
   .size_btn_m{
     width:100%
   }
@@ -292,7 +288,7 @@ ul{
   margin-bottom: calc(#{$fluid-size} / 2);
 }
 .pack-active{
-  // border: 1px solid transparent !important;
+ 
   border-bottom-left-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
   border-bottom: 2px solid $color__success !important;

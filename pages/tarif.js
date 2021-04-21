@@ -23,13 +23,13 @@ const data = [
           <Card.Body className='bg-bg p-sm br-sm'>
             <div className='bg-bg rate-container for-desk-t' style={{ display: 'flex',justifyContent:'space-between'}}>
               {
-                <Rate style={{width:'33%'}} data={props?.tariffs.filter(x => x.country_id === 15 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/turkish.svg'} headerText='TÜRKİYƏ' /> 
+                <Rate style={{width:'33%'}} data={props?.tariffs.filter(x => x.country_id === 15 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/15.svg'} headerText={f({ id: 'turkey' })} /> 
               }
               {
-                <Rate style={{width:'33%'}} data={props?.tariffs.filter(x => x.country_id === 15 && x.is_liquid===1).splice(0,4)} icon={'/assets/icons/turkish.svg'} headerText='Türkiyə (Maye)' />
+                <Rate style={{width:'33%'}} data={props?.tariffs.filter(x => x.country_id === 15 && x.is_liquid===1).splice(0,4)} icon={'/assets/icons/15.svg'} headerText={f({ id: 'isluqidturkey' })} />
               }
               {
-                <Rate style={{width:'33%'}} data={props?.tariffs.filter(x => x.country_id === 16 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/usa.svg'} headerText='ABŞ' />
+                <Rate style={{width:'33%'}} data={props?.tariffs.filter(x => x.country_id === 16 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/16.svg'} headerText={f({ id: 'usa' })}  />
               } 
             </div>
             <MobileRate data={data} />

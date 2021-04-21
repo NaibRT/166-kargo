@@ -178,7 +178,7 @@ function NewOrder(props) {
                     }
                     <div className='from-container' style={{ display: 'flex' }}>
                       <div className='w-50 mr-sm fc-col' style={{}}>
-                        <FromGroup label='Link' className='w-100' bodyClass='bg-white'
+                        <FromGroup label={f({id:"link"})} className='w-100' bodyClass='bg-white'
                           error={x.url.error}
                         >
                           <Input type='text' name='url' data-id={i} value={x.url.value}
@@ -187,7 +187,7 @@ function NewOrder(props) {
                           />
                         </FromGroup>
                         <div style={{ display: 'flex' }}>
-                          <FromGroup label='Rengi' className='w-50 mr-sm' bodyClass='bg-white'
+                          <FromGroup label={f({id:"color"})} className='w-50 mr-sm' bodyClass='bg-white'
                             error={x.color.error}
                           >
                             <Input type='text' name='color' data-id={i}
@@ -236,7 +236,7 @@ function NewOrder(props) {
                               onChange={handleInput}
                             />
                           </FromGroup>
-                          <FromGroup label='Cemi' className='mr-xs' bodyClass='bg-white'
+                          <FromGroup label={f({id:"total"})} className='mr-xs' bodyClass='bg-white'
                           >
                             <Input 
                               min={0}
@@ -249,7 +249,7 @@ function NewOrder(props) {
                             />
                           </FromGroup>
                         </div>
-                        <FromGroup label='Elave Qeyd' className='w-100' bodyClass='bg-white'
+                        <FromGroup label={f({id:"note"})} className='w-100' bodyClass='bg-white'
                           error={x.notes.error}
                         >
                           <Input type='text' name='notes' data-id={i}
@@ -269,7 +269,7 @@ function NewOrder(props) {
                 <Button onClick={addCard} className='w-100 p-sm bg-white border-success color-success' startElement={<span className='mr-xs color-success'>+</span>} label={f({id:'addnewproduct'})} />
               </div>
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Checkbox text='Tecili' name='is_fast' value={cardData.is_fast}
+                <Checkbox text={f({id:"isfast"})} name='is_fast' value={cardData.is_fast}
                   onClick={(ev) => {
                     setCardData({
                       ...cardData,
@@ -288,11 +288,11 @@ function NewOrder(props) {
                     })
                   }}
                 >
-                  <Link href='/'><><a className='mr-xs' style={{ width: '-webkit-max-content' }}>Qaydalarla</a>Raziyam</></Link>
+                  <Link href='/'><><a className='mr-xs' style={{ width: '-webkit-max-content' }}></a>{f({id:"agreement"})}</></Link>
                 </Checkbox>
                 <Button
                   style={{ padding: '0 5px' }}
-                  label='Sifariş et və öde'
+                  label={f({id:"ord-pay"})}
                   endElement={<span className='ml-xs'>&#8250;</span>}
                   className=' w-100'
                   disabled={!cardData.ruleAccepted}
@@ -318,7 +318,7 @@ function NewOrder(props) {
                     }
                     <div className=''  >
                       <div>
-                        <FromGroup label='Link' className='w-100' bodyClass='bg-white'
+                        <FromGroup label={f({id:"link"})} className='w-100' bodyClass='bg-white'
                           error={x.url.error}
                         >
                           <Input type='text' name='url' data-id={i} value={x.url.value}
@@ -358,7 +358,7 @@ function NewOrder(props) {
                               onChange={handleInput}
                             />
                           </FromGroup>
-                          <FromGroup label='Cemi' className=' w-50' bodyClass='bg-white'
+                          <FromGroup label={f({id:"total"})} className=' w-50' bodyClass='bg-white'
                           >
                             <Input type='number' name='total' data-id={i}
                               value={x.total}
@@ -368,7 +368,7 @@ function NewOrder(props) {
                           </FromGroup>
                         </div>
                         <div style={{ display: 'flex' }}>
-                          <FromGroup label='Rengi' className='w-50 mr-xs'  bodyClass='bg-white'
+                          <FromGroup label={f({id:"color"})} className='w-50 mr-xs'  bodyClass='bg-white'
                             error={x.color.error}
                           >
                             <Input type='text' name='color' data-id={i}
@@ -398,7 +398,7 @@ function NewOrder(props) {
                       </div>
                       <div >
 
-                        <FromGroup label='Elave Qeyd' className='w-100' bodyClass='bg-white'
+                        <FromGroup label={f({id:"note"})} className='w-100' bodyClass='bg-white'
                           error={x.notes.error}
                         >
                           <Input type='text' name='notes' data-id={i}
@@ -418,7 +418,7 @@ function NewOrder(props) {
                 <Button onClick={addCard} className='w-100 p-sm bg-white border-success color-success' startElement={<span className='mr-xs color-success'>+</span>} label={f({id:'addnewproduct'})} />
               </div>
               <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0' }}>
-                <Checkbox text='Tecili' name='is_fast' value={cardData.is_fast}
+                <Checkbox text={f({id:"isfast"})} name='is_fast' value={cardData.is_fast}
                   onClick={(ev) => {
                     setCardData({
                       ...cardData,
@@ -437,12 +437,12 @@ function NewOrder(props) {
                     })
                   }}
                 >
-                  <Link href='/'><><a className='mr-xs' style={{ width: '-webkit-max-content' }}>Qaydalarla</a>Raziyam</></Link>
+                  <Link href='/'><><a className='mr-xs' style={{ width: '-webkit-max-content' }}></a>{f({id:"agreement"})}</></Link>
                 </Checkbox>
                 </div> 
                 <Button
                   style={{ padding: '0 5px' }}
-                  label='Sifariş et və öde'
+                  label={f({id:"ord-pay"})}
                   endElement={<span className='ml-xs'>&#8250;</span>}
                   className=' w-100'
                   disabled={!cardData.ruleAccepted}

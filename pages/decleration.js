@@ -14,6 +14,7 @@ import Input from "../components/input/input";
 import Main from '../components/main/main';
 import Page from "../components/page/page";
 import Redirect from "../components/redirect/redirect";
+import { useIntl } from 'react-intl';
 import Selectbox from "../components/selectbox/selectbox";
 
 const telData = [
@@ -33,6 +34,7 @@ const telData = [
  ]
  
 function Decleration(props) {
+  const { formatMessage: f } = useIntl(); 
 
   if(!props.entry.isLoged){
     return <Redirect/>
@@ -86,17 +88,17 @@ function Decleration(props) {
 
 
     return (
-        <Page className='user-profile-page bg-bg pt-lg pb-lg h-100'>
+        <Page className='user-profile-page bg-bg pt-lg pb-lg'>
             <Aside className='mr-sm'>
               <AsideMenu/>
             </Aside>
          <Main>
          <Card className='bg-white p-sm br-lg'>
-          <Card.Header text='Yeni Bəyənnamə'/>
+          <Card.Header text={f({id:"decleration"})}/>
           <form onSubmit={handleSubmit(submit)}>
           <Card.Body className='bg-bg'>
             <div className='declaration__flex'>
-                <FromGroup label='Ölkə seç' bodyClass='bg-white' className='w-50 pr-xs mb-sm'
+                <FromGroup label={f({id:"chooseone"})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                  error={errors.country?.message}
                 >
                   <Selectbox className='bg-white w-100' data={telData}
@@ -120,7 +122,7 @@ function Decleration(props) {
                   
                 </FromGroup>
 
-                <FromGroup label='Magaza adı' bodyClass='bg-white' className='w-50 pr-xs mb-sm'
+                <FromGroup label={f({id:"shopname"})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={errors.shop_name?.message}
                 >
                   <Input type='text' name='shop_name'
@@ -131,7 +133,7 @@ function Decleration(props) {
                   />
                 </FromGroup>
 
-                <FromGroup label='Əsas qrup' bodyClass='bg-white' className='w-50 pr-xs mb-sm'
+                <FromGroup label={f({id:"main-g"})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                  error={errors.main_group?.message}
                 >
                   <Selectbox className='bg-white w-100 ' data={props.mainCategories}
@@ -146,7 +148,7 @@ function Decleration(props) {
                 </FromGroup>
 
 
-                <FromGroup label='Alt qrup' bodyClass='bg-white' className='w-50 pr-xs mb-sm'
+                <FromGroup label={f({id:"sub-g"})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                  error={errors.sub_category?.message}
                 >
                   <Selectbox className='bg-white w-100' data={subCategories && props.mainCategories.find(x => x.id=== +subCategories)?.sub_categories}
@@ -158,7 +160,7 @@ function Decleration(props) {
                 </FromGroup>
 
 
-                <FromGroup label='İnvoys qiyməti' bodyClass='bg-white' className='w-50 pr-xs mb-sm'
+                <FromGroup label={f({id:"price-inv"})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                 error={errors.price?.message}
                 >
                   <Input type='number' name='price'
@@ -171,7 +173,7 @@ function Decleration(props) {
 
 
                 <FromGroup 
-                  label='İnvoys yüklə' 
+                  label={f({id:"upload"})} 
                   bodyClass='bg-white' 
                   className='w-50 pr-xs mb-sm'
                   bodyStyle={{height:'150px'}}
@@ -201,7 +203,7 @@ function Decleration(props) {
                   </div>
                 </FromGroup>
 
-                <FromGroup label='Qeyd' bodyClass='bg-white' bodyStyle={{height:'150px'}} className='w-50 pr-xs mb-sm'
+                <FromGroup label={f({id:"note"})} bodyClass='bg-white' bodyStyle={{height:'150px'}} className='w-50 pr-xs mb-sm'
                    error={errors.note?.message}
                    >
                       <textarea className='p-xs w-100 h-100' style={{outline:'none',border:'none'}} placeholder='qeydiniz varsa daxil edin' name='note'
@@ -213,7 +215,7 @@ function Decleration(props) {
             </div>
           </Card.Body>
             <Card.Footer className='mt-sm' style={{justifyContent:'flex-end'}}>
-              <ButtonComponent className='w-25'  label='Bəyan et'/>
+              <ButtonComponent className='w-25'  label={f({id:"declare-inadvance"})}/>
             </Card.Footer>
             </form>
          </Card>

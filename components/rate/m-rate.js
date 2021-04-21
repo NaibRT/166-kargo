@@ -12,9 +12,9 @@ function MRate({data = [],icon,headerText,style}){
            <th>{f({id:'weight'})}</th>
            <th colspan="3">
              <div>
-                <img src={'/assets/icons/turkish.svg'} className='img '/>     
-                <img src={'/assets/icons/turkish.svg'} className=' img '/>
-                <img src={'/assets/icons/usa.svg'} className='img img-2'/>
+                <img src={'/assets/icons/15.svg'} className='img '/>     
+                <img src={'/assets/icons/15.svg'} className=' img '/>
+                <img src={'/assets/icons/16.svg'} className='img img-2'/>
              </div>
            </th>
          </tr>

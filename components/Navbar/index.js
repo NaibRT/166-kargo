@@ -97,7 +97,7 @@ const Navbar = (props) => {
                                     <Link href='/'><a>{f({id:'calculator'})}</a></Link>
                                 </li>
                                 <li onClick={navItemHandler} ref={addNavItems}>
-                                    <Link href='/'><a>{f({id:'converter'})}</a></Link>
+                                    <Link href='/valuta'><a>{f({id:'converter'})}</a></Link>
                                 </li>
                                 <li onClick={navItemHandler} ref={addNavItems} className='navbar__item'>
                                   <Link href='/contact'><a>{f({ id: 'contact' })}</a></Link>

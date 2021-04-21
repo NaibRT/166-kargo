@@ -4,7 +4,7 @@ function RadioButton({text,name,id,value,Ref,...rest}) {
  return (
   <>
    <input className='radio-btn' name={name} type="radio" id={id} value={value} ref={Ref} {...rest} />
-   <label className='radio-btn-lbl' for={id}>{text}</label>
+   <label className='radio-btn-lbl' htmlFor={id}>{text}</label>
   </>
  )
 }

@@ -1,0 +1,25 @@
+.mobile__lend__show{
+    display:none
+}
+.mobi__lend{
+    display: none;
+}
+@media(max-width:990px){
+   
+    .mobile__lend__show{
+        display:block !important;
+        table{
+            width:100%
+        }
+    }
+    .mobile__lend{
+        display: none !important;
+    }
+    .mobi__lend{
+        display:block !important;
+       
+        .size_btn{
+            width: 100%;
+        }
+    }
+}

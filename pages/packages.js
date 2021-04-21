@@ -103,8 +103,8 @@ const checkHandler = (ev) => {
              <AsideMenu/>
            </Aside> 
            <Main className='bg-c'>
-             <Card className='bg-bg pb-sm mgm_ss'>
-                 <Card.Header text='Aktiv bağlamalarım' endElelment={
+             <Card className='bg-bg pb-sm mgm_ss p-sm'>
+                 <Card.Header text={f({id:"active-pac"})} endElelment={
                  <Checkbox 
                     text={f({id:'choose-all'})}
                     Ref={ref => mainCheckRef.current = ref }
@@ -166,9 +166,9 @@ const checkHandler = (ev) => {
                  </Card.Body>
                  <div className='footer__pck'>
                    <div className='package-total'>
-                       <smal>{selectedPackages.packages.length} bağlama seçilib</smal>
+                       <smal>{selectedPackages.packages.length} {f({id:"chosed"})}</smal>
                        <div style={{display:'flex',justifyContent:'space-between'}}>
-                           <b>Cəmi:</b>
+                           <b>{f({id:"total"})}:</b>
                            <div style={{display:'flex',flexDirection:'column'}}>
                            <del style={{textDecorationColor:'red'}} >15.30 AZN</del>
                            <b>{selectedPackages.total} AZN</b>
@@ -183,7 +183,7 @@ const checkHandler = (ev) => {
                             style={{marginBottom:'0px'}}
                             >
                               
-                            <Input placeholder='kodu əlavə et'
+                            <Input placeholder={f({id:"addcode"})}
                               onChange={(e) => setSelectedPackages({
                                 ...selectedPackages,
                                 code:e.target.value,
@@ -206,7 +206,7 @@ const checkHandler = (ev) => {
                                  disabled={!selectedPackages.code ? true : false} 
                                  style={{padding: '0 10px'}} 
                                  className='color-white bg-success' 
-                                 label='Təsdiqlə'
+                                 label={f({id:"confirm"})}
                                  onClick={() =>{
                                    setSelectedPackages({
                                      ...selectedPackages,
@@ -217,8 +217,8 @@ const checkHandler = (ev) => {
                             }
                         </FromGroup>
                          
-                       <ButtonComponent style={{padding: '0 20px'}} className='color-white bg-success mr-xs desk' label='Kartla ödə' endElement={<span className='color-white pl-sm'>&#8594;</span>}/>
-                       <ButtonComponent style={{padding: '0 10px'}} className='desk' label='Balansla ödə' endElement={<span className='color-black mr-xs pl-sm '>&#8594;</span>}/>
+                       <ButtonComponent style={{padding: '0 20px'}} className='color-white bg-success mr-xs desk' label={f({id:"paybycard"})} endElement={<span className='color-white pl-sm'>&#8594;</span>}/>
+                       <ButtonComponent style={{padding: '0 10px'}} className='desk' label={f({id:"paybybalance"})} endElement={<span className='color-black mr-xs pl-sm '>&#8594;</span>}/>
                        
                         <div className='btn__fkl'>
                        <ButtonComponent style={{padding: '0 10px'}} className='color-white bg-success mr-xs' label='Kartla ödə' endElement={<span className='color-white pl-sm'>&#8594;</span>}/>

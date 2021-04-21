@@ -4,10 +4,11 @@ import { connect } from "react-redux";
 import { LogOut } from "../../redux/entry/entryActions";
 import ButtonComponent from "../button/index";
 import Divider from '../divider/divider';
-
+import { useIntl } from 'react-intl';
 
 
 function Hovermenu(props) {
+    const { formatMessage: f } = useIntl(); 
     const { pathname } = location;
     //Javascript split method to get the name of the path in array
     const splitLocation = pathname.split("/");
@@ -33,7 +34,7 @@ function Hovermenu(props) {
         <li onClick={navItemHandler} ref={addNavItems}>
         <Link href="/decleration" >
             <a  className={splitLocation[1] === "myaddresses" ? " d-flex  " : "d-flex"}>
-                <img src={'/assets/icons/upload.svg'} /><span>Öncədən bəyan et</span>
+                <img src={'/assets/icons/upload.svg'} /><span>{f({id:'declare-inadvance'})}</span>
             </a>
         </Link>
     </li>
@@ -41,7 +42,7 @@ function Hovermenu(props) {
             <li onClick={navItemHandler} ref={addNavItems} >
                 <Link href="/myaddresses">
                     <a className={splitLocation[1] === "myaddresses" ? " d-flex  " : "d-flex"}>
-                        <img src={'/assets/icons/book.svg'} /><span>Xaricdəki ünvanlarım</span>
+                        <img src={'/assets/icons/book.svg'} /><span>{f({id:'addresses-abroad'})}</span>
                     </a>
                 </Link>
             </li>
@@ -49,7 +50,7 @@ function Hovermenu(props) {
             <li onClick={navItemHandler} ref={addNavItems} >
                 <Link href="/orders">
                     <a className={splitLocation[1] === "orders" ? " d-flex  " : "d-flex"}>
-                        <img src={'/assets/icons/shopping-bag.svg'} /><span>Sifarişlərim</span>
+                        <img src={'/assets/icons/shopping-bag.svg'} /><span>{f({id:'orders'})}</span>
                     </a>
                 </Link>
             </li>
@@ -57,7 +58,7 @@ function Hovermenu(props) {
             <li onClick={navItemHandler} ref={addNavItems} >
                 <Link href="/packages">
                     <a className={splitLocation[1] === "packages" ? "d-flex  " : "d-flex"}>
-                        <img src={'/assets/icons/package.svg'} /><span>Bağlamalarım</span>
+                        <img src={'/assets/icons/package.svg'} /><span>{f({id:'packages'})}</span>
                     </a>
                 </Link>
             </li>
@@ -66,7 +67,7 @@ function Hovermenu(props) {
                 <Link href="/user-info">
                 <a className={splitLocation[1] === "user-info" ? "d-flex  " : "d-flex"}>
                     
-                        <img src={'/assets/icons/personal-data.svg'} /><span>Şəxsi məlumatlar</span>
+                        <img src={'/assets/icons/personal-data.svg'} /><span>{f({id:'private-info'})}</span>
                     </a>
                 </Link>
             </li>
@@ -75,7 +76,7 @@ function Hovermenu(props) {
                 <Link href="/balance">
                 <a className={splitLocation[1] === "balance" ? "d-flex  " : "d-flex"}>
                     
-                        <img src={'/assets/icons/cashback.svg'} /><span>Balansımız</span>
+                        <img src={'/assets/icons/cashback.svg'} /><span>{f({id:'balance'})}</span>
                     </a>
                 </Link>
             </li>
@@ -84,7 +85,7 @@ function Hovermenu(props) {
                 <Link href="/lends">
                 <a className={splitLocation[1] === "lends" ? "d-flex  " : "d-flex"}>
                     
-                        <img src={'/assets/icons/loan.svg'} /><span>Borclarım</span>
+                        <img src={'/assets/icons/loan.svg'} /><span>{f({id:'lends'})}</span>
                     </a>
                 </Link>
             </li>
@@ -93,7 +94,7 @@ function Hovermenu(props) {
                 <Link href="/courier-order">
                 <a className={splitLocation[1] === "courier-order" ? "d-flex  " : "d-flex"}>
                     
-                        <img src={'/assets/icons/delivery-man.svg'} /><span>Kuryer sifarişi</span>
+                        <img src={'/assets/icons/delivery-man.svg'} /><span>{f({id:'courier-order'})}</span>
                     </a>
                 </Link>
             </li>
@@ -102,7 +103,7 @@ function Hovermenu(props) {
                     <ButtonComponent
                       className='bg-white w-100'
                      startElement={ <img src={'/assets/icons/logout.svg'} />}
-                     label="Çıxış"
+                     label={f({id:'logout'})}
                      onClick={(e) => {
                          console.log(e)
                           //e.preventDevfault();
