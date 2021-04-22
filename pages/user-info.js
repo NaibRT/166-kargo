@@ -2,8 +2,8 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
-import { connect } from "react-redux";
 import { useIntl } from 'react-intl';
+import { connect } from "react-redux";
 import Swal from "sweetalert2";
 import AsideMenu from "../components/aside-menu/index";
 import Aside from '../components/aside/aside';
@@ -115,7 +115,7 @@ function UserInfo(props) {
             <Aside className='mr-sm'>
               <AsideMenu/>
             </Aside>
-         <Main className='mobile__color'>
+         <Main className='mobile__color p-none'>
          <Card className='bg-white p-sm br-lg'>
           <Card.Header text={f({id:"personalinfo"})}/>
           <form onSubmit={uHandleSubmit(updateUserData)}>

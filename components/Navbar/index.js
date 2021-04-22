@@ -6,12 +6,8 @@ import { useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
 import { connect } from "react-redux";
 import { Login, LogOut } from "../../redux/entry/entryActions";
-import { default as Button, default as ButtonComponent } from '../button';
-import Card from '../card/card';
+import { default as Button } from '../button';
 import Divider from "../divider/divider";
-import FromGroup from '../form-group/form-group';
-import Input from '../input/input';
-import Modal from '../modal-form/modal';
 import Page from '../page/page';
 import Burger from './burger';
 import Hovermenu from './hovermenu';
@@ -93,9 +89,9 @@ const Navbar = (props) => {
                                 <li onClick={navItemHandler} ref={addNavItems}>
                                     <Link href='/faq'><a>{f({ id: 'faq' })}</a></Link>
                                 </li>
-                                <li onClick={navItemHandler} ref={addNavItems}>
+                                {/* <li onClick={navItemHandler} ref={addNavItems}>
                                     <Link href='/'><a>{f({id:'calculator'})}</a></Link>
-                                </li>
+                                </li> */}
                                 <li onClick={navItemHandler} ref={addNavItems}>
                                     <Link href='/valuta'><a>{f({id:'converter'})}</a></Link>
                                 </li>
@@ -115,7 +111,7 @@ const Navbar = (props) => {
                                                 <Link href='/register'><a>{f({ id: 'signup' })}</a></Link>
                                             </li>
                                             <li>
-                                                <Link href='/'><a className='text__decoration'><Button style={{ padding: '10px' }} label={f({ id: 'signin' })} startElement={<img className='mr-xs' src={'/assets/icons/user.svg'} />} /></a></Link>
+                                                <Link href='/login'><a className='text__decoration'><Button style={{ padding: '10px' }} label={f({ id: 'signin' })} startElement={<img className='mr-xs' src={'/assets/icons/user.svg'} />} /></a></Link>
                                             </li>
                                         
 

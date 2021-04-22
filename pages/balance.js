@@ -52,7 +52,7 @@ function Balance(props) {
                 <Aside style={{marginTop:'40px'}}>
                     <AsideMenu />
                 </Aside>
-                <Main className='bg-bg'>
+                <Main className='bg-bg p-none'>
                     <Balans balance={props.entry.user.user.agreement}/>
                 <div className='mg-rr'>
                     <small style={{ display: 'block', color: '#D60000', marginBottom:'10px' }}>{f({ id: 'paybalance' })}</small>

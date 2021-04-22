@@ -40,10 +40,10 @@
 
 }
 
-@media(max-width:600px){
+@media(max-width:450px){
   .orders-container{
     overflow-x:scroll;
-    width:745px;
+    width:400px;
   }
   .order-card{
     .card-body{

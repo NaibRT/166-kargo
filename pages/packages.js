@@ -8,8 +8,6 @@ import Aside from "../components/aside/aside";
 import ButtonComponent from '../components/button';
 import Card from '../components/card/card';
 import Checkbox from "../components/checkbox/checkbox";
-import FromGroup from "../components/form-group/form-group";
-import Input from "../components/input/input";
 import Main from "../components/main/main";
 import PackageItem from '../components/package_item/package-item';
 import Page from "../components/page/page";
@@ -102,7 +100,7 @@ const checkHandler = (ev) => {
            <Aside className='mr-sm'>
              <AsideMenu/>
            </Aside> 
-           <Main className='bg-c'>
+           <Main className='bg-c p-none'>
              <Card className='bg-bg pb-sm mgm_ss p-sm'>
                  <Card.Header text={f({id:"active-pac"})} endElelment={
                  <Checkbox 
@@ -170,13 +168,13 @@ const checkHandler = (ev) => {
                        <div style={{display:'flex',justifyContent:'space-between'}}>
                            <b>{f({id:"total"})}:</b>
                            <div style={{display:'flex',flexDirection:'column'}}>
-                           <del style={{textDecorationColor:'red'}} >15.30 AZN</del>
+                           {/* <del style={{textDecorationColor:'red'}} >15.30 AZN</del> */}
                            <b>{selectedPackages.total} AZN</b>
                            </div>
                        </div>
                    </div>
                    <div className='package__btns'>
-                        <FromGroup 
+                        {/* <FromGroup 
                             bodyClass='bg-white pl-xs' 
                             bodyStyle={{height:'44px',width:'200px'}} 
                             className='mr-xs chng__bodystyle'
@@ -215,14 +213,14 @@ const checkHandler = (ev) => {
                                  } }
                                  />
                             }
-                        </FromGroup>
+                        </FromGroup> */}
                          
                        <ButtonComponent style={{padding: '0 20px'}} className='color-white bg-success mr-xs desk' label={f({id:"paybycard"})} endElement={<span className='color-white pl-sm'>&#8594;</span>}/>
                        <ButtonComponent style={{padding: '0 10px'}} className='desk' label={f({id:"paybybalance"})} endElement={<span className='color-black mr-xs pl-sm '>&#8594;</span>}/>
                        
                         <div className='btn__fkl'>
-                       <ButtonComponent style={{padding: '0 10px'}} className='color-white bg-success mr-xs' label='Kartla ödə' endElement={<span className='color-white pl-sm'>&#8594;</span>}/>
-                       <ButtonComponent style={{padding: '0 10px'}} label='Balansla ödə' endElement={<span className='color-black mr-xs pl-sm'>&#8594;</span>}/>
+                       <ButtonComponent style={{padding: '0 10px'}} className='color-white bg-success mr-xs' label={f({id:"paybycard"})} endElement={<span className='color-white pl-sm'>&#8594;</span>}/>
+                       <ButtonComponent style={{padding: '0 10px'}} label={f({id:"paybybalance"})} endElement={<span className='color-black mr-xs pl-sm'>&#8594;</span>}/>
                        </div>
                    </div>
                  </div>

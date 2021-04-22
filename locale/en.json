@@ -5,6 +5,7 @@
     "tariffs":"Tariffs",
     "chosed":"package chosen",
     "upload":"Upload invoice",
+    "see-invoice":"See invoice",
     "addcode":"Add code",
     "confirm":"Confirm",
     "paybycard":"Pay by card",
@@ -124,7 +125,7 @@
     "cf-info":"Enter your contact information and message in the form below and we will refund you.",
     "send":"send",
 
-    "no-account":"Don't have an account?",
+    "no-account":"Did you forget  password?",
 
     "message":"message",
     "message-requir":"message required",
@@ -176,6 +177,7 @@
     "pass-requir":"password required",
     "pass-patter":"password can be min 1 letter, 1 number and 8 symbol",
 
+    "new-pass":"Up",
     "repeat-pass":"Repeat password",
     "repeatpas-requir":"repeat password required",
     "repeatpas-valid":"repeat password is not match",

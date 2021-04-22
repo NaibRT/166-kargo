@@ -19,7 +19,7 @@ function PostInfo(props) {
           <Card className='p-sm'>
             <Card.Body className='p-none'>
               <div className="pip-img">
-                <img src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${props.currentNews.image}`} className='br-sm'/>
+                <img src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${props.currentNews?.image}`} className='br-sm'/>
                 <div className='pip-date'><span>{props.currentNews.created_at}</span></div>
               </div>
               <div className='pip-info'>
@@ -58,23 +58,25 @@ function PostInfo(props) {
  )
 }
 
-export async function getStaticPaths() {
+
+export async function getStaticPaths({locale}) {
 
   let responce = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}news`);
   let data = responce.data;
 
   let paths = data.map(x => {
     return {
-      params:{slug:[
-         x.slug.toString()
-        ]}
+      params:{
+             slug:[x.slug.toString()],
+             locale:locale
+            }
     }
   })
 
 
   return {
     paths:paths,
-    fallback: false
+    fallback: true
   }
 
 }

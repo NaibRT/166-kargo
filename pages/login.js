@@ -25,7 +25,7 @@ function LoginPage(props) {
 
       useEffect(() => {
         if(props.Entry.isLoged){
-            router.push('/orders')
+          router.push('/packages');
         }
       },[props.Entry.isLoged])
     
@@ -35,7 +35,7 @@ function LoginPage(props) {
 
     return (
         <Page className='h-100'>
-           <Card className='login-card bg-white p-sm' style={{display:'block'}}>
+           <Card className='login-card bg-white p-sm w-50 mt-lg' style={{display:'block'}}>
              <Card.Header style={{textAlign:'center'}} text={f({ id: 'signin' })}/>
              <Card.Body className='p-none'>
              <form className='login-form' onSubmit={handleSubmit(submit)}>

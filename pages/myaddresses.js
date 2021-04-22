@@ -1,17 +1,17 @@
 import axios from "axios"
+import Link from 'next/link'
 import { useRouter } from "next/router"
 import React, { memo, useLayoutEffect, useState } from 'react'
+import { useIntl } from 'react-intl'
 import { connect } from "react-redux"
 import AddressItem from '../components/address-item'
 import AsideMenu from '../components/aside-menu'
 import Aside from '../components/aside/aside'
+import ButtonComponent from '../components/button/index'
 import Card from '../components/card/card'
 import Main from '../components/main/main'
-import ButtonComponent from '../components/button/index'
-import Link from 'next/link'
 import Page from '../components/page/page'
 import Redirect from "../components/redirect/redirect"
-import { useIntl } from 'react-intl';
 
 function Test(props) {
     if(!props.entry.isLoged){
@@ -53,7 +53,7 @@ function Test(props) {
                 <Aside className='mr-sm'>
                     <AsideMenu />
                 </Aside>
-                <Main className='bg-white'>
+                <Main className='bg-white p-none'>
                 <div>
                <div className='mobile__bt pb-lg bg-bg'>
                <Link href="/balance">

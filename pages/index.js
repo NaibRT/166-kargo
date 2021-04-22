@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Link from 'next/link';
+import router, { useRouter } from 'next/router';
 import { memo, useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
@@ -34,7 +35,7 @@ const data = [
  function Home(props) {
   const { formatMessage: f } = useIntl();  
   const { register,handleSubmit,errors,clearErrors,setError } = useForm();
-
+  const {route} = useRouter()
   
   const [calculator,setCalculator] = useState({
     weight:'',
@@ -94,8 +95,12 @@ const data = [
      }
   },[])
 
+
   const submit = (data) => {
-    props.Login('auth/login',JSON.stringify(data),{'content-type':'application/json'})
+    props.Login('auth/login',JSON.stringify(data),{'content-type':'application/json'});
+      if(props.Entry.isLoged){
+        router.push('/packages')
+      }
   }
   
   return (
@@ -138,7 +143,7 @@ const data = [
                </FromGroup>
              <ButtonComponent type='submit' className='w-100 mt-xs mb-sm' label={f({id:'login'})}/>
              </form>
-             <div className='mt-xs'><span>{f({id:'no-account'})}</span>
+             <div className='mt-xs'><Link href='/forgetPass'><a>{f({id:'no-account'})}</a></Link>
              <Link href='/register'>
                <a>
                <span className='color-yellow' style={{cursor:'pointer'}}>{f({id:'signup'})}</span>

@@ -55,6 +55,12 @@ function Register(props) {
    props.UserRegister('auth/register',newData,{'content-type':'application/json'});
  }
 
+ useEffect(() => {
+  if(props.Entry.isLoged){
+    router.push('/myaddresses');
+  }
+},[props.Entry.isLoged])
+
  
  return (
   <Page className='bg-bg register-page fh'>
@@ -199,7 +205,7 @@ function Register(props) {
          >
            <Input name='password' type='password' 
              Ref={register({
-               required:{value:true,message:f({id:'password-requir'})},
+               required:{value:true,message:f({id:'pass-requir'})},
                pattern:{value:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, message:f({id:'password-pattern'})}
              })}
            />

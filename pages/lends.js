@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useRouter } from "next/router";
 import React, { memo, useLayoutEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 import { connect } from "react-redux";
 import AsideMenu from '../components/aside-menu';
-import { useIntl } from 'react-intl';
 import Aside from '../components/aside/aside';
 import ButtonComponent from '../components/button';
 import Card from '../components/card/card';
@@ -72,7 +72,7 @@ function Lends(props) {
       <Aside className='mr-sm'>
         <AsideMenu />
       </Aside>
-      <Main className='mobile__lend'>
+      <Main className='mobile__lend p-none'>
         <Card className='p-sm'>
           <Card.Header text={f({id:"lends"})} />
           <Card.Body className='p-none'>

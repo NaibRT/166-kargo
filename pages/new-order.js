@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { memo, useState } from 'react';
 import { useForm } from "react-hook-form";
+import { useIntl } from 'react-intl';
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 import AsideMenu from "../components/aside-menu";
@@ -15,7 +16,6 @@ import Input from '../components/input/input';
 import Main from "../components/main/main";
 import Page from "../components/page/page";
 import Redirect from "../components/redirect/redirect";
-import { useIntl } from 'react-intl';
 
 
 function NewOrder(props) {
@@ -100,8 +100,8 @@ function NewOrder(props) {
     // setCards([...newCards])
   }
 
-  const submit = () => {
-
+  const submit = (data) => {
+   console.log(data)
     if (cardData.ruleAccepted) {
 
       let data = {
@@ -146,8 +146,6 @@ function NewOrder(props) {
                 ...cards[i][key],
                 error: x[key]
               }
-
-
             };
           }
 
@@ -157,7 +155,7 @@ function NewOrder(props) {
     }
   }
 
-
+  console.log(errors)
   return (
     <Page className='bg-bg pt-lg'>
       <Aside className='mr-sm'>
@@ -166,7 +164,7 @@ function NewOrder(props) {
       <Main className='br-sm bg-white br-lg'>
         <Card className='p-sm desktop__order'>
           <Card.Header text={f({id:'new-order'})} />
-          <form onSubmit={handleSubmit(submit)}>
+          <form >
             {
               cards.map((x, i) => {
                 return (
@@ -179,25 +177,25 @@ function NewOrder(props) {
                     <div className='from-container' style={{ display: 'flex' }}>
                       <div className='w-50 mr-sm fc-col' style={{}}>
                         <FromGroup label={f({id:"link"})} className='w-100' bodyClass='bg-white'
-                          error={x.url.error}
+                          error={errors.url?.message}
                         >
                           <Input type='text' name='url' data-id={i} value={x.url.value}
-                            Ref={register({ required: true })}
+                            Ref={register({required:{value:true,message:'url mməcburidir'}})}
                             onChange={handleInput}
                           />
                         </FromGroup>
                         <div style={{ display: 'flex' }}>
                           <FromGroup label={f({id:"color"})} className='w-50 mr-sm' bodyClass='bg-white'
-                            error={x.color.error}
+                            error={errors.color?.message || x.color.error}
                           >
                             <Input type='text' name='color' data-id={i}
                               value={x.color.value}
-                              Ref={register({ required: true })}
+                              Ref={register({ required:{value:true,message:'color mməcburidir'} })}
                               onChange={handleInput}
                             />
                           </FromGroup>
                           <FromGroup label={f({id:'size'})} className='w-50' bodyClass='bg-white'
-                            error={x.size.error}
+                            error={errors.size?.message ||x.size.error}
                           >
                             <Input 
                                min={0}
@@ -205,7 +203,7 @@ function NewOrder(props) {
                               name='size' 
                               data-id={i}
                               value={x.size.value}
-                              Ref={register({ required: true })}
+                              Ref={register({required:{value:true,message:'size mməcburidir'}})}
                               onChange={handleInput}
                             />
                           </FromGroup>
@@ -214,7 +212,7 @@ function NewOrder(props) {
                       <div className='w-50 fc-col'>
                         <div className='w-100' style={{ display: 'flex', justifyContent: 'space-between' }}>
                           <FromGroup label={f({id:'count-pro'})} className='mr-xs' bodyClass='bg-white'
-                            error={x.count.error}
+                            error={errors.count?.message || x.count.error}
                           >
                             <Input 
                               min={0}
@@ -222,17 +220,17 @@ function NewOrder(props) {
                               name='count' 
                               data-id={i}
                               value={x.count.value}
-                              Ref={register({ required: true })}
+                              Ref={register({ required:{value:true,message:'say mməcburidir'}})}
                               onChange={handleInput}
                             />
                           </FromGroup>
                           <FromGroup label={f({id:'price'})} className='mr-xs' bodyClass='bg-white'
-                            error={x.price.error}
+                            error={errors.price?.message || x.price.error}
                           >
                             <Input type='number' name='price' data-id={i}
                               min={0}
                               value={x.price.value}
-                              Ref={register({ required: true })}
+                              Ref={register({ required:{value:true,message:'qiymət mməcburidir'} })}
                               onChange={handleInput}
                             />
                           </FromGroup>
@@ -244,7 +242,7 @@ function NewOrder(props) {
                               name='total' 
                               data-id={i}
                               value={x.total}
-                              Ref={register({ required: true })}
+                              Ref={register()}
                               disabled
                             />
                           </FromGroup>
@@ -254,7 +252,7 @@ function NewOrder(props) {
                         >
                           <Input type='text' name='notes' data-id={i}
                             value={x.notes.value}
-                            Ref={register({ required: true })}
+                            Ref={register()}
                             onChange={handleInput}
                           />
                         </FromGroup>
@@ -296,6 +294,7 @@ function NewOrder(props) {
                   endElement={<span className='ml-xs'>&#8250;</span>}
                   className=' w-100'
                   disabled={!cardData.ruleAccepted}
+                  onClick={handleSubmit(submit)}
                 />
               </div>
             </Card.Footer>

@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { memo, useState } from 'react';
 import 'react-day-picker/lib/style.css';
 import { useForm } from "react-hook-form";
+import { useIntl } from 'react-intl';
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 import AsideMenu from "../components/aside-menu/index";
@@ -14,7 +15,6 @@ import Input from "../components/input/input";
 import Main from '../components/main/main';
 import Page from "../components/page/page";
 import Redirect from "../components/redirect/redirect";
-import { useIntl } from 'react-intl';
 import Selectbox from "../components/selectbox/selectbox";
 
 const telData = [
@@ -92,7 +92,7 @@ function Decleration(props) {
             <Aside className='mr-sm'>
               <AsideMenu/>
             </Aside>
-         <Main>
+         <Main className='p-none'>
          <Card className='bg-white p-sm br-lg'>
           <Card.Header text={f({id:"decleration"})}/>
           <form onSubmit={handleSubmit(submit)}>
@@ -101,7 +101,12 @@ function Decleration(props) {
                 <FromGroup label={f({id:"chooseone"})} bodyClass='bg-white' className='w-50 pr-xs mb-sm'
                  error={errors.country?.message}
                 >
-                  <Selectbox className='bg-white w-100' data={telData}
+                  <Selectbox className='bg-white w-100' 
+                     data={[
+                     {id:15,name:f({id:'turkey'})},
+                     {id:16,name:f({id:'usa'})},
+                     {id:17,name:f({id:'ukraina'})}
+                    ]}
                    name='country'
                    Ref={register({
                     required:{value:true, message:'country type is required'},

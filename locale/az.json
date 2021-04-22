@@ -74,8 +74,9 @@
     "addcode":"Kod əlavə et",
     "confirm":"Təsdiq et",
     "paybycard":"Kartla ödə",
-    "paybybalance":"Baıansdan ödə",
+    "paybybalance":"Balansdan ödə",
     "upload":"Invoys yüklə",
+    "see-invoice":"Invoysə bax",
     "total":"Cəmi",
     "chosed":"bağlama seçilib",
     "choose-all":"hamsını seç",
@@ -90,7 +91,7 @@
     "seeall":"Hamısını gör",
     "lastnews":"Son xəbərlər",
     "stores":"Bəzi mağazalar",
-    "reason":"Borcun yaranma səbəbi",
+    "reason":"Səbəb",
     "link":"Link",
     "increases-balance":"Balansı artır",
     "paybalance":"Balansa artırdığınız məbləğ ilə yalnız çatdırılma haqqını ödəyə bilərsiniz!",
@@ -146,7 +147,7 @@
     "country":"ölkə",
 
 
-    "no-account":"Hesabınız yoxdur?",
+    "no-account":"Şifrənizi unutmusunuz?",
 
 
     "message":"mesajınız",
@@ -195,7 +196,7 @@
     "oldpassword":"Köhnə Şifrə",
     "pass-requir":"şifrə məcburidir",
     "pass-patter":"şifrə min 1 hərf, 1rəqəm və 8 simvol olmalıdır",
-
+     "new-pass":"Şifrəni yenilə",
     "repeat-pass":"Təkrar şifrə",
 
     "repeatpas-requir":"təkrar şifrə məcburidir",

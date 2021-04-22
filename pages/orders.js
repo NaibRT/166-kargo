@@ -77,7 +77,7 @@ function Orders(props) {
           <Aside className='mr-sm'>
               <AsideMenu/>
           </Aside> 
-          <Main>
+          <Main className='p-none'>
             <Card className='p-sm order-card'>
                 <Card.Header text={f({id:'orders'})} endElelment={
                 <Link href='./new-order'>
