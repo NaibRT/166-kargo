@@ -102,11 +102,13 @@ function Lends(props) {
               {
                 lendw.map((s,i)=>{
                   return(
-                    <table>
+                    <table key={i}>
+                     <thead>
                     <tr>
                       <td className='bg-bg p-md'>N{++i}</td>
                       <td className='bg-bg p-md'></td>
                     </tr>
+                    </thead>
                     <tbody>
                       <tr>
                         <th>{f({id:"reason"})}</th>

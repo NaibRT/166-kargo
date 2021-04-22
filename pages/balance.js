@@ -73,9 +73,9 @@ function Balance(props) {
                              balance: x.balance
                            }
                          ))}
-                        renderBody={(x) => {
+                        renderBody={(x,i) => {
                           return(
-                            <td>{x}</td>
+                            <td key={i}>{x}</td>
                           )
                         }}
                       />

@@ -63,14 +63,16 @@ function Test(props) {
               </Link>
               <Link href="/new-order">
             <a>
-           <ButtonComponent style={{padding:'0 35px'}} className='w-100' label='Sifariş et' startElement={<img className='mr-xs' src="/assets/icons/el.svg"/>}  />
+           <ButtonComponent style={{padding:'0 35px'}}
+            className='w-100' label='Sifariş et' 
+            startElement={<img className='mr-xs' src="/assets/icons/el.svg"/>}  />
             </a>
            </Link>
                </div>
                     
                     {
-                      addresses.isLoaded && addresses.data.map(a => (
-                            <Card className='p-sm  bg-white br-lg  ' >
+                      addresses.isLoaded && addresses.data.map((a,i) => (
+                            <Card key={i} className='p-sm  bg-white br-lg  ' >
                         <Card.Header style={{ justifyContent: 'flex-start' }}
                             startElement={<img src={`/assets/icons/${a.id}.svg`} className='fl' />}
                             text={`${a.name} ${f({id:'address'})}`}
@@ -85,10 +87,22 @@ function Test(props) {
                                             return (
                                                 <AddressItem style={{ flex: '1 1 30%' }} title={key} label={`${props.entry.user.user.firstname} ${props.entry.user.user.lastname}`} key={index} />
                                             )
-                                        }else{
+                                        }else if(index===1){
+                                           
                                             return (
-                                                <AddressItem style={{ flex: '1 1 30%' }} title={key} label={a.address[key]} key={index} />
+                                                <AddressItem style={{ flex: '1 1 30%' }} title={key} label={a.address[key].replace('CUSTOMER_ID',`${props.entry.user.user.customer_number}`).replace('USER',`${props.entry.user.user.firstname} ${props.entry.user.user.lastname}`)} key={index} />
                                              )
+                                        }else if(index===Object.entries(a.address).length-1){
+                                            return(
+                                                <AddressItem style={{ flex: '1 1 30%' }} title={key} label={a.address[key].replace('{CUSTOMER_ID}',`${props.entry.user.user.customer_number}`)} key={index} />
+                                            
+                                            )
+                                        }
+                                        
+                                        else{
+                                            return(
+                                                <AddressItem style={{ flex: '1 1 30%' }} title={key}  label={a.address[key]} key={index}/>
+                                            )
                                         }
                                     }
                                     )

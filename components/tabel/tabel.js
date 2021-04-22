@@ -8,8 +8,8 @@ function Tabel({th = [], data = [], renderBody = () => {}, thClassName,trStyle,c
         <thead className={`tabel-head ${thClassName || ''}`}>
         <tr className=''>
              {
-                 th.map(h => (
-                  <th>{h}</th>  
+                 th.map((h,i) => (
+                  <th key={i}>{h}</th>  
                  ))
              }
 

@@ -8,7 +8,7 @@ function PackageItem({item,checkRef,onCheck}) {
     const { formatMessage: f } = useIntl();
     const {locale} = useRouter()
     return (
-        <div className='package-item mr-sm'>
+        <div className='package-item mr-xs'>
             <div className='package-item-header'>
               <img style={{marginLeft:'-10px'}} src='./assets/images/a02.svg'/>
               <h5 style={{color:`${item.status.color}`}}>{item.status.name}</h5>
@@ -19,15 +19,15 @@ function PackageItem({item,checkRef,onCheck}) {
                      <li><strong>{f({id:"getwhere"})}:</strong><small>{item.from}</small></li>
                      <li><strong>{f({id:"lastprice"})}:</strong><small>{item.price} {item.currency}</small></li>
                      <li><strong>{f({id:"category"})}:</strong><small>{item.category}</small></li>
-                     <li><strong>{f({id:"weight"})}:</strong><small>{item.weight} kq</small></li>
-                     <li><strong>{f({id:"dateon"})}:</strong><small>{new Date(item.date).toDateString()}</small></li>
+                     <li><strong>{f({id:"weight"})}:</strong><small>{parseFloat(item.weight).toFixed(2)} kq</small></li>
+                     <li><strong>{f({id:"dateon"})}:</strong><small>{item.date}</small></li>
                  </ul>
               </div>
               <a href={`${process.env.NEXT_PUBLIC_API_IMAGE_URL}${item.invoice}`} download ><ButtonComponent style={{fontSize:'10px'}} className='h-initial p-xxs w-100 bg-bg' label={f({id:"see-invoice"})}/></a>
               <div className='package-item-footer'>
                <div className='pif-amount'>
                    <span>{f({id:"deliveryprice"})}</span>
-                   <span>{item.delivery_price || 0.00}</span>
+                   <span>{parseFloat(item.delivery_price).toFixed(2) || 0.00}</span>
                </div>
                <Checkbox 
                   Ref={checkRef} 

@@ -75,7 +75,7 @@ const MenuMobile = ({ open,setOpen }) => {
         <ul className='top__header-menu'>
           <li onClick={navItemHandler} ref={addNavItems}>
             <Link href='/search'><a>
-              Bağlamam hardadır?
+            {f({ id: 'search' })}
       </a></Link>
           </li>
           <Divider/>
@@ -104,7 +104,7 @@ const MenuMobile = ({ open,setOpen }) => {
           </li>
           <Divider/>
           <li>
-            <Link href='' style={{marginBottom:'15px'}}><a>Dil seçimi</a></Link>
+            <Link href='' style={{marginBottom:'15px'}}><a> {f({ id: 'clang' })}</a></Link>
             <div className='lang'>
               <figure onClick={handleLocaleChange} data-value='az' >
                 <img src={'assets/icons/az.svg'} />

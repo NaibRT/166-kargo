@@ -26,7 +26,7 @@
     "not-found":"Axtarışınıza uyğun bağlama tapılmadı",
     "howitworks":"Necə işləyir?",
     "search-pac":"Bağlamanızı axtarın",
-    
+    "clang":"Dil seçimi",
     "ent-code":"izləmə kodunu daxil edin",
     "gotoregister":"Qeydiyyatdan keçirsiniz",
     "alttext1":"Sizə Türkiyə və ABŞ-da yerləşən anbarların ünvanlarını göndəririk",
@@ -74,9 +74,9 @@
     "addcode":"Kod əlavə et",
     "confirm":"Təsdiq et",
     "paybycard":"Kartla ödə",
-    "paybybalance":"Balansdan ödə",
+    "paybybalance":"Baıansdan ödə",
     "upload":"Invoys yüklə",
-    "see-invoice":"Invoysə bax",
+    "see-invoice":"Invoysa bax",
     "total":"Cəmi",
     "chosed":"bağlama seçilib",
     "choose-all":"hamsını seç",
@@ -105,6 +105,12 @@
     "declare-inadvance":"Öncədən bəyan et",
      "addresses-abroad":"Xaricdəki ünvanlarım",
      "orders":"Sifarişlərim",
+     "track-requir":"Track id məcburidir",
+     "sh-requir":"Mağaza adı məcburidir",
+     "main-requir":"Əsas qrup məcburidir",
+     "sub-requir":"Alt qrup məcburidir",
+     "price-requir":"Qiymət məcburidir",
+     "invoice-requir":"İnvoys məcburidir",
      "packages":"Bağlamalarım",
      "private-info":"Şəxsi məlumatlar",
      "lends":"Borclarım",
@@ -147,7 +153,7 @@
     "country":"ölkə",
 
 
-    "no-account":"Şifrənizi unutmusunuz?",
+    "no-account":"Hesabınız yoxdur?",
 
 
     "message":"mesajınız",
@@ -156,6 +162,7 @@
     "name":"Adınız",
     "name-requir":"ad məcburidir",
     "name-patter":"ad yalnız hərflər ola bilər",
+    
 
     "surname":"Soyadınız",
     "surname-requir":"soyad məcburidir",
@@ -196,7 +203,7 @@
     "oldpassword":"Köhnə Şifrə",
     "pass-requir":"şifrə məcburidir",
     "pass-patter":"şifrə min 1 hərf, 1rəqəm və 8 simvol olmalıdır",
-     "new-pass":"Şifrəni yenilə",
+
     "repeat-pass":"Təkrar şifrə",
 
     "repeatpas-requir":"təkrar şifrə məcburidir",

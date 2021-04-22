@@ -4,6 +4,7 @@ import React, { memo, useLayoutEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { connect } from "react-redux";
 import AsideMenu from "../components/aside-menu/index";
+import Input from '../components/input/input';
 import Aside from "../components/aside/aside";
 import ButtonComponent from '../components/button';
 import Card from '../components/card/card';
@@ -13,6 +14,7 @@ import PackageItem from '../components/package_item/package-item';
 import Page from "../components/page/page";
 import Redirect from "../components/redirect/redirect";
 import Tabel from "../components/tabel/tabel";
+import FromGroup from '../components/form-group/form-group'
 
 function Packages(props) {
 
@@ -174,7 +176,7 @@ const checkHandler = (ev) => {
                        </div>
                    </div>
                    <div className='package__btns'>
-                        {/* <FromGroup 
+                        <FromGroup 
                             bodyClass='bg-white pl-xs' 
                             bodyStyle={{height:'44px',width:'200px'}} 
                             className='mr-xs chng__bodystyle'
@@ -213,7 +215,7 @@ const checkHandler = (ev) => {
                                  } }
                                  />
                             }
-                        </FromGroup> */}
+                        </FromGroup> 
                          
                        <ButtonComponent style={{padding: '0 20px'}} className='color-white bg-success mr-xs desk' label={f({id:"paybycard"})} endElement={<span className='color-white pl-sm'>&#8594;</span>}/>
                        <ButtonComponent style={{padding: '0 10px'}} className='desk' label={f({id:"paybybalance"})} endElement={<span className='color-black mr-xs pl-sm '>&#8594;</span>}/>
@@ -246,9 +248,9 @@ const checkHandler = (ev) => {
                           shop: x.shop,
                           category: x.category,
                           price: `${x.price} ${x.currency}`,
-                          weight: `${x.weight || 0} kq`,
-                          delivery_price: x.delivery_price || 0,
-                          status:`${x.status.name}\n ${new Date(x.date).toDateString()}`,
+                          weight: `${parseFloat(x.weight).toFixed(2) || 0} kq`,
+                          delivery_price: parseFloat(x.delivery_price).toFixed(2) || 0,
+                          status:`${x.status.name}\n ${x.date}`
                         }
                       } 
                     }) || []}

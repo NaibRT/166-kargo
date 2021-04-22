@@ -34,7 +34,7 @@ function LoginPage(props) {
       }
 
     return (
-        <Page className='h-100'>
+        <Page className='bg-bg p-xxl'>
            <Card className='login-card bg-white p-sm w-50 mt-lg' style={{display:'block'}}>
              <Card.Header style={{textAlign:'center'}} text={f({ id: 'signin' })}/>
              <Card.Body className='p-none'>

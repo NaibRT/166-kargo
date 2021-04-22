@@ -16,7 +16,7 @@ export default function AddressItem({title, label}) {
             <h3 className='title'>{title}:</h3>
            { document.queryCommandSupported('copy') &&  <img src='/assets/icons/copy (1).svg' style={{marginLeft:'25px'}} onClick={copyToClipboard}/>}
             </div>
-            <input ref={textAreaRef} className='bg-bg' style={{borderStyle:'none',outline:'none'}} value={label}/> 
+            <textarea ref={textAreaRef} className='bg-bg' style={{borderStyle:'none',outline:'none',resize:'none'}} defaultValue={label} rows='4' />  
         </div>
     )
 }

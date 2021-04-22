@@ -66,7 +66,7 @@
     "seeall":"See all",
     "lastnews":"Last news",
     "stores":"Stores",
-    "password":"Şifrə",
+    
     "increases-balance":"Increase balance",
     "paybalance":"You can only pay the delivery fee with the amount you add to the balance!",
     "refundable":"The amount paid is non-refundable!",
@@ -78,6 +78,7 @@
     "sub-g":"Sub group",
     "price-inv":"Invoice price",
     "link":"Link",
+    "clang":"Language",
     "isfast":"Urgent",
     "ord-pay":"Make order and pay",
     "agreement":"I agree",

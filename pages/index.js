@@ -108,7 +108,7 @@ const data = [
          <main className='home-page'>
            <section className='main-section bg-bg mb-sm' >
            <div className=' container-fluid pt-sm pb-sm' style={{display:'flex'}}>
-           <div style={{height:'400px'}} className={`slider-container pr-sm ${props.Entry.isLoged && 'w-100'}`}>
+           <div className={`slider-container pr-sm ${props.Entry.isLoged && 'w-100'}`}>
              <MainSlider/>
            </div>
            {
