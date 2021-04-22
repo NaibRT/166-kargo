@@ -8,9 +8,11 @@ import FromGroup from "../components/form-group/form-group";
 import Input from "../components/input/input";
 import Page from "../components/page/page";
 import Tabel from "../components/tabel/tabel";
+import { useIntl } from 'react-intl';
 
 
 function Search() {
+  const { formatMessage: f } = useIntl();
     const [results,setResults] = useState({
         data:[],
         isloaded:''
@@ -39,36 +41,40 @@ function Search() {
     return (
         <Page className='bg-bg pt-lg pb-lg'>
             <Card className='bg-white w-100 p-lg'>
-              <Card.Header text='Bağlamanızı axtarın' style={{justifyContent:'center'}}/>
+              <Card.Header text={f({id:'search-pac'})} style={{justifyContent:'center'}}/>
               <Card.Body style={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
                   <div className=''>
                   <form 
                      onSubmit={handleSubmit(submit)}
                      style={{display:'flex',alignItems:'center',width:'max-content'}} className='search__ff'>
                       <FromGroup 
-                        className='mr-xs'
+                        className='m-none mr-xs'
                         bodyClass='border-subtitle' 
-                        bodyStyle={{height:'44px',width:'250px'}}>
+                        bodyStyle={{height:'44px',width:'250px'}}
+                        style={{marginBottom:'0px'}}
+                        >
                         <Input 
                            name='searchKey' 
                            className='pl-xs'
-                           placeholder='izləmə kodunu daxil edin'
+                           placeholder={f({id:'ent-code'})}
                            Ref={register()}
                         />
                       </FromGroup>
                       <Button 
                          type='submit'
-                         label='Axtar' 
-                         className='pl-lg pr-lg mt-xs mb-xs'/>
+                         label={f({id:'search'})} 
+                         className='pl-lg pr-lg'
+                         style={{height:'44px'}}
+                         />
                  </form>
-                 <div style={{display:'flex',alignItems:'flex-end'}}><small style={{fontSize:'xx-small',margin:'0 auto'}}>nümunə: 77498777656658</small></div>
+                 <div style={{display:'flex',alignItems:'flex-end'}}><small style={{fontSize:'xx-small'}}>nümunə: 77498777656658</small></div>
                  </div>
                  {
                    results.isloaded === true ? <Tabel
                    className='w-75 mt-lg'
                    th={[
-                       'Izləmə kodu',
-                       'Bağlamanın statusu'
+                      f({id:'tracking'}),
+                      f({id:'status'})
                    ]}
                    data={results.data}
                    renderBody={(x) => (
@@ -77,7 +83,7 @@ function Search() {
                  />
 
                  : results.isloaded === false ?
-                   <h3 className='mt-lg'>Axtarışınıza uyğun bağlama tapılmadı</h3>
+                   <h3 className='mt-lg'>{f({id:"not-found"})}</h3>
                  : null
                  }
                  

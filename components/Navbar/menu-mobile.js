@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import Link from 'next/link'
-import { useIntl } from 'react-intl';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Divider from '../divider/divider'
+import React,{useRef, memo} from "react";
+import { useIntl } from 'react-intl';
+import styled from "styled-components";
+import Divider from '../divider/divider';
 
 const StyledMenu = styled.nav`
   display: flex;
@@ -40,65 +40,86 @@ const Overlay = styled.div`
        height:100%
 `
 
-const MenuMobile = ({ open }) => {
+const MenuMobile = ({ open,setOpen }) => {
 
-  const { locale, locales } = useRouter();
+  const { locale, locales,asPath } = useRouter();
   const router = useRouter();
   const { formatMessage: f } = useIntl();
+  const navMobilItemRefs = useRef([]);
+
+  const handleLocaleChange = (e) => {
+        let locale = e.currentTarget.getAttribute('data-value');
+        router.push(`${asPath}`, `${asPath}`, { locale });
+        setOpen(false);
+    }
+
+    const addNavItems = (ref) => {
+     if(ref && !navMobilItemRefs.current.includes(ref)){
+       navMobilItemRefs.current.push(ref)
+     }
+   }
+    const navItemHandler = (e) => {
+        navMobilItemRefs.current.forEach(x => x.children[0].classList.remove('nav-item-active'));
+        e.target.classList.add('nav-item-active');
+        setOpen(!open);
+    }
 
   return (
     <>
-    <Overlay open={open}></Overlay>
+    <Overlay open={open}
+     onClick={() => {
+      setOpen(!open)
+     }}
+    ></Overlay>
       <StyledMenu  open={open}>
-
         <ul className='top__header-menu'>
-          <li>
-            <Link href='/search'><a href="/">
-              Bağlamam hardadır?
+          <li onClick={navItemHandler} ref={addNavItems}>
+            <Link href='/search'><a>
+            {f({ id: 'search' })}
       </a></Link>
           </li>
           <Divider/>
-          <li  >
+          <li onClick={navItemHandler} ref={addNavItems} >
             <Link href='/faq'><a>{f({ id: 'faq' })}</a></Link>
           </li>
           <Divider/>
-          <li>
+          <li onClick={navItemHandler} ref={addNavItems}>
             <Link href='/about'><a>{f({ id: 'about' })}</a></Link>
           </li>
           <Divider/>
-          <li>
+          <li onClick={navItemHandler} ref={addNavItems}>
             <Link href='/tarif'><a>{f({ id: 'tariff' })}</a></Link>
           </li>
           <Divider/>
-          <li>
+          <li onClick={navItemHandler} ref={addNavItems}>
             <Link href='/example-shop'><a>{f({ id: 'examples' })}</a></Link>
           </li>
           <Divider/>
-          <li>
+          <li onClick={navItemHandler} ref={addNavItems}>
             <Link href='/blog'><a>{f({ id: 'blog' })}</a></Link>
           </li>
           <Divider/>
-          <li>
+          <li onClick={navItemHandler} ref={addNavItems}>
             <Link href='/contact'><a>{f({ id: 'contact' })}</a></Link>
           </li>
           <Divider/>
           <li>
-            <Link href='' style={{marginBottom:'15px'}}>Dil seçimi</Link>
+            <Link href='' style={{marginBottom:'15px'}}><a> {f({ id: 'clang' })}</a></Link>
             <div className='lang'>
-              <figure >
+              <figure onClick={handleLocaleChange} data-value='az' >
                 <img src={'assets/icons/az.svg'} />
                 <figcaption>AZ</figcaption>
               </figure>
-              <figure>
+              <figure onClick={handleLocaleChange} data-value='en'>
                 <img src={'assets/icons/eng.svg'} />
                 <figcaption>ENG</figcaption>
               </figure>
-              <figure>
+              <figure onClick={handleLocaleChange} data-value='ru'>
                 <img src={'assets/icons/rus.svg'} />
                 <figcaption>RU</figcaption>
               </figure>
               <figure>
-                <img src={'assets/icons/ua.svg'} />
+                <img src={'assets/icons/18.svg'} />
                 <figcaption>UA</figcaption>
               </figure>
             </div>
@@ -109,4 +130,4 @@ const MenuMobile = ({ open }) => {
   );
 };
 
-export default MenuMobile;
+export default memo(MenuMobile);

@@ -1,8 +1,9 @@
 import axios from 'axios'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React, { memo, useLayoutEffect, useState } from 'react'
+import { useIntl } from 'react-intl'
 import { connect } from 'react-redux'
-import router, { useRouter } from 'next/router'
 import AsideMenu from '../components/aside-menu'
 import Aside from '../components/aside/aside'
 import ButtonComponent from '../components/button'
@@ -13,7 +14,6 @@ import Main from '../components/main/main'
 import Page from '../components/page/page'
 import Redirect from "../components/redirect/redirect"
 import Tabel from '../components/tabel/tabel'
-import { useIntl } from 'react-intl';
 
 
 
@@ -66,16 +66,16 @@ function CourierOrder(props) {
 
   return (
     <Page className='bg-bg pt-lg pb-lg'>
-      <Aside>
+      <Aside className='mr-sm'>
         <AsideMenu />
       </Aside>
-      <Main className='bg-bg'>
+      <Main className='bg-white p-none'>
         <Card className='p-sm bg-white coruier__cards br-lg'>
           <form>
           <Card.Header text={f({id:'courier-order'})} />
           <Card.Body className='p-none'>
             <p className='mb-lg'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+            <div className='coruier-cards-form-container' style={{ display: 'flex', flexWrap: 'wrap' }}>
               <FromGroup label={f({id:'choose-dist'})} className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
                 <Input type='text' />
               </FromGroup>
@@ -86,7 +86,7 @@ function CourierOrder(props) {
                 <Input type='text' />
               </FromGroup>
               <FromGroup label={f({id:'enter-number'})} className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
-                <Input type='tel' />
+                <Input type='tel' maxLength='10' pattern='[0-9]{3}[0-9]{3}[0-9]{2}[0-9]{2}' />
               </FromGroup>
             </div>
             <Link href='/'><a style={{ color: 'darkblue', textDecoration: 'underline' }}>{f({id:'definemap'})}</a></Link>
@@ -131,7 +131,7 @@ function CourierOrder(props) {
                     <summary className='order-item-summary'>
                       <div className='order-item-summary-head' >
                         <span style={{textAlign:'center'}}>No </span>
-                        <span style={{textAlign:'center'}}>{f({id:'date'})}</span>
+                        <span style={{textAlign:'center'}}>{f({id:'dateon'})}</span>
                         <span style={{textAlign:'center'}}>{f({id:'count'})}</span>
                         <span style={{textAlign:'center'}}>{f({id:'status'})}</span>
                       </div>

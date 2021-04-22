@@ -40,9 +40,15 @@
 
 }
 
-@media(max-width:600px){
+@media(max-width:450px){
   .orders-container{
-    overflow-x:scroll
+    overflow-x:scroll;
+    width:400px;
+  }
+  .order-card{
+    .card-body{
+      overflow-x:scroll;
+    }
   }
   .orders-container-head{
     overflow:scroll

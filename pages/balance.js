@@ -52,19 +52,19 @@ function Balance(props) {
                 <Aside style={{marginTop:'40px'}}>
                     <AsideMenu />
                 </Aside>
-                <Main className='bg-bg'>
+                <Main className='bg-bg p-none'>
                     <Balans balance={props.entry.user.user.agreement}/>
                 <div className='mg-rr'>
                     <small style={{ display: 'block', color: '#D60000', marginBottom:'10px' }}>{f({ id: 'paybalance' })}</small>
                     <small style={{ display: 'block', color: '#D60000', marginBottom:'10px'  }}>{f({ id: 'refundable' })}</small>
                     <Card className="bg-white p-md br-lg">
-                      <Card.Header text='Tranzakisyalar'/>
+                      <Card.Header text={f({id:"transaction"})}/>
                       <Card.Body className='f-mobile'>
                       <Tabel
                         th={[
-                          'Tarix',
-                          'Ödəniş',
-                          'Balans(xidmətlər)'
+                          f({id:"dateon"}),
+                          f({id:"payment"}),
+                          f({id:"balance-service"})
                         ]}
                          data={data.map(x => (
                            {
@@ -73,9 +73,9 @@ function Balance(props) {
                              balance: x.balance
                            }
                          ))}
-                        renderBody={(x) => {
+                        renderBody={(x,i) => {
                           return(
-                            <td>{x}</td>
+                            <td key={i}>{x}</td>
                           )
                         }}
                       />

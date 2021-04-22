@@ -1,17 +1,17 @@
 import axios from "axios"
+import Link from 'next/link'
 import { useRouter } from "next/router"
 import React, { memo, useLayoutEffect, useState } from 'react'
+import { useIntl } from 'react-intl'
 import { connect } from "react-redux"
 import AddressItem from '../components/address-item'
 import AsideMenu from '../components/aside-menu'
 import Aside from '../components/aside/aside'
+import ButtonComponent from '../components/button/index'
 import Card from '../components/card/card'
 import Main from '../components/main/main'
-import ButtonComponent from '../components/button/index'
-import Link from 'next/link'
 import Page from '../components/page/page'
 import Redirect from "../components/redirect/redirect"
-import { useIntl } from 'react-intl';
 
 function Test(props) {
     if(!props.entry.isLoged){
@@ -48,14 +48,14 @@ function Test(props) {
 
 
     return (
-        <div className='bg-bg'>
-            <Page>
-                <Aside style={{ marginTop: '40px' }}>
+        <div >
+            <Page className='bg-bg pt-lg pb-lg'>
+                <Aside className='mr-sm'>
                     <AsideMenu />
                 </Aside>
-                <Main style={{background:'none'}}>
+                <Main className='bg-white p-none'>
                 <div>
-               <div className='mobile__bt'>
+               <div className='mobile__bt pb-lg bg-bg'>
                <Link href="/balance">
                <a>
               <ButtonComponent style={{padding:'0 25px'}} className='w-100' label='Balansı artır' startElement={<img className='mr-xs' src="/assets/icons/el2.svg"/>}/>
@@ -69,10 +69,10 @@ function Test(props) {
                </div>
                     
                     {
-                      addresses.isLoaded && addresses.data.map(a => (
-                            <Card className='p-md bg-white br-lg r_lf_mg' >
+                      addresses.isLoaded && addresses.data.map((a,i) => (
+                            <Card key={i} className='p-sm  bg-white br-lg  ' >
                         <Card.Header style={{ justifyContent: 'flex-start' }}
-                            startElement={<img src={'/assets/icons/turkish.svg'} className='fl' />}
+                            startElement={<img src={`/assets/icons/${a.id}.svg`} className='fl' />}
                             text={`${a.name} ${f({id:'address'})}`}
                         />
 

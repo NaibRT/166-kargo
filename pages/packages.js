@@ -1,20 +1,18 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import React, { memo, useLayoutEffect, useRef, useState } from 'react';
+import { useIntl } from 'react-intl';
 import { connect } from "react-redux";
 import AsideMenu from "../components/aside-menu/index";
 import Aside from "../components/aside/aside";
 import ButtonComponent from '../components/button';
 import Card from '../components/card/card';
 import Checkbox from "../components/checkbox/checkbox";
-import FromGroup from "../components/form-group/form-group";
-import Input from "../components/input/input";
 import Main from "../components/main/main";
 import PackageItem from '../components/package_item/package-item';
 import Page from "../components/page/page";
 import Redirect from "../components/redirect/redirect";
 import Tabel from "../components/tabel/tabel";
-import { useIntl } from 'react-intl';
 
 function Packages(props) {
 
@@ -102,10 +100,11 @@ const checkHandler = (ev) => {
            <Aside className='mr-sm'>
              <AsideMenu/>
            </Aside> 
-           <Main className='bg-c'>
-             <Card className='bg-bg pb-sm mgm_ss'>
-                 <Card.Header text='Aktiv bağlamalarım' endElelment={
+           <Main className='bg-c p-none'>
+             <Card className='bg-bg pb-sm mgm_ss p-sm'>
+                 <Card.Header text={f({id:"active-pac"})} endElelment={
                  <Checkbox 
+                    text={f({id:'choose-all'})}
                     Ref={ref => mainCheckRef.current = ref }
                     onClick={(e) => {
                     let total=0;
@@ -164,19 +163,25 @@ const checkHandler = (ev) => {
                      </div>
                  </Card.Body>
                  <div className='footer__pck'>
-                   <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
-                       <smal>{selectedPackages.packages.length} bağlama seçilib</smal>
+                   <div className='package-total'>
+                       <smal>{selectedPackages.packages.length} {f({id:"chosed"})}</smal>
                        <div style={{display:'flex',justifyContent:'space-between'}}>
-                           <b>Cəmi:</b>
+                           <b>{f({id:"total"})}:</b>
                            <div style={{display:'flex',flexDirection:'column'}}>
-                           <del style={{textDecorationColor:'red'}} >15.30 AZN</del>
+                           {/* <del style={{textDecorationColor:'red'}} >15.30 AZN</del> */}
                            <b>{selectedPackages.total} AZN</b>
                            </div>
                        </div>
                    </div>
                    <div className='package__btns'>
-                        <FromGroup bodyClass='bg-white pl-xs' bodyStyle={{height:'44px',width:'200px'}} className='mr-xs chng__bodystyle'>
-                            <Input placeholder='kodu əlavə et'
+                        {/* <FromGroup 
+                            bodyClass='bg-white pl-xs' 
+                            bodyStyle={{height:'44px',width:'200px'}} 
+                            className='mr-xs chng__bodystyle'
+                            style={{marginBottom:'0px'}}
+                            >
+                              
+                            <Input placeholder={f({id:"addcode"})}
                               onChange={(e) => setSelectedPackages({
                                 ...selectedPackages,
                                 code:e.target.value,
@@ -199,7 +204,7 @@ const checkHandler = (ev) => {
                                  disabled={!selectedPackages.code ? true : false} 
                                  style={{padding: '0 10px'}} 
                                  className='color-white bg-success' 
-                                 label='Təsdiqlə'
+                                 label={f({id:"confirm"})}
                                  onClick={() =>{
                                    setSelectedPackages({
                                      ...selectedPackages,
@@ -208,14 +213,14 @@ const checkHandler = (ev) => {
                                  } }
                                  />
                             }
-                        </FromGroup>
+                        </FromGroup> */}
                          
-                       <ButtonComponent style={{padding: '0 20px'}} className='color-white bg-success mr-xs desk' label='Kartla ödə' endElement={<span className='color-white pl-sm'>&#8594;</span>}/>
-                       <ButtonComponent style={{padding: '0 10px'}} className='desk' label='Balansla ödə' endElement={<span className='color-black mr-xs pl-sm '>&#8594;</span>}/>
+                       <ButtonComponent style={{padding: '0 20px'}} className='color-white bg-success mr-xs desk' label={f({id:"paybycard"})} endElement={<span className='color-white pl-sm'>&#8594;</span>}/>
+                       <ButtonComponent style={{padding: '0 10px'}} className='desk' label={f({id:"paybybalance"})} endElement={<span className='color-black mr-xs pl-sm '>&#8594;</span>}/>
                        
                         <div className='btn__fkl'>
-                       <ButtonComponent style={{padding: '0 10px'}} className='color-white bg-success mr-xs' label='Kartla ödə' endElement={<span className='color-white pl-sm'>&#8594;</span>}/>
-                       <ButtonComponent style={{padding: '0 10px'}} label='Balansla ödə' endElement={<span className='color-black mr-xs pl-sm'>&#8594;</span>}/>
+                       <ButtonComponent style={{padding: '0 10px'}} className='color-white bg-success mr-xs' label={f({id:"paybycard"})} endElement={<span className='color-white pl-sm'>&#8594;</span>}/>
+                       <ButtonComponent style={{padding: '0 10px'}} label={f({id:"paybybalance"})} endElement={<span className='color-black mr-xs pl-sm'>&#8594;</span>}/>
                        </div>
                    </div>
                  </div>
@@ -243,7 +248,7 @@ const checkHandler = (ev) => {
                           price: `${x.price} ${x.currency}`,
                           weight: `${x.weight || 0} kq`,
                           delivery_price: x.delivery_price || 0,
-                          status:`${x.status.name}\n ${new Date(x.date).toDateString()}`,
+                          status:`${x.status.name}\n ${x.date}`
                         }
                       } 
                     }) || []}

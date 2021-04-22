@@ -14,12 +14,12 @@ import PostItem from "../../components/post_item/post-item"
 function PostInfo(props) {
   
  return (
-      <Page className='bg-bg pt-lg'>
+      <Page className='bg-bg pt-lg fh'>
         <Main className='bg-white mr-sm'>
           <Card className='p-sm'>
             <Card.Body className='p-none'>
               <div className="pip-img">
-                <img src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${props.currentNews.image}`} className='br-sm'/>
+                <img src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${props.currentNews?.image}`} className='br-sm'/>
                 <div className='pip-date'><span>{props.currentNews.created_at}</span></div>
               </div>
               <div className='pip-info'>
@@ -51,30 +51,32 @@ function PostInfo(props) {
                 ))
               }
             </Card.Body>
-            <Card.Footer text={<Link href=''>hamsını gör +</Link>}/>
+            <Card.Footer text={<Link href=''><a>hamsını gör +</a></Link>}/>
           </Card>
         </Aside>
       </Page>
  )
 }
 
-export async function getStaticPaths() {
+
+export async function getStaticPaths({locale}) {
 
   let responce = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}news`);
   let data = responce.data;
 
   let paths = data.map(x => {
     return {
-      params:{slug:[
-         x.slug.toString()
-        ]}
+      params:{
+             slug:[x.slug.toString()],
+             locale:locale
+            }
     }
   })
 
 
   return {
     paths:paths,
-    fallback: false
+    fallback: true
   }
 
 }

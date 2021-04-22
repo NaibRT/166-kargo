@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useIntl } from 'react-intl'
 import { connect } from "react-redux"
 import Button from '../components/button'
 import Card from '../components/card/card'
@@ -10,13 +11,16 @@ import RadioButton from '../components/radio-button/radio-button'
 import Selectbox from '../components/selectbox/selectbox'
 import Switch from "../components/switch/switch"
 import { UserRegister } from "../redux/entry/entryActions"
-import { useIntl } from 'react-intl';
 
 
 
 
 const telData = [
-  {id:'+994',name:'+994'},
+  {id:'050',name:'050'},
+  {id:'051',name:'051'},
+  {id:'055',name:'055'},
+  {id:'070',name:'070'},
+  {id:'077',name:'077'},
  ]
 
 function Register(props) {
@@ -51,10 +55,16 @@ function Register(props) {
    props.UserRegister('auth/register',newData,{'content-type':'application/json'});
  }
 
+ useEffect(() => {
+  if(props.Entry.isLoged){
+    router.push('/myaddresses');
+  }
+},[props.Entry.isLoged])
+
  
  return (
-  <Page className='bg-bg register-page'>
-    <main className='mt-lg'>
+  <Page className='bg-bg register-page fh'>
+    <main className='mt-lg mb-lg'>
       <Card className='bg-white br-sm mr-sm p-sm w-50'>
        <Card.Header text={f({id:'register'})} endElelment={
        <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
@@ -105,11 +115,11 @@ function Register(props) {
               })} 
            />
           <Input type='tel' name='phone'
-              maxLength='9'
+              maxLength='7'
              Ref={register({
                required:{value:true, message:f({id:'phone-requir'})},
-               pattern:{value:/^\(?(51|60|70|77|50|55)\)?(\s+)?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$/,message:f({id:'phone-patter'})},
-               maxLength:{value:9, message:f({id:'phone-len'})}
+               pattern:{value:/^[0-9]{3}[0-9]{2}[0-9]{2}$/,message:f({id:'phone-patter'})},
+               maxLength:{value:7, message:f({id:'phone-len'})}
              })} 
           />
          </FromGroup>
@@ -166,7 +176,7 @@ function Register(props) {
               })} 
            />
          </FromGroup>
-         <FromGroup label={f({id:'address'})} className='w-50 pr-xs mb-xs'
+         <FromGroup label={f({id:'address'})} bodyClass='bg-bg' className='w-50 pr-xs mb-xs'
            error={errors.address?.message}
          >
            <Input name='address' type='text'
@@ -195,7 +205,7 @@ function Register(props) {
          >
            <Input name='password' type='password' 
              Ref={register({
-               required:{value:true,message:f({id:'password-requir'})},
+               required:{value:true,message:f({id:'pass-requir'})},
                pattern:{value:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, message:f({id:'password-pattern'})}
              })}
            />

@@ -1,6 +1,13 @@
 .flex__grow{
     flex:2 2 30%;
     margin-bottom:40px;
+    input::selection {
+         background: gold; 
+        }
+
+        img{
+            cursor: pointer;
+        }
 }
 .flexible__address{
     display:flex;
@@ -20,7 +27,7 @@
         display:block !important
     }
     .mobile__bt{
-        margin-top:20px;
+        margin-bottom:20px;
         display:flex !important;
         justify-content: space-between;
     }

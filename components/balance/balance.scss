@@ -6,7 +6,6 @@
     display:flex;
     justify-content:space-between;
     width:100%;
-    flex-wrap:wrap;
   
 
     .card{
@@ -44,4 +43,10 @@
                 margin:20px !important
             }
         }
+}
+@media(max-width:660px){
+    .card__flex{
+        flex-direction:column;
+        width:92% !important;
+    }
 }

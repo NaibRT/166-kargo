@@ -2,8 +2,10 @@
 .flex__item{
     display:flex;
     justify-content: space-between;
-    flex-wrap:wrap
-
+    flex-wrap:wrap;
+  a{
+    margin-bottom: 5px;  
+  }
 }
 .color-yellow{
     color:$color__yellow

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Link from 'next/link';
+import router, { useRouter } from 'next/router';
 import { memo, useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
@@ -34,7 +35,7 @@ const data = [
  function Home(props) {
   const { formatMessage: f } = useIntl();  
   const { register,handleSubmit,errors,clearErrors,setError } = useForm();
-
+  const {route} = useRouter()
   
   const [calculator,setCalculator] = useState({
     weight:'',
@@ -94,8 +95,12 @@ const data = [
      }
   },[])
 
+
   const submit = (data) => {
-    props.Login('auth/login',JSON.stringify(data),{'content-type':'application/json'})
+    props.Login('auth/login',JSON.stringify(data),{'content-type':'application/json'});
+      if(props.Entry.isLoged){
+        router.push('/packages')
+      }
   }
   
   return (
@@ -103,13 +108,13 @@ const data = [
          <main className='home-page'>
            <section className='main-section bg-bg mb-sm' >
            <div className=' container-fluid pt-sm pb-sm' style={{display:'flex'}}>
-           <div style={{height:'400px'}} className={`slider-container pr-sm ${props.Entry.isLoged && 'w-100'}`}>
+           <div className={`slider-container pr-sm ${props.Entry.isLoged && 'w-100'}`}>
              <MainSlider/>
            </div>
            {
              !props.Entry.isLoged &&
              <Card className='login-card bg-white p-sm'>
-             <Card.Header style={{textAlign:'center'}} text={f({ id: 'signin' })}/>
+             <Card.Header style={{display:'flex',justifyContent:'center'}} text={f({ id: 'signin' })}/>
              <Card.Body className='p-none'>
              <form className='login-form' onSubmit={handleSubmit(submit)}>
                <FromGroup 
@@ -138,7 +143,12 @@ const data = [
                </FromGroup>
              <ButtonComponent type='submit' className='w-100 mt-xs mb-sm' label={f({id:'login'})}/>
              </form>
-             <div className='mt-xs'><span>{f({id:'no-account'})}</span><Link href='/register'><span className='color-yellow' style={{cursor:'pointer'}}>{f({id:'signup'})}</span></Link></div>
+             <div className='mt-xs'><Link href='/forgetPass'><a>{f({id:'no-account'})}</a></Link>
+             <Link href='/register'>
+               <a>
+               <span className='color-yellow' style={{cursor:'pointer'}}>{f({id:'signup'})}</span>
+               </a>
+               </Link></div>
              </Card.Body>
            </Card>
            }
@@ -148,29 +158,26 @@ const data = [
         <section className='tariff-section'>
           <Card className='mr-sm sm-mob'>
             <Card.Header text={f({id:'tariffs'})} />
-            <Card.Body className='bg-bg p-sm br-sm d-n'>
-              <div className='bg-bg rate-container' style={{ display: 'flex',justifyContent:'space-between'}}>
+            <Card.Body className='bg-bg p-sm br-sm'>
+              <div className='bg-bg rate-container' >
                 {
-                  <Rate data={props.tariffs.filter(x => x.country_id === 15 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/turkish.svg'} headerText={f({id:'turkey'})} /> 
+                  <Rate data={props.tariffs.filter(x => x.country_id === 15 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/15.svg'} headerText={f({id:'turkey'})} /> 
                 }
                 {
-                  <Rate data={props.tariffs.filter(x => x.country_id === 15 && x.is_liquid===1).splice(0,4)} icon={'/assets/icons/turkish.svg'} headerText={f({id:'isluqidturkey'})} />
+                  <Rate data={props.tariffs.filter(x => x.country_id === 15 && x.is_liquid===1).splice(0,4)} icon={'/assets/icons/15.svg'} headerText={f({id:'isluqidturkey'})} />
                 }
                 {
-                  <Rate data={props.tariffs.filter(x => x.country === 16 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/usa.svg'} headerText={f({id:'usa'})} style={{marginRight:0}} />
+                  <Rate data={props.tariffs.filter(x => x.country_id === 16 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/16.svg'} headerText={f({id:'usa'})} style={{marginRight:0}} />
                 } 
               </div>
-            </Card.Body>
-            <Card.Body className='bg-bg p-xs br-sm for-mobile'>
-                  <Card.Header></Card.Header>
-                 <MobileRate data={data} text={f({id:'weight'})} />
+              <MobileRate data={data} text={f({id:'weight'})} />
             </Card.Body>
           </Card>
           <Card>
             <Card.Header text={f({id:'calculator'})}/>
             <Card.Body className='bg-bg p-sm br-sm'>
               <form className='calculator-form' style={{display:'flex',flexWrap:'wrap'}}>
-              <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label={f({id:'choosectry'})}>
+              <FromGroup className='w-50 pr-xs mb-sm' bodyClass='bg-white ' label={f({id:'choosectry'})}>
                   <Selectbox className='w-100 m-none' data={[
                     {id:'TÜRKİYƏ',name:f({id:'turkey'})},
                     {id:'ABŞ',name:f({id:'usa'})},
@@ -181,7 +188,7 @@ const data = [
                      onChange={calculatorInputHandler}
                   />
                 </FromGroup>
-              <FromGroup className='w-50 pr-xs' bodyClass=' h-50' label={f({id:'liquid'})}>
+              <FromGroup className='w-50 pr-xs mb-sm' bodyClass=' ' label={f({id:'liquid'})}>
 
                   <Switch 
                   name='isliquid'
@@ -200,28 +207,28 @@ const data = [
                   value={calculator?.isliquid}
                   />
               </FromGroup>
-                <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label={f({id:'weight'})}>
+                <FromGroup className='w-50 pr-xs mb-sm' bodyClass='bg-white ' label={f({id:'weight'})}>
                   <Input type='text'
                      name='weight'
                      value={calculator?.weight}
                      onChange={calculatorInputHandler}
                   />
                 </FromGroup>
-                <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label={f({id:'length'})}>
+                <FromGroup className='w-50 pr-xs mb-sm' bodyClass='bg-white ' label={f({id:'length'})}>
                   <Input type='text'
                     name='length'
                     value={calculator?.length}
                     onChange={calculatorInputHandler}
                   />
                 </FromGroup>
-                <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label={f({id:'width'})}>
+                <FromGroup className='w-50 pr-xs mb-sm' bodyClass='bg-white ' label={f({id:'width'})}>
                   <Input type='text'
                     name='width'
                     value={calculator?.width}
                     onChange={calculatorInputHandler}
                   />
                 </FromGroup>
-                <FromGroup className='w-50 pr-xs' bodyClass='bg-white h-50' label={f({id:'height'})}>
+                <FromGroup className='w-50 pr-xs mb-sm' bodyClass='bg-white ' label={f({id:'height'})}>
                   
                   <Input type='text'
                      name='height'
@@ -231,11 +238,11 @@ const data = [
                    
                 </FromGroup>
               </form>
-              <Card.Footer className='mt-xs'>
+              <Card.Footer className='mt-xs calc-footer'>
                 <>
-                <div className='w-50 pr-xs' style={{display:'flex',flexDirection:'column'}}>
-                  <span className='w-100' style={{fontSize:'11px'}}>{f({id:'deliveryprice'})}</span>
-                  <strong style={{textAlign:'center',fontSize:'14px'}}>{calculator.total.toFixed(2)}$</strong>
+                <div className='w-50 pr-xs' style={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
+                  <span className='' style={{fontSize:'16px',width:'90px'}}>{f({id:'deliveryprice'})}</span>
+                  <strong style={{textAlign:'center',fontSize:'xx-large'}}>{calculator.total.toFixed(2)}$</strong>
                 </div>
                 <ButtonComponent 
                   className='w-50' 
@@ -285,7 +292,7 @@ const data = [
 
         <section className='fluid_bottom' >
           <Card>
-            <Card.Header text={f({ id: 'lastnews' })} endElelment={<Link href='/blog'><>{f({id:'seeall'})} &rsaquo;</></Link>} />
+            <Card.Header text={f({ id: 'lastnews' })} endElelment={<Link href='/blog'><a>{f({id:'seeall'})} &rsaquo;</a></Link>} />
             <Card.Body style={{ padding: 0, display: 'flex', flexWrap:'wrap'}}>
               {
                 props.news.slice(0,3).map((x,i,arr) =>{
@@ -296,11 +303,14 @@ const data = [
           </Card>
         </section>
 
-        <section className='fluid_bottom w-100'>
+        <section className='fluid_bottom example-shop-section w-100'>
           <Card>
-            <Card.Header text={f({id:"stores"})} endElelment={<Link href=''><>{f({id:'seeall'})} &rsaquo;</></Link>} />
+            <Card.Header text={f({id:"stores"})} endElelment={
+            <Link href='/example-shop'><a>{f({id:'seeall'})} &rsaquo;</a></Link>} />
+             
             <Card.Body>
             <div className='flex__item'>
+              
               <Link href='https://www.trendyol.com/'>
                 <a target="_blank"> <img src={'/assets/images/a00.svg'} /></a>
               </Link>
@@ -352,19 +362,6 @@ export async function getServerSideProps({locale,req,res}) {
   }
 }
 
-// export async function getStaticProps({locale}) {
-
-//   let news = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}news/main?lan=${locale}`);
-//   let tariffs = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}tariffs?lan=${locale}`);
-
-//   return {
-//     props: {
-//      news:news.data,
-//      tariffs:tariffs.data
-//     },
-//   }
-
-// }
 
 
 export default connect(mapStateToProp, mapDispatchToProp)(memo(Home))

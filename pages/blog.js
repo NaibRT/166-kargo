@@ -10,11 +10,11 @@ function Blog(props) {
   const { formatMessage: f } = useIntl(); 
 
  return (
-  <div className='blog-page bg-bg'>
-    <Page >
+  <div className='blog-page bg-bg fh'>
+    <Page>
      <div className='blog-page-container'>
    <main className='bg-white br-lg' >
-     <Card className='p-md'>
+     <Card className='p-md blog-main-item'>
        <Card.Header text={props.news[0].title}/>
          <Card.Body className='br-sm' style={{padding:0}}>
           <Link href={`/blog/${props.news[0].slug}`}>

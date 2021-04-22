@@ -35,12 +35,12 @@
 }
 .select__text {
     option[value="USD"]{
-         background-image:url('/assets/icons/usa.svg');
+         background-image:url('/assets/icons/16.svg');
         }
 }
 .select__text {
     option[value="TRY"]::before{ 
-        background-image:url('/assets/icons/turkish.svg');
+        background-image:url('/assets/icons/15.svg');
     }
 }
  .today_text{

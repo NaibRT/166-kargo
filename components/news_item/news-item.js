@@ -4,6 +4,7 @@ import React from 'react';
 function NewsItem({style,className,item}) {
  return (
     <Link href={`blog/${item.slug}/${item.id}`}>
+       <a>
   <div className={`news-item bg-bg br-sm ${className}`} style={style}>
    <img className='br-sm' src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${item.image}`}/>
     <div className='news-item-info'>
@@ -11,6 +12,7 @@ function NewsItem({style,className,item}) {
        <h5>{item.title}</h5>
     </div>
   </div>
+  </a>
   </Link>
  )
 }

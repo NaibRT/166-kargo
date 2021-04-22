@@ -33,7 +33,7 @@ function AsideMenu(props) {
           </Link>
           <Link href="/decleration">
            <a>
-          <ButtonComponent className='w-100 mt-xs' label={f({id:'declare-inadvance'})} startElement={<img className='mr-xs' src=""/>}/>
+          <ButtonComponent className='w-100 mt-xs' label={f({id:'declare-inadvance'})} startElement={<img className='mr-xs' src={'/assets/icons/upload.svg'} />}/>
            </a>
           </Link>
           </Card.Body>

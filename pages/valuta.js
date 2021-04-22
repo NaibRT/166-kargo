@@ -3,7 +3,7 @@ import Card from '../components/card/card'
 import Page from '../components/page/page'
 import Main from '../components/main/main'
 import Input from '../components/input/input';
-import Divider from '../components/divider/divider'
+import { useIntl } from 'react-intl';
 
 
 let today = new Date();
@@ -14,11 +14,12 @@ let yyyy = today.getFullYear();
 today = dd + '/' + mm + '/' + yyyy;
 
 export default function Valuta() {
+    const { formatMessage: f } = useIntl();
     return (
         <Main className='bg-bg rm-rf'>
             <Page className='p-lg'>
                 <Card className="bg-white br-lg mt-md p-md w-100">
-                    <p className='valuta__text'>Valyuta konvertoru</p>
+                    <p className='valuta__text'>{f({ id: 'converter' })}</p>
                     <Card.Body className='bg-bg br-sm'>
                         <div className='d-flexible'>
 

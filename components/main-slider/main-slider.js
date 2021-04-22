@@ -9,6 +9,7 @@ function MainSlider({className}) {
     <Swiper
     spaceBetween={0}
     slidesPerView={1}
+    responsive={true}
     onSlideChange={() => console.log('slide change')}
     onSwiper={(swiper) => console.log(swiper)}
    >

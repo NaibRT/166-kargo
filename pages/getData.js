@@ -1,16 +1,14 @@
-import axios from 'axios'
-import React, { useEffect } from 'react'
-import {connect} from 'react-redux'
-import store from '../redux/store'
 import Link from 'next/link'
-import {
- getDataAction
-} from '../redux/getData/getDataActions'
+import React, { useEffect } from 'react'
 import { useIntl } from 'react-intl'
+import { connect } from 'react-redux'
 import Card from '../components/card/card'
-import Rate from '../components/rate/rate'
-import NewsItem from '../components/news_item/news-item'
 import PostItem from '../components/post_item/post-item'
+import Rate from '../components/rate/rate'
+import
+  {
+    getDataAction
+  } from '../redux/getData/getDataActions'
 
 
 
@@ -34,9 +32,9 @@ function GetData(props) {
         <Card.Header text='Tarifler'/>
          <Card.Body className='bg-bg sm'>
            <div className='bg-bg' style={{display:'flex',justifyContent:'space-around',flexFlow:'wrap'}}>
-             <Rate data={data} icon={'/assets/icons/turkish.svg'} headerText='Türkiyə'/>
-             <Rate data={data} icon={'/assets/icons/turkish.svg'} headerText='Türkiyə (Maye)'/>
-             <Rate data={data} icon={'/assets/icons/usa.svg'} headerText='ABŞ'/>
+             <Rate data={data} icon={'/assets/icons/15.svg'} headerText='Türkiyə'/>
+             <Rate data={data} icon={'/assets/icons/15.svg'} headerText='Türkiyə (Maye)'/>
+             <Rate data={data} icon={'/assets/icons/16.svg'} headerText='ABŞ'/>
            </div>
          </Card.Body>
        </Card> 
@@ -44,7 +42,7 @@ function GetData(props) {
 
 <section className='container-fluid'>
  <Card>
-   <Card.Header text='Son Xəbərlər' endElelment={<Link href=''>Hamsını gör &rsaquo;</Link>}/>
+   <Card.Header text='Son Xəbərlər' endElelment={<Link href=''><a>Hamsını gör &rsaquo;</a></Link>}/>
    <Card.Body style={{padding: 0, display:'flex',justifyContent:'space-between',flexFlow:'wrap'}}>
         <PostItem/>
    </Card.Body>

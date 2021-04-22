@@ -39,7 +39,7 @@ export const UserRegister = (url,data,headers = {}) => dispatch => {
 }
 
 export const LogOut = () => dispatch => {
-
+   console.log('wordek logout')
     dispatch(logout())
 }
 
