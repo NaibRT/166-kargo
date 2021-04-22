@@ -63,7 +63,9 @@ function Test(props) {
               </Link>
               <Link href="/new-order">
             <a>
-           <ButtonComponent style={{padding:'0 35px'}} className='w-100' label='Sifariş et' startElement={<img className='mr-xs' src="/assets/icons/el.svg"/>}  />
+           <ButtonComponent style={{padding:'0 35px'}}
+            className='w-100' label='Sifariş et' 
+            startElement={<img className='mr-xs' src="/assets/icons/el.svg"/>}  />
             </a>
            </Link>
                </div>
@@ -85,10 +87,22 @@ function Test(props) {
                                             return (
                                                 <AddressItem style={{ flex: '1 1 30%' }} title={key} label={`${props.entry.user.user.firstname} ${props.entry.user.user.lastname}`} key={index} />
                                             )
-                                        }else{
+                                        }else if(index===1){
+                                           
                                             return (
-                                                <AddressItem style={{ flex: '1 1 30%' }} title={key} label={a.address[key]} key={index} />
+                                                <AddressItem style={{ flex: '1 1 30%' }} title={key} label={a.address[key].replace('CUSTOMER_ID',`${props.entry.user.user.customer_number}`).replace('USER',`${props.entry.user.user.firstname} ${props.entry.user.user.lastname}`)} key={index} />
                                              )
+                                        }else if(index===Object.entries(a.address).length-1){
+                                            return(
+                                                <AddressItem style={{ flex: '1 1 30%' }} title={key} label={a.address[key].replace('{CUSTOMER_ID}',`${props.entry.user.user.customer_number}`)} key={index} />
+                                            
+                                            )
+                                        }
+                                        
+                                        else{
+                                            return(
+                                                <AddressItem style={{ flex: '1 1 30%' }} title={key}  label={a.address[key]} key={index}/>
+                                            )
                                         }
                                     }
                                     )
