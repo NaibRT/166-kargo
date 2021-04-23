@@ -30,6 +30,7 @@ function Packages(props) {
   const [selectedPackages, setSelectedPackages] = useState({
     packages: [],
     total: 0,
+    discountTotal:0,
     code: "",
     isAccepted: false,
     status: 0,
@@ -138,20 +139,53 @@ function Packages(props) {
   const checkHandler = (ev) => {
     let { value, checked } = ev.target;
     let price = ev.target.getAttribute("data-price");
+    let dataDiscount = ev.target.getAttribute("data-discount");
+    let total=0
+    let disc=0
+    console.log('dis',dataDiscount)
     if (checked) {
       selectedPackages.packages.push(value);
-      setSelectedPackages({
-        ...selectedPackages,
-        total: selectedPackages.total + parseFloat(price),
-        packages: [...selectedPackages.packages],
-      });
+      if(dataDiscount!=0){
+        setSelectedPackages({
+          ...selectedPackages,
+
+          total: (selectedPackages.total+parseFloat(price)),
+         
+          discountTotal: (selectedPackages.discountTotal+parseFloat(dataDiscount)),
+          packages: [...selectedPackages.packages],
+        });
+      
+      }else{
+        setSelectedPackages({
+          ...selectedPackages,
+          discountTotal: (selectedPackages.discountTotal+parseFloat(price)),
+          total: (selectedPackages.total+parseFloat(price)),
+          packages: [...selectedPackages.packages],
+        });
+      }
+     
     } else {
       let newPackages = selectedPackages.packages.filter((x) => x !== value);
-      setSelectedPackages({
-        ...selectedPackages,
-        total: selectedPackages.total - price,
-        packages: [...newPackages],
-      });
+      if(dataDiscount!=0){
+        setSelectedPackages({
+          
+          ...selectedPackages,
+
+          total: selectedPackages.total >=0 && (selectedPackages.total-parseFloat(price)),
+         
+          discountTotal: selectedPackages.discountTotal >=0 &&  (selectedPackages.discountTotal-parseFloat(dataDiscount)),
+          packages: newPackages
+        });
+      
+      }else{
+        setSelectedPackages({
+          ...selectedPackages,
+          discountTotal:selectedPackages.discountTotal >=0 && (selectedPackages.discountTotal-parseFloat(price)),
+          total:selectedPackages.total >=0 && (selectedPackages.total-parseFloat(price)),
+          packages:newPackages
+        });
+      }
+     
     }
     !selectedPackages.packages.some((x) => x)
       ? (mainCheckRef.current.checked = false)
@@ -160,6 +194,7 @@ function Packages(props) {
 
   const selectAll = (e) => {
     let total = 0;
+    let discountTotal = 0;
     let packages = [];
     checkRefs.current.forEach((x) => {
       x.checked = e.target.checked;
@@ -167,15 +202,17 @@ function Packages(props) {
       if (e.target.checked && !packages.includes(x.value)) {
         packages.push(x.value);
         total += +x.getAttribute("data-price");
+        discountTotal += +x.getAttribute("data-discount");
       } else {
         packages = packages.filter((p) => p !== x.value);
-        total -= total !== 0 && +x.getAttribute("data-price");
+        total -= total >= 0 && +x.getAttribute("data-price");
+        discountTotal -= discountTotal >=0 && +x.getAttribute("data-discount");
       }
     });
 
     setSelectedPackages({
       ...selectedPackages,
-      total: total,
+      total: selectedPackages.total-total,
       packages: packages,
     });
   };
@@ -281,8 +318,16 @@ function Packages(props) {
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <b>{f({ id: "total" })}:</b>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  <del style={{ textDecorationColor: "red" }}>15.30 AZN</del>
-                  <b>{selectedPackages.total} AZN</b>
+                {
+                  selectedPackages.discountTotal > 0 ? 
+                  <>
+                  <del style={{ textDecorationColor: "red" }}>{selectedPackages.total.toFixed(2)} AZN</del>
+                   <b>{selectedPackages.discountTotal.toFixed(2)} AZN</b>
+                   </>
+                   :  <b>{selectedPackages.discountTotal.toFixed(2)} AZN</b>
+                }  
+                
+                 
                 </div>
               </div>
             </div>

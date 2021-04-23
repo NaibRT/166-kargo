@@ -190,7 +190,7 @@ function UserInfo(props) {
                 >
                    <Selectbox 
                      onChange={(ev)=>{
-                     //setCheckSerial(ev.target.value)
+                     setCheckSerial(ev.target.value)
                      handleChange(ev)
                      }}
                      name='serial_type' 
@@ -280,7 +280,7 @@ function UserInfo(props) {
             </div>
           </Card.Body>
             <Card.Footer className='mt-sm' style={{justifyContent:'flex-end'}}>
-              <ButtonComponent className='w-25'  label={f({id:'update'})}/>
+              <ButtonComponent className='p-xs'  label={f({id:'update'})}/>
             </Card.Footer>
             </form>
          </Card>
@@ -295,8 +295,8 @@ function UserInfo(props) {
                 >
                   <Input type='password' name='old_password'
                      Ref={register({
-                      required:{value:true,message:'password is required'},
-                      pattern:{value:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, message:'password is not valid'}
+                      required:{value:true,message:f({id:'pass-requir'})},
+                      pattern:{value:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, message:f({id:'pass-patter'})}
                     })}
                   />
                 </FromGroup>
@@ -307,8 +307,8 @@ function UserInfo(props) {
                 >
                   <Input type='password' name='new_password'
                      Ref={register({
-                      required:{value:true,message:'password is required'},
-                      pattern:{value:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, message:'password is not valid'}
+                      required:{value:true,message:f({id:'pass-requir'})},
+                      pattern:{value:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, message:f({id:'pass-patter'})}
                     })}
                   />
                 </FromGroup>
@@ -319,9 +319,9 @@ function UserInfo(props) {
                 >
                   <Input type='password' name='new_password_confirmation'
                      Ref={register({
-                      required:{value:true,message:'password is required'},
+                      required:{value:true,message:f({id:'repeatpas-requir'})},
                       validate: value =>
-                        value === password.current || 'password is not match'
+                        value === password.current || f({id:'repeatpas-valid'})
                     })}
                   />
                 </FromGroup>
@@ -329,7 +329,7 @@ function UserInfo(props) {
             </div>
           </Card.Body>
           <Card.Footer className='mt-sm' style={{justifyContent:'flex-end'}}>
-              <ButtonComponent className='' label={f({id:"updatepass"})}/>
+              <ButtonComponent className='p-xs' label={f({id:"updatepass"})}/>
             </Card.Footer>
           </form>
          </Card>

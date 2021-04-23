@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start -p $PORT",
     "heroku-postbuild": "npm run build",
     "postinstall": "npm rebuild node-sass"
