@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Link from 'next/link';
-import router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { memo, useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
@@ -86,21 +86,22 @@ const data = [
 
   }
 
+   useEffect(() => {
+   },[props.Entry.isLoged]);
 
   useEffect(() => {
      props.GetSettings('settings');
      clearErrors();
      for(let key in props.Entry.errorMessages.errors){
        setError(key,{message: props.Entry.errorMessages.errors[key].join('\n')})
-     }
-  },[])
+     };
+  },[props.Entry.errorMessages])
+
 
 
   const submit = (data) => {
+    clearErrors();
     props.Login('auth/login',JSON.stringify(data),{'content-type':'application/json'});
-      if(props.Entry.isLoged){
-        router.push('/packages')
-      }
   }
   
   return (
@@ -131,16 +132,22 @@ const data = [
                <FromGroup 
                  label={f({id:'password'})} 
                  bodyClass='bg-bg w-100'
-                 error={errors.password?.message}
+                 error={
+                   errors.password?.message
+                  }
                  className='mb-lg'
                >
                  <Input
                  Ref={register({
                   required:{value:true,message:f({id:'pass-requir'})},
                   // pattern:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
-                })}
+                 })}
                   type='password' name='password'/>
                </FromGroup>
+               {/* {
+                 props.Entry.errorMessages.message && 
+                 <small style={{color:'red',}}>{props.Entry.errorMessages.message[0]}</small>
+               } */}
              <ButtonComponent type='submit' className='w-100 mt-xs mb-sm' label={f({id:'login'})}/>
              </form>
              <div className='mt-xs'><Link href='/forgetPass'><a>{f({id:'no-account'})}</a></Link>

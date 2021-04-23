@@ -11,6 +11,7 @@ export const Login = (url,data,headers = {}) => dispatch => {
       .then(async res => {
         let data = await res.data;
         dispatch(login(data))
+        router.push('/packages')
       }).catch(errors => {
         dispatch(login({isError:true,errors:errors.response.data}))
       })
@@ -28,7 +29,7 @@ export const UserRegister = (url,data,headers = {}) => dispatch => {
         confirmButtonText: 'OK',
       }).then(res => {
         if(res.isConfirmed){
-          router.push('/')
+          router.push('/myaddresses');
         }
       })
       let data = await res.data;

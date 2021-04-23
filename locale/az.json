@@ -74,7 +74,7 @@
     "addcode":"Kod əlavə et",
     "confirm":"Təsdiq et",
     "paybycard":"Kartla ödə",
-    "paybybalance":"Baıansdan ödə",
+    "paybybalance":"Balansdan ödə",
     "upload":"Invoys yüklə",
     "see-invoice":"Invoysa bax",
     "total":"Cəmi",
@@ -211,6 +211,7 @@
 
     "tin":"Vöen",
     "tin-requir":"vöen məcburidir",
+    "promo-requir":"promokod məcburidir",
 
      "register":"Qeydiyyat",
     "corporative":"Korporativ",
