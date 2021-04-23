@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Link from 'next/link';
-import router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { memo, useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
@@ -86,6 +86,8 @@ const data = [
 
   }
 
+   useEffect(() => {
+   },[props.Entry.isLoged]);
 
   useEffect(() => {
      props.GetSettings('settings');
@@ -98,10 +100,8 @@ const data = [
 
 
   const submit = (data) => {
+    clearErrors();
     props.Login('auth/login',JSON.stringify(data),{'content-type':'application/json'});
-      if(props.Entry.isLoged){
-        router.push('/packages')
-      }
   }
   
   return (
@@ -109,7 +109,7 @@ const data = [
          <main className='home-page'>
            <section className='main-section bg-bg mb-sm' >
            <div className=' container-fluid pt-sm pb-sm' style={{display:'flex'}}>
-           <div style={{height:'400px'}} className={`slider-container pr-sm ${props.Entry.isLoged && 'w-100'}`}>
+           <div className={`slider-container pr-sm ${props.Entry.isLoged && 'w-100'}`}>
              <MainSlider/>
            </div>
            {

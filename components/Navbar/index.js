@@ -160,9 +160,7 @@ const Navbar = (props) => {
                             <li onClick={navItemHandler} ref={addNavItems} className='navbar__item'>
                                 <Link href='/about'><a>{f({ id: 'about' })}</a></Link>
                             </li>
-                            <li onClick={navItemHandler} ref={addNavItems} className='navbar__item'>
-                                <Link href='/'><a>{f({ id: 'address' })}</a></Link>
-                            </li>
+                           
                             <li onClick={navItemHandler} ref={addNavItems} className='navbar__item'>
                                 <Link href='/example-shop'><a>{f({ id: 'examples' })}</a></Link>
                             </li>
@@ -214,8 +212,8 @@ const Navbar = (props) => {
                             !props.entry.isLoged ?
                                 <>
                                     <figure className='user__menu' onClick={togglePopup}>
-                                        <img style={{width:'20px'}} src={'/assets/icons/useri.svg'} />
-                                        <small>Hesabım</small>
+                                        <img style={{width:'27px'}} src={'/assets/icons/icc.svg'} />
+                                        {/*<small>Hesabım</small>*/}
                                         <ul className='log-register'>
                                              <Divider/>
                                              <Link href='/login'><a><li>{f({id:'login'})}</li></a></Link>
@@ -227,7 +225,7 @@ const Navbar = (props) => {
                                 :
                                 <>
                                     <figure className='user__menu'>
-                                        <img onClick={hovermenuToggle} src={'/assets/icons/useri.svg'} />
+                                        <img style={{width:'27px'}}onClick={hovermenuToggle} src={'/assets/icons/icc.svg'} />
                                         {
                                            isHoverMenu &&  
                                              <div className='profile-dropdown'>

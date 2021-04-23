@@ -55,11 +55,11 @@ function Register(props) {
    props.UserRegister('auth/register',newData,{'content-type':'application/json'});
  }
 
- useEffect(() => {
-  if(props.Entry.isLoged){
-    router.push('/myaddresses');
-  }
-},[props.Entry.isLoged])
+//  useEffect(() => {
+//   if(props.Entry.isLoged){
+//     router.push('/myaddresses');
+//   }
+// },[props.Entry.isLoged])
 
  
  return (

@@ -10,7 +10,7 @@ function MRate({data = [],icon,headerText,style}){
       <thead>
           <tr>
            <th>{f({id:'weight'})}</th>
-           <th colspan="3">
+           <th colSpan="3">
              <div>
                 <img src={'/assets/icons/15.svg'} className='img '/>     
                 <img src={'/assets/icons/15.svg'} className=' img '/>

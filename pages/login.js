@@ -16,12 +16,17 @@ function LoginPage(props) {
 
     const { formatMessage: f } = useIntl(); 
     const { register,handleSubmit,errors,clearErrors,setError } = useForm();
+
+    // useEffect(() => {
+    //   clearErrors();
+    //  },[]);
+     
       useEffect(() => {
          clearErrors();
          for(let key in props.Entry.errorMessages.errors){
            setError(key,{message: props.Entry.errorMessages.errors[key].join('\n')})
          }
-      },[])
+      },[props.Entry.errorMessages])
 
       useEffect(() => {
         if(props.Entry.isLoged){
@@ -30,11 +35,12 @@ function LoginPage(props) {
       },[props.Entry.isLoged])
     
       const submit = (data) => {
+        clearErrors();
         props.Login('auth/login',JSON.stringify(data),{'content-type':'application/json'});
       }
 
     return (
-        <Page className='h-100'>
+        <Page className='bg-bg p-xxl'>
            <Card className='login-card bg-white p-sm w-50 mt-lg' style={{display:'block'}}>
              <Card.Header style={{textAlign:'center'}} text={f({ id: 'signin' })}/>
              <Card.Body className='p-none'>
