@@ -92,7 +92,7 @@ function CourierOrder(props) {
             <Link href='/'><a style={{ color: 'darkblue', textDecoration: 'underline' }}>{f({id:'definemap'})}</a></Link>
           </Card.Body>
           <Card.Footer style={{ justifyContent: 'flex-end' }}>
-            <ButtonComponent type='submit' className='w-25' label={f({id:'makeorder'})} />
+            <ButtonComponent type='submit' className='p-xs' label={f({id:'makeorder'})} />
           </Card.Footer>
           </form>
           </Card>
@@ -116,7 +116,7 @@ function CourierOrder(props) {
             </Card.Body>
           </Card>
           <Card.Footer  className='footer__courier' >
-            <ButtonComponent className='w-25' label='Sifariş ver' />
+            <ButtonComponent className='p-xs' label={f({id:'makeorder'})} />
           </Card.Footer>
         <Card className='p-sm bg-white mt-sm coruier__cards br-lg'>
           <Card.Header text={f({id:'order-history'})} />

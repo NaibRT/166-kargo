@@ -329,7 +329,7 @@ function UserInfo(props) {
             </div>
           </Card.Body>
           <Card.Footer className='mt-sm' style={{justifyContent:'flex-end'}}>
-              <ButtonComponent className='w-25' label={f({id:"updatepass"})}/>
+              <ButtonComponent className='' label={f({id:"updatepass"})}/>
             </Card.Footer>
           </form>
          </Card>
