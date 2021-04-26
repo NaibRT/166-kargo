@@ -1,8 +1,7 @@
 import
   {
-    LOGIN,
-    LOGOUT,
-    REGISTER,
+    INCREASE_BALANCE, LOGIN,
+    LOGOUT, PAY_BY_BALANCE, REGISTER,
     UPDATE_USER
   } from './actionTypes'
 
@@ -32,4 +31,18 @@ export const updateUser = (data) => {
    payload: data
   }
  }
+
+ export const IncreaseBalance = (data) => {
+  return {
+      type: INCREASE_BALANCE,
+      payload: data
+  }
+}
+
+export const PayByBalance = (data) => {
+  return {
+      type: PAY_BY_BALANCE,
+      payload: data
+  }
+}
 

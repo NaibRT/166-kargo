@@ -2,7 +2,7 @@
 import axios from "axios";
 import router from "next/router";
 import Swal from "sweetalert2";
-import { login, logout, register, updateUser } from "./actions";
+import { IncreaseBalance, login, logout, PayByBalance, register, updateUser } from "./actions";
 
 export const Login = (url,data,headers = {}) => dispatch => {
     axios.post(`${process.env.NEXT_PUBLIC_API_URL}${url}`,data,{
@@ -61,6 +61,22 @@ export const UpdateUser = (url,data,headers = {}) => dispatch => {
         dispatch(updateUser({isError:true,errors:err.response.data}))
       })
   
+}
+
+export const PayByBalanceAction = (url,data,headers) => dispatch => {
+  axios.post(`${process.env.NEXT_PUBLIC_API_URL}${url}`,data,{
+    headers:headers,
+  }).then(res => {
+    dispatch(PayByBalance(res.data))
+  }).catch(err => console.log(err));
+}
+
+export const IncreaseBalanceAction = (url,data,headers) => dispatch => {
+  axios.post(`${process.env.NEXT_PUBLIC_API_URL}${url}`,data,{
+    headers:headers,
+  }).then(res => {
+    dispatch(IncreaseBalance(res.data))
+  }).catch(err => console.log(err));
 }
 
 

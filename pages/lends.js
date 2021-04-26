@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { memo, useLayoutEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { connect } from "react-redux";
+import Swal from "sweetalert2";
 import AsideMenu from '../components/aside-menu';
 import Aside from '../components/aside/aside';
 import ButtonComponent from '../components/button';
@@ -11,6 +12,7 @@ import Main from '../components/main/main';
 import Page from "../components/page/page";
 import Redirect from "../components/redirect/redirect";
 import Tabel from '../components/tabel/tabel';
+import { PayByBalanceAction } from '../redux/entry/entryActions';
 
 const dataFunc=()=>{
   const { formatMessage: f } = useIntl();
@@ -67,6 +69,23 @@ function Lends(props) {
   }, [])
 
 
+  const PayLands = () => {
+    Swal.fire({
+      confirmButtonText: 'OK',
+      showCancelButton: true,
+      input: 'text'
+    }).then(res => {
+      if(res.isConfirmed){
+        props.PayByBalanceAction('payment',{
+          price:res.value.login,
+          sourcetype:4
+        },{
+          'authorization': `Bearer ${props.entry.user.accessToken}`
+        });
+      }
+    });
+  }
+
   return (
     <Page className='bg-bg pt-sm'>
       <Aside className='mr-sm'>
@@ -89,7 +108,7 @@ function Lends(props) {
           </Card.Body>
           <Card.Footer className='footer__card'>
             <h6 className='ml-xs mt-xs'></h6>
-            <ButtonComponent className='size_btn' label={f({id:"paylend"})} />
+            <ButtonComponent onClick={PayLands} className='size_btn' label={f({id:"paylend"})} />
           </Card.Footer>
         </Card>
       </Main>
@@ -143,4 +162,8 @@ const mapStateToProps = state => ({
   entry: state.entry
 });
 
-export default connect(mapStateToProps)(memo(Lends))
+const mapDispatchToProps = {
+  PayByBalanceAction
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(memo(Lends))

@@ -1,87 +1,108 @@
- import { REHYDRATE } from 'redux-persist';
+import { REHYDRATE } from "redux-persist";
 import
   {
-    LOGIN,
-    LOGOUT,
-    REGISTER,
+    INCREASE_BALANCE, LOGIN,
+    LOGOUT, PAY_BY_BALANCE, REGISTER,
     UPDATE_USER
-  } from './actionTypes';
+  } from "./actionTypes";
 
 const initialState = {
- user:{},
- errorMessages:{},
- isLoged:false
-}
+  user: {},
+  errorMessages: {},
+  isLoged: false,
+};
 
 const entryReducer = (state = initialState, action) => {
   switch (action.type) {
     case REHYDRATE:
       break;
-   case LOGIN:
-      if(action.payload.isError){
-        state = {
-           ...state,
-           errorMessages:{...action.payload.errors},
-        } 
-      }else{
+    case LOGIN:
+      if (action.payload.isError) {
         state = {
           ...state,
-          errorMessages:{},
-          user:{
+          errorMessages: { ...action.payload.errors },
+        };
+      } else {
+        state = {
+          ...state,
+          errorMessages: {},
+          user: {
             ...action.payload,
           },
-          isLoged:true ,
-        } 
+          isLoged: true,
+        };
       }
 
-    break;
-   case LOGOUT:
+      break;
+    case LOGOUT:
       state = {
-        user:{},
-        errorMessages:[],
-        isLoged:false
+        user: {},
+        errorMessages: [],
+        isLoged: false,
+      };
+      break;
+    case REGISTER:
+      if (action.payload.isError) {
+        state = {
+          ...state,
+          errorMessages: { ...action.payload.errors },
+        };
+      } else {
+        state = {
+          user: { ...action.payload },
+          errorMessages: {},
+          isLoged: false,
+        };
       }
-    break; 
-   case REGISTER:
-    if(action.payload.isError){
+      break;
+    case UPDATE_USER:
+      if (action.payload.isError) {
+        state = {
+          ...state,
+          user: {
+            ...state.user,
+          },
+          errorMessages: { ...action.payload.errors },
+        };
+      } else {
+        state = {
+          ...state,
+          user: {
+            ...state.user,
+            user: { ...action.payload.user },
+          },
+          errorMessages: {},
+        };
+      }
+      break;
+    case INCREASE_BALANCE:
       state = {
         ...state,
-        errorMessages:{...action.payload.errors},
-     } 
-    }else{
+        user: { 
+          ...state.user,
+          user: { 
+            ...action.payload.user
+          }
+        }
+      }
+      break;
+    case PAY_BY_BALANCE:
       state = {
-        user:{...action.payload},
-        errorMessages:{},
-        isLoged:false
-      }
-    }
-    break;  
-    case UPDATE_USER:
-      if(action.payload.isError){
-        state = {
-          ...state,
-          user:{
-            ...state.user,
-          },
-          errorMessages:{...action.payload.errors},
-        }
-      }else{
-        state = {
-          ...state,
-          user:{
-            ...state.user,
-           user:{...action.payload.user} 
-          },
-          errorMessages:{},
+        ...state,
+        user: { 
+          ...state.user,
+          user: { 
+            ...action.payload.user
+          }
         }
       }
-    break;
-   default:
-    state = { ...state }
-    break;
+      break;
+    default:
+      state = { ...state };
+      break;
   }
 
   return state;
-}
+};
 
 export default entryReducer;

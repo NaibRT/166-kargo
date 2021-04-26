@@ -11,6 +11,7 @@ import Main from "../components/main/main";
 import Page from '../components/page/page';
 import Redirect from "../components/redirect/redirect";
 import Tabel from '../components/tabel/tabel';
+import { IncreaseBalanceAction } from '../redux/entry/entryActions';
 
 
 const data = [
@@ -43,7 +44,21 @@ function Balance(props) {
     }).then(res => {
       setTransaction(res.data)
     }).catch(err => console.log(err))
-  })
+  });
+
+  const IncreaseBalance = (data) => {
+    // props.IncreaseBalanceAction('payment',{...data,sourcetype:+data.sourcetype},{
+    //     'authorization': `Bearer ${props.entry.user.accessToken}`
+    // });
+
+    axios.post(`${process.env.NEXT_PUBLIC_API_URL}payment`,{...data,sourcetype:+data.sourcetype},{
+      headers:{
+        'authorization': `Bearer ${props.entry.user.accessToken}`
+    }
+    }).then(res => {
+      window.location.href = res.data.url;
+    })
+  }
  
     return (
         <div className='bg-bg'>
@@ -53,7 +68,7 @@ function Balance(props) {
                     <AsideMenu />
                 </Aside>
                 <Main className='bg-bg p-none'>
-                    <Balans balance={props.entry.user.user.agreement}/>
+                    <Balans submit={IncreaseBalance} balance={props.entry.user.user.agreement}/>
                 <div className='mg-rr'>
                     <small style={{ display: 'block', color: '#D60000', marginBottom:'10px' }}>{f({ id: 'paybalance' })}</small>
                     <small style={{ display: 'block', color: '#D60000', marginBottom:'10px'  }}>{f({ id: 'refundable' })}</small>
@@ -92,4 +107,8 @@ const mapStateToProps = (state) => ({
   entry: state.entry
 });
 
-export default connect(mapStateToProps)(memo(Balance))
+const mapDispatchToProps = {
+  IncreaseBalanceAction
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(memo(Balance))

@@ -1,11 +1,14 @@
 import React, { memo } from 'react';
+import { useForm } from "react-hook-form";
+import { useIntl } from 'react-intl';
 import ButtonComponent from '../button/index';
 import Card from '../card/card';
 import Input from '../input/input';
-import { useIntl } from 'react-intl';
 
-function CardBalance({balance}) {
+function CardBalance({balance,submit}) {
     const { formatMessage: f } = useIntl();
+    const {register,handleSubmit,errors} = useForm();
+    
     return (
         <React.Fragment>
             <div className="card__flex">
@@ -18,11 +21,11 @@ function CardBalance({balance}) {
                 </Card>
                 <Card className="bg-white p-md"  >
                    <p style={{marginBottom:'8px'}}>{f({id:"increases-balance"})}</p>
-                     <div className='max-width'>
-                   <Input placeholder={f({id:"enter-money"})} className='card_input' />
-                    <ButtonComponent label={f({id:"increases-balance"})} className='btn-green' endElement={<img className='ml-xs' src={'/assets/icons/ra.svg'}/>} />
-
-                    </div>
+                     <form className='max-width' onSubmit={handleSubmit(submit)}>
+                   <Input name='price' Ref={register({required:true})} placeholder={f({id:"enter-money"})} className='card_input' />
+                   <input name='sourcetype' ref={register()} type='hidden' defaultValue={1}/>
+                    <ButtonComponent type='submit' label={f({id:"increases-balance"})} className='btn-green' endElement={<img className='ml-xs' src={'/assets/icons/ra.svg'}/>} />
+                    </form>
                     
                 </Card>
                 
