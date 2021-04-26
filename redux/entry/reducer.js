@@ -81,7 +81,8 @@ const entryReducer = (state = initialState, action) => {
         user: { 
           ...state.user,
           user: { 
-            ...action.payload.user
+            ...state.user.user,
+            balance:action.payload
           }
         }
       }

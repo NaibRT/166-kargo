@@ -1,11 +1,19 @@
 import React from 'react'
+import { connect } from "react-redux"
 import AsideMenu from "../components/aside-menu/index"
 import Aside from '../components/aside/aside'
 import Main from '../components/main/main'
 import Page from '../components/page/page'
 import ResponcePage from '../components/ResponcePage/ResponcePage'
+import
+  {
+    IncreaseBalanceAction
+  } from '../redux/entry/entryActions'
 
  function SuccessPage(props) {
+   useLayoutEffect(() => {
+     
+   },[])
     return (
         <Page className="bg-bg pt-lg pb-lg">
         <Aside className="mr-sm">
@@ -20,14 +28,19 @@ import ResponcePage from '../components/ResponcePage/ResponcePage'
     )
 }
 
-export async function getInitialProps({req}) {
+export async function getServerSideProps({query}) {
+
   return {
     props: {
-      balance: req.headers['balance'],
-      message: req.headers['message'],
+      balance: query.balance,
+      message: query.message,
     },
   }
 
 }
 
-export default SuccessPage
+const mapDispatchToProps = {
+  IncreaseBalanceAction
+}
+
+export default connect(mapDispatchToProps)(memo(SuccessPage))

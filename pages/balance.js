@@ -11,7 +11,6 @@ import Main from "../components/main/main";
 import Page from '../components/page/page';
 import Redirect from "../components/redirect/redirect";
 import Tabel from '../components/tabel/tabel';
-import { IncreaseBalanceAction } from '../redux/entry/entryActions';
 
 
 const data = [
@@ -31,10 +30,11 @@ function Balance(props) {
   if(!props.entry.isLoged){
     return <Redirect/>
    }
-   
+
   const { formatMessage: f } = useIntl();
   const {locale} = useRouter();
-  const {transactions,setTransaction} = useState([])
+  const [trans,setTrans] = useState([]);
+
 
   useLayoutEffect(() => {
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}balanceService?lan=${locale}`,{
@@ -42,9 +42,10 @@ function Balance(props) {
         'authorization': `Bearer ${props.entry.user.accessToken}`
       }
     }).then(res => {
-      setTransaction(res.data)
+      console.log("data",res.data);
+      setTrans(res.data);
     }).catch(err => console.log(err))
-  });
+  },[]);
 
   const IncreaseBalance = (data) => {
     // props.IncreaseBalanceAction('payment',{...data,sourcetype:+data.sourcetype},{
@@ -59,7 +60,7 @@ function Balance(props) {
       window.location.href = res.data.url;
     })
   }
- 
+
     return (
         <div className='bg-bg'>
 
@@ -68,7 +69,7 @@ function Balance(props) {
                     <AsideMenu />
                 </Aside>
                 <Main className='bg-bg p-none'>
-                    <Balans submit={IncreaseBalance} balance={props.entry.user.user.agreement}/>
+                    <Balans submit={IncreaseBalance} balance={props.entry.user.user.balance}/>
                 <div className='mg-rr'>
                     <small style={{ display: 'block', color: '#D60000', marginBottom:'10px' }}>{f({ id: 'paybalance' })}</small>
                     <small style={{ display: 'block', color: '#D60000', marginBottom:'10px'  }}>{f({ id: 'refundable' })}</small>
@@ -81,13 +82,7 @@ function Balance(props) {
                           f({id:"payment"}),
                           f({id:"balance-service"})
                         ]}
-                         data={data.map(x => (
-                           {
-                             id: x.id,
-                             payment: x.payment,
-                             balance: x.balance
-                           }
-                         ))}
+                        data={trans}
                         renderBody={(x,i) => {
                           return(
                             <td key={i}>{x}</td>
@@ -107,8 +102,8 @@ const mapStateToProps = (state) => ({
   entry: state.entry
 });
 
-const mapDispatchToProps = {
-  IncreaseBalanceAction
-}
+// const mapDispatchToProps = {
+//   IncreaseBalanceAction
+// }
 
-export default connect(mapStateToProps,mapDispatchToProps)(memo(Balance))
+export default connect(mapStateToProps)(memo(Balance))

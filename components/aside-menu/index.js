@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import React, { memo } from 'react';
+import { useIntl } from 'react-intl';
 import { connect } from "react-redux";
 import ButtonComponent from '../button/index';
 import Card from '../card/card';
 import Divider from '../divider/divider';
-import { useIntl } from 'react-intl';
 
 
 
@@ -19,7 +19,7 @@ function AsideMenu(props) {
         <Card.Header text={`${props.entry.user.user.firstname} ${props.entry.user.user.lastname}`} style={{fontSize:'20px'}}/>
         <p>{f({id:'customer-code'})}: {props.entry.user.user.customer_number}</p>
         <small className='mr-xs'>{f({id:'balance'})}</small>
-        <small>{props.entry.user.user.agreement} AZN</small>
+        <small>{props.entry.user.user.balance} AZN</small>
           <Card.Body className='mt-xs' style={{padding:0}}>
            <Link href="/new-order">
             <a>

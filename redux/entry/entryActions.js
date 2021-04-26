@@ -71,12 +71,8 @@ export const PayByBalanceAction = (url,data,headers) => dispatch => {
   }).catch(err => console.log(err));
 }
 
-export const IncreaseBalanceAction = (url,data,headers) => dispatch => {
-  axios.post(`${process.env.NEXT_PUBLIC_API_URL}${url}`,data,{
-    headers:headers,
-  }).then(res => {
-    dispatch(IncreaseBalance(res.data))
-  }).catch(err => console.log(err));
+export const IncreaseBalanceAction = (balance) => dispatch => {
+    dispatch(IncreaseBalance(balance))
 }
 
 
