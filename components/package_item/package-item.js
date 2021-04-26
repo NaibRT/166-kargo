@@ -20,7 +20,7 @@ function PackageItem({item,checkRef,onCheck}) {
                      <li><strong>{f({id:"getwhere"})}:</strong><small>{item.from}</small></li>
                      <li><strong>{f({id:"lastprice"})}:</strong><small>{parseFloat(item.price*0.21).toFixed(2)} AZN</small></li>
                      <li><strong>{f({id:"category"})}:</strong><small>{item.category}</small></li>
-                     <li><strong>{f({id:"weight"})}:</strong><small>{parseFloat(item.weight).toFixed(2)} kq</small></li>
+                     <li><strong>{f({id:"weight"})}:</strong><small>{item.weight} kq</small></li>
                      <li><strong>{f({id:"dateon"})}:</strong><small>{item.date}</small></li>
                  </ul>
               </div>
@@ -32,11 +32,11 @@ function PackageItem({item,checkRef,onCheck}) {
                        item.customs_value_3 ? 
                        <>
                          <span>{item.customs_value_3 ? parseFloat(item.customs_value_3).toFixed(2) : 0.00} AZN</span>
-                         <del style={{textDecorationColor:'red'}} >{item.delivery_price ? parseFloat(item.delivery_price).toFixed(2) : 0.00} AZN</del>
+                         <del style={{textDecorationColor:'red'}} >{+item.delivery_price ? parseFloat(item.delivery_price).toFixed(2) : 0.00} AZN</del>
                        </>
                        :
                        <>
-                          <span>{item.delivery_price ? parseFloat(item.delivery_price).toFixed(2) : 0.00} AZN</span>
+                          <span>{item.delivery_price ? parseFloat(+item.delivery_price).toFixed(2) : 0.00} AZN</span>
                        </>
                    }
                    
@@ -46,10 +46,10 @@ function PackageItem({item,checkRef,onCheck}) {
                   onClick={onCheck} 
                   value={item.id} 
                   data-price={
-                       parseFloat((+item.price*0.21) + (+item.delivery_price)).toFixed(2)  
+                       parseFloat(item.delivery_price).toFixed(2)  
                     } 
                     data-discount={
-                        item.customs_value_3 ? parseFloat((+item.price*0.21) + (+item.customs_value_3)).toFixed(2) 
+                        parseFloat(item.customs_value_3) ? parseFloat(item.customs_value_3).toFixed(2) 
                         :0
                     }
                   text={f({id:"chooseone"})}/>
