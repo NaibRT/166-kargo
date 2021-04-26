@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{memo} from 'react'
 import ResponcePage from '../components/ResponcePage/ResponcePage'
 import Aside from '../components/aside/aside'
 import Main from '../components/main/main'

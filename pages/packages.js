@@ -16,6 +16,7 @@ import PackageItem from "../components/package_item/package-item";
 import Page from "../components/page/page";
 import Redirect from "../components/redirect/redirect";
 import Tabel from "../components/tabel/tabel";
+import { PayByBalanceAction } from '../redux/entry/entryActions'
 
 function Packages(props) {
   if (!props.entry.isLoged) {
@@ -218,16 +219,17 @@ function Packages(props) {
     });
   };
 
-  const payment = (data = {}) => {
+  const PaybyCard = (data = {}) => {
     axios.post(`${process.env.NEXT_PUBLIC_API_URL}payment`,data,{
       headers:{
         authorization: `Bearer ${props.entry.user.accessToken}`,
       }
     }).then(res => {
-        console.log(res.data)
+      console.log('red',res);
+      // window.location.href = res.data.url;
     }).catch(err => console.log(err))
   }
-
+ 
   return (
     <Page className="bg-bg pt-lg pb-lg">
       <Aside className="mr-sm">
@@ -374,12 +376,13 @@ function Packages(props) {
                   )}
                 </FromGroup>
               </form>
+              
               <ButtonComponent
                 style={{ padding: "0 20px" }}
                 className="color-white bg-success mr-xs desk"
                 label={f({ id: "paybycard" })}
                 endElement={<span className="color-white pl-sm">&#8594;</span>}
-                onClick = {() => payment({
+                onClick = {() => PaybyCard({
                   price:selectedPackages.discountTotal,
                   sourcetype:2
                 })}
@@ -391,9 +394,13 @@ function Packages(props) {
                 endElement={
                   <span className="color-black mr-xs pl-sm ">&#8594;</span>
                 }
-                onClick = {() => payment({
+                onClick = {() => props.PayByBalanceAction('payment',{
                   price:selectedPackages.discountTotal,
-                  sourcetype:3
+                  sourcetype:3,
+                  
+                },
+                {
+                  'authorization':`Bearer ${props.entry.user.accessToken}`
                 })}
               />
 
@@ -405,7 +412,7 @@ function Packages(props) {
                   endElement={
                     <span className="color-white pl-sm">&#8594;</span>
                   }
-                  onClick = {() => payment({
+                  onClick = {() => PaybyCard({
                     price:selectedPackages.discountTotal,
                     sourcetype:2
                   })}
@@ -416,9 +423,12 @@ function Packages(props) {
                   endElement={
                     <span className="color-black mr-xs pl-sm">&#8594;</span>
                   }
-                  onClick = {() => payment({
+                  onClick = {() => props.PayByBalanceAction('payment',{
                     price:selectedPackages.discountTotal,
-                    sourcetype:3
+                    sourcetype:3,
+                  },
+                  {
+                    'authorization':`Bearer ${props.entry.user.accessToken}`
                   })}
                 />
               </div>
@@ -469,5 +479,8 @@ function Packages(props) {
 const mapStateToProps = (state) => ({
   entry: state.entry,
 });
+const mapDispatchToProps =  {
+  PayByBalanceAction
+};
 
-export default connect(mapStateToProps)(memo(Packages));
+export default connect(mapStateToProps, mapDispatchToProps)(memo(Packages));

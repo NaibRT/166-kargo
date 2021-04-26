@@ -85,7 +85,7 @@ function Lends(props) {
       }
     });
   }
-
+  
   return (
     <Page className='bg-bg pt-sm'>
       <Aside className='mr-sm'>
@@ -108,7 +108,7 @@ function Lends(props) {
           </Card.Body>
           <Card.Footer className='footer__card'>
             <h6 className='ml-xs mt-xs'></h6>
-            <ButtonComponent onClick={PayLands} className='size_btn' label={f({id:"paylend"})} />
+            <ButtonComponent onClick={PayLands} balance={props.entry.user.user.balance} className='size_btn' label={f({id:"paylend"})} />
           </Card.Footer>
         </Card>
       </Main>
