@@ -34,7 +34,7 @@ function Balance(props) {
    
   const { formatMessage: f } = useIntl();
   const {locale} = useRouter();
-  const {transactions,setTransaction} = useState([])
+  const [transactions,setTransaction] = useState([])
 
   useLayoutEffect(() => {
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}balanceService?lan=${locale}`,{
@@ -68,7 +68,7 @@ function Balance(props) {
                     <AsideMenu />
                 </Aside>
                 <Main className='bg-bg p-none'>
-                    <Balans submit={IncreaseBalance} balance={props.entry.user.user.agreement}/>
+                    <Balans submit={IncreaseBalance} balance={props.entry.user.user.balance}/>
                 <div className='mg-rr'>
                     <small style={{ display: 'block', color: '#D60000', marginBottom:'10px' }}>{f({ id: 'paybalance' })}</small>
                     <small style={{ display: 'block', color: '#D60000', marginBottom:'10px'  }}>{f({ id: 'refundable' })}</small>
@@ -81,7 +81,7 @@ function Balance(props) {
                           f({id:"payment"}),
                           f({id:"balance-service"})
                         ]}
-                         data={data.map(x => (
+                         data={transactions.map(x => (
                            {
                              id: x.id,
                              payment: x.payment,

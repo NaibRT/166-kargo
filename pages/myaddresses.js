@@ -94,7 +94,7 @@ function Test(props) {
                                              )
                                         }else if(index===Object.entries(a.address).length-1){
                                             return(
-                                                <AddressItem style={{ flex: '1 1 30%' }} title={key} label={a.address[key].replace('{CUSTOMER_ID}',`${props.entry.user.user.customer_number}`)} key={index} />
+                                                <AddressItem style={{ flex: '1 1 30%' }} title={key} label={a.address[key].replace('CUSTOMER_ID',`${props.entry.user.user.customer_number}`)} key={index} />
                                             
                                             )
                                         }
