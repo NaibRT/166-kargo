@@ -84,6 +84,28 @@
 .p-xxl{
   padding-bottom:9.125rem;
 }
+/* width */
+.ssc::-webkit-scrollbar {
+  width: 0px;
+  height:0
+}
+
+/* Track */
+.ssc::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+// .ssc::-webkit-scrollbar-thumb {
+//   background:#ffc528; 
+//   border-radius: 10px;
+// }
+
+/* Handle on hover */
+.ssc::-webkit-scrollbar-thumb:hover {
+  background: #ffc528; 
+}
 #__next{
 margin:0;
 padding:0;

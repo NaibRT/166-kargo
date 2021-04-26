@@ -30,6 +30,7 @@ function Packages(props) {
   const [selectedPackages, setSelectedPackages] = useState({
     packages: [],
     total: 0,
+    discountTotal:0,
     code: "",
     isAccepted: false,
     status: 0,
@@ -67,36 +68,36 @@ function Packages(props) {
   };
 
   useLayoutEffect(() => {
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}batches?lan=${locale}`, {
+    // axios.get(`${process.env.NEXT_PUBLIC_API_URL}batches?lan=${locale}`, {
+    //     headers: {
+    //       authorization: `Bearer ${props.entry.user.accessToken}`,
+    //     },
+    //   })
+    //   .then((res) => {
+    //     setPackages(res.data);
+    //     setFilteredPacks(res.data);
+    //   })
+    //   .catch((err) => console.log(err));
+
+    Promise.all([
+      axios.get(`${process.env.NEXT_PUBLIC_API_URL}batches?lan=${locale}`, {
         headers: {
           authorization: `Bearer ${props.entry.user.accessToken}`,
         },
-      })
+      }),
+      axios.get(`${process.env.NEXT_PUBLIC_API_URL}status?lan=${locale}`, {
+        headers: {
+          authorization: `Bearer ${props.entry.user.accessToken}`,
+        },
+      }),
+    ])
       .then((res) => {
-        setPackages(res.data);
-        setFilteredPacks(res.data);
+        console.log(res.data);
+        setPackages(res[0].data);
+        setFilteredPacks(res[0].data);
+        setStatus(res[1].data);
       })
       .catch((err) => console.log(err));
-
-    // Promise.all([
-    //   axios.get(`${process.env.NEXT_PUBLIC_API_URL}batches?lan=${locale}`, {
-    //     headers: {
-    //       authorization: `Bearer ${props.entry.user.accessToken}`,
-    //     },
-    //   }),
-    //   axios.get(`${process.env.NEXT_PUBLIC_API_URL}status?lan=${locale}`, {
-    //     headers: {
-    //       authorization: `Bearer ${props.entry.user.accessToken}`,
-    //     },
-    //   }),
-    // ])
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     setPackages(res.data[0]);
-    //     setFilteredPacks(res.data[0]);
-    //     setStatus(res.data[1]);
-    //   })
-    //   .catch((err) => console.log(err));
   }, []);
 
   const addTabRefs = (ref) => {
@@ -121,6 +122,7 @@ function Packages(props) {
     }
 
     setSelectedPackages({
+      discountTotal: 0,
       packages: [],
       total: 0,
       code: "",
@@ -138,20 +140,53 @@ function Packages(props) {
   const checkHandler = (ev) => {
     let { value, checked } = ev.target;
     let price = ev.target.getAttribute("data-price");
+    let dataDiscount = ev.target.getAttribute("data-discount");
+    let total=0
+    let disc=0
+    console.log('dis',dataDiscount)
     if (checked) {
       selectedPackages.packages.push(value);
-      setSelectedPackages({
-        ...selectedPackages,
-        total: selectedPackages.total + parseFloat(price),
-        packages: [...selectedPackages.packages],
-      });
+      if(dataDiscount!=0){
+        setSelectedPackages({
+          ...selectedPackages,
+
+          total: (selectedPackages.total+parseFloat(price)),
+         
+          discountTotal: (selectedPackages.discountTotal+parseFloat(dataDiscount)),
+          packages: [...selectedPackages.packages],
+        });
+      
+      }else{
+        setSelectedPackages({
+          ...selectedPackages,
+          discountTotal: (selectedPackages.discountTotal+parseFloat(price)),
+          total: (selectedPackages.total+parseFloat(price)),
+          packages: [...selectedPackages.packages],
+        });
+      }
+     
     } else {
       let newPackages = selectedPackages.packages.filter((x) => x !== value);
-      setSelectedPackages({
-        ...selectedPackages,
-        total: selectedPackages.total - price,
-        packages: [...newPackages],
-      });
+      if(dataDiscount!=0){
+        setSelectedPackages({
+          
+          ...selectedPackages,
+
+          total: selectedPackages.total >=0 && (selectedPackages.total-parseFloat(price)),
+         
+          discountTotal: selectedPackages.discountTotal >=0 &&  (selectedPackages.discountTotal-parseFloat(dataDiscount)),
+          packages: newPackages
+        });
+      
+      }else{
+        setSelectedPackages({
+          ...selectedPackages,
+          discountTotal:selectedPackages.discountTotal >=0 && (selectedPackages.discountTotal-parseFloat(price)),
+          total:selectedPackages.total >=0 && (selectedPackages.total-parseFloat(price)),
+          packages:newPackages
+        });
+      }
+     
     }
     !selectedPackages.packages.some((x) => x)
       ? (mainCheckRef.current.checked = false)
@@ -160,6 +195,7 @@ function Packages(props) {
 
   const selectAll = (e) => {
     let total = 0;
+    let discountTotal = 0;
     let packages = [];
     checkRefs.current.forEach((x) => {
       x.checked = e.target.checked;
@@ -167,15 +203,17 @@ function Packages(props) {
       if (e.target.checked && !packages.includes(x.value)) {
         packages.push(x.value);
         total += +x.getAttribute("data-price");
+        discountTotal += +x.getAttribute("data-discount");
       } else {
         packages = packages.filter((p) => p !== x.value);
-        total -= total !== 0 && +x.getAttribute("data-price");
+        total -= total >= 0 && +x.getAttribute("data-price");
+        discountTotal -= discountTotal >=0 && +x.getAttribute("data-discount");
       }
     });
 
     setSelectedPackages({
       ...selectedPackages,
-      total: total,
+      total: selectedPackages.total-total,
       packages: packages,
     });
   };
@@ -198,7 +236,7 @@ function Packages(props) {
               />
             }
           />
-          <div style={{ overflowX: "scroll" }}>
+          <div class="ssc" style={{ overflowX: "scroll" }}>
             <div
               className=" pl-none"
               style={{
@@ -216,46 +254,19 @@ function Packages(props) {
                 onClick={tabButtonClick}
               />
 
-              {/* {status.map((x) => (
+               {status.map((x) => (
                 <ButtonComponent
                   label={`${x.name} (${
                     packages.filter((x) => x.status.id == 3).length
                   })`}
-                  style={{ color: x.color }}
+                 
                   className=" mr-xs p-sm bg-bg "
                   data-id={x.id}
                   Ref={addTabRefs}
                   onClick={tabButtonClick}
                 />
-              ))} */}
-              <ButtonComponent
-                label={`Xarici anvarda (${
-                  packages.filter((x) => x.status.id == 3).length
-                })`}
-                className="mr-xs p-sm bg-bg "
-                data-id={3}
-                Ref={addTabRefs}
-                onClick={tabButtonClick}
-              />
-
-              <ButtonComponent
-                label={`Bakı ofisində (${
-                  packages.filter((x) => x.status.id == 5).length
-                })`}
-                className="mr-xs p-sm bg-bg "
-                data-id={5}
-                Ref={addTabRefs}
-                onClick={tabButtonClick}
-              />
-              <ButtonComponent
-                label={`Gömrükdə (${
-                  packages.filter((x) => x.status.id == 7).length
-                })`}
-                className="p-sm bg-bg"
-                data-id={7}
-                Ref={addTabRefs}
-                onClick={tabButtonClick}
-              />
+              ))} 
+              
             </div>
           </div>
 
@@ -281,8 +292,16 @@ function Packages(props) {
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <b>{f({ id: "total" })}:</b>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  <del style={{ textDecorationColor: "red" }}>15.30 AZN</del>
-                  <b>{selectedPackages.total} AZN</b>
+                {
+                  selectedPackages.discountTotal > 0 ? 
+                  <>
+                  <del style={{ textDecorationColor: "red" }}>{parseFloat(selectedPackages.total).toFixed(2)} AZN</del>
+                   <b>{parseFloat(selectedPackages.discountTotal).toFixed(2)} AZN</b>
+                   </>
+                   :  <b>{parseFloat(selectedPackages.discountTotal).toFixed(2)} AZN</b>
+                }  
+                
+                 
                 </div>
               </div>
             </div>

@@ -249,7 +249,7 @@ const data = [
                 <>
                 <div className='w-50 pr-xs' style={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
                   <span className='' style={{fontSize:'16px',width:'90px'}}>{f({id:'deliveryprice'})}</span>
-                  <strong style={{textAlign:'center',fontSize:'xx-large'}}>{calculator.total.toFixed(2)}$</strong>
+                  <strong style={{textAlign:'center',fontSize:'large'}}>{calculator.total.toFixed(2)}$</strong>
                 </div>
                 <ButtonComponent 
                   className='w-50' 
