@@ -20,7 +20,11 @@ function PackageItem({item,checkRef,onCheck}) {
                      <li><strong>Smart Customs ID:</strong><small>{item.smart_customs_id}</small></li>
                      <li><strong>{f({id:"getwhere"})}:</strong><small>{item.from}</small></li>
                      <li><strong>{f({id:"lastprice"})}:</strong><small>{parseFloat(item.price*0.21).toFixed(2)} AZN</small></li>
-                     <li><strong>{f({id:"category"})}:</strong><small>{item.category}</small></li>
+                     <li><strong>{f({id:"category"})}:</strong><small style={{
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                     }}>{item.category}</small></li>
                      <li><strong>{f({id:"weight"})}:</strong><small>{item.weight} kq</small></li>
                      <li><strong>{f({id:"dateon"})}:</strong><small>{item.date}</small></li>
                  </ul>
