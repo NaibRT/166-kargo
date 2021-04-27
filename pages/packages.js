@@ -236,6 +236,26 @@ function Packages(props) {
        window.location.href = res.data.url;
     }).catch(err => console.log(err))
   }
+
+  const PaybyBalance = () => {
+    if(props.entry.user.user.balance >= 0){
+      props.PayByBalanceAction('payment',{
+        price:selectedPackages.discountTotal,
+        sourcetype:3,
+        batches:selectedPackages.packages                  
+      },
+      {
+        'authorization':`Bearer ${props.entry.user.accessToken}`
+      })
+    }else{
+      Swal.fire({
+        text: 'Balansda kifayət qədər məbləğ yoxdur',
+        icon: 'info',
+        confirmButtonText: 'OK',
+      });
+    }
+
+  }
  
   return (
     <Page className="bg-bg pt-lg pb-lg">
@@ -399,14 +419,7 @@ function Packages(props) {
                 endElement={
                   <span className="color-black mr-xs pl-sm ">&#8594;</span>
                 }
-                onClick = {() => props.PayByBalanceAction('payment',{
-                  price:selectedPackages.discountTotal,
-                  sourcetype:3,
-                  batches:selectedPackages.packages                  
-                },
-                {
-                  'authorization':`Bearer ${props.entry.user.accessToken}`
-                })}
+                onClick = {PaybyBalance}
               />
 
               <div className="btn__fkl">
@@ -429,14 +442,7 @@ function Packages(props) {
                   endElement={
                     <span className="color-black mr-xs pl-sm">&#8594;</span>
                   }
-                  onClick = {() => props.PayByBalanceAction('payment',{
-                    price:selectedPackages.discountTotal,
-                    sourcetype:3,
-                    batches:selectedPackages.packages
-                  },
-                  {
-                    'authorization':`Bearer ${props.entry.user.accessToken}`
-                  })}
+                  onClick = {PaybyBalance}
                 />
               </div>
             </div>
