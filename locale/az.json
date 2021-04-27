@@ -54,6 +54,7 @@
     
 
     "note":"Qeyd",
+    "note-requir":"Qeyd məcburidir",
     "color":"Rəng",
     "isfast":"Təcili",
     "ord-pay":"Sifariş et və ödə",
@@ -107,6 +108,7 @@
      "orders":"Sifarişlərim",
      "track-requir":"Track id məcburidir",
      "sh-requir":"Mağaza adı məcburidir",
+     "file-requir":"Fayl  məcburidir",
      "main-requir":"Əsas qrup məcburidir",
      "sub-requir":"Alt qrup məcburidir",
      "price-requir":"Qiymət məcburidir",

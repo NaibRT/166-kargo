@@ -109,7 +109,7 @@ function Decleration(props) {
                     ]}
                    name='country'
                    Ref={register({
-                    required:{value:true, message:'country type is required'},
+                    required:{value:true, message:f({id:'select-country'})},
                   })}
                     //  onChange={handleChange}
                   />
@@ -120,7 +120,7 @@ function Decleration(props) {
                 >
                   <Input type='text' name='track_number'
                      Ref={register({
-                      required:{value:true, message:'track number is required'},
+                      required:{value:true, message:f({id:'track-requir'})},
                     })}
                     //  onChange={handleChange}
                   />
@@ -132,7 +132,7 @@ function Decleration(props) {
                 >
                   <Input type='text' name='shop_name'
                      Ref={register({
-                       required:{value:true, message:'shop name is required'},
+                       required:{value:true, message:f({id:'sh-requir'})},
                      })}
                     //  onChange={handleChange}
                   />
@@ -144,7 +144,7 @@ function Decleration(props) {
                   <Selectbox className='bg-white w-100 ' data={props.mainCategories}
                    name='main_group'
                    Ref={register({
-                    required:{value:true, message:'main_group type is required'},
+                    required:{value:true, message:f({id:'main-requir'})},
                   })}
                      onChange={(ev) => {
                        setSubCategories(ev.target.value)
@@ -159,7 +159,7 @@ function Decleration(props) {
                   <Selectbox className='bg-white w-100' data={subCategories && props.mainCategories.find(x => x.id=== +subCategories)?.sub_categories}
                    name='sub_category'
                    Ref={register({
-                    required:{value:true, message:'sub category type is required'},
+                    required:{value:true, message:f({id:'sub-requir'})},
                   })}
                   />
                 </FromGroup>
@@ -170,7 +170,7 @@ function Decleration(props) {
                 >
                   <Input type='number' name='price'
                      Ref={register({
-                       required:{value:true, message:'price is required'}
+                       required:{value:true, message:f({id:'invoice-requir'})}
                      })} 
                   />
                   
@@ -187,7 +187,7 @@ function Decleration(props) {
                   <div className='file-uploade'>
                   <Input className='w-100' type='file' title=' ' name='invoice'
                      Ref={register({
-                       required:{value:true, message:'invoice is required'}
+                       required:{value:true, message:f({id:'file-requir'})}
                      })} 
                      onChange={(e) => {
                        console.log(e.target.files[0])
@@ -213,7 +213,7 @@ function Decleration(props) {
                    >
                       <textarea className='p-xs w-100 h-100' style={{outline:'none',border:'none'}} placeholder='qeydiniz varsa daxil edin' name='note'
                         ref={register({
-                          required:{value:true,message:'note is required'}    
+                          required:{value:true,message:f({id:'note-requir'})}    
                         })} 
                       />
                    </FromGroup>

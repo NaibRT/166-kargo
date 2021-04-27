@@ -267,7 +267,7 @@ function Packages(props) {
 
               <ButtonComponent
                 label={`Hamsı (${packages.length})`}
-                className="mr-xs p-sm bg-bg pack-active"
+                className="mr-xs p-xs bg-bg pack-active"
                 data-id={0}
                 Ref={addTabRefs}
                 onClick={tabButtonClick}
