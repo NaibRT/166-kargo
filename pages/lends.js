@@ -119,7 +119,7 @@ function Lends(props) {
           <Card.Body className='p-none'>
 
               {
-                lendw.map((s,i)=>{
+                lend.map((s,i)=>{
                   return(
                     <table key={i}>
                      <thead>
