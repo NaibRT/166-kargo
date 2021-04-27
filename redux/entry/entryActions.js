@@ -2,7 +2,7 @@
 import axios from "axios";
 import router from "next/router";
 import Swal from "sweetalert2";
-import { IncreaseBalance, login, logout, register, updateUser } from "./actions";
+import { IncreaseBalance, login, logout, PayByBalance, register, updateUser } from "./actions";
 
 export const Login = (url,data,headers = {}) => dispatch => {
     axios.post(`${process.env.NEXT_PUBLIC_API_URL}${url}`,data,{
@@ -40,7 +40,6 @@ export const UserRegister = (url,data,headers = {}) => dispatch => {
 }
 
 export const LogOut = () => dispatch => {
-   console.log('wordek logout')
     dispatch(logout())
 }
 
@@ -67,15 +66,14 @@ export const UpdateUser = (url,data,headers = {}) => dispatch => {
     axios.post(`${process.env.NEXT_PUBLIC_API_URL}${url}`,data,{
       headers:headers,
     }).then(res => {
-      console.log('req',res)
-      if(res.status == 200){ 
+      console.log('req',res.data.balance) 
         Swal.fire({
           text: res.data.message,
           icon: 'success',
           confirmButtonText: 'OK',
         });
-        dispatch(PayByBalance(data.balance))
-      }
+        dispatch(PayByBalance(res.data.balance));
+        router.push(`/success?message=${res.data.message}`);
     }).catch(err => console.log(err));
   }
 
