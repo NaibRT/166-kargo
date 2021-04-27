@@ -75,13 +75,18 @@ function Lends(props) {
       showCancelButton: true,
       input: 'text'
     }).then(res => {
+      console.log(res)
       if(res.isConfirmed){
-        props.PayByBalanceAction('payment',{
-          price:res.value.login,
+        axios.post(`${process.env.NEXT_PUBLIC_API_URL}payment`,{
+          price:res.value,
           sourcetype:4
         },{
-          'authorization': `Bearer ${props.entry.user.accessToken}`
-        });
+          headers:{
+            'authorization': `Bearer ${props.entry.user.accessToken}`
+          }
+        }).then(res => {
+          window.location.href = res.data.url
+        })
       }
     });
   }
