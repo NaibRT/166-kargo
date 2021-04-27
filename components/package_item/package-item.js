@@ -13,6 +13,7 @@ function PackageItem({item,checkRef,onCheck}) {
               {/* <img style={{marginLeft:'-10px'}} src='./assets/images/a02.svg'/> */}
               <h1>{item.shop}</h1>
               <h5 style={{color:`${item.status.color}`}}>{item.status.name}</h5>
+              <h5 style={{color:'red'}}>{item.pay_status}</h5>
               <div className='package-item-body'>
                  <ul>
                      <li><strong>{f({id:"tracking"})}:</strong><small>{item.track_number}</small></li>
@@ -44,7 +45,8 @@ function PackageItem({item,checkRef,onCheck}) {
                <Checkbox 
                   Ref={checkRef} 
                   onClick={onCheck} 
-                  value={item.id} 
+                  value={item.id}
+                  disabled={item.pay_status && true} 
                   data-price={
                        parseFloat(item.delivery_price).toFixed(2)  
                     } 

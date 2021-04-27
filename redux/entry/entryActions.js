@@ -67,12 +67,14 @@ export const UpdateUser = (url,data,headers = {}) => dispatch => {
     axios.post(`${process.env.NEXT_PUBLIC_API_URL}${url}`,data,{
       headers:headers,
     }).then(res => {
-      dispatch(PayByBalance(res.data))
-      Swal.fire({
-        text: 'Əməliyyat uğurla tamamlandı',
-        icon: 'success',
-        confirmButtonText: 'OK',
-      })
+      if(res.status == 'success'){ 
+        Swal.fire({
+          text: res.data.message,
+          icon: 'success',
+          confirmButtonText: 'OK',
+        });
+        dispatch(PayByBalance(data.balance))
+      }
     }).catch(err => console.log(err));
   }
 
