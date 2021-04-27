@@ -87,7 +87,6 @@ function Packages(props) {
   }
   useLayoutEffect(() => {
     PromisAll().then(res => {
-      console.log(res);
       setPackages(res.batchesData);
       setFilteredPacks(res.batchesData);
       setStatus(res.statusData);
@@ -277,8 +276,7 @@ function Packages(props) {
                {status.map((x) => (
                 <ButtonComponent
                   label={`${x.name} (${x.count})`}
-                 
-                  className=" p-sm bg-bg "
+                  className=" p-xs bg-bg "
                   data-id={x.id}
                   Ref={addTabRefs}
                   onClick={tabButtonClick}
