@@ -220,7 +220,7 @@ function Decleration(props) {
             </div>
           </Card.Body>
             <Card.Footer className='mt-sm' style={{justifyContent:'flex-end'}}>
-              <ButtonComponent className='mt-sm'  label={f({id:"declare-inadvance"})}/>
+              <ButtonComponent className='mt-sm p-xs'  label={f({id:"declare-inadvance"})}/>
             </Card.Footer>
             </form>
          </Card>
