@@ -1,4 +1,4 @@
-import React,{memo, useLayoutEffect} from 'react'
+import React, { memo, useLayoutEffect } from 'react'
 import { connect } from "react-redux"
 import AsideMenu from "../components/aside-menu/index"
 import Aside from '../components/aside/aside'
@@ -12,7 +12,9 @@ import
 
  function SuccessPage(props) {      
  useLayoutEffect(() => {
-    props.IncreaseBalanceAction(props.balance);
+    if(props.balance){
+      props.IncreaseBalanceAction(props.balance);
+    }
  },[])
     return (
         <Page className="bg-bg pt-lg pb-lg">
@@ -32,7 +34,7 @@ export async function getServerSideProps({query}) {
 
   return {
     props: {
-      balance: query.balance,
+      balance: query.balance ? query.balance : null,
       message: query.message,
     },
   }

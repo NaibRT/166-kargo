@@ -16,7 +16,7 @@ import PackageItem from "../components/package_item/package-item";
 import Page from "../components/page/page";
 import Redirect from "../components/redirect/redirect";
 import Tabel from "../components/tabel/tabel";
-import { PayByBalanceAction } from '../redux/entry/entryActions'
+import { PayByBalanceAction } from '../redux/entry/entryActions';
 
 function Packages(props) {
   if (!props.entry.isLoged) {
@@ -68,37 +68,31 @@ function Packages(props) {
       });
   };
 
-  useLayoutEffect(() => {
-    // axios.get(`${process.env.NEXT_PUBLIC_API_URL}batches?lan=${locale}`, {
-    //     headers: {
-    //       authorization: `Bearer ${props.entry.user.accessToken}`,
-    //     },
-    //   })
-    //   .then((res) => {
-    //     setPackages(res.data);
-    //     setFilteredPacks(res.data);
-    //   })
-    //   .catch((err) => console.log(err));
+  const PromisAll = async () => {
+    let batchesData = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}batches?lan=${locale}`, {
+      headers: {
+        authorization: `Bearer ${props.entry.user.accessToken}`,
+      },
+    });
+    let statusData = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}status?lan=${locale}`, {
+      headers: {
+        authorization: `Bearer ${props.entry.user.accessToken}`,
+      },
+    });
 
-    Promise.all([
-      axios.get(`${process.env.NEXT_PUBLIC_API_URL}batches?lan=${locale}`, {
-        headers: {
-          authorization: `Bearer ${props.entry.user.accessToken}`,
-        },
-      }),
-      axios.get(`${process.env.NEXT_PUBLIC_API_URL}status?lan=${locale}`, {
-        headers: {
-          authorization: `Bearer ${props.entry.user.accessToken}`,
-        },
-      }),
-    ])
-      .then((res) => {
-        console.log(res.data);
-        setPackages(res[0].data);
-        setFilteredPacks(res[0].data);
-        setStatus(res[1].data);
-      })
-      .catch((err) => console.log(err));
+    return {
+      batchesData:batchesData.data,
+      statusData:statusData.data
+    }
+  }
+  useLayoutEffect(() => {
+    PromisAll().then(res => {
+      console.log(res);
+      setPackages(res.batchesData);
+      setFilteredPacks(res.batchesData);
+      setStatus(res.statusData);
+    }).catch(err => console.log(err))
+
   }, []);
 
   const addTabRefs = (ref) => {
@@ -112,9 +106,23 @@ function Packages(props) {
     ev.target.classList.add("pack-active");
   };
 
+  const getBatchesByStatausId = async (id) =>{
+     axios.get(`${process.env.NEXT_PUBLIC_API_URL}batches?status=${id}&lan=${locale}`, {
+      headers: {
+        authorization: `Bearer ${props.entry.user.accessToken}`,
+      },
+    }).then((res) => {
+      setPackages(res.data);
+      setFilteredPacks(res.data);
+    }).catch(err => console.log(err))
+
+  
+  };
+
   const tabButtonClick = (ev) => {
-    toggleTabRefs(ev);
     let id = ev.target.getAttribute("data-id");
+    toggleTabRefs(ev);
+    getBatchesByStatausId(id)
     if (id != 0) {
       let newPackages = packages.filter((x) => x.status.id == id);
       setFilteredPacks([...newPackages]);
@@ -225,8 +233,8 @@ function Packages(props) {
         authorization: `Bearer ${props.entry.user.accessToken}`,
       }
     }).then(res => {
-      console.log('red',res);
-      // window.location.href = res.data.url;
+      console.log('red',res.data.url);
+       window.location.href = res.data.url;
     }).catch(err => console.log(err))
   }
  
@@ -268,11 +276,9 @@ function Packages(props) {
 
                {status.map((x) => (
                 <ButtonComponent
-                  label={`${x.name} (${
-                    packages.filter((x) => x.status.id == 3).length
-                  })`}
+                  label={`${x.name} (${x.count})`}
                  
-                  className=" mr-xs p-sm bg-bg "
+                  className=" p-sm bg-bg "
                   data-id={x.id}
                   Ref={addTabRefs}
                   onClick={tabButtonClick}
@@ -384,7 +390,8 @@ function Packages(props) {
                 endElement={<span className="color-white pl-sm">&#8594;</span>}
                 onClick = {() => PaybyCard({
                   price:selectedPackages.discountTotal,
-                  sourcetype:2
+                  sourcetype:2,
+                  batches:selectedPackages.packages
                 })}
               />
               <ButtonComponent
@@ -397,7 +404,7 @@ function Packages(props) {
                 onClick = {() => props.PayByBalanceAction('payment',{
                   price:selectedPackages.discountTotal,
                   sourcetype:3,
-                  
+                  batches:selectedPackages.packages                  
                 },
                 {
                   'authorization':`Bearer ${props.entry.user.accessToken}`
@@ -414,7 +421,8 @@ function Packages(props) {
                   }
                   onClick = {() => PaybyCard({
                     price:selectedPackages.discountTotal,
-                    sourcetype:2
+                    sourcetype:2,
+                    batches:selectedPackages.packages
                   })}
                 />
                 <ButtonComponent
@@ -426,6 +434,7 @@ function Packages(props) {
                   onClick = {() => props.PayByBalanceAction('payment',{
                     price:selectedPackages.discountTotal,
                     sourcetype:3,
+                    batches:selectedPackages.packages
                   },
                   {
                     'authorization':`Bearer ${props.entry.user.accessToken}`
