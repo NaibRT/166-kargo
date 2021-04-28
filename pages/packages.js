@@ -16,6 +16,7 @@ import PackageItem from "../components/package_item/package-item";
 import Page from "../components/page/page";
 import Redirect from "../components/redirect/redirect";
 import Tabel from "../components/tabel/tabel";
+import Swal from "sweetalert2";
 import { PayByBalanceAction } from '../redux/entry/entryActions';
 
 function Packages(props) {
@@ -238,7 +239,7 @@ function Packages(props) {
   }
 
   const PaybyBalance = () => {
-    if(props.entry.user.user.balance >= 0){
+    if(props.entry.user.user.balance >= 0 && selectedPackages.packages.length > 0){
       props.PayByBalanceAction('payment',{
         price:selectedPackages.discountTotal,
         sourcetype:3,

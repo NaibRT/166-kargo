@@ -8,10 +8,8 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
-    "start": "next start -p $PORT",
-    "heroku-postbuild": "npm run build",
-    "postinstall": "npm rebuild node-sass"
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "axios": "^0.21.1",
