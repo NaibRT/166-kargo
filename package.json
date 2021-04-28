@@ -7,14 +7,16 @@
     "npm": "7.5.3"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && next export",
-    "start": "next start -p $PORT",
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "cross-env NODE_ENV=production node server.js",
     "heroku-postbuild": "npm run build",
     "postinstall": "npm rebuild node-sass"
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "cross-env": "^7.0.3",
+    "express": "^4.17.1",
     "i18next-browser-languagedetector": "^4.1.1",
     "moment": "^2.29.1",
     "next": "10.0.6",
