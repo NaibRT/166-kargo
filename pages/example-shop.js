@@ -2,7 +2,6 @@ import Link from 'next/link';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Card from '../components/card/card';
-import Main from '../components/main/main';
 import Page from '../components/page/page';
 
 export default function Shop() {
@@ -10,8 +9,7 @@ export default function Shop() {
     const { formatMessage: f } = useIntl();
 
     return (
-        <div>
-            <Main className='bg-bg'>
+        <div className='bg-bg'>
                 <Page className='pb-lg'>
                     <Card className="bg-white br-lg mt-md p-md" style={{width:'100%'}}>
                         <div >
@@ -131,8 +129,7 @@ export default function Shop() {
                         </div>
 
                     </Card>
-                </Page></Main>
-
+                </Page>
         </div>
     )
 }

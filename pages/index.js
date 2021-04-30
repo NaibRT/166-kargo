@@ -24,6 +24,7 @@ import { GetSettings } from '../redux/settings/settingsActions';
 
 
 
+
 const data = [
   {min:0,max:0.25,amount:1.66},
   {min:0.25,max:0.50,amount:3.00},

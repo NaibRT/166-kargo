@@ -12,7 +12,7 @@ import Page from '../page/page';
 import Burger from './burger';
 import Hovermenu from './hovermenu';
 import MenuMobile from './menu-mobile';
-
+import LangService from '../../services/language-service'
 
 
 const useOnClickOutside = (ref, handler) => {
@@ -52,15 +52,22 @@ const Navbar = (props) => {
         setOpen(false)
     }, [basePath])
 
+    useEffect(() => {
+       setLocale(locale)
+    }, [])
+
     const submit = (data) => {
         props.Login('auth/login', JSON.stringify(data), { 'content-type': 'application/json' })
     }
     const { locale, locales, basePath, asPath } = useRouter();
     const router = useRouter();
+    const {setLocale, getLocale} = LangService();
+
     const { formatMessage: f } = useIntl();
 
     const handleLocaleChange = (e) => {
         const locale = e.target.value;
+        setLocale(locale);
         router.push(`${asPath}`, `${asPath}`, { locale })
     }
 
@@ -174,7 +181,7 @@ const Navbar = (props) => {
                             </li>
 
                             <li className='navbar__item dies'>
-                                <select className='navbar__item_lang' value={locale} onChange={handleLocaleChange}>
+                                <select className='navbar__item_lang' value={locale ?? getLocale()} onChange={handleLocaleChange}>
                                     {locales.map(locale => (
                                         <option key={locale} value={locale}>
                                             {locale}
