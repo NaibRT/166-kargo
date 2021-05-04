@@ -1,8 +1,10 @@
 {
-    "faq": "Faq",
+    "faq": "Frequently asked questions",
     "calculator": "Calculator",
     "total":"Total",
     "tariffs":"Tariffs",
+    "useragreement":"User agreement",
+    "terms":"Terms and conditions",
     "chosed":"package chosen",
     "upload":"Upload invoice",
     "see-invoice":"See invoice",
@@ -57,6 +59,8 @@
     "choose-all":"choose all",
     "curry-cand":"Terms of transportation",
      "new-order":"New order",
+     "search-ex":"Example",
+
 
     "calc": "Calculate",
     "emailerror":"Email is not valid",
@@ -200,7 +204,7 @@
     "active-pac":"Active packages",
     "complate-register":"Complate register",
     "register-hard":"If register is hard please watch video",
-    "use-cond":"Terms and conditions",
+    "use-cond":"Orders condition",
     "search-pac":"Find your package"
 
 

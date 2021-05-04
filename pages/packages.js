@@ -276,7 +276,7 @@ function Packages(props) {
               />
             }
           />
-          <div class="ssc" style={{ overflowX: "scroll" }}>
+          <div className="ssc" style={{ overflowX: "scroll" }}>
             <div
               className=" pl-none"
               style={{
@@ -287,20 +287,21 @@ function Packages(props) {
             >
 
               <ButtonComponent
-                label={`Hamsı (${packages.length})`}
+                label={`Hamısı (${packages.length})`}
                 className="mr-xs p-xs bg-bg pack-active"
                 data-id={0}
                 Ref={addTabRefs}
                 onClick={tabButtonClick}
               />
 
-               {status.map((x) => (
+               {status.map((x,i) => (
                 <ButtonComponent
                   label={`${x.name} (${x.count})`}
                   className=" p-xs bg-bg "
                   data-id={x.id}
                   Ref={addTabRefs}
                   onClick={tabButtonClick}
+                  key={i}
                 />
               ))} 
               

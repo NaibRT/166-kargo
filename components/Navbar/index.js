@@ -161,7 +161,7 @@ const Navbar = (props) => {
                     <nav className='flex'>
                         <ul className='navbar'>
                             <li onClick={navItemHandler} ref={addNavItems} className='navbar__item'>
-                                <Link href='/'><a><Image src={'/assets/icons/166ye.svg'} width={149} height={55} /></a></Link>
+                                <Link href='/'><a><Image src={'/assets/images/166.png'} width={149} height={80} className='rsr-f' /></a></Link>
                             </li>
 
                             <li onClick={navItemHandler} ref={addNavItems} className='navbar__item'>
@@ -213,7 +213,7 @@ const Navbar = (props) => {
                             <MenuMobile open={open} setOpen={setOpen} />
                         </div>
                         <figure>
-                            <Link href='/'><a > <img src={'/assets/icons/logomob.svg'} style={{ cursor: 'pointer' }} /></a></Link>
+                            <Link href='/'><a > <Image src={'/assets/images/166.png'} width={119} height={80} className='rsr-f' /></a></Link>
                         </figure>
                         {
                             !props.entry.isLoged ?

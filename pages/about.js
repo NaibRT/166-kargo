@@ -11,7 +11,7 @@ function About(props) {
  return (
    
   <Page className='bg-bg'>
-   <div className='about-page bg-white mt-lg mb-lg'>
+   <div className='about-page bg-white mt-lg mb-lg w-100'>
     <Card>
       <Card.Body style={{width:'100%'}}>
       

@@ -90,11 +90,17 @@ function Test(props) {
                                         }else if(index===1){
                                            
                                             return (
-                                                <AddressItem style={{ flex: '1 1 30%' }} title={key} label={a.address[key].replace('CUSTOMER_ID',`${props.entry.user.user.customer_number}`).replace('USER',`${props.entry.user.user.firstname} ${props.entry.user.user.lastname}`)} key={index} />
+                                                <AddressItem style={{ flex: '1 1 30%' }} title={key} label={a.address[key].replace('{CUSTOMER_ID}',`${props.entry.user.user.customer_number}`).replace(`{USER}`,`${props.entry.user.user.firstname} ${props.entry.user.user.lastname}`)} key={index} />
+                                             )
+                                        }
+                                        else if(index===2){
+                                           
+                                            return (
+                                                <AddressItem style={{ flex: '1 1 30%' }} title={key} label={a.address[key].replace('{CUSTOMER_ID}',`${props.entry.user.user.customer_number}`).replace(`{USER}`,`${props.entry.user.user.firstname} ${props.entry.user.user.lastname}`)} key={index} />
                                              )
                                         }else if(index===Object.entries(a.address).length-1){
                                             return(
-                                                <AddressItem style={{ flex: '1 1 30%' }} title={key} label={a.address[key].replace('CUSTOMER_ID',`${props.entry.user.user.customer_number}`)} key={index} />
+                                                <AddressItem style={{ flex: '1 1 30%' }} title={key} label={a.address[key].replace('{CUSTOMER_ID}',`${props.entry.user.user.customer_number}`)} key={index} />
                                             
                                             )
                                         }

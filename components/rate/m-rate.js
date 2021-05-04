@@ -13,9 +13,9 @@ function MRate({data = [],icon,headerText,style}){
            <th colSpan="3">
              <div>
                 <img src={'/assets/icons/15.svg'} className='img '/>     
-                <img src={'/assets/icons/15.svg'} className=' img '/>
+                <img src={'/assets/icons/18.svg'} className=' img '/>
                 <img src={'/assets/icons/16.svg'} className='img img-2'/>
-             </div>
+             </div> 
            </th>
          </tr>
       </thead>

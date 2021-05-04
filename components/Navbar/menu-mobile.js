@@ -16,7 +16,7 @@ const StyledMenu = styled.nav`
     z-index: 1000;
     position: absolute;
     width:82%;
-    top: 60px;
+    top: 80px;
     opacity:1;
   left: 0;
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-600%)")};
@@ -30,7 +30,7 @@ const StyledMenu = styled.nav`
 const Overlay = styled.div`
       transition: transform 0.3s ease-in-out ;
        position:absolute;
-       top:60px;
+       top:80px;
        right:0;
        left:0;
        display: ${({ open }) => (open ? "block" : "none")};

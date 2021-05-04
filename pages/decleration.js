@@ -209,12 +209,10 @@ function Decleration(props) {
                 </FromGroup>
 
                 <FromGroup label={f({id:"note"})} bodyClass='bg-white' bodyStyle={{height:'150px'}} className='w-50 pr-xs mb-sm'
-                   error={errors.note?.message}
+                   
                    >
                       <textarea className='p-xs w-100 h-100' style={{outline:'none',border:'none'}} placeholder='qeydiniz varsa daxil edin' name='note'
-                        ref={register({
-                          required:{value:true,message:f({id:'note-requir'})}    
-                        })} 
+                        ref={register()} 
                       />
                    </FromGroup>
             </div>

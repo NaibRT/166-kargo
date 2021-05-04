@@ -77,7 +77,9 @@ function CourierOrder(props) {
             <p className='mb-lg'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
             <div className='coruier-cards-form-container' style={{ display: 'flex', flexWrap: 'wrap' }}>
               <FromGroup label={f({id:'choose-dist'})} className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
-                <Input type='text' />
+                <select>
+                  <option>Baku</option>
+                </select>
               </FromGroup>
               <FromGroup label={f({id:'choose-date'})} className='w-50 pr-lg mb-sm' bodyClass='bg-bg'>
                 <Input type='date' />
@@ -115,7 +117,7 @@ function CourierOrder(props) {
               />
             </Card.Body>
           </Card>
-          <Card.Footer  className='footer__courier' >
+          <Card.Footer  className='footer__courier mr-md' >
             <ButtonComponent className='p-xs' label={f({id:'makeorder'})} />
           </Card.Footer>
         <Card className='p-sm bg-white mt-sm coruier__cards br-lg'>

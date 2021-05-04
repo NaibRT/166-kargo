@@ -7,12 +7,7 @@ import Page from '../components/page/page';
 import MobileRate from '../components/rate/m-rate';
 import Rate from '../components/rate/rate';
 
-const data = [
-    {min:0,max:0.25,amount:1.66},
-    {min:0.25,max:0.50,amount:3.00},
-    {min:0.50,max:0.70,amount:4.00},
-    {min:0.70,max:1.00,amount:4.50},
-   ]
+
  function Tariff(props) {
     const { formatMessage: f } = useIntl();
  
@@ -31,8 +26,11 @@ const data = [
               {
                 <Rate style={{width:'33%'}} data={props?.tariffs.filter(x => x.country_id === 16 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/16.svg'} headerText={f({ id: 'usa' })}  />
               } 
+              {
+                <Rate style={{width:'33%'}} data={props?.tariffs.filter(x => x.country_id === 18 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/18.svg'} headerText={f({ id: 'ua' })}  />
+              } 
             </div>
-            <MobileRate data={data} />
+            <MobileRate data={props?.tariffs} />
           </Card.Body>
         </Card>
          </Page>

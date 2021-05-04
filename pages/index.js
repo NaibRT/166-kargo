@@ -115,7 +115,7 @@ const data = [
            </div>
            {
              !props.Entry.isLoged &&
-             <Card className='login-card bg-white p-sm'>
+             <Card className='login-card bg-white p-sm br-lg'>
              <Card.Header style={{display:'flex',justifyContent:'center'}} text={f({ id: 'signin' })}/>
              <Card.Body className='p-none'>
              <form className='login-form' onSubmit={handleSubmit(submit)}>
@@ -172,13 +172,13 @@ const data = [
                   <Rate data={props.tariffs.filter(x => x.country_id === 15 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/15.svg'} headerText={f({id:'turkey'})} /> 
                 }
                 {
-                  <Rate data={props.tariffs.filter(x => x.country_id === 15 && x.is_liquid===1).splice(0,4)} icon={'/assets/icons/15.svg'} headerText={f({id:'isluqidturkey'})} />
+                  <Rate data={props.tariffs.filter(x => x.country_id === 18 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/18.svg'} headerText={f({id:'ukraina'})} />
                 }
                 {
                   <Rate data={props.tariffs.filter(x => x.country_id === 16 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/16.svg'} headerText={f({id:'usa'})} style={{marginRight:0}} />
                 } 
               </div>
-              <MobileRate data={data} text={f({id:'weight'})} />
+              <MobileRate data={props.tariffs} text={f({id:'weight'})} />
             </Card.Body>
           </Card>
           <Card>
@@ -298,7 +298,7 @@ const data = [
         </div>
         </section>
 
-        <section className='fluid_bottom' >
+        <section className='fluid_bottom w-100' >
           <Card>
             <Card.Header text={f({ id: 'lastnews' })} endElelment={<Link href='/blog'><a>{f({id:'seeall'})} &rsaquo;</a></Link>} />
             <Card.Body style={{ padding: 0, display: 'flex', flexWrap:'wrap'}}>

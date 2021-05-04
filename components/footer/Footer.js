@@ -8,11 +8,12 @@ import { useIntl } from 'react-intl';
 
 
 const data = [
-  {name:'about',link:'/about'},
-  {name:'examples',link:'/example-shop'},
+
   {name:'faq',link:'/faq'},
   {name:'use-cond',link:'/orderscondition'},
-  {name:'curry-cand',link:'/carryconditions'}
+  {name:'curry-cand',link:'/carryconditions'},
+  {name:'terms',link:'/terms'},
+  {name:'useragreement',link:'/useragreement'}
 ];
 
 const links = (data = []) => {
@@ -55,15 +56,12 @@ function Footer(props) {
       <Page>
         <div className={'footer_container container-fluid'}>
           <div className={'footer_container_head'}>
-            <img className={'footer_logo'} src='/assets/icons/166ye.svg' />
+          <img src={'/assets/images/166.png'} width={149} height={80} className='rsr-f' />
             <p className={'footer_about'}>
-              dolor sit amet dolor sit amet
-              dolor sit amet dolor sit amet
-              dolor sit amet dolor sit amet
-              dolor sit amet dolor sit amet
+              
         </p>
             <div className={'fch_sosial_link'}>
-              <a href={props.Data.instagram} target='blank' aria-modal><img src='/assets/icons/instagram.svg' /></a>
+              <a href='https://www.instagram.com/166karqo.az/' target='blank' aria-modal><img src='/assets/icons/instagram.svg' /></a>
               <a href={props.Data.facebook} target='blank'><img src='/assets/icons/facebook.svg' /></a>
               <a href={props.Data.youtube} target='blank'><img src='/assets/icons/youtube.svg' /></a>
             </div>

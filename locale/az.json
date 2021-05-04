@@ -12,7 +12,7 @@
     "prices":"Qiymətlər",
     "price":"Qiymət",
     "blog":"Bloq",
-    "getwhere":"Hardan",
+    "getwhere":"Haradan",
     "update":"Yenilə",
     "enter-money":"Məbləği daxil et",
     "updatepass":"Şifrəni yenilə",
@@ -37,7 +37,7 @@
     "shops":"Bəzi mağazalar",
     "tarifftitle":"Ölkələr üzrə tariflərimiz",
     "tariff":"Qiymətlər",
-    "search":"Bağlamam hardadır",
+    "search":"Bağlamam haradadır",
     "turkey":"Türkiyə",
     "ukraina":"Ukrayna",
     "isluqidturkey":"Türkiyə(maye)",
@@ -80,8 +80,9 @@
     "see-invoice":"Invoysa bax",
     "total":"Cəmi",
     "chosed":"bağlama seçilib",
-    "choose-all":"hamsını seç",
+    "choose-all":"hamısını seç",
     "curry-cand":"Daşınma şərtləri",
+    "search-ex":"Nümunə",
 
 
 
@@ -121,6 +122,8 @@
 
     "choose-dist":"Rayon seçin",
     "choose-date":"Vaxt seçin",
+    "useragreement":"İstifadəçi razılaşması",
+    "terms":"Gizlilik şərtləri",
     "correct-addres":"Dəqiq ünvan əlavə edin",
     "enter-number":"Əlaqə nömrəsi daxil edin",
     "definemap":"Xəritədən təyin et",
@@ -221,5 +224,5 @@
     "register-hard":"Qeydiyyatdan keçmekdə çəntinlik çəkirsizsə videonu izləyin",
     "dateon":"Tarix",
     "linksf":"Keçidlər",
-    "use-cond":"İstifadə şərtləri"
+    "use-cond":"Sifariş şərtləri"
    }

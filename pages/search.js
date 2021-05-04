@@ -67,7 +67,7 @@ function Search() {
                          style={{height:'44px'}}
                          />
                  </form>
-                 <div style={{display:'flex',alignItems:'flex-end'}}><small style={{fontSize:'xx-small'}}>nümunə: 77498777656658</small></div>
+                 <div style={{display:'flex',alignItems:'flex-end'}}><small style={{fontSize:'xx-small'}}>{f({id:'search-ex'})} 77498777656658</small></div>
                  </div>
                  {
                    results.isloaded === true ? <Tabel

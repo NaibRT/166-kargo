@@ -13,10 +13,10 @@ function MainSlider({className}) {
     onSlideChange={() => console.log('slide change')}
     onSwiper={(swiper) => console.log(swiper)}
    >
-    <SwiperSlide><img src='/assets/images/slider.png' /></SwiperSlide>
-    <SwiperSlide><img src='/assets/images/slider.png' /></SwiperSlide>
-    <SwiperSlide><img src='/assets/images/slider.png' /></SwiperSlide>
-    <SwiperSlide><img src='/assets/images/slider.png' /></SwiperSlide>
+    <SwiperSlide><img src='/assets/images/1.jpg' /></SwiperSlide>
+    <SwiperSlide><img src='/assets/images/2.jpg' /></SwiperSlide>
+    <SwiperSlide><img src='/assets/images/3.jpg' /></SwiperSlide>
+    <SwiperSlide><img src='/assets/images/4.jpg' /></SwiperSlide>
     ...
    </Swiper>
    )
