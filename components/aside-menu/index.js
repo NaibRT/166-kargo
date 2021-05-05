@@ -99,6 +99,14 @@ function AsideMenu(props) {
                     </a>
                 </Link>
              </li>
+             <Divider />
+             <li >
+                <Link href="/azerpost">
+                <a className={splitLocation[1] === "courier-order" ? "d-flex active" : "d-flex"}>
+                    <img src={'/assets/icons/delivery-man.svg'}/><span>{f({id:'azerpost'})}</span>
+                    </a>
+                </Link>
+             </li>
 
         </ul>
         
