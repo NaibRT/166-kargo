@@ -1,0 +1,1 @@
+{"ast":null,"code":"import axios from 'axios';\nimport { getData } from './actions';\nexport const getDataAction = (url, header) => dispatch => {\n  axios.get(url, header).then(res => {\n    dispatch(getData(res.data));\n  });\n};","map":null,"metadata":{},"sourceType":"module"}

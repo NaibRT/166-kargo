@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { jsx as _jsx } from \"react/jsx-runtime\";\nimport React from 'react';\n\nfunction Main({\n  children,\n  className,\n  style\n}) {\n  return /*#__PURE__*/_jsx(\"main\", {\n    className: `main ${className || ''}`,\n    style: style,\n    children: children\n  });\n}\n\nexport default Main;","map":null,"metadata":{},"sourceType":"module"}

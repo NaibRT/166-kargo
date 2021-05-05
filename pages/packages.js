@@ -4,6 +4,7 @@ import React, { memo, useLayoutEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useIntl } from "react-intl";
 import { connect } from "react-redux";
+import Swal from "sweetalert2";
 import AsideMenu from "../components/aside-menu/index";
 import Aside from "../components/aside/aside";
 import ButtonComponent from "../components/button";
@@ -16,7 +17,6 @@ import PackageItem from "../components/package_item/package-item";
 import Page from "../components/page/page";
 import Redirect from "../components/redirect/redirect";
 import Tabel from "../components/tabel/tabel";
-import Swal from "sweetalert2";
 import { PayByBalanceAction } from '../redux/entry/entryActions';
 
 function Packages(props) {
@@ -86,6 +86,7 @@ function Packages(props) {
       statusData:statusData.data
     }
   }
+  
   useLayoutEffect(() => {
     PromisAll().then(res => {
       setPackages(res.batchesData);
@@ -150,17 +151,13 @@ function Packages(props) {
     let { value, checked } = ev.target;
     let price = ev.target.getAttribute("data-price");
     let dataDiscount = ev.target.getAttribute("data-discount");
-    let total=0
-    let disc=0
-    console.log('dis',dataDiscount)
+
     if (checked) {
       selectedPackages.packages.push(value);
       if(dataDiscount!=0){
         setSelectedPackages({
           ...selectedPackages,
-
-          total: (selectedPackages.total+parseFloat(price)),
-         
+          total: (selectedPackages.total+parseFloat(price)),         
           discountTotal: (selectedPackages.discountTotal+parseFloat(dataDiscount)),
           packages: [...selectedPackages.packages],
         });
@@ -178,20 +175,17 @@ function Packages(props) {
       let newPackages = selectedPackages.packages.filter((x) => x !== value);
       if(dataDiscount!=0){
         setSelectedPackages({
-          
           ...selectedPackages,
-
-          total: selectedPackages.total >=0 && (selectedPackages.total-parseFloat(price)),
-         
-          discountTotal: selectedPackages.discountTotal >=0 &&  (selectedPackages.discountTotal-parseFloat(dataDiscount)),
+          total: selectedPackages.total >0 && (selectedPackages.total-parseFloat(price)),        
+          discountTotal: selectedPackages.discountTotal >0 &&  (selectedPackages.discountTotal-parseFloat(dataDiscount)),
           packages: newPackages
         });
       
       }else{
         setSelectedPackages({
           ...selectedPackages,
-          discountTotal:selectedPackages.discountTotal >=0 && (selectedPackages.discountTotal-parseFloat(price)),
-          total:selectedPackages.total >=0 && (selectedPackages.total-parseFloat(price)),
+          discountTotal:selectedPackages.discountTotal >0 && (selectedPackages.discountTotal-parseFloat(price)),
+          total:selectedPackages.total >0 && (selectedPackages.total-parseFloat(price)),
           packages:newPackages
         });
       }
@@ -206,25 +200,52 @@ function Packages(props) {
     let total = 0;
     let discountTotal = 0;
     let packages = [];
-    checkRefs.current.forEach((x) => {
-      x.checked = e.target.checked;
 
-      if (e.target.checked && !packages.includes(x.value)) {
-        packages.push(x.value);
-        total += +x.getAttribute("data-price");
-        discountTotal += +x.getAttribute("data-discount");
-      } else {
-        packages = packages.filter((p) => p !== x.value);
-        total -= total >= 0 && +x.getAttribute("data-price");
-        discountTotal -= discountTotal >=0 && +x.getAttribute("data-discount");
-      }
-    });
+    if (e.target.checked){
+      checkRefs.current.forEach((x) => {
+        x.checked = !x.disabled && e.target.checked;
+        let price = x.getAttribute("data-price");
+        let discount = x.getAttribute("data-discount");
 
-    setSelectedPackages({
-      ...selectedPackages,
-      total: selectedPackages.total-total,
-      packages: packages,
-    });
+        if(!x.disabled && !packages.includes(x.value)){
+          packages.push(x.value);
+          if(discount!=0){
+            total += (+price);
+            discountTotal += (+discount)
+          }else{
+            total += (+price);
+            discountTotal += (+price)
+          }
+
+        }
+      });
+
+      setSelectedPackages({
+        ...selectedPackages,
+        total: total,
+        discountTotal:discountTotal,
+        packages: packages,
+      });
+
+    }else{
+      checkRefs.current.forEach((x) => {
+        x.checked = !x.disabled && e.target.checked;
+        if(!x.disabled && !packages.includes(x.value)){
+          packages = packages.filter((p) => p !== x.value);
+          // let price = x.getAttribute("data-price");
+          // let discount = x.getAttribute("data-discount");
+          // total = selectedPackages.total >0 && selectedPackages.total - (+price);
+          // discountTotal = selectedPackages.discountTotal >0 && selectedPackages.discountTotal - (+discount);
+        }
+      });
+
+      setSelectedPackages({
+        ...selectedPackages,
+        total: total,
+        discountTotal:discountTotal,
+        packages: packages,
+      });
+    }
   };
 
   const PaybyCard = (data = {}) => {
@@ -331,7 +352,7 @@ function Packages(props) {
                 <b>{f({ id: "total" })}:</b>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                 {
-                  selectedPackages.discountTotal > 0 ? 
+                  (selectedPackages.discountTotal > 0 && selectedPackages.discountTotal != selectedPackages.total )  ? 
                   <>
                   <del style={{ textDecorationColor: "red" }}>{parseFloat(selectedPackages.total).toFixed(2)} AZN</del>
                    <b>{parseFloat(selectedPackages.discountTotal).toFixed(2)} AZN</b>

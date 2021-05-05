@@ -28,7 +28,7 @@ function Faq(props) {
 }
 
 
-export async function getStaticProps({locale}) {
+export async function getServerSideProps({locale}) {
 
   let responce = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}faq?lan=${locale}`);
   let data = responce.data

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var GETSETTING = 'GETSETTING';","map":{"version":3,"sources":["/Users/naibtahmazli/Documents/166kargo/redux/settings/actionTypes.js"],"names":["GETSETTING"],"mappings":"AAAA,OAAO,IAAMA,UAAU,GAAG,YAAnB","sourcesContent":["export const GETSETTING = 'GETSETTING';\n"]},"metadata":{},"sourceType":"module"}

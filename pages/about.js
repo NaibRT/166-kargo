@@ -35,7 +35,7 @@ function About(props) {
 //   data: state.settings.data
 // })
 
-export async function getStaticProps({locale}) {
+export async function getServerSideProps({locale}) {
 
   let responce = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}settings/about?lan=${locale}`);
   return {

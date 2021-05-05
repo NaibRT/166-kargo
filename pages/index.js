@@ -178,7 +178,7 @@ const data = [
                   <Rate data={props.tariffs.filter(x => x.country_id === 16 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/16.svg'} headerText={f({id:'usa'})} style={{marginRight:0}} />
                 } 
               </div>
-              <MobileRate data={props.tariffs} text={f({id:'weight'})} />
+              <MobileRate data={props.mobileTariffs} text={f({id:'weight'})} />
             </Card.Body>
           </Card>
           <Card>
@@ -263,7 +263,7 @@ const data = [
           </Card>
         </section>
 
-        <section className='howworks'>
+        <section className='howworks w-100'>
         <div className='fluid_bottom'>
           <p className='title mg__bottom'>{f({ id: 'howitworks' })}</p>
           <div className='work__flex--container'>
@@ -358,14 +358,17 @@ const mapDispatchToProp = {
 }
 
 
-export async function getServerSideProps({locale,req,res}) {
-  
+export async function getServerSideProps({locale}) {
+  console.log(locale)
   let news = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}news/main?lan=${locale}`);
   let tariffs = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}tariffs?lan=${locale}`);
+  let mobileTariffs = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}tariffs/mobile?lan=${locale}`);
+
   return {
     props: {
      news:news.data,
-     tariffs:tariffs.data
+     tariffs:tariffs.data,
+     mobileTariffs: mobileTariffs.data
     },
   }
 }

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var GETDATA = 'GETDATA';","map":{"version":3,"sources":["/Users/naibtahmazli/Documents/166kargo/redux/getData/actionTypes.js"],"names":["GETDATA"],"mappings":"AACA,OAAO,IAAMA,OAAO,GAAG,SAAhB","sourcesContent":["\nexport const GETDATA = 'GETDATA';"]},"metadata":{},"sourceType":"module"}

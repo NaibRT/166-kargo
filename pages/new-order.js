@@ -1,6 +1,6 @@
 import axios from "axios";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import Router,{ useRouter } from "next/router";
 import React, { memo, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useIntl } from 'react-intl';
@@ -131,11 +131,13 @@ function NewOrder(props) {
            size: { value: '', error: '' },
            count: { value: '', error: '' },
          }])
-        Swal.fire({
-          success: 'success',
-          text: 'emeliyyat ugurlu oldu',
-          icon: 'success'
-        })
+        // Swal.fire({
+        //   success: 'success',
+        //   text: 'emeliyyat ugurlu oldu',
+        //   icon: 'success'
+        // })
+
+          window.location.href = res.data.url
       }).catch((err) => {
         let items = err.response.data.errors.items;
         items.forEach((x, i) => {
