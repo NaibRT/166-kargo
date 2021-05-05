@@ -19,7 +19,7 @@ function Blog(props) {
          <Card.Body className='br-sm' style={{padding:0}}>
           <Link href={`/blog/${props.news[0].slug}`}>
            <a>
-           <img className='br-sm bg-bg' src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${props.news[0].image}`} width={'100%'} height={'300px'}/>
+           <img className='br-sm bg-bg' src={`${props.news[0].image}`} width={'100%'} height={'300px'}/>
            </a>
           </Link>
          </Card.Body>
@@ -69,7 +69,7 @@ function Blog(props) {
 
 export async function getServerSideProps({locale}) {
 
-  let responce = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}news?lan=${locale}`);
+  let responce = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}news?lan=${locale || 'az'}`);
   return {
     props: {
      news:responce.data

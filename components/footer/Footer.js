@@ -54,7 +54,7 @@ function Footer(props) {
 
     <footer className={'footer mt-lg'}>
       <Page>
-        <div className={'footer_container container-fluid'}>
+        <div className={'footer_container container-fluid mb-sm'}>
           <div className={'footer_container_head'}>
           <img src={'/assets/images/166.png'} width={149} height={80} className='rsr-f' />
             <p className={'footer_about'}>

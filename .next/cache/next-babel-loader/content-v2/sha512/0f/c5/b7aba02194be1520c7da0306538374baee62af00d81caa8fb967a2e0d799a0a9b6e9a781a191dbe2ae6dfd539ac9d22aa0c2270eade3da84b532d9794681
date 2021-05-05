@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { jsx as _jsx } from \"react/jsx-runtime\";\nimport React from 'react';\n\nfunction Aside({\n  children,\n  style,\n  className\n}) {\n  return /*#__PURE__*/_jsx(\"aside\", {\n    className: `aside ${className || ''}`,\n    style: style,\n    children: children\n  });\n}\n\nexport default Aside;","map":null,"metadata":{},"sourceType":"module"}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"import axios from 'axios';\nimport { getData } from './actions';\nexport var getDataAction = function getDataAction(url, header) {\n  return function (dispatch) {\n    axios.get(url, header).then(function (res) {\n      dispatch(getData(res.data));\n    });\n  };\n};","map":null,"metadata":{},"sourceType":"module"}

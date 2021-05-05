@@ -1,17 +1,18 @@
 import React from 'react'
 
-function Map(props) {
+function Frame({src,height,width,style,...rest}) {
     return (
         <div>        
         <iframe 
-               src={props.src} 
-               height={props.height} 
-               width={props.width}
-               style={props.style}
+               src={src} 
+               height={height} 
+               width={width}
+               style={style}
                loading='lazy'
+               {...rest}
                />         
         </div>
     )
 }
 
-export default Map
+export default Frame

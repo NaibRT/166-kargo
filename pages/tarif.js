@@ -2,7 +2,6 @@ import axios from 'axios';
 import { memo } from "react";
 import { useIntl } from 'react-intl';
 import Card from '../components/card/card';
-import Main from '../components/main/main';
 import Page from '../components/page/page';
 import MobileRate from '../components/rate/m-rate';
 import Rate from '../components/rate/rate';
@@ -30,19 +29,22 @@ import Rate from '../components/rate/rate';
                 <Rate style={{width:'33%'}} data={props?.tariffs.filter(x => x.country_id === 18 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/18.svg'} headerText={f({ id: 'ua' })}  />
               } 
             </div>
-            <MobileRate data={props?.tariffs} />
+            <MobileRate data={props?.mobileTariffs} />
           </Card.Body>
         </Card>
          </Page>
     )
 }
 
-export async function getStaticProps({locale}) {
+export async function getServerSideProps({locale}) {
      let tariffs = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}tariffs?lan=${locale}`);
+     let mobileTariffs = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}tariffs/mobile?lan=${locale}`);
+
   
     return {
       props: { 
-       tariffs:tariffs.data
+       tariffs:tariffs.data,
+       mobileTariffs: mobileTariffs.data
       }
     }
   

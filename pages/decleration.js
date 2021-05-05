@@ -236,7 +236,7 @@ const mapDispatchToProps = {
 }
 
 
-export async function getStaticProps({locale}) {
+export async function getServerSideProps({locale}) {
 
   let categories = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}categories/main?lan=${locale}`);
 

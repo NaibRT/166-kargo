@@ -22,9 +22,9 @@ export default function OrdersCondition(props) {
 
     )
 }
-export async function getStaticProps({locale}) {
+export async function getServerSideProps({locale}) {
 
-        let responce = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}condition`);
+        let responce = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}condition?lan=${locale}`);
         return {
           props: {
            data:responce.data

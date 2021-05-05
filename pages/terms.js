@@ -1,9 +1,9 @@
-import React from 'react'
-import Card from '../components/card/card'
-import Page from '../components/page/page'
-import Main from '../components/main/main'
 import axios from 'axios';
+import React from 'react';
 import ReactHtmlParser from "react-html-parser";
+import Card from '../components/card/card';
+import Main from '../components/main/main';
+import Page from '../components/page/page';
 
 export default function OrdersCondition(props) {
     return (
@@ -22,9 +22,9 @@ export default function OrdersCondition(props) {
 
     )
 }
-export async function getStaticProps({locale}) {
+export async function getServerSideProps({locale}) {
 
-        let responce = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}condition`);
+        let responce = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}condition?lan=${locale}`);
         return {
           props: {
            data:responce.data

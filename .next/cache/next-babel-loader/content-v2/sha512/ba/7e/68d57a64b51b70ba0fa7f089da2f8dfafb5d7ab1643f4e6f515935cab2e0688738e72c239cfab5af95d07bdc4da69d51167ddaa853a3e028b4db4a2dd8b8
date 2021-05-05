@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { GETDATA } from './actionTypes';\nexport var getData = function getData(data) {\n  return {\n    type: GETDATA,\n    payload: data\n  };\n};","map":null,"metadata":{},"sourceType":"module"}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { GETSETTING } from \"./actionTypes\";\nexport const getSettings = data => {\n  return {\n    type: GETSETTING,\n    payload: data\n  };\n};","map":null,"metadata":{},"sourceType":"module"}
