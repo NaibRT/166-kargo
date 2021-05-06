@@ -169,7 +169,7 @@ const data = [
             <Card.Body className='bg-bg p-sm br-sm'>
               <div className='bg-bg rate-container' >
                 {
-                  <Rate data={props.tariffs.filter(x => x.country_id === 15 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/15.svg'} headerText={f({id:'turkey'})} /> 
+                  <Rate data={props.tariffs.filter(x => x.country_id === 15 && x.is_liquid===0).splice(0,6)} icon={'/assets/icons/15.svg'} headerText={f({id:'turkey'})} /> 
                 }
                 {
                   <Rate data={props.tariffs.filter(x => x.country_id === 18 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/18.svg'} headerText={f({id:'ukraina'})} />

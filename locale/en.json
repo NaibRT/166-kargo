@@ -203,9 +203,11 @@
     "lastprice":"Price",
     "active-pac":"Active packages",
     "complate-register":"Complate register",
+    "choose-post":"Choose post index",
     "register-hard":"If register is hard please watch video",
     "use-cond":"Orders condition",
-    "azerpost":"Azərpost",
+    "azerpost":"Azerpost",
+    "post-requir":"Post index is a must",
     "search-pac":"Find your package"
 
 

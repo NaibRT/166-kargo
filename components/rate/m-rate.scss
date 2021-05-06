@@ -45,11 +45,11 @@
              text-align:center;
          }
         }
-        tr:not(:last-child){
-         td{
-          border-bottom: 1px solid lightgray;
-         }
-        }
+        // tr:not(:last-child){
+        //  td{
+        //   border-bottom: 1px solid lightgray;
+        //  }
+        // }
     }
     th,td{
         color:$color__subtitle;

@@ -36,6 +36,7 @@
     "alttext3":"Sifairşinizi Bakı ofisimizdən götürürsünüz(və ya evinizə çatdırılma xidmətimizdən istifadə edirsiniz)",
     "shops":"Bəzi mağazalar",
     "azerpost":"Azərpoçt",
+
     "tarifftitle":"Ölkələr üzrə tariflərimiz",
     "tariff":"Qiymətlər",
     "search":"Bağlamam haradadır",
@@ -56,6 +57,8 @@
 
     "note":"Qeyd",
     "note-requir":"Qeyd məcburidir",
+    "choose-post":"Poçt indeksi seçin",
+    "post-requir":"Poçt indeks məcburidir",
     "color":"Rəng",
     "isfast":"Təcili",
     "ord-pay":"Sifariş et və ödə",

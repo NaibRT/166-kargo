@@ -12,7 +12,7 @@ function PackageItem({item,checkRef,onCheck}) {
             <div className='package-item-header'>
               {/* <img style={{marginLeft:'-10px'}} src='./assets/images/a02.svg'/> */}
               <h1>{item.shop}</h1>
-              <h5 style={{color:`${item.status.color}`}}>{item.status.name}</h5>
+              <h5 >{item.status.name}</h5>
               <h5 style={{color:'red'}}>{item.pay_status}</h5>
               <div className='package-item-body'>
                  <ul>
