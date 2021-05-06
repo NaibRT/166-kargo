@@ -1,10 +1,9 @@
+import axios from 'axios';
 import React, { memo } from 'react';
 import ReactHtmlParser from "react-html-parser";
 import { useIntl } from 'react-intl';
-import { connect } from "react-redux";
 import Card from '../components/card/card';
 import Page from '../components/page/page';
-import axios from 'axios';
 function About(props) {
   const { formatMessage: f } = useIntl();
  
@@ -21,7 +20,7 @@ function About(props) {
          
       </div>
          <div className='about-info'>
-           {ReactHtmlParser(props.data.about)}
+           {ReactHtmlParser(props.data[4].text)}
          </div>
        </Card.Body> 
     </Card>
@@ -37,13 +36,12 @@ function About(props) {
 
 export async function getServerSideProps({locale}) {
 
-  let responce = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}settings/about?lan=${locale}`);
+  let responce = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}condition?lan=${locale}`);
   return {
     props: {
      data:responce.data
     },
   }
-
 }
 
 export default (memo(About)) 

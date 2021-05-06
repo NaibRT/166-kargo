@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { memo, useLayoutEffect, useState } from 'react'
+import React, { memo, useEffect, useLayoutEffect, useState } from 'react'
 import { useForm } from "react-hook-form"
 import { useIntl } from 'react-intl'
 import { connect } from 'react-redux'
@@ -46,64 +46,69 @@ function AzerPost(props) {
   const [state, setState] = useState({
     orderHistory:[],
     paidBatches:[],
-    addresses:[]
+    addresses:[],
+    total:0.0
   });
-  const [region, setRegion] = useState('');
   const { locale } = useRouter();
-  const {register,handleSubmit,errors} = useForm()
+  const {register,handleSubmit,errors} = useForm();
+
   useLayoutEffect(() => {
    Promise.all([
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}kuryers?lan=${locale}`, {
+    // axios.get(`${process.env.NEXT_PUBLIC_API_URL}kuryers?lan=${locale}`, {
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Authorization': `Bearer ${props.entry.user.accessToken}`
+    //   }
+    // }),
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}batches/paidPost?lan=${locale}`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${props.entry.user.accessToken}`
       }
     }),
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}batches/paid?lan=${locale}`, {
+     axios.get(`${process.env.NEXT_PUBLIC_API_URL}azerpost/addresses`,{
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${props.entry.user.accessToken}`
       }
-    }),
-     axios.get(`${process.env.NEXT_PUBLIC_API_URL}kuryers/addresses?lan=${locale}`,{
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${props.entry.user.accessToken}`
-      }
-  })
+     })
    ]).then(res => {
        setState({
-         orderHistory : res[0].data,
-         paidBatches  : res[1].data,
-         addresses    : res[2].data.map(x => ({...x,name:x.address}))
+        //  orderHistory : res[0].data,
+         ...state,
+         paidBatches  : res[0].data,
+         addresses    : res[1].data.map(x => ({...x,name:`${x.address} - ${parseFloat(x.price).toFixed(2)}`}))
        })
    }).catch(err => console.log(err))
   
   }, []);
 
- const submit = (data) => {
+  useEffect(() => {
+    let price = state.addresses[0]?.price;
+    calculateTotal(price || 0)
+  },[state.addresses])
 
+  const calculateTotal = (price) => {
+    let w = state.paidBatches.reduce((total, x) => { return parseFloat(total) + parseFloat(x.weight)},0);
+    setState({
+      ...state,
+      total: w > 1 ? (Math.floor(w) * 0.8 + parseFloat(price)) : parseFloat(price)
+    })
+  }
+ const submit = (data) => {
   if(state.paidBatches.length > 0){
     let newData = {
       ...data,
       phone: data.phone_prefix + data.phone
     }
-   axios.post(`${process.env.NEXT_PUBLIC_API_URL}azerpost/addresses?lan=${locale}`,newData, {
+   axios.post(`${process.env.NEXT_PUBLIC_API_URL}azerpost/odeme?lan=${locale}`,newData, {
      headers: {
        'Content-Type': 'application/json',
        'Authorization': `Bearer ${props.entry.user.accessToken}`
      }
    }).then(res => {
-       setState({
-         ...state,
-         paidBatches:[],
-         orderHistory:res.data,
-       })
-          Swal.fire({
-           success: 'success',
-           text: 'emeliyyat ugurlu oldu',
-           icon: 'success'
-         })
+     console.log(res.data)
+        window.location = res.data.url;
    }).catch(error => console.log(error))
   }else{
     Swal.fire({
@@ -130,15 +135,15 @@ function AzerPost(props) {
                label={f({id:'choose-dist'})} 
                className='w-50 pr-lg mb-sm' 
                bodyClass='bg-bg'
-               error={errors.region?.message || region}
+               error={errors.region?.message}
                >
                <Selectbox
                  className='w-100'
                  data={state.addresses}
                  name='region'
                  onChange={(e) => {
-                    let re = state.addresses.find(x => x.id == e.target.value);
-                    setRegion(re.map)
+                    let price = state.addresses.find(a => a.id == e.target.value).price
+                    calculateTotal(price)
                  }}
                  Ref={register({
                    required:{value:true,message:'reagion is required'}
@@ -150,9 +155,11 @@ function AzerPost(props) {
                label={f({id:'choose-post'})} 
                className='w-50 pr-lg mb-sm' 
                bodyClass='bg-bg'
-               error={errors.day?.message}
+               error={errors.indeks?.message}
                >
-               <Input type='text'
+               <Input 
+               type='text'
+               name='indeks'
                Ref={register({
                 required:{value:true,message:f({id:'post-requir'})}
               })} />
@@ -198,7 +205,10 @@ function AzerPost(props) {
             </div>
             <Link href='/'><a style={{ color: 'darkblue', textDecoration: 'underline' }}>{f({id:'definemap'})}</a></Link>
           </Card.Body>
-          <Card.Footer style={{ justifyContent: 'flex-end' }}>
+          <Card.Footer style={{ justifyContent:'space-between',aliginItems:'center'}}>
+            <span className='mt-xs'>
+              {state.total} azn
+            </span>
             <ButtonComponent type='submit' className='p-xs' label={f({id:'ord-pay'})} />
           </Card.Footer>
           </form>

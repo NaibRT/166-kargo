@@ -8,7 +8,7 @@ import Page from '../components/page/page';
 export default function OrdersCondition(props) {
     return (
    
-        <Page className='bg-bg pt-lg fh'>
+        <Page className='bg-bg pt-lg pb-lg fh'>
             <Main style={{flexBasis:'100%'}}>
                 <Card>
                     <Card.Header className='pt-sm ml-sm'/>
