@@ -260,7 +260,7 @@ function Packages(props) {
   }
 
   const PaybyBalance = () => {
-    if(props.entry.user.user.balance > 0 && selectedPackages.packages.length > 0){
+    if(props.entry.user.user.balance >=selectedPackages.discountTotal && selectedPackages.packages.length > 0){
       props.PayByBalanceAction('payment',{
         price:selectedPackages.discountTotal,
         sourcetype:3,
