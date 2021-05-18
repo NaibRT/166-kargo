@@ -19,6 +19,7 @@ import Redirect from "../components/redirect/redirect";
 import Tabel from "../components/tabel/tabel";
 import { PayByBalanceAction } from '../redux/entry/entryActions';
 
+
 function Packages(props) {
   if (!props.entry.isLoged) {
     return <Redirect />;
@@ -80,7 +81,7 @@ function Packages(props) {
         authorization: `Bearer ${props.entry.user.accessToken}`,
       },
     });
-
+     console.log(batchesData.data)
     return {
       batchesData:batchesData.data,
       statusData:statusData.data
@@ -278,6 +279,52 @@ function Packages(props) {
     }
 
   }
+
+  const addInvoice = (id) => {
+    Swal.fire({
+      //confirmButtonText: 'OK',
+      showCancelButton: true,
+      html:`
+        <from id='swal-form'>
+        <input type="file" id="swal-input1" class="swal2-input" required>
+        <input  type="number" min="0" id="swal-input2" class="swal2-input w-100" required>
+        </from>
+      `
+    }).then(res => {
+  
+        let file = document.getElementById('swal-input1').value;
+        let price = document.getElementById('swal-input2').value;
+        
+        let newFromData = new FormData();
+        newFromData.set('id',id);
+        newFromData.set('invoice',file);
+        newFromData.set('price',price);
+        // newFromData.set('price',price);
+        axios.post(`${process.env.NEXT_PUBLIC_API_URL}batches/invoice`,newFromData,{
+            headers: {
+                authorization: `Bearer ${props.entry.user.accessToken}`,
+            },
+        }).then(res => {
+            console.log(res.data)
+            let currentPanks = filteredPacks.filter(x => x.id != id);
+            setPackages([
+              ...currentPanks,
+              res.data.batch[0]
+            ])
+            setFilteredPacks([
+              ...currentPanks,
+              res.data.batch[0]
+            ])
+            Swal.fire({
+               confirmButtonText: 'OK',
+               icon:'success',
+               text:res.data.success,
+            })
+        }).catch(err => console.log(err))
+
+
+    });
+  }
  
   return (
     <Page className="bg-bg pt-lg pb-lg">
@@ -307,18 +354,18 @@ function Packages(props) {
               }}
             >
 
-              <ButtonComponent
+              {/* <ButtonComponent
                 label={`Hamısı (${packages.length})`}
-                className="mr-xs p-xs bg-bg pack-active"
+                className=" p-xs bg-bg pack-active"
                 data-id={0}
                 Ref={addTabRefs}
                 onClick={tabButtonClick}
-              />
+              /> */}
 
                {status.map((x,i) => (
                 <ButtonComponent
                   label={`${x.name} (${x.count})`}
-                  className=" p-xs bg-bg "
+                  className={`p-xs bg-bg ${i==0 && 'pack-active'}`}
                   data-id={x.id}
                   Ref={addTabRefs}
                   onClick={tabButtonClick}
@@ -335,6 +382,7 @@ function Packages(props) {
                 .filter((x) => x.status.id !== 6)
                 .map((p) => (
                   <PackageItem
+                    addInvoice={addInvoice}
                     key={p.id}
                     checkRef={addCheckRefs}
                     item={p}

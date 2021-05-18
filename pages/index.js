@@ -44,7 +44,7 @@ const data = [
     length:'',
     width:'',
     isliquid:false,
-    country:'TÜRKİYƏ',
+    country:15,
     total: 0.00
   });
 
@@ -59,18 +59,21 @@ const data = [
 
   const calculatePrize = () => {
      let total;
-      let datas =  props.tariffs.filter(x =>
-                                     (x.country.toUpperCase()) == (calculator.country.toUpperCase())
-                                        && x.is_liquid ==  calculator.isliquid
-                                        && (x.weight_min <= parseFloat(calculator.weight) && x.weight_max >= parseFloat(calculator.weight))
-                                      );
-      if(datas.length > 0){
-        if(calculator.height>=80 || calculator.length>=80 || calculator.width>=80 && calculator.weight < 1){
-        
-          total = (((calculator.width * calculator.height) * calculator.length) / 6000) * datas[0].price;
-  
+      let country =  props.countries.find(x=> x.country_id == calculator.country)
+      let tarif   =  country.tariffs.find(x => (x.weight_min <= parseFloat(calculator.weight) && x.weight_max >= parseFloat(calculator.weight)) 
+                                               && x.is_liquid ==  calculator.isliquid
+                                           );
+
+
+      if(Object.keys(tarif).length > 0){
+        if(calculator.height>=country.limited || calculator.length>=country.limited  || calculator.width>=country.limited ){
+          total = (((calculator.width * calculator.height) * calculator.length) / 6000) * tarif.price;
         }else{
-          total = calculator.weight * datas[0].price;
+          if(calculator.weight>1){
+            total = calculator.weight * tarif.price;
+          }else{
+            total = tarif.price;
+          }
         }
 
             
@@ -169,13 +172,13 @@ const data = [
             <Card.Body className='bg-bg p-sm br-sm'>
               <div className='bg-bg rate-container' >
                 {
-                  <Rate data={props.tariffs.filter(x => x.country_id === 15 && x.is_liquid===0).splice(0,6)} icon={'/assets/icons/15.svg'} headerText={f({id:'turkey'})} /> 
+                  <Rate data={props.countries[0]?.tariffs} icon={'/assets/icons/15.svg'} headerText={f({id:'turkey'})} /> 
                 }
                 {
-                  <Rate data={props.tariffs.filter(x => x.country_id === 18 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/18.svg'} headerText={f({id:'ukraina'})} />
+                  <Rate data={props.countries[2]?.tariffs} icon={'/assets/icons/18.svg'} headerText={f({id:'ukraina'})} />
                 }
                 {
-                  <Rate data={props.tariffs.filter(x => x.country_id === 16 && x.is_liquid===0).splice(0,4)} icon={'/assets/icons/16.svg'} headerText={f({id:'usa'})} style={{marginRight:0}} />
+                  <Rate data={props.countries[1]?.tariffs} icon={'/assets/icons/16.svg'} headerText={f({id:'usa'})} style={{marginRight:0}} />
                 } 
               </div>
               <MobileRate data={props.mobileTariffs} text={f({id:'weight'})} />
@@ -187,9 +190,9 @@ const data = [
               <form className='calculator-form' style={{display:'flex',flexWrap:'wrap'}}>
               <FromGroup className='w-50 pr-xs mb-sm' bodyClass='bg-white ' label={f({id:'choosectry'})}>
                   <Selectbox className='w-100 m-none' data={[
-                    {id:'TÜRKİYƏ',name:f({id:'turkey'})},
-                    {id:'ABŞ',name:f({id:'usa'})},
-                    {id:'Ukrayna',name:f({id:'ukraina'})}
+                    {id:15,name:f({id:'turkey'})},
+                    {id:16,name:f({id:'usa'})},
+                    {id:18,name:f({id:'ukraina'})}
                   ]}
                      name='country'
                      value={calculator?.country}
@@ -361,13 +364,13 @@ const mapDispatchToProp = {
 export async function getServerSideProps({locale}) {
   console.log(locale)
   let news = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}news/main?lan=${locale}`);
-  let tariffs = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}tariffs?lan=${locale}`);
+  let countries = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}tariff?lan=${locale}`);
   let mobileTariffs = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}tariffs/mobile?lan=${locale}`);
-
+  console.log(countries.data[0])
   return {
     props: {
      news:news.data,
-     tariffs:tariffs.data,
+     countries:countries.data,
      mobileTariffs: mobileTariffs.data
     },
   }

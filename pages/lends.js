@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import React, { memo, useLayoutEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { connect } from "react-redux";
-import Swal from "sweetalert2";
 import AsideMenu from '../components/aside-menu';
 import Aside from '../components/aside/aside';
 import ButtonComponent from '../components/button';
@@ -20,7 +19,9 @@ const dataFunc=()=>{
   const dataHead = [
     `${f({id:'orders'})}№`,
     f({id:'reason'}),
-    f({id:'payment'})
+    f({id:'payment'}),
+    f({id:'status'})
+
   ];
   return dataHead
 }
@@ -54,7 +55,10 @@ function Lends(props) {
     return <Redirect />
   }
 
-  const [lend, setLend] = useState([]);
+  const [lend, setLend] = useState({
+    total:0,
+    lends:[]
+  });
   const { locale } = useRouter();
 
   useLayoutEffect(() => {
@@ -64,31 +68,34 @@ function Lends(props) {
         'Authorization': `Bearer ${props.entry.user.accessToken}`
       }
     }).then(res => {
+      console.log(res.data)
       setLend(res.data)
     }).catch(err => console.log(err))
   }, [])
 
 
   const PayLands = () => {
-    Swal.fire({
-      confirmButtonText: 'OK',
-      showCancelButton: true,
-      input: 'text'
-    }).then(res => {
-      console.log(res)
-      if(res.isConfirmed){
-        axios.post(`${process.env.NEXT_PUBLIC_API_URL}payment`,{
-          price:res.value,
-          sourcetype:4
-        },{
-          headers:{
-            'authorization': `Bearer ${props.entry.user.accessToken}`
-          }
-        }).then(res => {
-          window.location.href = res.data.url
-        })
+
+    axios.post(`${process.env.NEXT_PUBLIC_API_URL}payment`,{
+      price:lend.total,
+      sourcetype:4
+    },{
+      headers:{
+        'authorization': `Bearer ${props.entry.user.accessToken}`
       }
-    });
+    }).then(res => {
+      window.location.href = res.data.url
+    })
+
+    // Swal.fire({
+    //   confirmButtonText: 'OK',
+    //   showCancelButton: true,
+    //   input: 'text'
+    // }).then(res => {
+    //   if(res.isConfirmed){
+
+    //   }
+    // });
   }
   
   return (
@@ -102,7 +109,7 @@ function Lends(props) {
           <Card.Body className='p-none'>
             <Tabel
               th={dataFunc()}
-              data={lend}
+              data={lend.lends}
               renderBody={(x, i) => {
 
                 return <td key={i++}>
@@ -112,7 +119,7 @@ function Lends(props) {
             />
           </Card.Body>
           <Card.Footer className='footer__card'>
-            <h6 className='ml-xs mt-xs'></h6>
+            <h6 className='ml-xs mt-xs'>{lend.total} TL</h6>
             <ButtonComponent onClick={PayLands} balance={props.entry.user.user.balance} className='size_btn' label={f({id:"paylend"})} />
           </Card.Footer>
         </Card>
@@ -124,7 +131,7 @@ function Lends(props) {
           <Card.Body className='p-none'>
 
               {
-                lend.map((s,i)=>{
+                lend.lends.map((s,i)=>{
                   return(
                     <table key={i}>
                      <thead>
@@ -156,7 +163,7 @@ function Lends(props) {
       
       </Main>
       <div className='w-100 mobi__lend'>
-      <h6 className='ml-xs mt-xs'>Sizin Borcunuz 3 TRY təşkil edir</h6>
+      <h6 className='ml-xs mt-xs'>Sizin Borcunuz {lend.total} TRY təşkil edir</h6>
       <ButtonComponent className='size_btn' label='Borcu ödə' />
     </div>
     </Page>
