@@ -1,11 +1,10 @@
 import axios from "axios";
 import Link from "next/link";
-import Router,{ useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { memo, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useIntl } from 'react-intl';
 import { connect } from "react-redux";
-import Swal from "sweetalert2";
 import AsideMenu from "../components/aside-menu";
 import Aside from "../components/aside/aside";
 import Button from "../components/button";
@@ -81,8 +80,8 @@ function NewOrder(props) {
     if (cards[id].count && cards[id].price) {
       cards[id] = {
         ...cards[id],
-        total: cardData.is_fast ? (cards[id].count.value * cards[id].price.value) + props.fastOrderPrice
-          : (cards[id].count.value * cards[id].price.value)
+        total: cardData.is_fast ? (cards[id].count.value * cards[id].price.value) + props.fastOrderPrice + ((cards[id].count.value * cards[id].price.value * props.serviceFeePersentage) / 100 ) 
+          : (cards[id].count.value * cards[id].price.value) + ((cards[id].count.value * cards[id].price.value * props.serviceFeePersentage) / 100 )
       }
     } else {
       cards[id] = {
@@ -359,7 +358,7 @@ function NewOrder(props) {
                               onChange={handleInput}
                             />
                           </FromGroup>
-                          <FromGroup label={f({id:"total"})} className=' w-50' bodyClass='bg-white'
+                          <FromGroup label={`${f({id:"total"})}${"(+5%)"}`} className=' w-50' bodyClass='bg-white'
                           >
                             <Input type='number' name='total' data-id={i}
                               value={x.total}
@@ -419,7 +418,7 @@ function NewOrder(props) {
                 <Button onClick={addCard} className='w-100 p-sm bg-white border-success color-success' startElement={<span className='mr-xs color-success'>+</span>} label={f({id:'addnewproduct'})} />
               </div>
               <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0' }}>
-                <Checkbox text={f({id:"isfast"})} name='is_fast' value={cardData.is_fast}
+                {/* <Checkbox text={f({id:"isfast"})} name='is_fast' value={cardData.is_fast}
                   onClick={(ev) => {
                     setCardData({
                       ...cardData,
@@ -429,7 +428,7 @@ function NewOrder(props) {
                     addFastPrize(ev.target.checked, props.fastOrderPrice)
 
                   }}
-                />
+                /> */}
                 <Checkbox
                   onClick={(ev) => {
                     setCardData({

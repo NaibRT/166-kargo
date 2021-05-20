@@ -12,6 +12,19 @@ function AsideMenu(props) {
     const { formatMessage: f } = useIntl(); 
     const { pathname } = location;
     const splitLocation = pathname.split("/");
+   // const [balance,setBalance] = useState(0.0);
+
+    // useLayoutEffect(() => {
+    //     axios.get(`${process.env.NEXT_PUBLIC_API_URL}balans`,{
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Authorization': `Bearer ${props.entry.user.accessToken}`
+    //           }
+    //     })
+    //          .then(res => {
+    //             setBalance(res.data)
+    //          })
+    // },[])
 
     return (
         <div>
@@ -19,7 +32,7 @@ function AsideMenu(props) {
         <Card.Header text={`${props.entry.user.user.firstname} ${props.entry.user.user.lastname}`} style={{fontSize:'20px'}}/>
         <p>{f({id:'customer-code'})}: {props.entry.user.user.customer_number}</p>
         <small className='mr-xs'>{f({id:'balance'})}</small>
-        <small>{props.entry.user.user.balance} AZN</small>
+        <small>{props.balance} AZN</small>
           <Card.Body className='mt-xs' style={{padding:0}}>
            <Link href="/new-order">
             <a>
@@ -120,4 +133,5 @@ function AsideMenu(props) {
 const mapStateToProps = state => ({
     entry: state.entry
 })
+
 export default connect(mapStateToProps)(memo(AsideMenu))

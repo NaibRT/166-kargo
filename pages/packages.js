@@ -27,6 +27,7 @@ function Packages(props) {
 
   const { register, handleSubmit, errors, setError } = useForm();
   const { formatMessage: f } = useIntl();
+  const [balance, setBalance] = useState([]);
   const [packages, setPackages] = useState([]);
   const [filteredPacks, setFilteredPacks] = useState([]);
   const [status, setStatus] = useState([]);
@@ -61,9 +62,18 @@ function Packages(props) {
         }
       )
       .then((res) => {
-        console.log(res.data.batches);
-        setPackages(res.data.batches);
-        setFilteredPacks(res.data.batches);
+        if(res.data.status == 2){
+           setBalance(res.data.balance)
+        }else{
+          setPackages(res.data.batches);
+          setFilteredPacks(res.data.batches);
+        }
+
+        Swal.fire({
+          icon:'success',
+          text:res.data.success,
+        })
+
       })
       .catch((err) => {
         setError("promocode", { message: err.response.data.error });
@@ -81,7 +91,6 @@ function Packages(props) {
         authorization: `Bearer ${props.entry.user.accessToken}`,
       },
     });
-     console.log(batchesData.data)
     return {
       batchesData:batchesData.data,
       statusData:statusData.data
@@ -96,6 +105,18 @@ function Packages(props) {
     }).catch(err => console.log(err))
 
   }, []);
+  
+  useLayoutEffect(() => {
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}balans`,{
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${props.entry.user.accessToken}`
+          }
+    })
+         .then(res => {
+            setBalance(res.data)
+         })
+},[])
 
   const addTabRefs = (ref) => {
     if (ref && !tabRefs.current.includes(ref)) {
@@ -292,17 +313,20 @@ function Packages(props) {
       `
     }).then(res => {
   
-        let file = document.getElementById('swal-input1').value;
+        let file = document.getElementById('swal-input1').files;
         let price = document.getElementById('swal-input2').value;
-        
+        console.log('filevalue',file);
         let newFromData = new FormData();
         newFromData.set('id',id);
-        newFromData.set('invoice',file);
+        newFromData.set('invoice',file[0]);
         newFromData.set('price',price);
+        newFromData.append('_method','POST')
         // newFromData.set('price',price);
         axios.post(`${process.env.NEXT_PUBLIC_API_URL}batches/invoice`,newFromData,{
             headers: {
-                authorization: `Bearer ${props.entry.user.accessToken}`,
+              'Content-Type':'multipart/form-data',
+              'Accepts':'application/json',
+              'Authorization':`Bearer ${props.entry.user.accessToken}`
             },
         }).then(res => {
             console.log(res.data)
@@ -329,7 +353,7 @@ function Packages(props) {
   return (
     <Page className="bg-bg pt-lg pb-lg">
       <Aside className="mr-sm">
-        <AsideMenu />
+        <AsideMenu balance={balance} />
       </Aside>
       <Main className="bg-c p-none">
         <Card className="bg-bg pb-sm mgm_ss p-sm">
